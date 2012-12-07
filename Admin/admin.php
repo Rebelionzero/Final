@@ -1,9 +1,7 @@
 <?php
 	session_start();
 	if(isset($_SESSION['errores'])){
-		foreach ($_SESSION['errores'] as $error => $codigo) {
-				echo '<p>'.$codigo.'</p>';
-			}
+		$errores = true;
 	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
