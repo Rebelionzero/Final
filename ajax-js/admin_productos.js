@@ -18,6 +18,13 @@ window.onload=function(){
 			}
 		}
 	}
+	
+	if(get_id("cerrar_error_msg")){
+		get_id("cerrar_error_msg").onclick = function(){
+			rem_ch(this.parentNode);
+		}
+	}
+
 }
 
 	function filtrar_elemento(elemento_familia){
@@ -80,6 +87,7 @@ window.onload=function(){
 			label_descripcion.innerHTML = "Descripcion del producto";
 			label_img.innerHTML = "Imagen";
 			cerrar.innerHTML = "Cerrar";
+			cerrar.href = "#"
 			
 			div.className = "formulario_nuevo_producto";
 			div_1.className = "nombre_prd_div";
@@ -110,6 +118,17 @@ window.onload=function(){
 			submit.value = "cargar producto";
 			select_categoria.id = "select_categoria";
 			select_marca.id = "select_marca";
+			cerrar.id = "cerrar_prod_form";
+			
+			option = cr_elem("option");
+			option.text = 'seleccione una categoria';
+			option.value = 'seleccionar';
+			app_ch(option,select_categoria);
+			
+			option = cr_elem("option");
+			option.text = 'seleccione una marca';
+			option.value = 'seleccionar';
+			app_ch(option,select_marca);
 			
 			for(var i = 0; i< array[0].length; i++){
 				option = cr_elem("option");
@@ -150,6 +169,10 @@ window.onload=function(){
 			
 			app_ch(form,div);
 			app_ch(div,get_id("right"));
+			
+			cerrar_prod_form.onclick = function(){
+				rem_ch(div);
+			}
 		}
 	}
 	

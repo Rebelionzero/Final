@@ -9,7 +9,7 @@
 		$table = $_POST["algo"];
 	}
 
-	function consultar_bd($usuario,$conexion,$table){
+	function consultar_bd($conexion,$table){
 		$select = "SELECT * FROM ".$table.";";
 		$consulta = mysql_query($select, $conexion);
 		if(mysql_num_rows($consulta) > 0){
@@ -21,7 +21,7 @@
 		}
 		return $resultado;
 	}
-	$consultar= consultar_bd($usuario,$conexion,$table);
+	$consultar= consultar_bd($conexion,$table);
 	mysql_close($conexion);
 	$enviar = json_encode($consultar);	
 	echo $enviar;

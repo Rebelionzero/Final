@@ -1,14 +1,10 @@
 <?php
-$servidor = "localhost";
-$base = "shop";
-$usuario = "root";
-$pass = "";
-	
-	function conectar_bd($servidor,$usuario,$pass,$base){
+
+	function conectar_bd($servidor = "localhost",$usuario = "root" ,$pass = "" ,$base = "shop"){
 		$conexion= mysql_connect($servidor,$usuario,$pass);
 		mysql_select_db($base, $conexion);
 		return $conexion;
 	}
 	
-	$conexion = conectar_bd($servidor,$usuario,$pass,$base);
+	$conexion = conectar_bd();
 ?>

@@ -1,13 +1,18 @@
 <?php
-	if(isset($errores)){
-		if($errores == true){
-			echo '<div id="errores_form_prod">';
-			echo '<a id="cerrar_error_msg" href="#">cerrar</a>';
-			foreach ($_SESSION['errores'] as $error => $codigo) {
-				echo '<p>'.$codigo.'</p>';
-			}
-			echo '</div>';
+	if($errores != false){
+		echo '<div>';
+		echo '<a id="cerrar_error_msg" href="#">cerrar</a>';
+		foreach ($errores as $error => $codigo) {
+			echo '<p>'.$codigo.'</p>';
 		}
+		echo '</div>';
+	}
+	
+	if($exito != false){
+		echo '<div>';		
+			echo $exito;
+			echo '<a href="#" id="carga_exitosa_msg">cerrar</a>';
+		echo '</div>';
 	}
  
 ?>

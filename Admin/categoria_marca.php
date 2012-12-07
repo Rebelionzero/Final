@@ -13,12 +13,12 @@
 	$table = $_POST["tabla"];
 	$valor = $_POST["valor"];
 
-	function insertar_bd($usuario,$conexion,$table,$valor){
+	function insertar_bd($conexion,$table,$valor){
 		$insert = "INSERT INTO ".$table."s"." VALUES(null,'".$valor."',CURRENT_DATE());";
 		$consulta = mysql_query($insert, $conexion);
 		return $consulta;
 	}
-	if($consultar= insertar_bd($usuario,$conexion,$table,$valor)){
+	if($consultar= insertar_bd($conexion,$table,$valor)){
 		echo "La ".$table. " ".$valor." ha sido insertada correctamente.";
 		die();
 	}else{

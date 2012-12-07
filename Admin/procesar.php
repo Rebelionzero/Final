@@ -1,7 +1,8 @@
 <?php
 	
 	session_start();
-
+	
+	include_once('conexion.php');
 	include_once('guardar_db.php');
 
 	if(isset($_SESSION['errores'])){
@@ -67,7 +68,7 @@
 	function validar_img($img){
 		
 		if ($img["error"] > 0){
-  			return "Error en la carga de imagenes: ". $img["error"];
+  			return "Error en la carga de imagenes: no se ha subido ninguna imagen";
 		}elseif($img["type"] != 'image/gif' && $img["type"] != 'image/jpg' && $img["type"] != 'image/jpeg' && $img["type"] != 'image/png' && $img["type"] != 'image/pjpeg'){
   			return "Error en la carga de imagenes: solo se permiten formatos jpg, jpeg, gif y png";
   		}elseif( ($img["size"] / (1024 * 1024) ) > 2.0){
@@ -91,18 +92,18 @@
 		if(count($devolucionErrores) > 0){
 			$_SESSION['errores'] = $devolucionErrores;
 			header('Location: admin.php');
+			
 		}else{
 			// cambio de nombre a la imagen para que no se pise en la carpeta
-
 			$img = explode(".",$producto['imagen']['name']);
 			$producto['imagen']['saveName'] = $img[0].microtime(true).'.'.$img[1];
 			$producto['imagen']['name'] = $img[0];
-  			$carpetaYarchivo = "images/".$producto['imagen']['saveName'];
-			//move_uploaded_file($producto['imagen']['tmp_name'], $carpetaYarchivo);
+  			$carpetaYarchivo = "Prod images/".$producto['imagen']['saveName'];
+			move_uploaded_file($producto['imagen']['tmp_name'], $carpetaYarchivo);
 			
-			save_prod_in_db('asd','asd');
-			/*$conectar_db = conexion();
-			$save_db = save_prod_in_db('INSERT INTO productos VALUES (null,"'.$producto['producto'].'",'.$producto['precio'].',"'.$producto['descripcion'].'","'.$producto['imagen']['name'].'","'.$producto['imagen']['saveName'].'",'.$producto['categoria'].','.$producto['marca'].');',$conectar_db);*/
+			$conectar = conectar_bd();
+			$save_db = save_prod_in_db('INSERT INTO productos VALUES (null, "'.$producto['producto'].'" ,'.$producto['precio'].',"'.$producto['descripcion'].'","'.$producto['imagen']['name'].'","'.$producto['imagen']['saveName'].'",'.$producto['categoria'].','.$producto['marca'].');',$conectar);
+			
 
 		}
 		

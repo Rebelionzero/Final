@@ -4,7 +4,7 @@
 	include_once("conexion.php");
 	session_start();
 	
-	function consultar_bd($usuario,$conexion){
+	function consultar_bd($conexion){
 		$select_categoria = "SELECT id, nombre FROM categorias;";
 		$select_marca = "SELECT id, nombre FROM marcas;";
 		
@@ -32,7 +32,7 @@
 			return $categoriasYmarcas = array($resultado_categorias,$resultado_marcas);
 		}
 	}
-	$consultar= consultar_bd($usuario,$conexion);
+	$consultar= consultar_bd($conexion);
 	mysql_close($conexion);
 	$enviar = json_encode($consultar);	
 	echo $enviar;
