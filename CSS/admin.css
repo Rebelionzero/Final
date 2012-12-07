@@ -1,0 +1,51 @@
+﻿html{height:100%;}
+body{background:url("../Images/background.jpg");width:100%;}
+.head h1{background:url("../Images/admin_header.jpg");width:950px;height:120px;text-indent:-9999px;}
+a{text-decoration:none;color:#000;}
+a:visited{color:#000;}
+a:hover{text-decoration:underline;}
+.middle{margin-top: 35px;margin-left: 60px;overflow:hidden;min-height:500px;}
+.middle .left,.middle .right{float:left;}
+.middle .left{min-height:500px;border-right: 1px solid #111;}
+.middle .left ul{overflow:hidden;}
+.middle .left ul li{margin:5px 0 0 5px;padding:6px 12px;}
+
+.nuevo{
+	margin:15px;
+	width:125px;
+	padding:7px 12px;
+	text-align:center;
+	font-weight:bold;
+	font-family:verdana;
+	font-size:13px;
+	background-image: linear-gradient(bottom, #C90C0C 47%, #B50000 65%);
+	background-image: -o-linear-gradient(bottom, #C90C0C 47%, #B50000 65%);
+	background-image: -moz-linear-gradient(bottom, #C90C0C 47%, #B50000 65%);
+	background-image: -webkit-linear-gradient(bottom, #C90C0C 47%, #B50000 65%);
+	background-image: -ms-linear-gradient(bottom, #C90C0C 47%, #B50000 65%);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.47, #C90C0C),color-stop(0.65, #B50000));
+	-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;
+}
+.nuevo:hover{
+	background-image: linear-gradient(bottom, #B50000 47%, #C90C0C 65%);
+	background-image: -o-linear-gradient(bottom, #B50000 47%, #C90C0C 65%);
+	background-image: -moz-linear-gradient(bottom, #B50000 47%, #C90C0C 65%);
+	background-image: -webkit-linear-gradient(bottom, #B50000 47%, #C90C0C 65%);
+	background-image: -ms-linear-gradient(bottom, #B50000 47%, #C90C0C 65%);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.47, #B50000),color-stop(0.65, #C90C0C));
+	cursor:pointer;
+}
+.nuevo p{color: #FFFFFF;font-size: 11px; font-weight: normal;}
+
+.none{display:none;}
+.block{display:block;}
+table.productos{margin:15px;}
+table.productos tr{border:1px solid;}
+table.productos tr th{background: none repeat scroll 0 0 #38431E;color: #FCFCFC;font-size: 15px;font-weight: bold;padding: 10px;text-transform: capitalize;width:120px;}
+table.productos tr td{text-align:center;background: none repeat scroll 0 0 #BDCD9A;padding: 15px 0;}
+table.productos tr:hover td{background:#A1C358;}
+#ingreso_producto h2{margin:5px 0 10px 15px;}
+#ingreso_producto ul{margin:0 0 0 15px;}
+#ingreso_producto ul li{margin:7px 0;}
+#ingreso_producto ul li label{width:125px;display:inline-block;}
+#right{width:85%;}
