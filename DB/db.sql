@@ -25,7 +25,7 @@ USE shop;
 DROP TABLE IF EXISTS `categorias`;
 CREATE TABLE IF NOT EXISTS `categorias` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(25) COLLATE latin1_general_ci NOT NULL,
+  `nombre` varchar(30) COLLATE latin1_general_ci NOT NULL,
   `fecha_creacion` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)

@@ -18,8 +18,7 @@
 <html>
 	<head>
 		<title>Shop Smart Admin Panel</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<script type="text/javascript" src="../ajax-js/funciones_generales.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />		
 		<script type="text/javascript" src="../ajax-js/admin_productos.js"></script>
 		<script type="text/javascript" src="../ajax-js/formularios.js"></script>
 		<script type="text/javascript" src="../ajax-js/ajax_pedidos.js"></script>

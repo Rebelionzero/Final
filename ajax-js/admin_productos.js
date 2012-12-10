@@ -190,7 +190,7 @@ window.onload=function(){
 		
 		for(var i = 0;i< array[0].length;i++){
 			tr = cr_elem("tr");
-			tr.id = array[1]+"_"+i;
+			tr.id = array[1]+"_"+array[0][i]['id'];
 			for(var j in array[0][i]){
 				if(j == "id"){continue;
 				}else{
@@ -216,8 +216,82 @@ window.onload=function(){
 		}
 		app_ch(tabla,div);
 		app_ch(div,panel_derecho);
-	}	
+	}
 	
+	/* expresiones regulares */
+var email_regexp = /^[a-zA-Z0-9._-]+([+][a-zA-Z0-9._-]+){0,1}[@][a-zA-Z0-9._-]+[.][a-zA-Z]{2,6}$/;
+
+// NO FUNCIONA NINGUNA DE LAS 2 EXPRESIONES REGULARES DE ABAJO
+//var nombre_regexp = /^[A-Za-z\_\-\.\s\xF1\xD1]+$/;
+//var nuevo_nombre_regexp = /[A-Za-z]/;
+
+/* funciones generales */
+function get_id(id){return document.getElementById(id);}          // get element by id
+function cr_elem(tag){return document.createElement(tag);}        // create element
+function app_ch(hijo,padre){return padre.appendChild(hijo);}      // append child
+function rem_ch(elem){return elem.parentNode.removeChild(elem);}  // remove child
+function rem_all_ch(father_elem){								  // remover todos los hijos
+	if(father_elem.hasChildNodes){
+		while (father_elem.childNodes.length >= 1){
+       		father_elem.removeChild(father_elem.firstChild);
+    	}
+	}
+}
+
+function validar(condicional){                                    // validar segun condicional
+	var parametro = eval(condicional);
+	if(parametro){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function tablas_ajax_vacias(tabla){                              // mensaje de error CAMBIAR POR EL DE ABAJO
+	var elemento = filtrar_elemento(tabla);
+	var mensaje_contenedor = get_id("right");
+	var div = cr_elem("div");
+	var mensaje = cr_elem("h2");
+	mensaje.className="error";
+	
+	if(elemento == "producto" || elemento == "usuario"){
+		mensaje.innerHTML = "No hay ningun " + elemento + " cargado en este momento";
+	}else{
+		mensaje.innerHTML = "No hay ninguna " + elemento + " cargada en este momento";
+	}
+	app_ch(mensaje,div);
+	app_ch(div,mensaje_contenedor);
+}
+
+function mostrar_mensaje(mensaje,tipo){                          // mensaje de error, exito o generico
+	var mensaje_contenedor = get_id("right");
+	var div = cr_elem("div");
+	var h3 = cr_elem("h3");
+	var cerrar = cr_elem("a");
+		
+	h3.innerHTML = mensaje;
+	cerrar.href="#";
+	
+	app_ch(cerrar,div);
+	app_ch(h3,div);
+	
+	switch(tipo){
+		case "error": div.className = "mensaje_error";break;
+		case "exito": div.className = "mensaje_exito";break;
+	}
+	
+	app_ch(div,mensaje_contenedor);
+}
+
+function editar_tabla(tabla,id){
+	var largo_id = id.length;
+	var numero_id = parseInt(id.charAt(largo_id - 1));
+	alert(tabla);
+	alert(id);
+	alert(largo_id);
+	alert(numero_id);
+}
+
 	function limpiar_de_saltos(elem,node){
 		var li=[];
 		for(var j=0;j<elem.length;j++){
@@ -233,4 +307,55 @@ window.onload=function(){
 		rem_all_ch(panel);
 	}
 	
+	function open_modal(modal_type){
+		var back_div = cr_elm('div');
+		var front_div= cr_elm('div');
+		back_div.className = 'background_modal';
+		back_div.id = 'background_modal';
+		front_div.id = 'front_modal';
+		back_div.style.opacity = 0;
+		back_div.style.filter = "alpha(opacity=00)";
+		
+		app_ch(back_div,document.body);
+		app_ch(front_div,back_div);
+		
+		//if(modal_type["tipo"]=="compra"){modal_compra(modal_type);}
+		//if(modal_type["tipo"]=="checkout"){modal_checkout(modal_type);}
+	}
 
+
+	function fadeIn(obj){ // hace fadeIn
+		var interval = setInterval (opacity,10);
+		function opacity(){
+			if(navegador == "Microsoft Internet Explorer" && version.indexOf("9.0") == -1){
+				var sty = parseInt(obj.filters.alpha.opacity);
+				sty += 20;					
+				obj.style.filter = "alpha(opacity="+sty+")";
+				if(sty == 100){clearInterval(interval);}
+			}else{
+				var sty= parseFloat(obj.style.opacity);
+				sty += 0.2;
+				obj.style.opacity = sty;
+				if(sty == 1){clearInterval(interval);}
+			}
+		}
+	}
+	
+	function fadeOut(obj,elem){
+		elem.onclick = function (){return false; }
+		var timer = setInterval(close,10);
+		function close(){
+			if(navegador == "Microsoft Internet Explorer" && version.indexOf("9.0") == -1){
+				var sty = parseInt(obj.filters.alpha.opacity);
+				sty -= 20;					
+				obj.style.filter = "alpha(opacity="+sty+")";
+				if(sty < 0){clearInterval(timer);rem_ch(obj,obj.parentNode);}
+			}else{
+				var sty= parseFloat(obj.style.opacity);				
+				sty = (Math.round (100 * sty)) / 100; // arregla el problema de la diferencia en la resta de los numeros a continuacion no siendo exactamente 0.2
+				sty -= 0.2;
+				obj.style.opacity = sty;				
+				if(sty <= 0){clearInterval(timer);rem_ch(obj,obj.parentNode);}
+			}
+		}
+	}

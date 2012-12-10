@@ -57,9 +57,23 @@ function nueva_categoria_marca_btn(cat,opcion){
 			e.preventDefault(); // para FF standard
          	e.returnValue=false; // para IE
          	
-         	cargar_marca_categoria(input.value,opcion,"categoria_marca")
-         	//(validar(input.value.match(nombre_regexp))) ? cargar_marca_categoria(input.value,opcion+"s","categoria_marca") : alert("no puede ingresar numeros, caracteres extraños o espacios en blanco"); // valido si es un string, si es true llamo a la funcion ajax            
-            
+         	// /^[a-z0-9]+$/i
+         	//
+         	
+         	var validador = validar(input.value.match(nuevo_nombre_regexp)); // BUSCAR EXPRESION REGULAR PARA MACHEAR
+         	alert(validador);
+         	if(validar == true){
+         		if(input.value.length > 30){
+         			alert("el nombre cargado es muy largo");
+         		}else{
+         			cargar_marca_categoria(input.value,opcion,"categoria_marca");
+         		}         		
+         	}else{
+         		alert("no puede ingresar numeros, caracteres extraños o espacios en blanco");
+         	}
+         	
+         	//cargar_marca_categoria(input.value,opcion+"s","categoria_marca")
+         	 // valido si es un string, si es true llamo a la funcion ajax
 		}
 		
 		cerrar.onclick = function(e){
