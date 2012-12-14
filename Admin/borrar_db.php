@@ -1,20 +1,23 @@
 <?php
-    include_once("conexion.php");
+	include_once("conexion.php");
 	session_start();
 	
-	$table = $_POST["tabla"];
-	$valor = $_POST["valor"];
+	$tabla = $_POST['tabla'];
+	$id = $_POST['id'];
+	$nombre = $_POST['nombre'];
 
-	function insertar_bd($conexion,$table,$valor){
+
+	/*function borrar_bd($conexion,$table,$valor){
 		$insert = "INSERT INTO ".$table."s"." VALUES(null,'".$valor."',CURRENT_DATE());";
 		$consulta = mysql_query($insert, $conexion);
 		return $consulta;
 	}
-	if($consultar= insertar_bd($conexion,$table,$valor)){
-		echo "La ".$table. " ".$valor." ha sido insertada correctamente.";
+	if($consultar= borrar_bd($conexion,$table,$valor)){
+		/*echo "La ".$table. " ".$valor." ha sido insertada correctamente.";
 		die();
 	}else{
 		echo "Error ".mysql_errno(). " los valores ingresados no constituyen un nombre de ".$table." correcto.";
 		die();
-	}
+	}*/
+
 ?>

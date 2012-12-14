@@ -13,7 +13,7 @@ window.onload=function(){
 				var opcion = filtrar_elemento(thiz);				
 				comenzar_ajax(thiz);
 				
-				if(opcion != "orden de compra" && opcion != "usuario"){crear_boton(opcion);}
+				if(opcion != "usuario"){crear_boton(opcion);}
 				detenido = false;
 			}
 		}
@@ -182,11 +182,11 @@ window.onload=function(){
 		var tabla = cr_elem("table");
 		var tr;
 		var td;
+		var img;
 		var td_editar;
 		var td_borrar;
 		var editar;
 		var borrar;
-		
 		
 		for(var i = 0;i< array[0].length;i++){
 			tr = cr_elem("tr");
@@ -195,7 +195,17 @@ window.onload=function(){
 				if(j == "id"){continue;
 				}else{
 					td = cr_elem("td");
-					td.innerHTML = array[0][i][j];
+					if(array[1] == 'productos'){
+						if(j == "src"){
+							img	= cr_elem("img");
+							img.src = 'Prod_images/'+ array[0][i][j];
+							app_ch(img,td);
+						}else{
+							td.innerHTML = array[0][i][j];
+						}
+					}else{
+						td.innerHTML = array[0][i][j];
+					}
 					app_ch(td,tr);
 				}
 			}
@@ -212,7 +222,7 @@ window.onload=function(){
 			app_ch(td_borrar,tr);
 			app_ch(tr,tabla);
 			editar.onclick= function(){editar_tabla(array[1],this.parentNode.parentNode.id);}
-			borrar.onclick= function(){borrar(array[1],this.parentNode.parentNode.id);}
+			borrar.onclick= function(){borrar_tabla(array[1],this.parentNode.parentNode.id,this.parentNode.parentNode.firstChild.innerHTML);}
 		}
 		app_ch(tabla,div);
 		app_ch(div,panel_derecho);
@@ -222,8 +232,8 @@ window.onload=function(){
 var email_regexp = /^[a-zA-Z0-9._-]+([+][a-zA-Z0-9._-]+){0,1}[@][a-zA-Z0-9._-]+[.][a-zA-Z]{2,6}$/;
 
 // NO FUNCIONA NINGUNA DE LAS 2 EXPRESIONES REGULARES DE ABAJO
-//var nombre_regexp = /^[A-Za-z\_\-\.\s\xF1\xD1]+$/;
-//var nuevo_nombre_regexp = /[A-Za-z]/;
+var nombre_regexp = /^[A-Za-z\_\-\.\s\xF1\xD1]+$/;
+//var nuevo_nombre_regexp = /\bt[a-z]+\b/;
 
 /* funciones generales */
 function get_id(id){return document.getElementById(id);}          // get element by id
@@ -284,12 +294,15 @@ function mostrar_mensaje(mensaje,tipo){                          // mensaje de e
 }
 
 function editar_tabla(tabla,id){
-	var largo_id = id.length;
-	var numero_id = parseInt(id.charAt(largo_id - 1));
-	alert(tabla);
-	alert(id);
-	alert(largo_id);
-	alert(numero_id);
+	var numero_id = parseInt(id.charAt((id.length) - 1)); // devuelve en number el numero de id del elemento
+	var info = [tabla,numero_id,"editar"];
+	open_modal(info);
+}
+
+function borrar_tabla(tabla,id,nombre){
+	var numero_id = parseInt(id.charAt((id.length) - 1));
+	var info = [tabla,numero_id,"borrar",nombre];
+	open_modal(info);
 }
 
 	function limpiar_de_saltos(elem,node){
@@ -307,53 +320,155 @@ function editar_tabla(tabla,id){
 		rem_all_ch(panel);
 	}
 	
-	function open_modal(modal_type){
-		var back_div = cr_elm('div');
-		var front_div= cr_elm('div');
+	function open_modal(modal){
+		var navegador = window.navigator.appName; // Navegador
+		var version =window.navigator.appVersion; // Version
+		var back_div = cr_elem('div');
+		var front_div= cr_elem('div');
 		back_div.className = 'background_modal';
 		back_div.id = 'background_modal';
 		front_div.id = 'front_modal';
 		back_div.style.opacity = 0;
 		back_div.style.filter = "alpha(opacity=00)";
 		
+		if(modal[2] == 'editar'){
+			if(modal[0] == 'marcas' || modal[0] == 'categorias'){
+				var form = cr_elem('form');
+				var field = cr_elem('fieldset');
+				var label = cr_elem('label');
+				var titulo = cr_elem('h2');
+				var input = cr_elem('input');
+				var submit = cr_elem('input');
+				var cancel = cr_elem('input');
+				
+				form.className = 'edit_form';
+				form.method = 'post';
+				form.id = 'edit_form';
+				form.action = 'editar.php';
+				form.enctype = 'application/x-www-form-urlencoded';
+				
+				titulo.innerHTML = "Editar " + modal[0].replace("s","");
+				
+				label.innerHTML = 'Nombre de la '+ modal[0].replace("s","")+ ": ";
+				
+				input.type = "text";
+				input.name = "nombre";
+				
+				submit.type = "submit";
+				submit.value = "Enviar";
+				
+				cancel.type = "button";
+				cancel.value = "Cancelar";
+				
+				submit.onclick = function(e){
+					e.preventDefault();
+	         		e.returnValue=false;
+	         		
+	         		modal.push(input.value);
+	         		var validador = input.value.match(nombre_regexp); // valido si es un string, si es distinto a null llama a la funcion ajax        		         		
+	         		if(validador != null){
+	         			if(input.value.length > 30){
+	         				alert("el nombre cargado es muy largo");
+	         				rem_ch(back_div);
+		         		}else{
+	    	     			cargar_marca_categoria(modal,modal[0].replace("s",""),"editar");
+	    	     			rem_ch(back_div);
+	         			}
+	         		}else{
+	         			alert("no puede ingresar numeros, caracteres extraños o espacios en blanco");
+	         			rem_ch(back_div);
+	         		}
+				}
+				
+				cancel.onclick = function(){fadeOut(back_div,cancel,navegador,version);}
+				
+				app_ch(titulo,form);
+				app_ch(label,field);
+				app_ch(input,field);
+				app_ch(submit,field);
+				app_ch(cancel,field);
+				app_ch(field,form);
+				app_ch(form,front_div);
+				
+			}else if(modal[0] == 'productos'){
+				// codigo
+				
+				
+				//  SEGUIR POR ACA!!!!!!
+				//  SEGUIR POR ACA!!!!!!
+				//  SEGUIR POR ACA!!!!!!
+				//  SEGUIR POR ACA!!!!!!
+				//  SEGUIR POR ACA!!!!!!
+				//  SEGUIR POR ACA!!!!!!
+				//  SEGUIR POR ACA!!!!!!
+				//  SEGUIR POR ACA!!!!!!
+				
+				
+			}
+			
+		}else if(modal[2] == 'borrar'){
+			var titulo = cr_elem('h2');
+			var aceptar = cr_elem('input');
+			var cancel = cr_elem('input');
+			
+			titulo.innerHTML = '¿Esta seguro que desea borrar el elemento <span>' + modal[3] + '</span> de la tabla <span>' + modal[0] + '</span>?';
+			
+			aceptar.type = 'button';
+			aceptar.className = 'aceptar';
+			aceptar.value = 'aceptar';
+			
+			cancel.type = 'button';
+			cancel.className = 'cancelar';
+			cancel.value = 'cancelar';
+			
+			aceptar.onclick = function(){
+				borrar_db(modal,'borrar_db');
+			}
+			cancel.onclick = function(){fadeOut(back_div,cancel,navegador,version);}
+			
+			app_ch(titulo,front_div);
+			app_ch(aceptar,front_div);
+			app_ch(cancel,front_div);
+		}
 		app_ch(back_div,document.body);
 		app_ch(front_div,back_div);
 		
-		//if(modal_type["tipo"]=="compra"){modal_compra(modal_type);}
-		//if(modal_type["tipo"]=="checkout"){modal_checkout(modal_type);}
+		fadeIn(back_div,navegador,version);
+		
 	}
 
 
-	function fadeIn(obj){ // hace fadeIn
+	function fadeIn(obj,navegador,version){ // hace fadeIn
 		var interval = setInterval (opacity,10);
 		function opacity(){
 			if(navegador == "Microsoft Internet Explorer" && version.indexOf("9.0") == -1){
 				var sty = parseInt(obj.filters.alpha.opacity);
-				sty += 20;					
+				sty += parseInt(10);
 				obj.style.filter = "alpha(opacity="+sty+")";
-				if(sty == 100){clearInterval(interval);}
+				if(sty >= 100){clearInterval(interval);obj.style.opacity = 100;}
 			}else{
 				var sty= parseFloat(obj.style.opacity);
-				sty += 0.2;
+				sty += 0.1; 
+				sty = sty.toFixed( 1 );// ARREGLA EL PROBLEMA DE SUMATORIA DE DECIMALES EL CUAL AGREGA 0.000000000000001!!!!
 				obj.style.opacity = sty;
-				if(sty == 1){clearInterval(interval);}
+				if(sty >= 1){clearInterval(interval);obj.style.opacity = 1.0;}
 			}
 		}
 	}
 	
-	function fadeOut(obj,elem){
+	function fadeOut(obj,elem,navegador,version){
 		elem.onclick = function (){return false; }
 		var timer = setInterval(close,10);
 		function close(){
 			if(navegador == "Microsoft Internet Explorer" && version.indexOf("9.0") == -1){
 				var sty = parseInt(obj.filters.alpha.opacity);
-				sty -= 20;					
+				sty -= 10;					
 				obj.style.filter = "alpha(opacity="+sty+")";
 				if(sty < 0){clearInterval(timer);rem_ch(obj,obj.parentNode);}
 			}else{
 				var sty= parseFloat(obj.style.opacity);				
 				sty = (Math.round (100 * sty)) / 100; // arregla el problema de la diferencia en la resta de los numeros a continuacion no siendo exactamente 0.2
-				sty -= 0.2;
+				sty -= 0.1;
 				obj.style.opacity = sty;				
 				if(sty <= 0){clearInterval(timer);rem_ch(obj,obj.parentNode);}
 			}

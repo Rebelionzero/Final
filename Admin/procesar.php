@@ -29,7 +29,7 @@
 	setear_errores($errores,$producto);
 
 	function validar_producto($campo){
-		if(strlen($campo) > 0 && strlen($campo) < 31){			
+		if(strlen($campo) > 0 && strlen($campo) < 31){
 			if(preg_match('/^\pL+$/u', $campo)){
 				return false;
 			}else{
@@ -98,7 +98,7 @@
 			$img = explode(".",$producto['imagen']['name']);
 			$producto['imagen']['saveName'] = $img[0].microtime(true).'.'.$img[1];
 			$producto['imagen']['name'] = $img[0];
-  			$carpetaYarchivo = "Prod images/".$producto['imagen']['saveName'];
+  			$carpetaYarchivo = "Prod_images/".$producto['imagen']['saveName'];
 			move_uploaded_file($producto['imagen']['tmp_name'], $carpetaYarchivo);
 			
 			$conectar = conectar_bd();
