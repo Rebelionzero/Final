@@ -22,7 +22,7 @@ function crear_boton(opcion){	                                        // Creacio
 function nuevo_producto_btn(prod,opcion){
 	prod.onclick = function(){
 		rem_ch(prod.parentNode);
-		traerCategoriaMarca();
+		traerCategoriaMarca('cargar');
 	}
 }
 

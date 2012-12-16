@@ -1,8 +1,5 @@
 <?php
-	
-	
 	include_once("conexion.php");
-	session_start();
 	
 	function consultar_bd($conexion){
 		$select_categoria = "SELECT id, nombre FROM categorias;";

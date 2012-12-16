@@ -45,21 +45,24 @@ function devolver_elementos(elem,tabla){
   
 }
 
-function traerCategoriaMarca(){
+function traerCategoriaMarca(pedido){
 	var XHTTPRQ = crearObjetoXHR();
   	XHTTPRQ.open('POST','pedido_especifico.php',true);//open antes de requestheader!!!		
   	XHTTPRQ.setRequestHeader('Content-type','application/x-www-form-urlencoded');
   	XHTTPRQ.onreadystatechange = function(){
   		if (XHTTPRQ.readyState==4 && XHTTPRQ.status==200){
-  			devolver(XHTTPRQ.responseText);
+  			devolver(XHTTPRQ.responseText,pedido);
   		}
   	}
   	XHTTPRQ.send(null);
 }
 
-function devolver(lista){
+function devolver(lista,tipo){
 	var respuesta = "var obj="+lista;
 	eval(respuesta);
-	
-	crear_selects(obj);
+	if(tipo == 'cargar'){
+	 crear_selects(obj);
+  }else if(tipo == 'editar'){
+    lista_editar(obj);
+  }
 }

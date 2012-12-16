@@ -61,7 +61,7 @@ window.onload=function(){
 			var form = cr_elem("form");
 			var label_nombre = cr_elem("label");
 			var input_nombre = cr_elem("input");
-					
+
 			var label_precio = cr_elem("label");
 			var input_precio = cr_elem("input");
 			
@@ -77,7 +77,8 @@ window.onload=function(){
 	
 			var submit = cr_elem("input");
 			var cerrar = cr_elem("a");
-			
+			var hidden = cr_elem("input");
+
 			form.action = "procesar.php";
 			form.method = "post";
 			form.enctype ="multipart/form-data";
@@ -107,19 +108,23 @@ window.onload=function(){
 			input_precio.type = "text";
 			img.type = "file";
 			submit.type = "submit";
-			
+			hidden.type = "hidden";
+
 			input_nombre.name = "producto";
 			input_precio.name = "precio";
 			select_categoria.name = "categoria";
 			select_marca.name = "marca";
 			textarea.name = 'descripcion';
 			img.name = "imagen";
+			hidden.name = "hidden";
 			
 			submit.value = "cargar producto";
+			hidden.value = "cargar";
+
 			select_categoria.id = "select_categoria";
 			select_marca.id = "select_marca";
 			cerrar.id = "cerrar_prod_form";
-			
+
 			option = cr_elem("option");
 			option.text = 'seleccione una categoria';
 			option.value = 'seleccionar';
@@ -166,6 +171,7 @@ window.onload=function(){
 			app_ch(div_5,form);
 			
 			app_ch(cerrar,form);
+			app_ch(hidden,form);
 			
 			app_ch(form,div);
 			app_ch(div,get_id("right"));
@@ -176,6 +182,26 @@ window.onload=function(){
 		}
 	}
 	
+	function lista_editar(array){
+		var categoria = get_id('select_categoria');
+		var marca = get_id('select_marca');
+		var option;
+
+		for(var i = 0; i< array[0].length; i++){
+			option = cr_elem("option");
+			option.text = array[0][i]['nombre'];
+			option.value = array[0][i]['id'];
+			app_ch(option,categoria);
+		}
+			
+		for(var j = 0; j< array[1].length; j++){
+			option = cr_elem("option");
+			option.text = array[1][j]['nombre'];
+			option.value = array[1][j]['id'];
+			app_ch(option,marca);
+		}
+	}
+
 	function crear_lista(array){
 		var panel_derecho = get_id("right");
 		var div = cr_elem("div");
@@ -325,40 +351,41 @@ function borrar_tabla(tabla,id,nombre){
 		var version =window.navigator.appVersion; // Version
 		var back_div = cr_elem('div');
 		var front_div= cr_elem('div');
+		
+		var form = cr_elem('form');
+		var field = cr_elem('fieldset');
+		var label_nombre = cr_elem('label');
+		var titulo = cr_elem('h2');
+		var input_nombre = cr_elem('input');
+		var submit = cr_elem('input');
+		var cancel = cr_elem('input');
+
 		back_div.className = 'background_modal';
 		back_div.id = 'background_modal';
 		front_div.id = 'front_modal';
 		back_div.style.opacity = 0;
 		back_div.style.filter = "alpha(opacity=00)";
 		
+		form.className = 'edit_form';
+		form.method = 'post';
+		form.id = 'edit_form';
+
+		submit.type = "submit";
+		submit.value = "Enviar";
+		
+		cancel.type = "button";
+		cancel.value = "Cancelar";
+
 		if(modal[2] == 'editar'){
-			if(modal[0] == 'marcas' || modal[0] == 'categorias'){
-				var form = cr_elem('form');
-				var field = cr_elem('fieldset');
-				var label = cr_elem('label');
-				var titulo = cr_elem('h2');
-				var input = cr_elem('input');
-				var submit = cr_elem('input');
-				var cancel = cr_elem('input');
-				
-				form.className = 'edit_form';
-				form.method = 'post';
-				form.id = 'edit_form';
-				form.action = 'editar.php';
+			if(modal[0] == 'marcas' || modal[0] == 'categorias'){				
 				form.enctype = 'application/x-www-form-urlencoded';
-				
 				titulo.innerHTML = "Editar " + modal[0].replace("s","");
+				label_nombre.innerHTML = 'Nombre de la '+ modal[0].replace("s","")+ ": ";
 				
-				label.innerHTML = 'Nombre de la '+ modal[0].replace("s","")+ ": ";
-				
-				input.type = "text";
-				input.name = "nombre";
-				
-				submit.type = "submit";
-				submit.value = "Enviar";
-				
-				cancel.type = "button";
-				cancel.value = "Cancelar";
+				form.action = 'editar.php';
+
+				input_nombre.type = "text";
+				input_nombre.name = "nombre";
 				
 				submit.onclick = function(e){
 					e.preventDefault();
@@ -380,30 +407,93 @@ function borrar_tabla(tabla,id,nombre){
 	         		}
 				}
 				
-				cancel.onclick = function(){fadeOut(back_div,cancel,navegador,version);}
 				
 				app_ch(titulo,form);
-				app_ch(label,field);
-				app_ch(input,field);
+				app_ch(label_nombre,field);
+				app_ch(input_nombre,field);
 				app_ch(submit,field);
 				app_ch(cancel,field);
 				app_ch(field,form);
 				app_ch(form,front_div);
 				
 			}else if(modal[0] == 'productos'){
-				// codigo
 				
+				var label_precio = cr_elem('label');
+				var precio = cr_elem('input');
+				var textarea = cr_elem('textarea');
+				var label_textarea = cr_elem('label');
+				var imagen = cr_elem('input');
+				var label_imagen = cr_elem('label');
+				var select_categoria = cr_elem('select');
+				var select_marca = cr_elem('select');
+				var hidden  = cr_elem('input');
+				var option;
+
+				form.enctype ="multipart/form-data";
+				form.action = "procesar.php";
+
+				label_nombre.innerHTML = "Nombre del producto";
+				label_precio.innerHTML = "Precio en pesos";
+				label_textarea.innerHTML = "Descripcion del producto";
+				label_imagen.innerHTML = "Imagen";
+				titulo.innerHTML = 'Editar producto';
 				
-				//  SEGUIR POR ACA!!!!!!
-				//  SEGUIR POR ACA!!!!!!
-				//  SEGUIR POR ACA!!!!!!
-				//  SEGUIR POR ACA!!!!!!
-				//  SEGUIR POR ACA!!!!!!
-				//  SEGUIR POR ACA!!!!!!
-				//  SEGUIR POR ACA!!!!!!
-				//  SEGUIR POR ACA!!!!!!
+				label_nombre.className = "label_nombre_prod";
+				label_precio.className = "label_precio_prod";
+				input_nombre.className = "nombre_prd";
+				precio.className = "precio_prd";
+				textarea.className = "descripcion";
+				label_textarea.className = "label_desc_prod";
 				
+				input_nombre.type = "text";
+				precio.type = "text";
+				imagen.type = "file";
+				submit.type = "submit";
+				hidden.type = "hidden";
+
+				input_nombre.name = "producto";
+				precio.name = "precio";
+				select_categoria.name = "categoria";
+				select_marca.name = "marca";
+				textarea.name = 'descripcion';
+				imagen.name = "imagen";
+				hidden.name = "hidden";
+
+				submit.value = "cargar producto";
+				hidden.value = "editar";
+
+				select_categoria.id = "select_categoria";
+				select_marca.id = "select_marca";
 				
+				option = cr_elem("option");
+				option.text = 'seleccione una categoria';
+				option.value = 'seleccionar';
+				app_ch(option,select_categoria);
+				
+				option = cr_elem("option");
+				option.text = 'seleccione una marca';
+				option.value = 'seleccionar';
+				app_ch(option,select_marca);
+
+				app_ch(titulo,field);
+				app_ch(label_nombre,field);
+				app_ch(input_nombre,field);
+				app_ch(label_precio,field);
+				app_ch(precio,field);
+				app_ch(label_textarea,field);
+				app_ch(textarea,field);
+				app_ch(label_imagen,field);
+				app_ch(imagen,field);
+				app_ch(select_categoria,field);
+				app_ch(select_marca,field);
+
+				app_ch(submit,field);
+				app_ch(cancel,field);
+				app_ch(hidden,field);
+				app_ch(field,form);
+				app_ch(form,front_div);
+				traerCategoriaMarca('editar');
+
 			}
 			
 		}else if(modal[2] == 'borrar'){
@@ -431,6 +521,7 @@ function borrar_tabla(tabla,id,nombre){
 			app_ch(aceptar,front_div);
 			app_ch(cancel,front_div);
 		}
+		cancel.onclick = function(){fadeOut(back_div,cancel,navegador,version);}
 		app_ch(back_div,document.body);
 		app_ch(front_div,back_div);
 		
