@@ -28,6 +28,6 @@
 	}		
 	$consultar= consultar_bd($conexion,$table);
 	mysql_close($conexion);
-	$enviar = json_encode($consultar);	
+	$enviar = json_encode($consultar);
 	echo $enviar;
 ?>

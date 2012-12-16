@@ -22,11 +22,9 @@ function ajax_insercion(valor,tabla,url){
   	}
   	
   	if(typeof(valor) == "object"){
-  		if(valor[0] == 'categorias' || valor[0] == 'marcas'){
-  			// edicion o eliminacion de categorias o marcas
+  		if(valor[0] == 'categorias' || valor[0] == 'marcas' || valor[0] == 'productos'){
+  			// edicion o eliminacion de categorias, marcas o productos
   			XHTTPRQ.send("tabla=" + valor[0] + "&id="+ valor[1] + "&nombre=" + valor[3]);
-  		}else if(valor[0] == 'productos'){
-  			// send para borrar productos
   		}
   	}else{
 		XHTTPRQ.send("valor=" + valor + "&tabla="+tabla);

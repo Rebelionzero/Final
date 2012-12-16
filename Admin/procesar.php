@@ -98,6 +98,9 @@
 			$img = explode(".",$producto['imagen']['name']);
 			$producto['imagen']['saveName'] = $img[0].microtime(true).'.'.$img[1];
 			$producto['imagen']['name'] = $img[0];
+			if (!file_exists('/Prod_images')){
+				mkdir("Prod_images");
+			}
   			$carpetaYarchivo = "Prod_images/".$producto['imagen']['saveName'];
 			move_uploaded_file($producto['imagen']['tmp_name'], $carpetaYarchivo);
 			

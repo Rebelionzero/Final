@@ -423,6 +423,7 @@ function borrar_tabla(tabla,id,nombre){
 			
 			aceptar.onclick = function(){
 				borrar_db(modal,'borrar_db');
+				fadeOut(back_div,aceptar,navegador,version);
 			}
 			cancel.onclick = function(){fadeOut(back_div,cancel,navegador,version);}
 			
