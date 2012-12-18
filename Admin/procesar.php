@@ -24,6 +24,7 @@
 		'precio' => validar_precio($producto['precio']),
 		'categoria' =>validar_select($producto['categoria'],'debe seleccionar una categoria'),
 		'marca' =>validar_select($producto['marca'],'debe seleccionar una marca'),
+		'descripcion' => validar_descripcion($producto['descripcion']),
 		'imagen' =>validar_img($producto['imagen'])
 	);
 
@@ -57,6 +58,10 @@
 		}
 	}
 
+	function validar_descripcion($campo){
+		if(trim(strlen($campo)) > 200){return "La descripcion no puede tener mas de 200 caracteres";}else{return false;}
+	}
+	
 	function validar_select($campo,$error){
 		if($campo != 'seleccionar'){
 			return false;

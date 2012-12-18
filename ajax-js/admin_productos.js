@@ -13,7 +13,7 @@ window.onload=function(){
 				var opcion = filtrar_elemento(thiz);				
 				comenzar_ajax(thiz);
 				
-				if(opcion != "usuario"){crear_boton(opcion);}
+				crear_boton(opcion);
 				detenido = false;
 			}
 		}
@@ -33,8 +33,6 @@ window.onload=function(){
 			case "productos": resultado = "producto";break;
 			case "categorias": resultado = "categoria";break;
 			case "marcas": resultado = "marca";break;
-			case "ordenes_de_compra": resultado = "orden de compra";break;
-			case "usuarios": resultado = "usuario";break;
 		}
 		return resultado;
 	}
@@ -209,6 +207,8 @@ window.onload=function(){
 		var editar;
 		var borrar;
 		
+		console.log(array);
+		
 		for(var i = 0;i< array[0].length;i++){
 			tr = cr_elem("tr");
 			tr.id = array[1]+"_"+array[0][i]['id'];
@@ -285,7 +285,7 @@ function tablas_ajax_vacias(tabla){                              // mensaje de e
 	var mensaje = cr_elem("h2");
 	mensaje.className="error";
 	
-	if(elemento == "producto" || elemento == "usuario"){
+	if(elemento == "producto"){
 		mensaje.innerHTML = "No hay ningun " + elemento + " cargado en este momento";
 	}else{
 		mensaje.innerHTML = "No hay ninguna " + elemento + " cargada en este momento";
@@ -386,10 +386,10 @@ function borrar_tabla(tabla,id,nombre){
 					e.preventDefault();
 	         		e.returnValue=false;
 	         		
-	         		modal.push(input.value);
-	         		var validador = input.value.match(nombre_regexp); // valido si es un string, si es distinto a null llama a la funcion ajax        		         		
+	         		modal.push(input_nombre.value);
+	         		var validador = input_nombre.value.match(nombre_regexp); // valido si es un string, si es distinto a null llama a la funcion ajax        		         		
 	         		if(validador != null){
-	         			if(input.value.length > 30){
+	         			if(input_nombre.value.length > 30){
 	         				alert("el nombre cargado es muy largo");
 	         				rem_ch(back_div);
 		         		}else{

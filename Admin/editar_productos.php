@@ -31,6 +31,7 @@
 	$errores = array(
 		'producto' => validar_producto($producto['producto']),
 		'precio' => validar_precio($producto['precio']),
+		'descripcion' => validar_descripcion($producto['descripcion']),
 		'imagen' =>validar_img($producto['imagen'])
 	);
 
@@ -60,7 +61,7 @@
 
 	function validar_precio($campo){
 		if(!is_numeric($campo)){			
-			return 'debe ingresar un numero';
+			return 'debe ingresar un numero como precio';
 		}else{
 			$campo = intval($campo);
 			if($campo < 1 || $campo > 999){
@@ -69,6 +70,10 @@
 				return false;
 			}
 		}
+	}
+
+	function validar_descripcion($campo){
+		if(trim(strlen($campo)) > 200){return "La descripcion no puede tener mas de 200 caracteres";}else{return false;}
 	}
 
 	function validar_select($campo){
@@ -81,7 +86,6 @@
 
 	
 	function validar_img($img){
-		
 		if($img["type"] != 'image/gif' && $img["type"] != 'image/jpg' && $img["type"] != 'image/jpeg' && $img["type"] != 'image/png' && $img["type"] != 'image/pjpeg'){
   			return "Error en la carga de imagenes: solo se permiten formatos jpg, jpeg, gif y png";
   		}elseif( ($img["size"] / (1024 * 1024) ) > 2.0){
@@ -93,9 +97,10 @@
 
 	setear_errores($errores,$producto,$vacios);
 
-	function setear_errores($array,$producto,$vacios){
+	function setear_errores($errores,$producto,$vacios){
 
 		$devolucionErrores = array();
+		$ingresar_producto = array();
 
 		$campo_producto = $vacios['producto'];
 		$campo_precio = $vacios['precio'];
@@ -105,14 +110,107 @@
 		$campo_imagen = $vacios['imagen'];
 
 		if($campo_producto === true){
-			$ingresar_producto = '';
+			$ingresar_producto['nombre'] = '';
 		}else{
-			if($array['producto'] == false){
-				$ingresar_producto = "SET nombre=".$producto['producto'];
+			if($errores['producto'] == false){
+				$ingresar_producto['nombre'] = "nombre='".$producto['producto']."'";
 			}else{
-				echo 'array_push($devolucionErrores, $valor)';
+				array_push($devolucionErrores, $errores['producto']);
 			}
 		}
+		
+		if($campo_precio === true){
+			$ingresar_producto['precio'] = '';
+		}else{
+			if($errores['precio'] == false){
+				$ingresar_producto['precio'] = "precio=".$producto['precio'];
+			}else{
+				array_push($devolucionErrores, $errores['precio']);
+			}
+		}
+		
+		if($campo_descripcion === true){
+			$ingresar_producto['descripcion'] = '';
+		}else{
+			if($errores['descripcion'] == false){
+				$ingresar_producto['descripcion'] = "descripcion='".$producto['descripcion']."'";
+			}else{
+				array_push($devolucionErrores, $errores['descripcion']);
+			}
+		}	
+		
+		if($campo_categoria === true){
+			$ingresar_producto['categoria'] = '';
+		}else{
+			$ingresar_producto['categoria'] = "categoria=".$producto['categoria'];
+		}
+		
+		if($campo_marca === true){
+			$ingresar_producto['marca'] = '';
+		}else{
+			$ingresar_producto['marca'] = "marca=".$producto['marca'];
+		}
+		
+		if($campo_imagen === true){
+			$ingresar_producto['imagen'] = '';
+			$ingresar_producto['src'] = '';
+		}else{
+			if($errores['imagen'] == false){
+				
+				$img = explode(".",$producto['imagen']['name']);
+				$producto['imagen']['saveName'] = $img[0].microtime(true).'.'.$img[1];
+				$producto['imagen']['name'] = $img[0];
+  				$carpetaYarchivo = "Prod_images/".$producto['imagen']['saveName'];
+				
+				$ingresar_producto['imagen'] = "imagen='".$producto['imagen']['name']."'";
+				$ingresar_producto['src'] = "src='".$producto['imagen']['saveName']."'";
+				
+			}else{
+				array_push($devolucionErrores, $errores['imagen']);
+			}
+		}
+		
+		if(count($devolucionErrores) > 0){
+			$_SESSION['errores'] = $devolucionErrores;
+			header('Location: admin.php');
+		}else{
+			$conectar = conectar_bd();
+			$old_src = "SELECT src FROM productos WHERE id=".$producto['id'];
+			$consulta_old_src = mysql_query($old_src,$conectar);
+			
+			if(mysql_num_rows($consulta_old_src) > 0){
+				while($row = mysql_fetch_assoc($consulta_old_src)){
+					$resultado[]=$row;
+				}
+			}
+			
+			$query = "UPDATE productos SET ";
+		
+			foreach ($ingresar_producto as $dato => $valor) {
+				if($valor == ''){
+					continue;
+				}else{
+					$query.= $valor.', ';
+				}	
+			}
+			$query = substr($query, 0, -2);
+			$query.= " WHERE id=".$producto['id'].";";
+			
+			$update = mysql_query($query,$conectar);
+			
+			if( is_bool($update) ){
+		 		if($update == true){
+		 			unlink("Prod_images/".$resultado[0]['src']);
+					move_uploaded_file($producto['imagen']['tmp_name'], $carpetaYarchivo);
+					
+		 			if( isset($_SESSION['edicion_exitosa']) ){unset($_SESSION['edicion_exitosa']);}
+					$_SESSION['edicion_exitosa'] = '<p>el producto se ha editado satisfactoriamente</p>';
+					header('Location: admin.php');
+		 		}
+		 	}
+		}
+				
+		
 
 		/*foreach ($vacios as $campoVacio => $value) {
 			if ($value === true) {

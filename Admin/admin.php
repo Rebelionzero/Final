@@ -13,6 +13,12 @@
 		unset($_SESSION['carga_exitosa']);
 	}
 	
+	$edicion = false;
+	if(isset($_SESSION['edicion_exitosa'])){
+		$exito = $_SESSION['edicion_exitosa'];
+		unset($_SESSION['edicion_exitosa']);
+	}
+	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
 <html>
@@ -24,6 +30,7 @@
 		<script type="text/javascript" src="../ajax-js/ajax_pedidos.js"></script>
 		<script type="text/javascript" src="../ajax-js/ajax_insert.js"></script>
 		<link type="text/css" rel="stylesheet" media="screen" href="../CSS/reseteo.css"/>
+		<link type="text/css" rel="stylesheet" media="screen" href="../CSS/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" media="screen" href="../CSS/admin.css"/>
 	</head>
 	<body>

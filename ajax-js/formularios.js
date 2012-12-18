@@ -5,7 +5,7 @@ function crear_boton(opcion){	                                        // Creacio
 	
 	div.id= "nuevo_"+opcion;
 	btn.href="#";
-	btn.className="crear_elemento";
+	btn.className="crear_elemento btn";
 	app_ch(btn,div);
 	app_ch(div,panel_der);
 	
@@ -13,6 +13,7 @@ function crear_boton(opcion){	                                        // Creacio
 		btn.innerHTML = "Nuevo " + opcion;
 		nuevo_producto_btn(btn,opcion);
 	}
+	
 	if(opcion == "categoria" || opcion == "marca"){
 		btn.innerHTML = "Nueva " + opcion;
 		nueva_categoria_marca_btn(btn,opcion);
