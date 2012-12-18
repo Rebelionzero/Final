@@ -207,7 +207,6 @@ window.onload=function(){
 		var editar;
 		var borrar;
 		
-		console.log(array);
 		
 		for(var i = 0;i< array[0].length;i++){
 			tr = cr_elem("tr");
