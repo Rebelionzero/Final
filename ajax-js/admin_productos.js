@@ -77,7 +77,6 @@ window.onload=function(){
 	
 			var submit = cr_elem("input");
 			var cerrar = cr_elem("a");
-			var hidden = cr_elem("input");
 
 			form.action = "procesar.php";
 			form.method = "post";
@@ -108,7 +107,6 @@ window.onload=function(){
 			input_precio.type = "text";
 			img.type = "file";
 			submit.type = "submit";
-			hidden.type = "hidden";
 
 			input_nombre.name = "producto";
 			input_precio.name = "precio";
@@ -116,10 +114,8 @@ window.onload=function(){
 			select_marca.name = "marca";
 			textarea.name = 'descripcion';
 			img.name = "imagen";
-			hidden.name = "hidden";
 			
 			submit.value = "cargar producto";
-			hidden.value = "cargar";
 
 			select_categoria.id = "select_categoria";
 			select_marca.id = "select_marca";
@@ -171,7 +167,6 @@ window.onload=function(){
 			app_ch(div_5,form);
 			
 			app_ch(cerrar,form);
-			app_ch(hidden,form);
 			
 			app_ch(form,div);
 			app_ch(div,get_id("right"));
@@ -426,11 +421,11 @@ function borrar_tabla(tabla,id,nombre){
 				var label_imagen = cr_elem('label');
 				var select_categoria = cr_elem('select');
 				var select_marca = cr_elem('select');
-				var hidden  = cr_elem('input');
+				var hidden = cr_elem('input');
 				var option;
 
 				form.enctype ="multipart/form-data";
-				form.action = "procesar.php";
+				form.action = "editar_productos.php";
 
 				label_nombre.innerHTML = "Nombre del producto";
 				label_precio.innerHTML = "Precio en pesos";
@@ -460,7 +455,7 @@ function borrar_tabla(tabla,id,nombre){
 				hidden.name = "hidden";
 
 				submit.value = "cargar producto";
-				hidden.value = "editar";
+				hidden.value = modal[1];
 
 				select_categoria.id = "select_categoria";
 				select_marca.id = "select_marca";

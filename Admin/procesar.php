@@ -95,8 +95,6 @@
 			header('Location: admin.php');
 			
 		}else{
-			if($producto["hidden"] == "cargar"){
-				// cambio de nombre a la imagen para que no se pise en la carpeta
 				$img = explode(".",$producto['imagen']['name']);
 				$producto['imagen']['saveName'] = $img[0].microtime(true).'.'.$img[1];
 				$producto['imagen']['name'] = $img[0];
@@ -108,11 +106,6 @@
 				
 				$conectar = conectar_bd();
 				$save_db = save_prod_in_db('INSERT INTO productos VALUES (null, "'.$producto['producto'].'" ,'.$producto['precio'].',"'.$producto['descripcion'].'","'.$producto['imagen']['name'].'","'.$producto['imagen']['saveName'].'",'.$producto['categoria'].','.$producto['marca'].');',$conectar);
-			}elseif($producto["hidden"] == "editar"){
-				// seguir por aca!!!
-				// seguir por aca!!!
-				// seguir por aca!!!
-			}
 		}
 	}
 ?>
