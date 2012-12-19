@@ -5,7 +5,7 @@ function crear_boton(opcion){	                                        // Creacio
 	
 	div.id= "nuevo_"+opcion;
 	btn.href="#";
-	btn.className="crear_elemento btn";
+	btn.className="crear_elemento btn btn-primary";
 	app_ch(btn,div);
 	app_ch(div,panel_der);
 	

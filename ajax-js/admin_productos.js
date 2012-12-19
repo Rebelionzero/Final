@@ -199,14 +199,61 @@ window.onload=function(){
 		var panel_derecho = get_id("right");
 		var div = cr_elem("div");
 		var tabla = cr_elem("table");
+		var tbody = cr_elem("tbody");
+		var div_container = cr_elem("div");
+		var nav_bar_inner = cr_elem("div");
+		var ul_titulo = cr_elem("ul");
 		var tr;
 		var td;
 		var img;
-		var td_editar;
-		var td_borrar;
+		var li_nombre;
+		var li_opciones;
+		var td_editar_borrar;
 		var editar;
 		var borrar;
 		
+		li_nombre = cr_elem("li");
+		li_opciones = cr_elem("li");
+		li_nombre.innerHTML = "Nombre";
+		li_opciones.innerHTML = "Opciones";
+		
+		app_ch(li_nombre,ul_titulo);
+		
+		if(array[1] == 'productos'){
+			var li_precio = cr_elem("li");
+			var li_descripcion = cr_elem("li");
+			var li_imagen_nombre = cr_elem("li");
+			var li_imagen = cr_elem("li");
+			var li_categoria = cr_elem("li");
+			var li_marca = cr_elem("li");
+			
+			li_precio.innerHTML = 'Precio';
+			li_descripcion.innerHTML = 'Descripcion';
+			li_imagen_nombre.innerHTML = 'Nombre de la imagen';
+			li_imagen.innerHTML = 'Imagen';
+			li_categoria.innerHTML = 'Categoria';
+			li_marca.innerHTML = 'Marca';
+			
+			app_ch(li_precio,ul_titulo);
+			app_ch(li_descripcion,ul_titulo);
+			app_ch(li_imagen_nombre,ul_titulo);
+			app_ch(li_imagen,ul_titulo);
+			app_ch(li_categoria,ul_titulo);
+			app_ch(li_marca,ul_titulo);
+			
+			ul_titulo.className = "titulo_productos nav";
+			tabla.className = "table table-striped lista_prods";
+			
+		}else if(array[1] == 'categorias' || array[1] == 'marcas'){
+			var fecha = cr_elem("li");
+			fecha.innerHTML = 'Fecha de creacion';
+			
+			ul_titulo.className = "titulo_marcas_categorias nav";
+			tabla.className = "table table-striped lista_cats_mars";
+			app_ch(fecha,ul_titulo);
+		}
+		
+		app_ch(li_opciones,ul_titulo);
 		
 		for(var i = 0;i< array[0].length;i++){
 			tr = cr_elem("tr");
@@ -229,22 +276,32 @@ window.onload=function(){
 					app_ch(td,tr);
 				}
 			}
-			td_editar = cr_elem("td");
-			td_borrar = cr_elem("td");
+			
+			
+			
+			td_editar_borrar = cr_elem("td");
 			editar = cr_elem("a");
-			borrar = cr_elem("a");
+			borrar = cr_elem("a");			
 			editar.innerHTML = "Editar";
 			borrar.innerHTML = "Borrar";
+			editar.className = "btn";
+			borrar.className = "btn btn-danger"; 
 			
-			app_ch(editar,td_editar);
-			app_ch(borrar,td_borrar);
-			app_ch(td_editar,tr);
-			app_ch(td_borrar,tr);
-			app_ch(tr,tabla);
+			nav_bar_inner.className = 'navbar-inner';
+						
+			app_ch(editar,td_editar_borrar);
+			app_ch(borrar,td_editar_borrar);
+			app_ch(td_editar_borrar,tr);
+			app_ch(tr,tbody);
+			app_ch(tbody,tabla);
+			app_ch(ul_titulo,nav_bar_inner);
+			app_ch(nav_bar_inner,div_container);
+			app_ch(tabla,div_container);
+			
 			editar.onclick= function(){editar_tabla(array[1],this.parentNode.parentNode.id);}
 			borrar.onclick= function(){borrar_tabla(array[1],this.parentNode.parentNode.id,this.parentNode.parentNode.firstChild.innerHTML);}
 		}
-		app_ch(tabla,div);
+		app_ch(div_container,div);
 		app_ch(div,panel_derecho);
 	}
 	
@@ -357,6 +414,7 @@ function borrar_tabla(tabla,id,nombre){
 		back_div.className = 'background_modal';
 		back_div.id = 'background_modal';
 		front_div.id = 'front_modal';
+		front_div.className = 'dropdown-menu';
 		back_div.style.opacity = 0;
 		back_div.style.filter = "alpha(opacity=00)";
 		
