@@ -24,6 +24,13 @@ window.onload=function(){
 			rem_ch(this.parentNode);
 		}
 	}
+	
+	
+	if(get_id("carga_exitosa_msg")){
+		get_id("carga_exitosa_msg").onclick = function(){
+			rem_ch(this.parentNode);
+		}
+	}
 
 }
 
@@ -55,6 +62,10 @@ window.onload=function(){
 			var div_3 = cr_elem("div");
 			var div_4 = cr_elem("div");
 			var div_5 = cr_elem("div");
+			var div_6 = cr_elem("div");
+			var div_group1 = cr_elem("div");
+			var div_group2 = cr_elem("div");
+			var div_group3 = cr_elem("div");
 			
 			var form = cr_elem("form");
 			var label_nombre = cr_elem("label");
@@ -92,7 +103,11 @@ window.onload=function(){
 			div_2.className = "precio_prd_div";
 			div_3.className = "descripcion_div";
 			div_4.className = "img_div";
-			div_5.className = "select_submit_div";
+			div_5.className = "select_div";
+			div_6.className = "submit_div";
+			div_group1.className = "group_1";
+			div_group2.className = "group_2";
+			div_group3.className = "group_3";
 			
 			label_nombre.className = "label_nombre_prod";
 			label_precio.className = "label_precio_prod";
@@ -113,11 +128,13 @@ window.onload=function(){
 			textarea.name = 'descripcion';
 			img.name = "imagen";
 			
-			submit.value = "cargar producto";
+			submit.value = "Cargar producto";
+			submit.className = "btn btn-primary";
 
 			select_categoria.id = "select_categoria";
 			select_marca.id = "select_marca";
 			cerrar.id = "cerrar_prod_form";
+			cerrar.className = "btn";
 
 			option = cr_elem("option");
 			option.text = 'seleccione una categoria';
@@ -145,26 +162,30 @@ window.onload=function(){
 			
 			app_ch(label_nombre,div_1);
 			app_ch(input_nombre,div_1);
-			app_ch(div_1,form);
+			app_ch(div_1,div_group1);
 			
 			app_ch(label_precio,div_2);
 			app_ch(input_precio,div_2);
-			app_ch(div_2,form);
+			app_ch(div_2,div_group1);
+			app_ch(div_group1,form);
 			
 			app_ch(label_descripcion,div_3);
 			app_ch(textarea,div_3);
-			app_ch(div_3,form);
+			app_ch(div_3,div_group2);
 			
 			app_ch(label_img,div_4);
 			app_ch(img,div_4);
-			app_ch(div_4,form);
+			app_ch(div_4,div_group2);
+			app_ch(div_group2,form);
 			
 			app_ch(select_categoria,div_5);
 			app_ch(select_marca,div_5);
-			app_ch(submit,div_5);
-			app_ch(div_5,form);
 			
-			app_ch(cerrar,form);
+			app_ch(submit,div_6);
+			app_ch(cerrar,div_6);
+			app_ch(div_5,div_group3);
+			app_ch(div_6,div_group3);
+			app_ch(div_group3,form);
 			
 			app_ch(form,div);
 			app_ch(div,get_id("right"));
@@ -386,13 +407,15 @@ function mostrar_mensaje(mensaje,tipo){                          // mensaje de e
 }
 
 function editar_tabla(tabla,id){
-	var numero_id = parseInt(id.charAt((id.length) - 1)); // devuelve en number el numero de id del elemento
+	var numero_id = parseInt(id.substr( (id.lastIndexOf("_"))+1 , id.length) ); // devuelve en number el numero de id del elemento
 	var info = [tabla,numero_id,"editar"];
+	console.log(numero_id);
 	open_modal(info);
 }
 
 function borrar_tabla(tabla,id,nombre){
-	var numero_id = parseInt(id.charAt((id.length) - 1));
+	var numero_id = parseInt(id.substr( (id.lastIndexOf("_"))+1 , id.length) ); // devuelve en number el numero de id del elemento
+	console.log(numero_id);
 	var info = [tabla,numero_id,"borrar",nombre];
 	open_modal(info);
 }
@@ -503,7 +526,8 @@ function borrar_tabla(tabla,id,nombre){
 
 				form.enctype ="multipart/form-data";
 				form.action = "editar_productos.php";
-
+				form.className = "editar_productos";
+				
 				label_nombre.innerHTML = "Nombre del producto";
 				label_precio.innerHTML = "Precio en pesos";
 				label_textarea.innerHTML = "Descripcion del producto";
@@ -516,6 +540,8 @@ function borrar_tabla(tabla,id,nombre){
 				precio.className = "precio_prd";
 				textarea.className = "descripcion";
 				label_textarea.className = "label_desc_prod";
+				label_imagen.className = "label_img";
+				cancel.className = "btn";
 				
 				input_nombre.type = "text";
 				precio.type = "text";
@@ -531,7 +557,8 @@ function borrar_tabla(tabla,id,nombre){
 				imagen.name = "imagen";
 				hidden.name = "hidden";
 
-				submit.value = "cargar producto";
+				submit.value = "Editar producto";
+				submit.className = "btn btn-primary";
 				hidden.value = modal[1];
 
 				select_categoria.id = "select_categoria";
@@ -576,11 +603,11 @@ function borrar_tabla(tabla,id,nombre){
 			titulo.innerHTML = '¿Esta seguro que desea borrar el elemento <span>' + modal[3] + '</span> de la tabla <span>' + modal[0] + '</span>?';
 			
 			aceptar.type = 'button';
-			aceptar.className = 'aceptar btn btn-warning btn-large';
+			aceptar.className = 'aceptar btn btn-danger btn-large';
 			aceptar.value = 'aceptar';
 			
 			cancel.type = 'button';
-			cancel.className = 'cancelar btn btn-danger btn-large';
+			cancel.className = 'cancelar btn btn-large';
 			cancel.value = 'cancelar';
 			
 			aceptar.onclick = function(){

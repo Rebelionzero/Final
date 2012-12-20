@@ -94,10 +94,11 @@
   			return false;
 		}
 	}
-
+	
 	setear_errores($errores,$producto,$vacios);
 
 	function setear_errores($errores,$producto,$vacios){
+		echo $producto['id'];
 
 		$devolucionErrores = array();
 		$ingresar_producto = array();
@@ -108,7 +109,9 @@
 		$campo_categoria = $vacios['categoria'];
 		$campo_marca = $vacios['marca'];
 		$campo_imagen = $vacios['imagen'];
-
+	
+		echo '<br />';
+		echo 'y aca tambien';
 		if($campo_producto === true){
 			$ingresar_producto['nombre'] = '';
 		}else{
@@ -169,6 +172,20 @@
 				array_push($devolucionErrores, $errores['imagen']);
 			}
 		}
+		$contador = 0;
+		foreach ($ingresar_producto as $dato => $value) {
+			if($value != ''){
+				continue;
+			}else{
+				$contador ++;
+			}
+		}
+		if($contador == 7){
+			array_push($devolucionErrores,'Error: Debe ingresar algun dato para editar');
+			$_SESSION['errores'] = $devolucionErrores;
+			header('Location: admin.php');
+		}
+		
 		
 		if(count($devolucionErrores) > 0){
 			$_SESSION['errores'] = $devolucionErrores;
@@ -200,11 +217,12 @@
 			
 			if( is_bool($update) ){
 		 		if($update == true){
-		 			unlink("Prod_images/".$resultado[0]['src']);
-					move_uploaded_file($producto['imagen']['tmp_name'], $carpetaYarchivo);
-					
+		 			if(!$ingresar_producto['imagen'] == ''){
+		 				unlink("Prod_images/".$resultado[0]['src']);
+						move_uploaded_file($producto['imagen']['tmp_name'], $carpetaYarchivo);
+					}
 		 			if( isset($_SESSION['edicion_exitosa']) ){unset($_SESSION['edicion_exitosa']);}
-					$_SESSION['edicion_exitosa'] = '<p>el producto se ha editado satisfactoriamente</p>';
+					$_SESSION['edicion_exitosa'] = 'El producto se ha editado satisfactoriamente';
 					header('Location: admin.php');
 		 		}
 		 	}

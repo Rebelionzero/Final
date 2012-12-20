@@ -22,8 +22,8 @@
 	$errores = array(
 		'producto' => validar_producto($producto['producto']),
 		'precio' => validar_precio($producto['precio']),
-		'categoria' =>validar_select($producto['categoria'],'debe seleccionar una categoria'),
-		'marca' =>validar_select($producto['marca'],'debe seleccionar una marca'),
+		'categoria' =>validar_select($producto['categoria'],'Error: debe seleccionar una categoria'),
+		'marca' =>validar_select($producto['marca'],'Error: debe seleccionar una marca'),
 		'descripcion' => validar_descripcion($producto['descripcion']),
 		'imagen' =>validar_img($producto['imagen'])
 	);
@@ -35,23 +35,23 @@
 			if(preg_match('/^\pL+$/u', $campo)){
 				return false;
 			}else{
-				return 'solo se puede ingresar texto como nombre de producto';
+				return 'Solo se puede ingresar texto sin espacios como nombre de producto';
 			}
 		}elseif(strlen($campo) < 1){
-			return 'debe llenar el campo producto';
+			return 'Error: debe llenar el campo producto';
 		}elseif(strlen($campo) > 30){
-			return 'el campo porducto no debe tener mas de 30 caracteres';
+			return 'El campo porducto no debe tener mas de 30 caracteres';
 		}
 	}
 
 
 	function validar_precio($campo){
 		if(!is_numeric($campo)){			
-			return 'debe ingresar un numero';
+			return 'Error: debe ingresar un numero';
 		}else{
 			$campo = intval($campo);
 			if($campo < 1 || $campo > 999){
-				return 'el numero debe ser entero positivo entre 1 y 999';
+				return 'Error: el numero debe ser entero positivo entre 1 y 999';
 			}else{
 				return false;
 			}

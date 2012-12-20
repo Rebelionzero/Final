@@ -6,7 +6,7 @@
 		 if( is_bool($consulta) ){
 		 	if($consulta == true){
 		 		if( isset($_SESSION['carga_exitosa']) ){unset($_SESSION['carga_exitosa']);}
-				$_SESSION['carga_exitosa'] = '<p>el producto se ha cargado satisfactoriamente</p>';
+				$_SESSION['carga_exitosa'] = 'el producto se ha cargado satisfactoriamente';
 				header('Location: admin.php');
 		 	}
 		 }
