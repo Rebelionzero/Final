@@ -209,42 +209,6 @@
 		 		}
 		 	}
 		}
-				
-		
-
-		/*foreach ($vacios as $campoVacio => $value) {
-			if ($value === true) {
-				continue;
-			}else{
-
-			}
-		}
-
-		foreach ($array as $error => $valor) {
-			if ($valor == false) {
-				continue;
-			}else{
-				array_push($devolucionErrores, $valor);
-			}
-		}
-
-		if(count($devolucionErrores) > 0){
-			$_SESSION['errores'] = $devolucionErrores;
-			header('Location: admin.php');
-			
-		}else{
-				$img = explode(".",$producto['imagen']['name']);
-				$producto['imagen']['saveName'] = $img[0].microtime(true).'.'.$img[1];
-				$producto['imagen']['name'] = $img[0];
-				if (!file_exists('/Prod_images')){
-					mkdir("Prod_images");
-				}
-  				$carpetaYarchivo = "Prod_images/".$producto['imagen']['saveName'];
-				move_uploaded_file($producto['imagen']['tmp_name'], $carpetaYarchivo);
-				
-				$conectar = conectar_bd();
-				$save_db = save_prod_in_db('INSERT INTO productos VALUES (null, "'.$producto['producto'].'" ,'.$producto['precio'].',"'.$producto['descripcion'].'","'.$producto['imagen']['name'].'","'.$producto['imagen']['saveName'].'",'.$producto['categoria'].','.$producto['marca'].');',$conectar);
-		}*/
 
 	}
 

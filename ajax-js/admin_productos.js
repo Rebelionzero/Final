@@ -216,7 +216,9 @@ window.onload=function(){
 		li_opciones = cr_elem("li");
 		li_nombre.innerHTML = "Nombre";
 		li_opciones.innerHTML = "Opciones";
-		
+		li_opciones.className = "li_opciones";
+		div_container.className = "contenedor";
+
 		app_ch(li_nombre,ul_titulo);
 		
 		if(array[1] == 'productos'){
@@ -234,6 +236,9 @@ window.onload=function(){
 			li_categoria.innerHTML = 'Categoria';
 			li_marca.innerHTML = 'Marca';
 			
+			li_imagen_nombre.className = "ndli";
+			li_descripcion.className = "descripcion";
+
 			app_ch(li_precio,ul_titulo);
 			app_ch(li_descripcion,ul_titulo);
 			app_ch(li_imagen_nombre,ul_titulo);
@@ -262,6 +267,7 @@ window.onload=function(){
 				if(j == "id"){continue;
 				}else{
 					td = cr_elem("td");
+					td.className = "td_prod_"+j;
 					if(array[1] == 'productos'){
 						if(j == "src"){
 							img	= cr_elem("img");
@@ -280,6 +286,7 @@ window.onload=function(){
 			
 			
 			td_editar_borrar = cr_elem("td");
+			td_editar_borrar.className = "td_editar_borrar";
 			editar = cr_elem("a");
 			borrar = cr_elem("a");			
 			editar.innerHTML = "Editar";
@@ -355,18 +362,26 @@ function mostrar_mensaje(mensaje,tipo){                          // mensaje de e
 	var div = cr_elem("div");
 	var h3 = cr_elem("h3");
 	var cerrar = cr_elem("a");
+	var nav = cr_elem("div");
 		
 	h3.innerHTML = mensaje;
 	cerrar.href="#";
-	
-	app_ch(cerrar,div);
-	app_ch(h3,div);
+	cerrar.innerHTML = "x";
+	cerrar.className = "close";	
+
+	app_ch(cerrar,nav);
+	app_ch(h3,nav);
 	
 	switch(tipo){
-		case "error": div.className = "mensaje_error";break;
-		case "exito": div.className = "mensaje_exito";break;
+		case "error": div.className = "mensaje_error alert alert-error container";break;
+		case "exito": div.className = "mensaje_exito alert alert-success container";break;
 	}
 	
+	cerrar.onclick = function(){
+		rem_ch(div);
+	}
+
+	app_ch(nav,div);
 	app_ch(div,mensaje_contenedor);
 }
 
@@ -429,12 +444,17 @@ function borrar_tabla(tabla,id,nombre){
 		cancel.value = "Cancelar";
 
 		if(modal[2] == 'editar'){
+			submit.value = "Editar";
 			if(modal[0] == 'marcas' || modal[0] == 'categorias'){				
 				form.enctype = 'application/x-www-form-urlencoded';
 				titulo.innerHTML = "Editar " + modal[0].replace("s","");
 				label_nombre.innerHTML = 'Nombre de la '+ modal[0].replace("s","")+ ": ";
 				
 				form.action = 'editar.php';
+				form.className = "Editar_CM";
+				submit.className = "Editar_CM";
+				submit.className = "Editar_CM btn btn-success";
+				cancel.className = "Editar_CM btn btn-danger";
 
 				input_nombre.type = "text";
 				input_nombre.name = "nombre";
@@ -556,11 +576,11 @@ function borrar_tabla(tabla,id,nombre){
 			titulo.innerHTML = '¿Esta seguro que desea borrar el elemento <span>' + modal[3] + '</span> de la tabla <span>' + modal[0] + '</span>?';
 			
 			aceptar.type = 'button';
-			aceptar.className = 'aceptar';
+			aceptar.className = 'aceptar btn btn-warning btn-large';
 			aceptar.value = 'aceptar';
 			
 			cancel.type = 'button';
-			cancel.className = 'cancelar';
+			cancel.className = 'cancelar btn btn-danger btn-large';
 			cancel.value = 'cancelar';
 			
 			aceptar.onclick = function(){

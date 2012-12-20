@@ -37,20 +37,26 @@ function nueva_categoria_marca_btn(cat,opcion){
 		var input = cr_elem("input");
 		var submit = cr_elem("input");
 		var cerrar = cr_elem("a");
-		
+		var div_opciones = cr_elem("div");
+
 		form.className = "formulario";
 		form.method = "POST";
 		label.innerHTML = "Nombre de la " + opcion;
 		input.type = "text";
 		input.name = opcion;
 		submit.type = "submit";
+		submit.value = "Cargar";
+		submit.className = "btn btn-primary";
 		cerrar.href="#";
-		cerrar.innerHTML = "cerrar";
+		cerrar.innerHTML = "Cerrar";
+		cerrar.className = "btn";
+		div_opciones.className = "cargar_cerrar";
 		
 		app_ch(label,form);
 		app_ch(input,form);
-		app_ch(submit,form);
-		app_ch(cerrar,form);
+		app_ch(submit,div_opciones);
+		app_ch(cerrar,div_opciones);
+		app_ch(div_opciones,form);
 		app_ch(form,div);
 		app_ch(div,get_id("right"));
 		

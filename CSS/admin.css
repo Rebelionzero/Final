@@ -5,7 +5,7 @@ h2 {font-size:15px;}
 a{text-decoration:none;color:#000;}
 a:visited{color:#000;}
 a:hover{text-decoration:underline;}
-.middle{margin-top: 35px;margin-left: 60px;overflow:hidden;}
+.middle{margin-top: 35px;margin-left: 15px;overflow:hidden;}
 .middle .left,.middle .right{float:left;}
 .middle .left{border-right: 1px solid #111;}
 .middle .left ul{overflow:hidden;}
@@ -68,19 +68,55 @@ table.productos tr:hover td{background:#A1C358;}
 }
 
 /* bootstrap overwrite */
-.navbar-inner{width:65%;}
+
 .nav{margin: 10px 0 0 0;overflow: auto;}
 .nav li {float:left;}
-.titulo_marcas_categorias li{padding: 0 13px;text-align: center;width: 28%;font-weight:bold;}
-.titulo_marcas_categorias li + li{padding-left:40px;}
-.titulo_marcas_categorias li + li + li{padding-left:17px;}
-.lista_prods{width:67%;margin:0 20px;}
-.lista_cats_mars{width:67%;margin:0 20px;}
+.titulo_marcas_categorias li{padding: 0 13px;text-align: center;width: 27%;font-weight:bold;}
+.titulo_marcas_categorias li + li{padding-left:68px;}
+.titulo_marcas_categorias li + li + li{padding-left:47px;}
 a.crear_elemento.btn.btn-primary{color:#fff;}
 table.lista_cats_mars tr td{text-align:center;width: 30%;}
 table.lista_cats_mars tr td a{display:inline-block;margin:0 20px;}
 .table-striped tbody > tr:nth-child(2n+1) > td,
 .table-striped tbody > tr:nth-child(2n+1) > th{background:#F0F0F0;}
-#edit_form h2 {margin:0;font-size: 1.3em;text-align: center;}
+#front_modal h2 {margin:0;font-size: 1.3em;text-align: center;}
 #edit_form{padding:5px 25px;}
 #edit_form label{margin-right:15px;display: inline-block;}
+.Cargar {display:block;}
+.cerrar {display:inline-block;}
+.contenedor{width:1010px;}
+
+form.Editar_CM fieldset{margin:20px 60px 0;}
+form.Editar_CM input[type="text"] {margin:0;}
+input.Editar_CM{margin-left: 15px;}
+button.Editar_CM{margin-left: 5px;}
+#nuevo_producto,#nuevo_categoria,#nuevo_marca {margin-bottom: 15px;}
+.aceptar,.cancelar{margin-top:25px;padding: 4px 12px;}
+.aceptar{margin-left:250px;}
+.cancelar{margin-left:250px;}
+.mensaje_error h3,.mensaje_exito h3 {font-size: 14px;line-height: 20px;margin:0;}
+.mensaje_error a,.mensaje_exito a{font-size:14px;}
+.mensaje_error a:focus,.mensaje_exito a:focus{outline: none;}
+.alert{padding:10px 35px 10px 14px;}
+.formulario{overflow: auto;width: 370px;}
+.formulario label{float:left;line-height: 25px;}
+.formulario input[type="text"]{float:right;margin: 0;}
+.formulario label,.formulario input[type="text"]{margin-bottom: 25px;}
+.cargar_cerrar{ clear: left;overflow: hidden;width: 100%;}
+.cargar_cerrar input {padding:6px 12px;float: left;}
+.cargar_cerrar a{float: right;}
+.titulo_productos li{font-weight: bold;text-align: center;width: 10%;}
+.titulo_productos li.ndli,.titulo_productos li.descripcion,.titulo_productos li.li_opciones{width: 16%;}
+
+
+table.lista_prods tr td img {width: 60px;}
+table.lista_prods tr td{padding:4px;text-align: center;vertical-align: middle;}
+table.lista_prods td.td_prod_producto {width: 115px;}
+table.lista_prods td.td_prod_precio {width: 60px;}
+table.lista_prods td.td_prod_descripcion {width: 160px;}
+table.lista_prods td.td_prod_imagen {width: 175px;}
+table.lista_prods td.td_prod_src {width: 70px;}
+table.lista_prods td.td_prod_categoria,table.lista_prods td.td_prod_marca{width: 90px}
+table.lista_prods td.td_editar_borrar{padding: 4px 20px;}
+table.lista_prods td.td_editar_borrar a{float: right;}
+table.lista_prods td.td_editar_borrar a:first-child{float: left;}
