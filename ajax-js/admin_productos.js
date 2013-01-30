@@ -335,10 +335,8 @@ window.onload=function(){
 	
 	/* expresiones regulares */
 var email_regexp = /^[a-zA-Z0-9._-]+([+][a-zA-Z0-9._-]+){0,1}[@][a-zA-Z0-9._-]+[.][a-zA-Z]{2,6}$/;
-
-// NO FUNCIONA NINGUNA DE LAS 2 EXPRESIONES REGULARES DE ABAJO
 var nombre_regexp = /^[A-Za-z\_\-\.\s\xF1\xD1]+$/;
-//var nuevo_nombre_regexp = /\bt[a-z]+\b/;
+
 
 /* funciones generales */
 function get_id(id){return document.getElementById(id);}          // get element by id

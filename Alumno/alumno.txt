@@ -1,0 +1,7 @@
+Examenes Finales
+
+Alumno: Nicolas Alejandro Dezzutto
+Turno: Noche
+Fecha: 20-12-2012
+Profesor: Alejandro Vidaurri
+Materias: Programacion II (Ajax) / Tencologia Informatica (PHP)

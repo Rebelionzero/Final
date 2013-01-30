@@ -49,23 +49,23 @@
 			if(preg_match('/^\pL+$/u', $campo)){
 				return false;
 			}else{
-				return 'solo se puede ingresar texto como nombre de producto';
+				return 'Solo se puede ingresar texto como nombre de producto';
 			}
 		}elseif(strlen($campo) < 1){
-			return 'debe llenar el campo producto';
+			return 'Debe llenar el campo producto';
 		}elseif(strlen($campo) > 30){
-			return 'el campo porducto no debe tener mas de 30 caracteres';
+			return 'El campo porducto no debe tener mas de 30 caracteres';
 		}
 	}
 
 
 	function validar_precio($campo){
 		if(!is_numeric($campo)){			
-			return 'debe ingresar un numero como precio';
+			return 'Debe ingresar un numero como precio';
 		}else{
 			$campo = intval($campo);
 			if($campo < 1 || $campo > 999){
-				return 'el numero debe ser entero positivo entre 1 y 999';
+				return 'El numero debe ser entero positivo entre 1 y 999';
 			}else{
 				return false;
 			}

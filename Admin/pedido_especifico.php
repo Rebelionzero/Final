@@ -24,7 +24,7 @@
 		}
 		
 		if($resultado_categorias == false || $resultado_marcas == false){
-			return 'para cargar un producto debe antes crear una categoria y una marca';
+			return 'Para cargar un producto debe antes crear una categoria y una marca';
 		}else{
 			return $categoriasYmarcas = array($resultado_categorias,$resultado_marcas);
 		}
