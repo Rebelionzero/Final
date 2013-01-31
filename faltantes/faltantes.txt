@@ -1,0 +1,2 @@
+- Llamar al autoloader en todos los archivos de controladores que sean necesarios
+- Pasar a un unico objeto las consultas a la base de datos

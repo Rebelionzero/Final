@@ -1,5 +1,6 @@
 <?php
-	include_once("conexion.php");
+	include_once("../autoloader.php");
+
 	session_start();
 	if(isset($table)){unset($table);}
 	
@@ -25,9 +26,15 @@
 			$resultado=array(false,$table);
 		}
 		return $resultado;
-	}		
-	$consultar= consultar_bd($conexion,$table);
-	mysql_close($conexion);
-	$enviar = json_encode($consultar);
+	}
+
+	$consultar = new Conexion();
+	$consultar->conectar_bd();
+	$consultar->get();
+
+	$funcionConsultar = consultar_bd($consultar->conexion,$table);
+
+	mysql_close($consultar->conexion);
+	$enviar = json_encode($funcionConsultar);
 	echo $enviar;
 ?>

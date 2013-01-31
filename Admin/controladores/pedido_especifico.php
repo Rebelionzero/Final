@@ -1,5 +1,5 @@
 <?php
-	include_once("conexion.php");
+	include_once("../autoloader.php");
 	
 	function consultar_bd($conexion){
 		$select_categoria = "SELECT id, nombre FROM categorias;";
@@ -29,8 +29,14 @@
 			return $categoriasYmarcas = array($resultado_categorias,$resultado_marcas);
 		}
 	}
-	$consultar= consultar_bd($conexion);
-	mysql_close($conexion);
-	$enviar = json_encode($consultar);	
+	
+	$consultar = new Conexion();
+	$consultar->conectar_bd();
+	$consultar->get();
+
+	$funcionConsultar = consultar_bd($consultar->conexion);
+
+	mysql_close($consultar->conexion);
+	$enviar = json_encode($funcionConsultar);
 	echo $enviar;
 ?>
