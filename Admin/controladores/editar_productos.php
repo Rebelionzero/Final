@@ -2,7 +2,7 @@
 	
 	session_start();
 	
-	include_once('conexion.php');
+	include_once('../autoloader.php');
 	include_once('guardar_db.php');
 
 	if(isset($_SESSION['errores'])){
@@ -97,8 +97,7 @@
 	
 	setear_errores($errores,$producto,$vacios);
 
-	function setear_errores($errores,$producto,$vacios){
-		echo $producto['id'];
+	function setear_errores($errores,$producto,$vacios){		
 
 		$devolucionErrores = array();
 		$ingresar_producto = array();
@@ -110,8 +109,7 @@
 		$campo_marca = $vacios['marca'];
 		$campo_imagen = $vacios['imagen'];
 	
-		echo '<br />';
-		echo 'y aca tambien';
+		
 		if($campo_producto === true){
 			$ingresar_producto['nombre'] = '';
 		}else{
@@ -191,9 +189,11 @@
 			$_SESSION['errores'] = $devolucionErrores;
 			header('Location: admin.php');
 		}else{
-			$conectar = conectar_bd();
+			$conectar = new Conexion();
+			$conectar->conectar_bd();
+			$conectar->get();
 			$old_src = "SELECT src FROM productos WHERE id=".$producto['id'];
-			$consulta_old_src = mysql_query($old_src,$conectar);
+			$consulta_old_src = mysql_query($old_src,$conectar->conexion);
 			
 			if(mysql_num_rows($consulta_old_src) > 0){
 				while($row = mysql_fetch_assoc($consulta_old_src)){
@@ -213,7 +213,7 @@
 			$query = substr($query, 0, -2);
 			$query.= " WHERE id=".$producto['id'].";";
 			
-			$update = mysql_query($query,$conectar);
+			$update = mysql_query($query,$conectar->conexion);
 			
 			if( is_bool($update) ){
 		 		if($update == true){

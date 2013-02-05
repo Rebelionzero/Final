@@ -408,14 +408,12 @@ function mostrar_mensaje(mensaje,tipo){                          // mensaje de e
 
 function editar_tabla(tabla,id){
 	var numero_id = parseInt(id.substr( (id.lastIndexOf("_"))+1 , id.length) ); // devuelve en number el numero de id del elemento
-	var info = [tabla,numero_id,"editar"];
-	console.log(numero_id);
+	var info = [tabla,numero_id,"editar"];	
 	open_modal(info);
 }
 
 function borrar_tabla(tabla,id,nombre){
-	var numero_id = parseInt(id.substr( (id.lastIndexOf("_"))+1 , id.length) ); // devuelve en number el numero de id del elemento
-	console.log(numero_id);
+	var numero_id = parseInt(id.substr( (id.lastIndexOf("_"))+1 , id.length) ); // devuelve en number el numero de id del elemento	
 	var info = [tabla,numero_id,"borrar",nombre];
 	open_modal(info);
 }

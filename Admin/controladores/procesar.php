@@ -2,7 +2,7 @@
 	
 	session_start();
 	
-	include_once('conexion.php');
+	include_once('../autoloader.php');
 	include_once('guardar_db.php');
 
 	if(isset($_SESSION['errores'])){
@@ -109,8 +109,10 @@
   				$carpetaYarchivo = "Prod_images/".$producto['imagen']['saveName'];
 				move_uploaded_file($producto['imagen']['tmp_name'], $carpetaYarchivo);
 				
-				$conectar = conectar_bd();
-				$save_db = save_prod_in_db('INSERT INTO productos VALUES (null, "'.$producto['producto'].'" ,'.$producto['precio'].',"'.$producto['descripcion'].'","'.$producto['imagen']['name'].'","'.$producto['imagen']['saveName'].'",'.$producto['categoria'].','.$producto['marca'].');',$conectar);
+				$conectar = new Conexion();
+				$conectar->conectar_bd();
+				$conectar->get();
+				$save_db = save_prod_in_db('INSERT INTO productos VALUES (null, "'.$producto['producto'].'" ,'.$producto['precio'].',"'.$producto['descripcion'].'","'.$producto['imagen']['name'].'","'.$producto['imagen']['saveName'].'",'.$producto['categoria'].','.$producto['marca'].');',$conectar->conexion);
 		}
 	}
 ?>

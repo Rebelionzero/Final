@@ -1,3 +1,4 @@
 - Llamar al autoloader en todos los archivos de controladores que sean necesarios
 - Pasar a un unico objeto las consultas a la base de datos
 - Faltan un par de archivos donde la conexion a la base se llama de la forma antigua
+- Crear clase Query y relacionarla con todos los llamados a la abse de datos
