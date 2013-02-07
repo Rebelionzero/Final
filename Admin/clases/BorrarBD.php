@@ -13,11 +13,7 @@
 			$this->nombre = $n;
 		}
 
-		function borrar_bd(){
-			$conectar = new Conexion();
-			$conectar->conectar_bd();
-			$conectar->get();
-			
+		function borrar_bd(){			
 			if($this->tabla == 'categorias' || $this->tabla == 'marcas'){
 
 				if($this->tabla == 'categorias'){
@@ -27,26 +23,28 @@
 				}
 				/* #E0F transformar en llamada a objeto, buscar la forma de llevar cada query a objeto  */
 				$comprobar_uso = "SELECT nombre FROM productos WHERE productos.".$campo." =".$this->id." ;";
-				$consulta_uso = mysql_query($comprobar_uso, $conectar->conexion);
+				$consulta_uso = new Queries($comprobar_uso);
+				$consulta_uso->select();
 
-				if(mysql_num_rows($consulta_uso) > 0){
-					while($row = mysql_fetch_assoc($consulta_uso)){
-						$resultado[]=$row;
-					}
-
+				// Borrar una vez que este completa la clase Query
+				if($consulta_uso->resultado !== false){
 					$this->respuesta = 'Error: La '.$campo. ' no puede ser borrada porque esta siendo utilizada por los siguientes productos: ';
 
-					for ($i=0; $i < count($resultado); $i++) { 
-						$this->respuesta .= $resultado[$i]['nombre'].', ';
+					for ($i=0; $i < count($consulta_uso->resultado); $i++) { 
+						$this->respuesta .= $consulta_uso->resultado[$i]['nombre'].', ';
 					}
 					$this->respuesta = substr_replace($this->respuesta ,"",-2);
-					return $this->respuesta;
-				}else{
+
+					echo $this->respuesta;
+					//return $this->respuesta;
+
+
+				}/*else{
 					$delete = "DELETE FROM ".$this->tabla." WHERE id=".$this->id." AND nombre='".$this->nombre."';";
 					$consulta_uso = mysql_query($delete, $conectar->conexion);
 					$this->respuesta = 'La '.$campo.' '.$this->nombre.' ha sido borrada exitosamente.';
 					return $this->respuesta;
-				}
+				}*/
 				
 
 				/* Fin de #E0F */
