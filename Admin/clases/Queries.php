@@ -21,7 +21,6 @@
 			}else{
 				$this->resultado = false;
 			}
-			return $this->resultado;
 				
 		}
 
@@ -32,6 +31,7 @@
 		public function delete (){
 			$this->conexion();
 			$this->queryFunction();
+
 		}
 
 		private function conexion (){

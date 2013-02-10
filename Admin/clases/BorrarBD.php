@@ -7,6 +7,7 @@
 		var $respuesta;
 		var $conectar;
 
+
 		function __construct($t,$i,$n){
 			$this->tabla = $t;
 			$this->id = $i;
@@ -21,58 +22,49 @@
 				}elseif($this->tabla == 'marcas'){
 					$campo = 'marca';
 				}
-				/* #E0F transformar en llamada a objeto, buscar la forma de llevar cada query a objeto  */
+				
 				$comprobar_uso = "SELECT nombre FROM productos WHERE productos.".$campo." =".$this->id." ;";
 				$consulta_uso = new Queries($comprobar_uso);
 				$consulta_uso->select();
 
-				// Borrar una vez que este completa la clase Query
+				
 				if($consulta_uso->resultado !== false){
-					$this->respuesta = 'Error: La '.$campo. ' no puede ser borrada porque esta siendo utilizada por los siguientes productos: ';
+					$string = 'Error: La '.$campo. ' no puede ser borrada porque esta siendo utilizada por los siguientes productos: ';
 
 					for ($i=0; $i < count($consulta_uso->resultado); $i++) { 
-						$this->respuesta .= $consulta_uso->resultado[$i]['nombre'].', ';
+						$string .= $consulta_uso->resultado[$i]['nombre'].', ';
 					}
-					$this->respuesta = substr_replace($this->respuesta ,"",-2);
+					$string = substr_replace($string ,"",-2);
+				}else{
 
-					echo $this->respuesta;
-					//return $this->respuesta;
+					$queryBorrar = "DELETE FROM ".$this->tabla." WHERE id=".$this->id." AND nombre='".$this->nombre."';";
+					$borrar_deBase = new Queries($queryBorrar);
+					$borrar_deBase->delete();
+					$string = 'La '.$campo.' '.$this->nombre.' ha sido borrada exitosamente.';
+					
+				}
+				$this->respuesta = $string;
 
-
-				}/*else{
-					$delete = "DELETE FROM ".$this->tabla." WHERE id=".$this->id." AND nombre='".$this->nombre."';";
-					$consulta_uso = mysql_query($delete, $conectar->conexion);
-					$this->respuesta = 'La '.$campo.' '.$this->nombre.' ha sido borrada exitosamente.';
-					return $this->respuesta;
-				}*/
 				
-
-				/* Fin de #E0F */
 			}elseif($this->tabla == 'productos'){
 				$src = "SELECT src FROM productos WHERE id=".$this->id;
-				$consulta_src = mysql_query($src, $conectar->conexion);
-				
-				if(mysql_num_rows($consulta_src) > 0){
-					while($row = mysql_fetch_assoc($consulta_src)){
-						$resultado[]=$row;
-					}
-				}			
+				$consulta_src = new Queries($src);
+				$consulta_src->select();				
 
-				$delete = "DELETE FROM ".$this->tabla." WHERE id=".$this->id.";";
-				$consulta_delete = mysql_query($delete, $conectar->conexion);
+
+				$queryBorrar = "DELETE FROM ".$this->tabla." WHERE id=".$this->id.";";
+				$borrar_deBase = new Queries($queryBorrar);
+				$borrar_deBase->delete();				
 				
-				if($consulta_delete != false){
-					if(file_exists('Prod_images/'.$resultado[0]['src'])){
-						unlink('Prod_images/'.$resultado[0]['src']);
-						$this->respuesta = 'El producto'.$this->nombre.' ha sido borrado exitosamente.';
-						return $this->respuesta;
+				if($borrar_deBase->consulta != false){
+					if(file_exists('Prod_images/'.$consulta_src->resultado[0]['src'])){
+						unlink('Prod_images/'.$consulta_src->resultado[0]['src']);
+						$this->respuesta = 'El producto'.$this->nombre.' ha sido borrado exitosamente.';						
 					}else{
-						$this->respuesta = 'Error: La imagen correspondiente al producto no existe';
-						return $this->respuesta;
+						$this->respuesta = 'Error: La imagen correspondiente al producto no existe';						
 					}
 				}else{
-					$this->respuesta = 'Error: el producto no ha podido ser borrado.';
-					return $this->respuesta;
+					$this->respuesta = 'Error: el producto no ha podido ser borrado.';					
 				}
 			}
 			
