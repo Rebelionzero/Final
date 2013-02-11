@@ -11,7 +11,7 @@
 	
 	$eliminar = new BorrarBD($tabla,$id,$nombre);
 	$eliminar->borrar_bd();
-
+	
 	$enviar = json_encode($eliminar->respuesta);
 	echo $enviar;
 ?>

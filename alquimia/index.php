@@ -1,6 +1,8 @@
 <?php
+	//header("Location: login.php");
 	include_once('conexion.php');
 	include_once('traerElementos.php');
+
 
 	$conectar = new Conexion('localhost','alquimia','root','');
 	$conectar->conexion();
@@ -42,14 +44,14 @@
 			</div>
 			<label for="hay_resultado">Hay resultado????</label>
 			<input type="checkbox" name="hay_resultado" id="hay_resultado" />
-			<!--
-			<?php/*
+			
+			<?php
 				echo rand(1,889).'<br />';
 				echo rand(1,8).'<br />';
 				echo rand(1,112).'<br />';
 				// 500 lollipop
-				*/
-			 ?>-->
+				
+			 ?>
 		</form>
 	</body>
 </html>

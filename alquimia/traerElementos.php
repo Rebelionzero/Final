@@ -11,7 +11,7 @@
 		}
 
 		public function traerElem(){
-			$ejecutar = mysql_query($this->query,$this->conexion);
+			$ejecutar = mysql_query($this->query,$this->conexion) or die(mysql_error());
 
 			if(mysql_num_rows($ejecutar) > 0){
 				while($row = mysql_fetch_assoc($ejecutar)){

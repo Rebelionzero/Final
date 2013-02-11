@@ -6,6 +6,8 @@
 	$id = $_POST['id'];
 	$nombre = $_POST['nombre'];
 	
+	$editar = new Editar();
+
 	if($tabla == 'categorias' || $tabla == 'marcas'){
 		// codigo aca
 		if(strlen($nombre) > 0 && strlen($nombre) < 31){

@@ -1,6 +1,14 @@
 CREATE DATABASE shop;
 USE shop;
 
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT unique primary key,
+  `nombreDeUsuario` varchar(30) COLLATE latin1_general_ci NOT NULL,
+  password varchar(15) not null
+);
+
+
 
 DROP TABLE IF EXISTS `categorias`;
 CREATE TABLE IF NOT EXISTS `categorias` (
