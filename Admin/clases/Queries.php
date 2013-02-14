@@ -33,7 +33,12 @@
 
 		}
 
-		public function update (){}		
+		public function update (){
+			$this->conexion();
+			$this->queryFunction();
+
+			$this->resultado = ($this->consulta === false) ? false : true;
+		}		
 
 		public function delete (){
 			$this->conexion();

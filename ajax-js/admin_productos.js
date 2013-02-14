@@ -87,7 +87,7 @@ window.onload=function(){
 			var submit = cr_elem("input");
 			var cerrar = cr_elem("a");
 
-			form.action = "procesar.php";
+			form.action = "controladores/procesar.php";
 			form.method = "post";
 			form.enctype ="multipart/form-data";
 						
@@ -471,7 +471,7 @@ function borrar_tabla(tabla,id,nombre){
 				titulo.innerHTML = "Editar " + modal[0].replace("s","");
 				label_nombre.innerHTML = 'Nombre de la '+ modal[0].replace("s","")+ ": ";
 				
-				form.action = 'editar.php';
+				form.action = 'controladores/editar.php';
 				form.className = "Editar_CM";
 				submit.className = "Editar_CM";
 				submit.className = "Editar_CM btn btn-success";
@@ -491,7 +491,7 @@ function borrar_tabla(tabla,id,nombre){
 	         				alert("el nombre cargado es muy largo");
 	         				rem_ch(back_div);
 		         		}else{
-	    	     			cargar_marca_categoria(modal,modal[0].replace("s",""),"editar");
+	    	     			cargar_marca_categoria(modal,modal[0].replace("s",""),"../controladores/editar");
 	    	     			rem_ch(back_div);
 	         			}
 	         		}else{
@@ -523,7 +523,7 @@ function borrar_tabla(tabla,id,nombre){
 				var option;
 
 				form.enctype ="multipart/form-data";
-				form.action = "editar_productos.php";
+				form.action = "controladores/editar_productos.php";
 				form.className = "editar_productos";
 				
 				label_nombre.innerHTML = "Nombre del producto";
@@ -609,7 +609,7 @@ function borrar_tabla(tabla,id,nombre){
 			cancel.value = 'cancelar';
 			
 			aceptar.onclick = function(){
-				borrar_db(modal,'borrar_db');
+				borrar_db(modal,'../controladores/borrar_db');
 				fadeOut(back_div,aceptar,navegador,version);
 			}
 			cancel.onclick = function(){fadeOut(back_div,cancel,navegador,version);}

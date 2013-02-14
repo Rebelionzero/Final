@@ -69,7 +69,7 @@ function nueva_categoria_marca_btn(cat,opcion){
          		if(input.value.length > 30){
          			alert("el nombre cargado es muy largo");
          		}else{
-         			cargar_marca_categoria(input.value,opcion,"categoria_marca");
+         			cargar_marca_categoria(input.value,opcion,"../controladores/categoria_marca");
          		}
          	}else{
          		alert("no puede ingresar numeros, caracteres extraños o espacios en blanco");

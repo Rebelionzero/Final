@@ -20,7 +20,7 @@ function crearObjetoXHR(){
 
 function ejecutar_ajax(valor){
   	var XHTTPRQ = crearObjetoXHR();
-  	XHTTPRQ.open('POST','pedidos.php',true);//open antes de requestheader!!!		
+  	XHTTPRQ.open('POST','../controladores/pedidos.php',true);//open antes de requestheader!!!		
   	XHTTPRQ.setRequestHeader('Content-type','application/x-www-form-urlencoded');
   	XHTTPRQ.onreadystatechange = function(){
   		if (XHTTPRQ.readyState==4 && XHTTPRQ.status==200){
