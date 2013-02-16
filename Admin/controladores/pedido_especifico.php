@@ -1,7 +1,7 @@
 <?php
 	include_once("../autoloader.php");
 	
-	function consultar_bd($conexion){
+	function consultar_bd($conexion){		
 		$select_categoria = "SELECT id, nombre FROM categorias;";
 		$select_marca = "SELECT id, nombre FROM marcas;";
 		

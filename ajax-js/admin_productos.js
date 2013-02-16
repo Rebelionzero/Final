@@ -87,7 +87,7 @@ window.onload=function(){
 			var submit = cr_elem("input");
 			var cerrar = cr_elem("a");
 
-			form.action = "controladores/procesar.php";
+			form.action = "../controladores/procesar.php";
 			form.method = "post";
 			form.enctype ="multipart/form-data";
 						
@@ -471,7 +471,7 @@ function borrar_tabla(tabla,id,nombre){
 				titulo.innerHTML = "Editar " + modal[0].replace("s","");
 				label_nombre.innerHTML = 'Nombre de la '+ modal[0].replace("s","")+ ": ";
 				
-				form.action = 'controladores/editar.php';
+				form.action = '../controladores/editar.php';
 				form.className = "Editar_CM";
 				submit.className = "Editar_CM";
 				submit.className = "Editar_CM btn btn-success";

@@ -47,7 +47,7 @@ function devolver_elementos(elem,tabla){
 
 function traerCategoriaMarca(pedido){
 	var XHTTPRQ = crearObjetoXHR();
-  	XHTTPRQ.open('POST','pedido_especifico.php',true);//open antes de requestheader!!!		
+  	XHTTPRQ.open('POST','../controladores/pedido_especifico.php',true);//open antes de requestheader!!!		
   	XHTTPRQ.setRequestHeader('Content-type','application/x-www-form-urlencoded');
   	XHTTPRQ.onreadystatechange = function(){
   		if (XHTTPRQ.readyState==4 && XHTTPRQ.status==200){

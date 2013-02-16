@@ -7,7 +7,7 @@
 		 	if($consulta == true){
 		 		if( isset($_SESSION['carga_exitosa']) ){unset($_SESSION['carga_exitosa']);}
 				$_SESSION['carga_exitosa'] = 'el producto se ha cargado satisfactoriamente';
-				header('Location: admin.php');
+				header('Location: ../vistas/admin.php');
 		 	}
 		 }
 	}

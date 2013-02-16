@@ -97,7 +97,7 @@
 
 		if(count($devolucionErrores) > 0){
 			$_SESSION['errores'] = $devolucionErrores;
-			header('Location: admin.php');
+			header('Location: ../vistas/admin.php');
 			
 		}else{
 				$img = explode(".",$producto['imagen']['name']);
