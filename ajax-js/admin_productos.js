@@ -523,7 +523,7 @@ function borrar_tabla(tabla,id,nombre){
 				var option;
 
 				form.enctype ="multipart/form-data";
-				form.action = "controladores/editar_productos.php";
+				form.action = "../controladores/editar_productos.php";
 				form.className = "editar_productos";
 				
 				label_nombre.innerHTML = "Nombre del producto";

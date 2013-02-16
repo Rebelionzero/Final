@@ -3,11 +3,12 @@
 	session_start();
 	
 	include_once('../autoloader.php');
-	include_once('guardar_db.php');
 
 	if(isset($_SESSION['errores'])){
 		unset($_SESSION['errores']);
 	}
+
+
 
 	$producto = array(
 		'producto' => $_POST['producto'],
@@ -19,7 +20,19 @@
 		'id' => $_POST['hidden']
 	);
 
-	$vacios = array(
+	$edicion = new Editar(array(
+		'',
+		$producto['id'],
+		$producto['producto'],
+		$producto['precio'],
+		$producto['categoria'],
+		$producto['marca'],
+		$producto['descripcion'],
+		$producto['imagen']
+		));
+	$edicion->editarProducto();
+
+	/*$vacios = array(
 		'producto' => vacio($producto['producto']),
 		'precio' => vacio($producto['precio']),
 		'descripcion' => vacio($producto['descripcion']),
@@ -35,65 +48,7 @@
 		'imagen' =>validar_img($producto['imagen'])
 	);
 
-	function vacio($string){
-    	return (!isset($string) || trim($string) ==='');
-	}
-
-	function sinImagen($img){
-		if($img['error'] == 4){return true;}else{return false;}	
-	}
-
-
-	function validar_producto($campo){
-		if(strlen($campo) > 0 && strlen($campo) < 31){
-			if(preg_match('/^\pL+$/u', $campo)){
-				return false;
-			}else{
-				return 'solo se puede ingresar texto como nombre de producto';
-			}
-		}elseif(strlen($campo) < 1){
-			return 'debe llenar el campo producto';
-		}elseif(strlen($campo) > 30){
-			return 'el campo porducto no debe tener mas de 30 caracteres';
-		}
-	}
-
-
-	function validar_precio($campo){
-		if(!is_numeric($campo)){			
-			return 'debe ingresar un numero como precio';
-		}else{
-			$campo = intval($campo);
-			if($campo < 1 || $campo > 999){
-				return 'el numero debe ser entero positivo entre 1 y 999';
-			}else{
-				return false;
-			}
-		}
-	}
-
-	function validar_descripcion($campo){
-		if(trim(strlen($campo)) > 200){return "La descripcion no puede tener mas de 200 caracteres";}else{return false;}
-	}
-
-	function validar_select($campo){
-		if($campo != 'seleccionar'){
-			return false;
-		}else{
-			return true;
-		}
-	}
-
 	
-	function validar_img($img){
-		if($img["type"] != 'image/gif' && $img["type"] != 'image/jpg' && $img["type"] != 'image/jpeg' && $img["type"] != 'image/png' && $img["type"] != 'image/pjpeg'){
-  			return "Error en la carga de imagenes: solo se permiten formatos jpg, jpeg, gif y png";
-  		}elseif( ($img["size"] / (1024 * 1024) ) > 2.0){
-  			return "Error en la carga de imagenes: la imagen debe pesar menos de 2 Mb";
-  		}else{
-  			return false;
-		}
-	}
 	
 	setear_errores($errores,$producto,$vacios);
 
@@ -230,5 +185,5 @@
 
 	}
 
-
+*/
 ?>
