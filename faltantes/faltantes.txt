@@ -1,9 +1,7 @@
 PHP:
 --------
 
-- Llamar al autoloader en todos los archivos de controladores que sean necesarios
 - Integrar el Login
-- Faltan un par de archivos donde la conexion a la base se llama de la forma antigua
 - Problema:
 	Paso 1: Entrar al sitio
 	Paso 2: Cambiar el nombre de la base de datos para llegar a la excepcion de la clase Conexion
@@ -16,7 +14,6 @@ PHP:
 - El usuario deberia saber de los errores de conexion, si falla esta, etc.
 - No deberia enviar informacion de base de datos (nombre de tabla) por post y get.
 - El error de conexion a a base deberia tener los estilos y funcionamiento correctos
-- Integrar la funcion para editar marcas y productos en un solo objeto
 - Aplicar private, protected, public, excepciones, interfaces, etc a los objetos
 - Pruebas unitarias
 - Code coverage

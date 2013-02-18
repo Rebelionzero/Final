@@ -1,6 +1,6 @@
 <?php
 	session_start();
-
+	
 	include_once("../autoloader.php");
 
 	$conexion = new Conexion();

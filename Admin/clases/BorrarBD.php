@@ -57,11 +57,11 @@
 				$borrar_deBase->delete();				
 				
 				if($borrar_deBase->consulta != false){
-					if(file_exists('Prod_images/'.$consulta_src->resultado[0]['src'])){
-						unlink('Prod_images/'.$consulta_src->resultado[0]['src']);
+					if(file_exists('../Prod_images/'.$consulta_src->resultado[0]['src'])){
+						unlink('../Prod_images/'.$consulta_src->resultado[0]['src']);
 						$this->respuesta = 'El producto'.$this->nombre.' ha sido borrado exitosamente.';						
 					}else{
-						$this->respuesta = 'Error: La imagen correspondiente al producto no existe';						
+						$this->respuesta = 'Error: La imagen correspondiente al producto no existe, ha sido movida, renombrada, alterada o borrada.';
 					}
 				}else{
 					$this->respuesta = 'Error: el producto no ha podido ser borrado.';					

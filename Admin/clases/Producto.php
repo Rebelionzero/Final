@@ -27,7 +27,7 @@
 
 
 				
-				$this->query = 'INSERT INTO productos VALUES (n,"'.$this->nombre.'" ,'.$this->precio.',"'.$this->descripcion.'","'.$this->imagen['name'].'","'.$this->imagen['saveName'].'",'.$this->categoria.','.$this->marca.');';
+				$this->query = 'INSERT INTO productos VALUES (null,"'.$this->nombre.'" ,'.$this->precio.',"'.$this->descripcion.'","'.$this->imagen['name'].'","'.$this->imagen['saveName'].'",'.$this->categoria.','.$this->marca.');';
 				$this->insertar = new Queries($this->query);
 				$this->insertar->insert();
 

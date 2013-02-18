@@ -47,7 +47,7 @@
 		}
 
 		public function editarProducto(){
-			var_dump($this->tabla,$this->id,$this->nombre,$this->precio,$this->marca,$this->descripcion,$this->categoria);
+			//var_dump($this->tabla,$this->id,$this->nombre,$this->precio,$this->marca,$this->descripcion,$this->categoria);
 
 			
 		}

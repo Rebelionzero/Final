@@ -292,7 +292,7 @@ window.onload=function(){
 					if(array[1] == 'productos'){
 						if(j == "src"){
 							img	= cr_elem("img");
-							img.src = 'Prod_images/'+ array[0][i][j];
+							img.src = '../Prod_images/'+ array[0][i][j];
 							app_ch(img,td);
 						}else{
 							td.innerHTML = array[0][i][j];

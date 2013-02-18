@@ -1,5 +1,5 @@
 <?php
 
-header("Location:Admin/vistas/admin.php");
+header("Location:Admin/vistas/login.php");
 
 ?>
