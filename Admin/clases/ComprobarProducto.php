@@ -8,6 +8,7 @@
 		var $descripcion;
 		var $imagen;
 		var $validaciones = array();
+		var $vacios = array();
 		var $errores = array();
 
 		function __construct($array){
@@ -29,8 +30,27 @@
 				'descripcion' => $this->validar_descripcion(),
 				'imagen' => $this->validar_img()
 			);
+			
+			$this->validaciones = array(
+				'producto' => $this->vacio($this->nombre),
+				'precio' => $this->vacio($this->precio),
+				'categoria' => $this->vacio($this->categoria),
+				'marca' => $this->vacio($this->marca),
+				'descripcion' => $this->vacio($this->descripcion),
+				'imagen' => $this->sinImagen($this->imagen)
+			);
+			
 			$this->setear_errores($this->validaciones);
+			
+			
+		}
 
+		private function vacio($string){
+    		return (!isset($string) || trim($string) ==='');
+		}
+
+		private function sinImagen($img){
+			if($img['error'] == 4){return true;}else{return false;}	
 		}
 
 		private function setear_errores($array){

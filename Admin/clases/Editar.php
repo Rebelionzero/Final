@@ -49,6 +49,10 @@
 		public function editarProducto(){
 			//var_dump($this->tabla,$this->id,$this->nombre,$this->precio,$this->marca,$this->descripcion,$this->categoria);
 
+			$array = array('producto' => $this->nombre, 'precio' => $this->precio, 'categoria' => $this->categoria, 'marca' => $this->marca, 'descripcion' => $this->descripcion, 'imagen' => $this->imagen);
+
+			$v = new ComprobarProducto($array);
+			$v->verificar();
 			
 		}
 
