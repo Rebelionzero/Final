@@ -14,7 +14,7 @@
 			$this->nombre = $n;
 		}
 
-		function borrar_bd(){			
+		public function borrar_bd(){			
 			if($this->tabla == 'categorias' || $this->tabla == 'marcas'){
 
 				if($this->tabla == 'categorias'){

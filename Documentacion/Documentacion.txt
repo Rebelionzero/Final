@@ -1,0 +1,144 @@
+Documentacion del desarrollo y funcionalidades de Shop Smart
+Programacion III - PHP Orientado a objetos - Nicolas Alejandro Dezzutto
+
+--------------------------------------------
+DSS-001 - Metodos
+--------------------------------------------
+--------------------------------------------
+DSS-002 - Controladores
+--------------------------------------------
+--------------------------------------------
+DSS-003 - Vistas
+--------------------------------------------
+--------------------------------------------
+DSS-004 - Pruebas Unitarias y Code Coverage 
+--------------------------------------------
+--------------------------------------------
+DSS-005 - Front End
+--------------------------------------------
+--------------------------------------------
+DSS-006 - Faltantes
+--------------------------------------------
+
+*****************************************************************************************************************
+El objeto de este archivo es documentar y seguir el desarrollo de la aplicacion en base al comportamiento, atributos, metodos y funcionamiento de sus clases.
+(En el momento de documentar no se cuentan los metodos constructores, se hará notacion de aquellos que posean ciertos atributos distintivos)
+
+--------------------------------------------
+DSS-001 - Metodos
+--------------------------------------------
+
+
+/**********************/
+ BorrarBD:
+/**********************/
+
+Controladores: borrar_db.php
+
+Atributos: tabla, id, nombre, respuesta, conectar
+
+Funcion del objeto: Identificar los distintos elementos a ser borrados de la base de datos y borrarlos con exito utilizando para ello a otros objetos.
+
+Clases con las que interactua: Queries.php
+
+Metodos:
+*borrar_bd:
+	-Diferenciar el tipo de tabla de la cual se va a realizar la eliminacion en la base de datos y:
+
+	1) En el caso de que la tabla sea de marcas o categorias, se crea y ejecuta la query (mediante la clase Queries) que verifique que en la base de datos la marca o categoria a borrar no se encuentre siendo utilizada por un producto. De ser así se crea un error mostrando la cantidad de productos que utilizan esa marca o categoria, siendo estos la razón por la cual no puede ser borrada. En el caso de no estar siendo utilizada, se crea y ejecuta la query que borra la marca/categoria de la base. En ambos casos se utiliza el atributo respuesta para retornar una respuesta a traves del controlador.
+
+	2) En el caso de que la tabla sea productos se crea y ejecuta la query de src para luego utilizar el resultado para borrar la imagen de la carpeta correspondiente. Ademas de crear y ejecutar la query para borrar el producto de la base de datos. En ambos casos se genera un mensaje de respuesta que se envia al controlador correspondiente.
+
+Faltantes de esta clase:
+- manejo de errores para el Log
+- comprobacion de que se borró correctamente (Linea 42 y 43)
+- comprobacion de que se selecciono el src correctamente y de que el producto existe.
+-code review
+
+/**********************/
+ ComprobarProducto:
+/**********************/
+
+Controladores: procesar.php
+
+Atributos: nombre, precio,categoria, marca, descripcion, imagen, validaciones, vacios, errores
+
+Clases con las que interactua: Editar.php
+
+Metodos: 
+
+Faltantes de esta clase: 
+- cambiar el nombre de la clase a Verificaciones
+- agregar todas las comprobaciones importantes
+
+
+--------------------------------------------
+DSS-002 - Controladores
+--------------------------------------------
+
+
+
+--------------------------------------------
+DSS-003 - Vistas
+--------------------------------------------
+
+
+
+--------------------------------------------
+DSS-004 - Pruebas Unitarias y Code Coverage 
+--------------------------------------------
+
+
+
+--------------------------------------------
+DSS-005 - Front End
+--------------------------------------------
+
+
+
+--------------------------------------------
+DSS-006 - Faltantes
+--------------------------------------------
+
+/**********************/
+  PHP:
+/**********************/
+
+- Integrar el Login
+- Problema:
+	Paso 1: Entrar al sitio
+	Paso 2: Cambiar el nombre de la base de datos para llegar a la excepcion de la clase Conexion
+	Paso 3: Ir a cualquier seccion del sitio que tenga info de la base
+	
+	Resultado: No se presenta la excepcion y retorna a ajax la respuesta, pero al ingresar al sitio con el nombre de la base cambiado si entra en la excepcion!!!
+	
+- Concepto de conexion y selecicon de base de datos esta mal.
+- Falta seguridad y front end.
+- El usuario deberia saber de los errores de conexion, si falla esta, etc.
+- No deberia enviar informacion de base de datos (nombre de tabla) por post y get.
+- El error de conexion a a base deberia tener los estilos y funcionamiento correctos
+- Aplicar private, protected, public, excepciones, interfaces, etc a los objetos
+- Pruebas unitarias
+- Code coverage
+- rehacer el codigo html para reutilizar y usar menos javascript
+
+/**********************/
+  Javascript:
+/**********************/
+
+- El formulario si devuelve error deberia seguir lleno y no borrarse
+- Reutilizar codigo: Ej: for para crear los divs
+- Rehacer el javascript para no utilizar tanto codigo
+
+/**********************/
+  Ajax:
+/**********************/
+
+- Asumo que sale todo bien y deberia revisar los pedidos en los estados anteriores al 4 de ajax.
+
+/**********************/
+  Documentacion:
+/**********************/
+- Transformar este documento en un documento html/css/js
+- Completar la documentacion de ComprobarProducto.php
+- Terminar la documentacion

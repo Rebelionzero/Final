@@ -31,7 +31,7 @@
 				'imagen' => $this->validar_img()
 			);
 			
-			$this->validaciones = array(
+			$this->vacios = array(
 				'producto' => $this->vacio($this->nombre),
 				'precio' => $this->vacio($this->precio),
 				'categoria' => $this->vacio($this->categoria),
