@@ -67,9 +67,63 @@ Clases con las que interactua: Editar.php
 
 Metodos: 
 
+ Publicos:
+ *verificar:
+		- contiene 2 de los atributos/arrays: validaciones y vacios
+		- llama al metodo privado saetear_errores
+		- la funcion de este metodo es almacenar en los arrays los llamados a las funciones privadas, los cuales devuelven la verificacion correspondiente
+
+		1) validaciones almacena los resultados de las comprobaciones segun el tipo de informacion que se busca verificar, ej: si la informacion que se le pasa contiene el limite de caracteres necesarios para su aprobacion.
+
+		2) vacios almacena los booleanos devueltos en cada una de las comprobaciones de los strings vacios o no vacios enviados.
+
+		3) el llamado a setear_errores envia el contenido del array validaciones.
+
+Privados: 
+
+// todos los metodos privados a excepcion de setear_errores devuelven false si no existe ningun error de comprobación, si existe un error en la comprobacion se envia un mensaje de error.
+
+*vacio: se le envia un valor y este comprueba si dicho valor está vacio o no.
+
+*sinImagen: se le envia el array de la imagen cargada, y verifica si el campo de imagen está vacio al comrobar el valor numerico del indice 'error' es igual a 4, lo cual verificaria que no se cargó una imagen. 
+
+*setear_errores:
+		- se le envia el array validaciones con las comprobaciones hechas por los metodos privados dedicados a cada campo
+		- el metodo verifica el array valor por valor, chequeando que dicho valor sea falso:
+
+		1) si es falso significa que no hubo ningun error en la validacion, y que el dato ingresado esta dentro de los limites (largo de string, ausencia de caracteres extraños, etc).
+
+		2) si no es falso, significa que hubo un error y dicho error se insaerta en el array errores, el cual se devuelve al front end y se muestra como mensaje de error al usuario.
+
+*validar_producto:
+		- comprueba el largo del string que corresponde al nombre del producto, y lo pasa por una expresion regular la cual solo permite texto sin numeros ni espacios como nombre:
+
+		1) Si es mayor o menor al largo requerido o si se ingresan caracteres extraños se devuelve un mensaje de error
+
+		2) si el string ingresado cumple con los requisitos se devuelve false
+
+*validar_precio:
+		- comprueba si el valor ingresado es un numero, sustrae el valor entero de ese numero y comprueba si es mayor o menor a lo especificado, de no cumplir los requisitos envia un error, sino devuelve false
+
+*validar_descripcion:
+		- se utiliza la funcion trim para quitar espacios en blanco al inicio y al final del string, y se verifica que el largo del string no supere los 200 caracteres. De ser asi se envia un error, sino false.
+
+*validar_select:
+		- comprueba que el valor del select enviado sea distinto a 'seleccionar', si es igual a 'seleccionar' significa que el cliente no eligió ninguna categoria o marca.
+
+*validar_img:
+		- se valida que se haya subido un archivo a traves del valor del indice 'error' del array del archivo.
+		- se verifica que la extension del archivo sea correcta (jpg, gif, png, jpeg), asi limitando el tipo de archivo a solo imagenes.
+		- se comprueba que el tamaño de la imagen sea inferior a 2 Mb.
+
+
+
 Faltantes de esta clase: 
 - cambiar el nombre de la clase a Verificaciones
 - agregar todas las comprobaciones importantes
+- cambiar las comprobaciones de cada campo, se debe buscar algo especifico y no un campo especifico, investigar como pasar los requisitos como parametros a los metodos privados, ej miFuncion(3,17) /* minimo de caracteres 3 y maximo 17 */
+- cambiar las expresiones regulares para aceptar espacios y numeros
+- a esta clase se debe llamar desde el controlador antes que a las otras, ej: BorrarBD, Productos, Editar, etc. Asi se evita la creacion de objetos innecesariamente. Y si la verificacion es correcta recien ahí llamar al objeto para borrar, editar, crear, etc.
 
 
 --------------------------------------------
@@ -121,6 +175,7 @@ DSS-006 - Faltantes
 - Pruebas unitarias
 - Code coverage
 - rehacer el codigo html para reutilizar y usar menos javascript
+- repensar cada clase y como hacer para interactuar unas con otras de forma mas eficiente
 
 /**********************/
   Javascript:
