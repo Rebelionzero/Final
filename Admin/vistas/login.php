@@ -29,5 +29,6 @@
 			<input type="password" name="pass"/>
 			<input type="submit" value="ingresar"/>
 		</form>
+		<a href="admin.php">admin</a>
 	</body>
 </html>

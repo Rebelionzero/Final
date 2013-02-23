@@ -5,10 +5,9 @@
 
 	$conexion = new Conexion();
 	$conexion->conectar_bd();
-	$conexion->get();
 	
 	if(!$conexion->conexion){
-		header("Location: no_base.php");
+		//header("Location: no_server.php");
 	}else{
 	
 		$errores = false;

@@ -41,6 +41,8 @@ Funcion del objeto: Identificar los distintos elementos a ser borrados de la bas
 
 Clases con las que interactua: Queries.php
 
+Vistas con las que interactua: - Ninguna - 
+
 Metodos:
 *borrar_bd:
 	-Diferenciar el tipo de tabla de la cual se va a realizar la eliminacion en la base de datos y:
@@ -64,6 +66,8 @@ Controladores: procesar.php
 Atributos: nombre, precio,categoria, marca, descripcion, imagen, validaciones, vacios, errores
 
 Clases con las que interactua: Editar.php
+
+Vistas con las que interactua: - Ninguna -
 
 Metodos: 
 
@@ -126,6 +130,97 @@ Faltantes de esta clase:
 - a esta clase se debe llamar desde el controlador antes que a las otras, ej: BorrarBD, Productos, Editar, etc. Asi se evita la creacion de objetos innecesariamente. Y si la verificacion es correcta recien ahí llamar al objeto para borrar, editar, crear, etc.
 
 
+/**********************/
+ Conexion.php:
+/**********************/
+
+Controladores: - Ninguno -
+
+Atributos: server, usr, pass, db, conexion
+
+Clases con las que interactua: Queries.php
+
+Vistas con las que interactua: admin.php
+
+Metodos: (en esta clase el metodo contruct recibe como argumentos los parametros como valores predeterminados, en el caso de querer realizar una conexion diferente)
+
+ *conectar_bd:
+ 		- utiliza la funcion nativa de php mysql_connect para conectarse a un servidor.
+ 		- utiliza la funcion nativa de php mysql_select_db para conectarse a una base de datos utilizando la conexion anteriormente establecida.
+
+Faltantes de esta clase:
+- manejo de errores: no se como manejar los errores de conexion a la base de datos, revisar la posibilidad del manejo de error con $this->conexion cuando conecta al servidor
+- mejorar el manejo de errores de la conexion al servidor
+
+/**********************/
+ :
+/**********************/
+
+Controladores: 
+
+Atributos: 
+
+Clases con las que interactua: 
+
+Vistas con las que interactua:
+
+Metodos: 
+
+Faltantes de esta clase:
+
+
+/**********************/
+ :
+/**********************/
+
+Controladores: 
+
+Atributos: 
+
+Clases con las que interactua: 
+
+Vistas con las que interactua:
+
+Metodos: 
+
+Faltantes de esta clase:
+
+
+/**********************/
+ :
+/**********************/
+
+Controladores: 
+
+Atributos: 
+
+Clases con las que interactua: 
+
+Vistas con las que interactua:
+
+Metodos: 
+
+Faltantes de esta clase:
+
+
+/**********************/
+ :
+/**********************/
+
+Controladores: 
+
+Atributos: 
+
+Clases con las que interactua: 
+
+Vistas con las que interactua:
+
+Metodos: 
+
+Faltantes de esta clase:
+
+
+
 --------------------------------------------
 DSS-002 - Controladores
 --------------------------------------------
@@ -176,6 +271,7 @@ DSS-006 - Faltantes
 - Code coverage
 - rehacer el codigo html para reutilizar y usar menos javascript
 - repensar cada clase y como hacer para interactuar unas con otras de forma mas eficiente
+- aplicar los llamados a la clase error en toas las otras clases
 
 /**********************/
   Javascript:

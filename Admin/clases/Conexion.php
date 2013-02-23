@@ -7,7 +7,7 @@
 		var $db;
 		var $conexion;
 		
-		function __construct($servidor = "localhost",$usuario = "root" ,$clave = "" ,$base = "shop") {
+		function __construct($servidor = "localhost",$usuario = "root" ,$clave = "" ,$base = "sho") {
 			$this->server = $servidor;
 			$this->usr = $usuario;
 			$this->pass = $clave;
@@ -15,26 +15,14 @@
 		}
 	
 
-		function conectar_bd(){
-			$this->conexion= mysql_connect($this->server,$this->usr,$this->pass);
-			try{
-				$resultado = mysql_select_db($this->db, $this->conexion);
- 		    	if($resultado === false){throw new Exception("<div class='xcpt'>
- 		    		<p>Falló la conexion a la base de datos, intentelo nuevamente o contacte al administrador del sitio.</p>
- 		    		<a href='#'>Cerrar</a>
- 		    		</div>");
- 		    		exit();
- 		    	}else{
+		public function conectar_bd(){
+			$this->conexion = @mysql_connect($this->server,$this->usr,$this->pass) or die(header("Location: ../vistas/no_server.php"));			
+			$resultado = @mysql_select_db($this->db, $this->conexion);
 
- 		    	}
-    		}catch (Exception $e){   
-         		echo $e->getMessage();
-    		}
-			
-		}
-
-		function get(){
-			return $this->conexion;
+			if($resultado === false) {
+				// new Error
+				// debe ir en el log
+			}			
 		}
 
 }

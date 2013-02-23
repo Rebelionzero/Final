@@ -17,7 +17,7 @@
 			if(mysql_num_rows($this->consulta) > 0){
 				while($row = mysql_fetch_assoc($this->consulta)){
 					$this->resultado[]=$row;
-				}				
+				}
 			}else{
 				$this->resultado = false;
 			}
@@ -48,9 +48,8 @@
 
 		private function conexion (){
 			$this->conectar = new Conexion();
-			$this->conectar->conectar_bd();
-			$this->conectar->get();
-			return $this->conectar;
+			$this->conectar->conectar_bd();			
+			
 		}
 
 		private function queryFunction (){
