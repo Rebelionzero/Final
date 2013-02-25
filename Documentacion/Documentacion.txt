@@ -147,10 +147,12 @@ Metodos: (en esta clase el metodo contruct recibe como argumentos los parametros
  *conectar_bd:
  		- utiliza la funcion nativa de php mysql_connect para conectarse a un servidor.
  		- utiliza la funcion nativa de php mysql_select_db para conectarse a una base de datos utilizando la conexion anteriormente establecida.
+ 		- en el caso de que ocurra un error al conecctarse al servidor o a la base de datos se crea un error.
 
 Faltantes de esta clase:
 - manejo de errores: no se como manejar los errores de conexion a la base de datos, revisar la posibilidad del manejo de error con $this->conexion cuando conecta al servidor
-- mejorar el manejo de errores de la conexion al servidor
+- mejorar el manejo de errores de la conexion al servidor.
+- crear la redireccion desde un llamado a la clase header en el caso de los errores de conexion al servidor y de seleccion de base de datos.
 
 /**********************/
  :
@@ -272,6 +274,7 @@ DSS-006 - Faltantes
 - rehacer el codigo html para reutilizar y usar menos javascript
 - repensar cada clase y como hacer para interactuar unas con otras de forma mas eficiente
 - aplicar los llamados a la clase error en toas las otras clases
+- crear la clase header para manejar las redirecciones.
 
 /**********************/
   Javascript:
@@ -291,5 +294,6 @@ DSS-006 - Faltantes
   Documentacion:
 /**********************/
 - Transformar este documento en un documento html/css/js
-- Completar la documentacion de ComprobarProducto.php
 - Terminar la documentacion
+- Crear la documentacion de las clases Error y Header
+- Al terminar el sitio enteramente revisar que la documentacion esté completa

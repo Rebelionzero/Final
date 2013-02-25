@@ -30,7 +30,8 @@
 			if( isset($_SESSION['carga_exitosa']) ){unset($_SESSION['carga_exitosa']);}
 			$_SESSION['carga_exitosa'] = 'El producto se ha cargado satisfactoriamente';
 		}else{
-
+			
+			/*
 			if (!file_exists('../Errores_Log')){
 				mkdir("../Errores_Log");
 			}
@@ -47,7 +48,7 @@
 
 			$errores = array(0 => 'Hubo un error al crear el producto en la base de datos,<br /> se ha creado un log de errores donde se detalla.');
 			$_SESSION['errores'] = $errores;
-
+		*/
 		}
 		header('Location: ../vistas/admin.php');
 	}

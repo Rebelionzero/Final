@@ -3,3 +3,18 @@ Query insertada: INSERT INTO productos VALUES (n,"blem" ,234,"kdjaklsd","Minotau
 Fecha: Sun, 17 Feb 2013 23:15:45
 *********************************************************************
 
+Error devuelto por SQL: Unknown database 'sho'
+Query insertada: Error de seleccion de base de datos
+Fecha: Mon, 25 Feb 2013 02:07:17
+*********************************************************************
+
+Error devuelto por SQL: Unknown database 'sho'
+Query insertada: Error de seleccion de base de datos
+Fecha: Mon, 25 Feb 2013 02:14:23
+*********************************************************************
+
+Error devuelto por SQL: Unknown database 'sho'
+Query insertada: Error de seleccion de base de datos
+Fecha: Mon, 25 Feb 2013 02:14:25
+*********************************************************************
+

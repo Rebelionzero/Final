@@ -20,9 +20,14 @@
 			$resultado = @mysql_select_db($this->db, $this->conexion);
 
 			if($resultado === false) {
-				// new Error
-				// debe ir en el log
-			}			
+				$error = new Error("Error de seleccion de base de datos");
+				$error->creacionError();
+
+				if ($error->resultado === false) {
+					// llamar a clase header y pasarle:
+					// $error->mensaje
+				}
+			}
 		}
 
 }
