@@ -7,7 +7,7 @@
 		var $db;
 		var $conexion;
 		
-		function __construct($servidor = "localhost",$usuario = "root" ,$clave = "" ,$base = "sho") {
+		function __construct($servidor = "localhost",$usuario = "root" ,$clave = "" ,$base = "so") {
 			$this->server = $servidor;
 			$this->usr = $usuario;
 			$this->pass = $clave;
@@ -16,17 +16,12 @@
 	
 
 		public function conectar_bd(){
-			$this->conexion = @mysql_connect($this->server,$this->usr,$this->pass) or die(header("Location: ../vistas/no_server.php"));			
+			$this->conexion = @mysql_connect($this->server,$this->usr,$this->pass) or die(header("Location: ../vistas/no_server.php"));
 			$resultado = @mysql_select_db($this->db, $this->conexion);
 
 			if($resultado === false) {
 				$error = new Error("Error de seleccion de base de datos");
-				$error->creacionError();
-
-				if ($error->resultado === false) {
-					// llamar a clase header y pasarle:
-					// $error->mensaje
-				}
+				$error->creacionError();				
 			}
 		}
 

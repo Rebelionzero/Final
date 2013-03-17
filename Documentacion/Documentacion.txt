@@ -274,7 +274,8 @@ DSS-006 - Faltantes
 - rehacer el codigo html para reutilizar y usar menos javascript
 - repensar cada clase y como hacer para interactuar unas con otras de forma mas eficiente
 - aplicar los llamados a la clase error en toas las otras clases
-- crear la clase header para manejar las redirecciones.
+- crear la clase header para manejar las redirecciones. (es posible que al redirigir con header no sea conveniente pasarle un parametro de mensaje)
+- revisar porque en la clase Error.php no se cre bien el html del mensaje de error.
 
 /**********************/
   Javascript:

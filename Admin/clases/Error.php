@@ -36,14 +36,38 @@
 				$this->mensaje = "Error al escribir en el log";
 			}elseif($cierre === false){
 				$this->resultado = false;
-				$this->mensaje = "Error cerrar el log";
+				$this->mensaje = "Error al cerrar el log";
 			}else{
 				$this->resultado = true;
 			}
 
+			if ($this->resultado === false) {
+				// llamar a clase header y pasarle:
+				// $error->mensaje
 
-			
+				if (!file_exists('../vistas/errorHtml.html')){
+					$directorioHtml = mkdir("../vistas/errorHtml.html");
+				}
+
+				$aperturaHtml = fopen("../vistas/errorHtml.html","a+");
+				$errorDisplay =
+				"<html>
+					<head>
+						<title>Error</title>
+					</head>
+					<body>
+						<p>".$this->mensaje."</p>
+						<p>Fecha:".$fecha."</p>
+						<br />
+					</body>
+				</html>"
+				;
+
+				$escrituraHtml = fwrite($aperturaHtml,$errorDisplay);
+				$cierreHtml = fclose($aperturaHtml);
+
+				header("Location: ../vistas/errorHtml.html");
+			}
 
 		}
-
 	}
