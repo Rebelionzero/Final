@@ -7,7 +7,7 @@
 		var $db;
 		var $conexion;
 		
-		function __construct($servidor = "localhost",$usuario = "root" ,$clave = "" ,$base = "so") {
+		function __construct($servidor = "localhost",$usuario = "root" ,$clave = "" ,$base = "shop") {
 			$this->server = $servidor;
 			$this->usr = $usuario;
 			$this->pass = $clave;

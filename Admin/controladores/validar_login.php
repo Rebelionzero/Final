@@ -1,5 +1,6 @@
 <?php
 
+	include_once('../autoloader.php');
 	session_start();
 
 	$user = $_POST['usr'];
@@ -10,5 +11,8 @@
 		$_SESSION['Login'] = false;
 		header("Location:../vistas/login.php");
 	}else{
-		//comprobar
+		$login = new Login($user,$pass);
+		$login->consultaUsuario();
 	}
+
+	

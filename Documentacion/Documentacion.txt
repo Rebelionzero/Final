@@ -2,21 +2,11 @@ Documentacion del desarrollo y funcionalidades de Shop Smart
 Programacion III - PHP Orientado a objetos - Nicolas Alejandro Dezzutto
 
 --------------------------------------------
-DSS-001 - Metodos
---------------------------------------------
---------------------------------------------
+DSS-001 - Clases
 DSS-002 - Controladores
---------------------------------------------
---------------------------------------------
 DSS-003 - Vistas
---------------------------------------------
---------------------------------------------
-DSS-004 - Pruebas Unitarias y Code Coverage 
---------------------------------------------
---------------------------------------------
+DSS-004 - Pruebas Unitarias y Code Coverage
 DSS-005 - Front End
---------------------------------------------
---------------------------------------------
 DSS-006 - Faltantes
 --------------------------------------------
 
@@ -25,7 +15,7 @@ El objeto de este archivo es documentar y seguir el desarrollo de la aplicacion 
 (En el momento de documentar no se cuentan los metodos constructores, se hará notacion de aquellos que posean ciertos atributos distintivos)
 
 --------------------------------------------
-DSS-001 - Metodos
+DSS-001 - Clases
 --------------------------------------------
 
 
@@ -275,7 +265,8 @@ DSS-006 - Faltantes
 - repensar cada clase y como hacer para interactuar unas con otras de forma mas eficiente
 - aplicar los llamados a la clase error en toas las otras clases
 - crear la clase header para manejar las redirecciones. (es posible que al redirigir con header no sea conveniente pasarle un parametro de mensaje)
-- revisar porque en la clase Error.php no se cre bien el html del mensaje de error.
+- revisar por que en la clase Error.php no se crea bien el html del mensaje de error.
+- editar la clase error para que maneje errores de tipo error a la conexion de la base de datos, usuario o password incorrectos, etc. (Ahora solo maneja errores de tipo falta de archivos y creacion de log de errores)
 
 /**********************/
   Javascript:
@@ -296,5 +287,5 @@ DSS-006 - Faltantes
 /**********************/
 - Transformar este documento en un documento html/css/js
 - Terminar la documentacion
-- Crear la documentacion de las clases Error y Header
+- Crear la documentacion de las clases Error, Login y Header
 - Al terminar el sitio enteramente revisar que la documentacion esté completa
