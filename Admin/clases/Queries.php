@@ -54,6 +54,9 @@
 
 		private function queryFunction (){
 			$this->consulta = mysql_query($this->query, $this->conectar->conexion);
+			if($this->consulta === false){
+				// header para otra parte del sitio, agregar mensaje de error
+			}
 		}
 
 

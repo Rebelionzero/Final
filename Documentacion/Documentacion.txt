@@ -242,6 +242,18 @@ DSS-006 - Faltantes
 --------------------------------------------
 
 /**********************/
+  General:
+/**********************/
+
+- TRANSFORMAR SHOP SMART EN UN SISTEMA DE CARGA DE IMAGENES PARA SER VISTAS DESDE UN CARRUSEL TIPO OBRAS DE ARTE. BASARME EN EL CONCEPTO DEL EXAMEN EN QUE LABURECON TICHO Y JUANMA PARA LA CLASE DE RICARDO RODRIGUEZ!!!
+- Agregar una parte al backend (Igual que marcas y categorias) llamada Formato. Esta serviria para alterar el especto de la pagina desde el backend
+- Categorias deberian estar limitados a ciertos parametros (Impresionismo, surrealismo, etc).
+- Marcas deberia ser llamado Autor
+- En autor se debe seleccionar al autor e ingresar la informacion de dicho autor.
+- Productos deberia ser Obras y deberia permitir mostrar variaciones (ej: mostrar o no el autor, o hacerlo bajo un seudonimo), mostrar el año, una descripcion, titulo y contacto al autor o al museo para adquirir dicha pintura.
+- Cambiar la base de datos
+
+/**********************/
   PHP:
 /**********************/
 
@@ -267,6 +279,7 @@ DSS-006 - Faltantes
 - crear la clase header para manejar las redirecciones. (es posible que al redirigir con header no sea conveniente pasarle un parametro de mensaje)
 - revisar por que en la clase Error.php no se crea bien el html del mensaje de error.
 - editar la clase error para que maneje errores de tipo error a la conexion de la base de datos, usuario o password incorrectos, etc. (Ahora solo maneja errores de tipo falta de archivos y creacion de log de errores)
+- Manejo de errores en clase Queries en caso de que la consulta devuelva false (o sea la devolucion sea algo distinto a un recurso mysql)
 
 /**********************/
   Javascript:

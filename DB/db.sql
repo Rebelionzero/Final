@@ -75,4 +75,4 @@ CREATE TABLE IF NOT EXISTS `productos` (
 -- Dumping data for table `productos`
 --
 
-INSERT INTO usuarios VALUES(null,'Admin','administrador','@dm1nsm@rt');
+INSERT INTO usuarios VALUES(null,'Admin','administrador','@dm1n1str@d0r');
