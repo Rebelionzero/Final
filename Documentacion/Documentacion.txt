@@ -166,7 +166,7 @@ Metodos:
 
 
 Faltantes de esta clase:
-- Code review
+- verificar en cada parte del sistema del backend (en cada archivo) que se este logueado
 
 
 /**********************/
@@ -254,7 +254,7 @@ DSS-006 - Faltantes
 /**********************/
 
 - TRANSFORMAR SHOP SMART EN UN SISTEMA DE CARGA DE IMAGENES PARA SER VISTAS DESDE UN CARRUSEL TIPO OBRAS DE ARTE. BASARME EN EL CONCEPTO DEL EXAMEN EN QUE LABURECON TICHO Y JUANMA PARA LA CLASE DE RICARDO RODRIGUEZ!!!
-- Agregar una parte al backend (Igual que marcas y categorias) llamada Formato. Esta serviria para alterar el especto de la pagina desde el backend
+- Agregar una parte al backend (Igual que marcas y categorias) llamada Formato. Esta serviria para alterar el especto de la pagina desde el backend (Nice to have)
 - Categorias deberian estar limitados a ciertos parametros (Impresionismo, surrealismo, etc).
 - Marcas deberia ser llamado Autor
 - En autor se debe seleccionar al autor e ingresar la informacion de dicho autor.
@@ -265,7 +265,6 @@ DSS-006 - Faltantes
   PHP:
 /**********************/
 
-- Integrar el Login
 - Problema:
 	Paso 1: Entrar al sitio
 	Paso 2: Cambiar el nombre de la base de datos para llegar a la excepcion de la clase Conexion
@@ -273,7 +272,7 @@ DSS-006 - Faltantes
 	
 	Resultado: No se presenta la excepcion y retorna a ajax la respuesta, pero al ingresar al sitio con el nombre de la base cambiado si entra en la excepcion!!!
 	
-- Concepto de conexion y selecicon de base de datos esta mal.
+- Concepto de conexion y seleccion de base de datos esta mal.
 - Falta seguridad y front end.
 - El usuario deberia saber de los errores de conexion, si falla esta, etc.
 - No deberia enviar informacion de base de datos (nombre de tabla) por post y get.
@@ -284,7 +283,6 @@ DSS-006 - Faltantes
 - rehacer el codigo html para reutilizar y usar menos javascript
 - repensar cada clase y como hacer para interactuar unas con otras de forma mas eficiente
 - aplicar los llamados a la clase error en toas las otras clases
-- crear la clase header para manejar las redirecciones. (es posible que al redirigir con header no sea conveniente pasarle un parametro de mensaje)
 - revisar por que en la clase Error.php no se crea bien el html del mensaje de error.
 - editar la clase error para que maneje errores de tipo error a la conexion de la base de datos, usuario o password incorrectos, etc. (Ahora solo maneja errores de tipo falta de archivos y creacion de log de errores)
 - Manejo de errores en clase Queries en caso de que la consulta devuelva false (o sea la devolucion sea algo distinto a un recurso mysql)
