@@ -145,20 +145,28 @@ Faltantes de esta clase:
 - crear la redireccion desde un llamado a la clase header en el caso de los errores de conexion al servidor y de seleccion de base de datos.
 
 /**********************/
- :
+ Login.php:
 /**********************/
 
-Controladores: 
+Controladores: validar_login.php
 
-Atributos: 
+Atributos: usuario, clave, respuesta
 
-Clases con las que interactua: 
+Clases con las que interactua: Queries.php
 
-Vistas con las que interactua:
+Vistas con las que interactua: login.php, y todos los archivos del backend que dependen de la autenticacion de usuario
 
 Metodos: 
 
+  * consultaUsuario:
+ 		- crea y ejecuta la query para preguntar si existe el usuario y contraseña solicitados
+ 		- pregunta si el resultado de esa query es falso para saber si devuelve algun usuario existente
+ 		- si existe el usuario pregunta si la contraseña coincide
+ 		- en cualquiera de los casos (usuario existe o no, contraseña conincide o no) envia una respuesta a validar_login.php y este evalua las respuestas y crea respuestas para el usuario o ejecuta headers redireccionadores
+
+
 Faltantes de esta clase:
+- Code review
 
 
 /**********************/
@@ -281,7 +289,9 @@ DSS-006 - Faltantes
 - editar la clase error para que maneje errores de tipo error a la conexion de la base de datos, usuario o password incorrectos, etc. (Ahora solo maneja errores de tipo falta de archivos y creacion de log de errores)
 - Manejo de errores en clase Queries en caso de que la consulta devuelva false (o sea la devolucion sea algo distinto a un recurso mysql)
 - Revisar si existe beneficio al usar un tipo de usuario o no
-- Revisar la sentenia del login en caso de que todo este bien, linea 10
+- Revisar la sentenia del login en admin en caso de que todo este bien, linea 16
+- Las clases no deben tener headers ni imprimir respuestas, sino que deben enviar una respuesta al controlador y este debe crear las respuestas y lanzar los headers
+- Siempre verificar que exista la conexion a la base de datos
 
 /**********************/
   Javascript:

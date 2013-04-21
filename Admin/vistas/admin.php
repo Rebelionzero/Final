@@ -10,11 +10,10 @@
 		//header("Location: no_server.php");
 	}else{
 
-		$login = false;
-		if( !isset( $_SESSION['Login'] ) || $_SESSION['Login'] === false ){
+		if( !isset( $_SESSION['Login']['autenticacion'] ) || $_SESSION['Login']['autenticacion'] === false ){
 			header("Location: login.php");
-		}elseif( isset( $_SESSION['Login'] ) && $_SESSION['Login'] === true){
-			// exito en el login, reisar en el futuro que hacer con esta sentencia
+		}elseif( isset( $_SESSION['Login']['autenticacion'] ) && $_SESSION['Login']['autenticacion'] === true){
+			// exito en el login, revisar en el futuro que hacer con esta sentencia
 		}
 	
 		$errores = false;
@@ -40,7 +39,7 @@
 <html>
 	<head>
 		<title>Shop Smart Admin Panel</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />		
+		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>		
 		<script type="text/javascript" src="../../ajax-js/admin_productos.js"></script>
 		<script type="text/javascript" src="../../ajax-js/formularios.js"></script>
 		<script type="text/javascript" src="../../ajax-js/ajax_pedidos.js"></script>

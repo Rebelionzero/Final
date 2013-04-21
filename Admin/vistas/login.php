@@ -2,14 +2,15 @@
 
 	session_start();
 
-	if(isset($_SESSION['Login'])) {
-		if($_SESSION['Login'] === false) {
+	if(isset($_SESSION['Login']['autenticacion'])) {	
+		if($_SESSION['Login']['autenticacion'] === false) {
 			// login incorrecto o desconectado
-			$error = '<div class="mensaje_error alert alert-error container error_php"><h3>Error: uno o ambos campos estan vacios.</h3><a href="#">Cerrar</a></div>';
+			// print_r("llegó aca");
+			$error = '<div class="mensaje_error alert alert-error container error_php"><h3>'.$_SESSION['Login']['respuesta'].'</h3><a href="#">Cerrar</a></div>';
 			unset($_SESSION['Login']);
-		}else{
-			// login correcto, redireccionar.
 		}
+	}else{
+		//print_r("Login no esta seteado");
 	}
 ?>
 
@@ -17,6 +18,7 @@
 <html>
 	<head>
 		<title>Login</title>
+		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 		<link type="text/css" rel="stylesheet" media="screen" href="../../CSS/reseteo.css"/>
 		<link type="text/css" rel="stylesheet" media="screen" href="../../CSS/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" media="screen" href="../../CSS/admin.css"/>

@@ -11,22 +11,20 @@
 		}
 		
 		function consultaUsuario(){
-			$consultaUsuario = "SELECT tipoUsuario, password FROM usuarios WHERE nombreDeUsuario ='".$this->usuario."';";
+			$consultaUsuario = "SELECT password FROM usuarios WHERE nombreDeUsuario ='".$this->usuario."';";
 			$objetoQueries = new Queries($consultaUsuario);
 			$objetoQueries->select();
 
 			if ($objetoQueries->resultado === false) {
-				// fallo, no devuelve nada, no hay usuarios con ese nombre
-				// header hacia el mismo login con el mensaje de error
-				// mensaje de usuario o contraseña incorrectos
+				// fallo, no devuelve nada o no hay usuarios con ese nombre
+				$this->respuesta = false;
 			}else{
 				// exito, existe ese usuario
 				if($this->clave != $objetoQueries->resultado[0]["password"]){
-					print_r("usuario y/o contraseña erroneos");					
+					$this->respuesta = false;
 				}else{
 					// clave y usuarios correctos
-					$_SESSION['Login'] = true;
-					header("Location:../vistas/admin.php");
+					$this->respuesta = true;
 				}
 			}
 
