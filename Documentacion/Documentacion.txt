@@ -280,6 +280,8 @@ DSS-006 - Faltantes
 - revisar por que en la clase Error.php no se crea bien el html del mensaje de error.
 - editar la clase error para que maneje errores de tipo error a la conexion de la base de datos, usuario o password incorrectos, etc. (Ahora solo maneja errores de tipo falta de archivos y creacion de log de errores)
 - Manejo de errores en clase Queries en caso de que la consulta devuelva false (o sea la devolucion sea algo distinto a un recurso mysql)
+- Revisar si existe beneficio al usar un tipo de usuario o no
+- Revisar la sentenia del login en caso de que todo este bien, linea 10
 
 /**********************/
   Javascript:

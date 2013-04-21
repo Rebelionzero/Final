@@ -23,10 +23,10 @@
 				// exito, existe ese usuario
 				if($this->clave != $objetoQueries->resultado[0]["password"]){
 					print_r("usuario y/o contraseña erroneos");					
-				}elseif($objetoQueries->resultado[0]["password"] != 'administrador'){					
-					// permisos de usuario incorrectos
 				}else{
-					// tipoUsuario, clave y usuarios correctos
+					// clave y usuarios correctos
+					$_SESSION['Login'] = true;
+					header("Location:../vistas/admin.php");
 				}
 			}
 

@@ -9,6 +9,13 @@
 	if(!$conexion->conexion){
 		//header("Location: no_server.php");
 	}else{
+
+		$login = false;
+		if( !isset( $_SESSION['Login'] ) || $_SESSION['Login'] === false ){
+			header("Location: login.php");
+		}elseif( isset( $_SESSION['Login'] ) && $_SESSION['Login'] === true){
+			// exito en el login, reisar en el futuro que hacer con esta sentencia
+		}
 	
 		$errores = false;
 		if(isset($_SESSION['errores'])){
