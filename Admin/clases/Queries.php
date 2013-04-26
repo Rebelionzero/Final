@@ -29,8 +29,6 @@
 			$this->queryFunction();
 
 			$this->resultado = ($this->consulta === false) ? false : true;
-			
-
 		}
 
 		public function update (){

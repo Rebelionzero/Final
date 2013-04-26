@@ -108,8 +108,8 @@ button.Editar_CM{margin-left: 5px;}
 .titulo_productos li{font-weight: bold;text-align: center;width: 10%;}
 .titulo_productos li.ndli,.titulo_productos li.descripcion,.titulo_productos li.li_opciones{width: 16%;}
 .error_php,.exito_php{display: block;}
-.error_php .close,.exito_php .close{top:2px;}
-.error_php h3,.exito_php h3{line-height: 23px;}
+.error_php .close,.exito_php .close{position: static; float: right;}
+.error_php h3,.exito_php h3{line-height: 23px;float: left;}
 
 table.lista_prods tr td img {width: 60px;}
 table.lista_prods tr td{padding:4px;text-align: center;vertical-align: middle;}
@@ -128,7 +128,7 @@ table.lista_prods td.td_editar_borrar a:first-child{float: left;}
 .mensaje_error.container:after,
 .mensaje_exito.container,
 .mensaje_exito.container:before,
-.mensaje_exito.container:after{display:block;clear:none;}
+.mensaje_exito.container:after{display:block;clear:left;}
 
 .formulario_nuevo_producto form {width:500px;}
 .group_1,.group_2{overflow:auto;}

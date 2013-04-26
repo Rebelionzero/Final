@@ -4,13 +4,10 @@
 
 	if(isset($_SESSION['Login']['autenticacion'])) {	
 		if($_SESSION['Login']['autenticacion'] === false) {
-			// login incorrecto o desconectado
-			// print_r("llegó aca");
-			$error = '<div class="mensaje_error alert alert-error container error_php"><h3>'.$_SESSION['Login']['respuesta'].'</h3><a href="#">Cerrar</a></div>';
+			// login incorrecto o desconectado			
+			$error = '<div class="mensaje_error alert alert-error container error_php"><h3>'.$_SESSION['Login']['respuesta'].'</h3><a href="#" class="close">x</a></div>';
 			unset($_SESSION['Login']);
 		}
-	}else{
-		//print_r("Login no esta seteado");
 	}
 ?>
 
@@ -22,6 +19,8 @@
 		<link type="text/css" rel="stylesheet" media="screen" href="../../CSS/reseteo.css"/>
 		<link type="text/css" rel="stylesheet" media="screen" href="../../CSS/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" media="screen" href="../../CSS/admin.css"/>
+		<script type="text/javascript" src="../../ajax-js/jquery.js"></script>
+		<script type="text/javascript" src="../../ajax-js/admin.js"></script>
 	</head>
 	<body>
 		<h1>Login</h1>
@@ -30,7 +29,6 @@
 			<input type="text" name="usr"/>
 			<input type="password" name="pass"/>
 			<input type="submit" value="ingresar"/>
-		</form>
-		<a href="admin.php">admin</a>
+		</form>		
 	</body>
 </html>

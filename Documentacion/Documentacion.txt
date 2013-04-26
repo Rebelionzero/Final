@@ -73,15 +73,15 @@ Metodos:
 
 		3) el llamado a setear_errores envia el contenido del array validaciones.
 
-Privados: 
+ Privados: 
 
-// todos los metodos privados a excepcion de setear_errores devuelven false si no existe ningun error de comprobación, si existe un error en la comprobacion se envia un mensaje de error.
+ // todos los metodos privados a excepcion de setear_errores devuelven false si no existe ningun error de comprobación, si existe un error en la comprobacion se envia un mensaje de error.
 
-*vacio: se le envia un valor y este comprueba si dicho valor está vacio o no.
+ *vacio: se le envia un valor y este comprueba si dicho valor está vacio o no.
 
-*sinImagen: se le envia el array de la imagen cargada, y verifica si el campo de imagen está vacio al comrobar el valor numerico del indice 'error' es igual a 4, lo cual verificaria que no se cargó una imagen. 
+ *sinImagen: se le envia el array de la imagen cargada, y verifica si el campo de imagen está vacio al comrobar el valor numerico del indice 'error' es igual a 4, lo cual verificaria que no se cargó una imagen. 
 
-*setear_errores:
+ *setear_errores:
 		- se le envia el array validaciones con las comprobaciones hechas por los metodos privados dedicados a cada campo
 		- el metodo verifica el array valor por valor, chequeando que dicho valor sea falso:
 
@@ -89,23 +89,23 @@ Privados:
 
 		2) si no es falso, significa que hubo un error y dicho error se insaerta en el array errores, el cual se devuelve al front end y se muestra como mensaje de error al usuario.
 
-*validar_producto:
+ *validar_producto:
 		- comprueba el largo del string que corresponde al nombre del producto, y lo pasa por una expresion regular la cual solo permite texto sin numeros ni espacios como nombre:
 
 		1) Si es mayor o menor al largo requerido o si se ingresan caracteres extraños se devuelve un mensaje de error
 
 		2) si el string ingresado cumple con los requisitos se devuelve false
 
-*validar_precio:
+ *validar_precio:
 		- comprueba si el valor ingresado es un numero, sustrae el valor entero de ese numero y comprueba si es mayor o menor a lo especificado, de no cumplir los requisitos envia un error, sino devuelve false
 
-*validar_descripcion:
+ *validar_descripcion:
 		- se utiliza la funcion trim para quitar espacios en blanco al inicio y al final del string, y se verifica que el largo del string no supere los 200 caracteres. De ser asi se envia un error, sino false.
 
-*validar_select:
+ *validar_select:
 		- comprueba que el valor del select enviado sea distinto a 'seleccionar', si es igual a 'seleccionar' significa que el cliente no eligió ninguna categoria o marca.
 
-*validar_img:
+ *validar_img:
 		- se valida que se haya subido un archivo a traves del valor del indice 'error' del array del archivo.
 		- se verifica que la extension del archivo sea correcta (jpg, gif, png, jpeg), asi limitando el tipo de archivo a solo imagenes.
 		- se comprueba que el tamaño de la imagen sea inferior a 2 Mb.
@@ -170,20 +170,45 @@ Faltantes de esta clase:
 
 
 /**********************/
- :
+ Queries.php:
 /**********************/
 
-Controladores: 
+Controladores: Varios
 
-Atributos: 
+Atributos: query, consulta, conectar, resultado
 
-Clases con las que interactua: 
+Clases con las que interactua: Muchas
 
-Vistas con las que interactua:
+Vistas con las que interactua: Ninguna
 
 Metodos: 
 
+	* select:
+		- pide una conexion a la clase Conexion mediante el atributo conectar
+		- pide una consulta de tipo SELECT a la base de datos utilizando el metodo queryFunction
+		- al traer la informacion de la base la transforma en un array asociativo
+		- en el caso de no traer nada devuelve un false en el atributo resultado
+
+	* insert:
+		- pide una conexion a la clase Conexion mediante el atributo conectar
+		- pide una consulta de tipo INSERT a la base de datos utilizando el metodo queryFunction		
+		- en el caso de que la insercion no sea exitosa devuelve un false utilizando el metodo resultado
+
+	* update:
+		- pide una conexion a la clase Conexion mediante el atributo conectar
+		- pide una consulta de tipo UPDATE a la base de datos utilizando el metodo queryFunction
+		- en el caso de que la actualizacion no sea exitosa devuelve un false utilizando el metodo resultado
+
+	* delete:
+		- pide una conexion a la clase Conexion mediante el atributo conectar
+		- pide una consulta de tipo DELETE a la base de datos utilizando el metodo queryFunction
+
+	* queryFunction:
+		- ejecuta las consultas a la base pedidas por los metodos anteriores usando la funcion nativa de php mysql_query
+		
+
 Faltantes de esta clase:
+- en el metodo queryFunction se debe evaluar si la consulta se realizó exitosamente, de no ser asi se debe ejecutar un header a otra parte del sitio (ya fue comenzada, el header se tiene que realizar en un controlador).
 
 
 /**********************/
@@ -231,6 +256,15 @@ DSS-002 - Controladores
 DSS-003 - Vistas
 --------------------------------------------
 
+/**********************/
+  login.php:
+/**********************/
+
+- la funcion de esta vista es mostar una pantalla de login de usuario para entrar al administrador 
+- en caso de login incorrecto o campos vacios se muestra un mensaje de error en pantalla
+
+Faltantes de la vista: dar estilos a la pantalla
+
 
 
 --------------------------------------------
@@ -253,7 +287,7 @@ DSS-006 - Faltantes
   General:
 /**********************/
 
-- TRANSFORMAR SHOP SMART EN UN SISTEMA DE CARGA DE IMAGENES PARA SER VISTAS DESDE UN CARRUSEL TIPO OBRAS DE ARTE. BASARME EN EL CONCEPTO DEL EXAMEN EN QUE LABURECON TICHO Y JUANMA PARA LA CLASE DE RICARDO RODRIGUEZ!!!
+- TRANSFORMAR SHOP SMART EN UN SISTEMA DE CARGA DE IMAGENES PARA SER VISTAS DESDE UN CARRUSEL TIPO OBRAS DE ARTE. BASARME EN EL CONCEPTO DEL EXAMEN EN QUE LABURE CON TICHO Y JUANMA PARA LA CLASE DE RICARDO RODRIGUEZ!!!
 - Agregar una parte al backend (Igual que marcas y categorias) llamada Formato. Esta serviria para alterar el especto de la pagina desde el backend (Nice to have)
 - Categorias deberian estar limitados a ciertos parametros (Impresionismo, surrealismo, etc).
 - Marcas deberia ser llamado Autor
@@ -288,7 +322,7 @@ DSS-006 - Faltantes
 - Manejo de errores en clase Queries en caso de que la consulta devuelva false (o sea la devolucion sea algo distinto a un recurso mysql)
 - Revisar si existe beneficio al usar un tipo de usuario o no
 - Revisar la sentenia del login en admin en caso de que todo este bien, linea 16
-- Las clases no deben tener headers ni imprimir respuestas, sino que deben enviar una respuesta al controlador y este debe crear las respuestas y lanzar los headers
+- Las clases no deben tener headers ni imprimir respuestas, sino que deben enviar una respuesta al controlador y este debe crear las respuestas y lanzar los headers, ademas de que las vistas tambien pueden lanzar headers
 - Siempre verificar que exista la conexion a la base de datos
 
 /**********************/
@@ -310,5 +344,5 @@ DSS-006 - Faltantes
 /**********************/
 - Transformar este documento en un documento html/css/js
 - Terminar la documentacion
-- Crear la documentacion de las clases Error, Login y Header
+- Crear la documentacion de las clases Error
 - Al terminar el sitio enteramente revisar que la documentacion esté completa

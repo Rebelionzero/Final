@@ -38,7 +38,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 	<head>
-		<title>****** Admin Panel</title>
+		<title>****** Admin Panel - Autores</title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 		<script type="text/javascript" src="../../ajax-js/jquery.js"></script>
 		<script type="text/javascript" src="../../ajax-js/admin.js"></script>		
@@ -48,7 +48,7 @@
 	</head>
 	<body>
 		<div class="head">
-			<h1><a href="../../Site/home.php"><img alt="admin header" src="../../Images/admin_header.jpg"/></a></h1>
+			<h1><a href="admin.php"><img alt="admin header" src="../../Images/admin_header.jpg"/></a></h1>
 		</div>
 		<div class="middle">
 			<?php include_once("left.php");?>
