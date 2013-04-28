@@ -1,5 +1,5 @@
-CREATE DATABASE shop;
-USE shop;
+CREATE DATABASE arte;
+USE arte;
 
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -8,70 +8,56 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `password` varchar(15) not null
 );
 
-
 DROP TABLE IF EXISTS `categorias`;
 CREATE TABLE IF NOT EXISTS `categorias` (
-  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT unique primary key,
   `nombre` varchar(30) COLLATE latin1_general_ci NOT NULL,
-  `fecha_creacion` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`)
+  `descripcion` varchar(255)
 );
 
---
--- Dumping data for table `categorias`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `marcas`
---
-
-DROP TABLE IF EXISTS `marcas`;
-CREATE TABLE IF NOT EXISTS `marcas` (
-  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `autores`;
+CREATE TABLE IF NOT EXISTS `autores` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT unique primary key,
   `nombre` varchar(30) COLLATE latin1_general_ci NOT NULL,
-  `fecha_creacion` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`)
+  `seudonimo` varchar(30) COLLATE latin1_general_ci,
+  `mail` varchar(30) COLLATE latin1_general_ci
 );
 
---
--- Dumping data for table `marcas`
---
 
+DROP TABLE IF EXISTS `museos`;
+CREATE TABLE IF NOT EXISTS `museos` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT unique primary key,
+  `nombre` varchar(30) NOT NULL,
+  `direccion` varchar(50) NOT NULL,  
+  `mail` varchar(30) NOT NULL,
+  `imagen` varchar(50) DEFAULT NULL
+);
 
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `obras`;
+CREATE TABLE IF NOT EXISTS `obras` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT unique primary key,
+  `nombre` varchar(30) NOT NULL,
+  `imagen` varchar(50) NOT NULL,
+  `descripcion` varchar(255),
+  `categoria` tinyint(3) unsigned NOT NULL,
+  `autor` tinyint(3) unsigned NOT NULL,  
+  `museo` tinyint(3) unsigned NOT NULL,
+  `seudonimo` bool,
 
---
--- Table structure for table `productos`
---
-
-DROP TABLE IF EXISTS `productos`;
-CREATE TABLE IF NOT EXISTS `productos` (
-  id tinyint(3) unsigned unique NOT NULL AUTO_INCREMENT primary key,
-  nombre varchar(30) NOT NULL,  
-  precio int(3) unsigned,
-  descripcion varchar(200) DEFAULT NULL,
-  imagen varchar(50) NOT NULL,
-  src varchar(70) NOT NULL,
-  categoria tinyint(3) unsigned NOT NULL,
-  marca tinyint(3) unsigned NOT NULL,
-
-  FOREIGN KEY (categoria)
-  REFERENCES categorias (id)
+  FOREIGN KEY (`categoria`)
+  REFERENCES `categorias` (`id`)
   ON UPDATE CASCADE
   ON DELETE RESTRICT,
 
-  FOREIGN KEY (marca)
-  REFERENCES marcas (id)
+  FOREIGN KEY (`autor`)
+  REFERENCES `autores` (`id`)
+  ON UPDATE CASCADE
+  ON DELETE RESTRICT,
+
+  FOREIGN KEY (`museo`)
+  REFERENCES `museos` (`id`)
   ON UPDATE CASCADE
   ON DELETE RESTRICT
 );
-
---
--- Dumping data for table `productos`
---
 
 INSERT INTO usuarios VALUES(null,'Admin','@dm1n1str@d0r');
