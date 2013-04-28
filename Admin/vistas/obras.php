@@ -14,6 +14,9 @@
 			header("Location: login.php");
 		}elseif( isset( $_SESSION['Login']['autenticacion'] ) && $_SESSION['Login']['autenticacion'] === true){
 			// exito en el login, revisar en el futuro que hacer con esta sentencia
+
+			$requerimientos = new Obras();
+			$requerimientos->traer_requerimientos();
 		}
 
 ?>

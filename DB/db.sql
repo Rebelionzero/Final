@@ -28,7 +28,7 @@ DROP TABLE IF EXISTS `museos`;
 CREATE TABLE IF NOT EXISTS `museos` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT unique primary key,
   `nombre` varchar(30) NOT NULL,
-  `direccion` varchar(50) NOT NULL,  
+  `direccion` varchar(50) NOT NULL,
   `mail` varchar(30) NOT NULL,
   `imagen` varchar(50) DEFAULT NULL
 );
@@ -61,3 +61,6 @@ CREATE TABLE IF NOT EXISTS `obras` (
 );
 
 INSERT INTO usuarios VALUES(null,'Admin','@dm1n1str@d0r');
+INSERT INTO categorias VALUES(null,'esculturas','esculturas de grasa');
+INSERT INTO autores VALUES(null,'blanca narfa','frita', 'friasm@mail.com');
+INSERT INTO museos VALUES(null,'pequeño museo','direccion 456', 'peque@mail.com','otro.jpg');
