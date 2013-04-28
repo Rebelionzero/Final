@@ -346,3 +346,15 @@ DSS-006 - Faltantes
 - Terminar la documentacion
 - Crear la documentacion de las clases Error
 - Al terminar el sitio enteramente revisar que la documentacion esté completa
+
+
+
+
+********************************************************************************************************
+obras
+********************************************************************************************************
+
+
+descripcion
+museo
+categoria

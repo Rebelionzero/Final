@@ -15,24 +15,6 @@
 		}elseif( isset( $_SESSION['Login']['autenticacion'] ) && $_SESSION['Login']['autenticacion'] === true){
 			// exito en el login, revisar en el futuro que hacer con esta sentencia
 		}
-	
-		$errores = false;
-		if(isset($_SESSION['errores'])){
-			$errores = $_SESSION['errores'];
-			unset($_SESSION['errores']);
-		}
-		
-		$exito = false;
-		if(isset($_SESSION['carga_exitosa'])){
-			$exito = $_SESSION['carga_exitosa'];
-			unset($_SESSION['carga_exitosa']);
-		}
-		
-		$edicion = false;
-		if(isset($_SESSION['edicion_exitosa'])){
-			$exito = $_SESSION['edicion_exitosa'];
-			unset($_SESSION['edicion_exitosa']);
-		}
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -52,7 +34,11 @@
 		</div>
 		<div class="middle">
 			<?php include_once("left.php");?>
-			<?php include_once("right.php");?>
+			<div class="right" id="right">
+				<div class="right_content">
+					<?php if($obras->respuesta['tipo'] !== true ){ echo($obras->respuesta['mensaje']); }else{ include_once("formulario-obras.php"); } ?>
+				</div>
+			</div>
 		</div>
 		<div class="footer"></div>
 	</body>
