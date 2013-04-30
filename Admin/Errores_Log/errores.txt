@@ -23,3 +23,13 @@ Query insertada: Error de seleccion de base de datos
 Fecha: Mon, 29 Apr 2013 21:51:12
 *********************************************************************
 
+Error devuelto por SQL: Unknown database 'arte'
+Query insertada: Error de seleccion de base de datos
+Fecha: Tue, 30 Apr 2013 13:13:01
+*********************************************************************
+
+Error devuelto por SQL: Unknown database 'arte'
+Query insertada: Error de seleccion de base de datos
+Fecha: Tue, 30 Apr 2013 13:13:09
+*********************************************************************
+
