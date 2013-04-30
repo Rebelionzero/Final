@@ -18,3 +18,8 @@ Query insertada: Error de seleccion de base de datos
 Fecha: Mon, 25 Feb 2013 02:14:25
 *********************************************************************
 
+Error devuelto por SQL: Unknown database 'shop'
+Query insertada: Error de seleccion de base de datos
+Fecha: Mon, 29 Apr 2013 21:51:12
+*********************************************************************
+

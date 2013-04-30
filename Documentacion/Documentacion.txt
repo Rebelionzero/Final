@@ -324,6 +324,7 @@ DSS-006 - Faltantes
 - Revisar la sentenia del login en admin en caso de que todo este bien, linea 16
 - Las clases no deben tener headers ni imprimir respuestas, sino que deben enviar una respuesta al controlador y este debe crear las respuestas y lanzar los headers, ademas de que las vistas tambien pueden lanzar headers
 - Siempre verificar que exista la conexion a la base de datos
+- en la clase Error.php si el directorio existe la variable $directorio no se define y la linea 28 tira error, usar isset $directorio && $directorio === false
 
 /**********************/
   Javascript:

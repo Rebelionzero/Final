@@ -7,7 +7,9 @@
 
 		public function traer_requerimientos(){
 			$query = 'SELECT autores.nombre as autor, categorias.nombre as categoria, museos.nombre as museo FROM autores, categorias, museos';
-			$select = new Queries();
+			$select = new Queries($query);
+			$select->select();
+			var_dump($select->resultado);
 		}
 
 	}
