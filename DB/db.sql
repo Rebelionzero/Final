@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `autores` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT unique primary key,
   `nombre` varchar(30) NOT NULL,
   `seudonimo` varchar(30),
-  `mail` varchar(30)
+  `mail` varchar(30) unique
 ) CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `museos` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT unique primary key,
   `nombre` varchar(30) NOT NULL,
   `direccion` varchar(50) NOT NULL,
-  `mail` varchar(30) NOT NULL,
+  `mail` varchar(30) NOT NULL unique,
   `imagen` varchar(50) DEFAULT NULL
 ) CHARSET=utf8 COLLATE=utf8_spanish_ci;
 

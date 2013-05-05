@@ -7,7 +7,7 @@
 	$conexion->conectar_bd();
 	
 	if(!$conexion->conexion){
-		//header("Location: no_server.php");
+		header("Location: no_server.php");
 	}else{
 
 		if( !isset( $_SESSION['Login']['autenticacion'] ) || $_SESSION['Login']['autenticacion'] === false ){
@@ -15,8 +15,7 @@
 		}elseif( isset( $_SESSION['Login']['autenticacion'] ) && $_SESSION['Login']['autenticacion'] === true){
 			// exito en el login, revisar en el futuro que hacer con esta sentencia
 
-			$requerimientos = new Obras();
-			$requerimientos->traer_requerimientos();
+			include_once("../controladores/verificar_obras.php");
 		}
 
 ?>
@@ -39,7 +38,13 @@
 			<?php include_once("left.php");?>
 			<div class="right" id="right">
 				<div class="right_content">
-					<?php if($obras->respuesta['tipo'] !== true ){ echo($obras->respuesta['mensaje']); }else{ include_once("formulario-obras.php"); } ?>
+					<?php 
+						if($requerimientos->respuesta == false){
+							echo('<h2>Para poder crear una nueva obra es necesaria la creacion previa de al menos un autor, una categoria y un museo</h2>');
+						}else{
+							include_once("formulario-obras.php");
+						}
+					 ?>
 				</div>
 			</div>
 		</div>

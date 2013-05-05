@@ -3,7 +3,11 @@
 		<div>
 			<label for="autor">Autor:</label>
 			<select id="autor" name="autor">
-				<!-- echo $autores  -->
+				<?php
+					foreach ($requerimientos->autores as $autores => $autor) {
+						echo("<option value='".$value = str_replace(' ','_',$autor['autor'])."'>".$autor['autor']."</option>");
+					}
+				?>
 			</select>
 			<label for="titulo">Titulo:</label>
 			<input id="titulo" type="text" name="titulo" />

@@ -325,6 +325,8 @@ DSS-006 - Faltantes
 - Las clases no deben tener headers ni imprimir respuestas, sino que deben enviar una respuesta al controlador y este debe crear las respuestas y lanzar los headers, ademas de que las vistas tambien pueden lanzar headers
 - Siempre verificar que exista la conexion a la base de datos
 - en la clase Error.php si el directorio existe la variable $directorio no se define y la linea 28 tira error, usar isset $directorio && $directorio === false
+- al momento de cargar un autor o museo, revisar que el mail ingresado no se repita en la base de datos, por lo cual resubir la base de datos la cual ya posee la clausula uniqe para los mail de los autores o museos
+- usar la funcion trimm al cargar los nombres de autores y demas para evitar espacios en blanco al inicio y al final de lo ingresado
 
 /**********************/
   Javascript:
@@ -347,15 +349,3 @@ DSS-006 - Faltantes
 - Terminar la documentacion
 - Crear la documentacion de las clases Error
 - Al terminar el sitio enteramente revisar que la documentacion esté completa
-
-
-
-
-********************************************************************************************************
-obras
-********************************************************************************************************
-
-
-descripcion
-museo
-categoria
