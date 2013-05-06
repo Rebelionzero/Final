@@ -17,16 +17,15 @@
 			<input id="imagen" type="file" name="imagen" />
 			<label for="anio">Año:</label>
 			<select id="anio">
-				<!-- for // año  -->
+				<?php
+					for($i = 1950; $i < ( intval(date(Y)) + 1); $i++ ) {
+						echo("<option value='".$i."'>".$i."</option>");
+					}
+				?>
 			</select>
 		</div>
 		<div>
-			<label for="imagen">Imagen:</label>
-			<input id="imagen" type="file" name="imagen" />
-			<label for="anio">Titulo:</label>
-			<select id="anio">
-				<!-- for // año  -->
-			</select>
+			
 		</div>
 	</fieldset>
 </form>
