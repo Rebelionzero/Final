@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `obras` (
   `nombre` varchar(30) NOT NULL,
   `imagen` varchar(50) NOT NULL,
   `descripcion` varchar(255),
+  `año` date,
   `categoria` tinyint(3) unsigned NOT NULL,
   `autor` tinyint(3) unsigned NOT NULL,  
   `museo` tinyint(3) unsigned NOT NULL,

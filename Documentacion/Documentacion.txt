@@ -327,6 +327,9 @@ DSS-006 - Faltantes
 - en la clase Error.php si el directorio existe la variable $directorio no se define y la linea 28 tira error, usar isset $directorio && $directorio === false
 - al momento de cargar un autor o museo, revisar que el mail ingresado no se repita en la base de datos, por lo cual resubir la base de datos la cual ya posee la clausula uniqe para los mail de los autores o museos
 - usar la funcion trimm al cargar los nombres de autores y demas para evitar espacios en blanco al inicio y al final de lo ingresado
+- agregar un logout en el admin
+- agregar la opcion de cambiar la contraseña en el admin del usuario administrador
+- agregar la opcion de forgot password en el login
 
 /**********************/
   Javascript:
