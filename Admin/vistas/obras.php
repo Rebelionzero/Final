@@ -37,24 +37,26 @@
 		<div class="middle">
 			<?php include_once("left.php");?>
 			<div class="right" id="right">
-				<div class="right_content">
-					<?php 
-						if($requerimientos->respuesta == false){
+				<?php 
+					if($requerimientos->respuesta == false){
+						echo ('<div class="right_content">');
 							echo('<h2>Para poder crear una nueva obra es necesaria la creacion previa de al menos un autor, una categoria y un museo</h2>');
-						}else{
-							echo "<div class='tabs'>
-									<a href='#' class='tab-cargar'>Cargar Obras</a>
-									<a href='#' class='tab-lista'>Lista de Obras</a>
-								</div>";
+						echo('</div>');
+					}else{
+						echo "<div class='tabs'>
+								<a href='#' class='tab-cargar'>Cargar Obras</a>
+								<a href='#' class='tab-lista'>Lista de Obras</a>
+							</div>";
+						echo ('<div class="right_content">');							
 							echo "<div class='cargar'>";
 								include_once("formulario-obras.php");
 							echo "</div>";
 							echo "<div class='lista'>";
 								/* include el archivo que llama a la lista de obras */
-							echo "</div>";							
-						}
-					 ?>
-				</div>
+							echo "</div>";
+						echo('</div>');
+					}
+				 ?>
 			</div>
 		</div>
 		<div class="footer"></div>
