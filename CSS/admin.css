@@ -5,9 +5,9 @@ h2 {font-size:15px;}
 a{text-decoration:none;color:#000;}
 a:visited{color:#000;}
 a:hover{text-decoration:underline;}
-.middle{margin-top: 10px;margin-left: 15px;overflow:hidden;}
+.middle{margin: 10px 0 10px 15px;overflow:hidden;}
 .middle .left,.middle .right{float:left;}
-.middle .left{border-right: 1px solid #111;}
+.middle .left{margin-top: 30px;}
 .middle .left ul{overflow:hidden;margin-left: 0;}
 .middle .left ul li{margin:5px 0 0 5px;padding:6px 12px;}
 
@@ -49,10 +49,45 @@ table.productos tr:hover td{background:#A1C358;}
 #ingreso_producto ul{margin:0 0 0 15px;}
 #ingreso_producto ul li{margin:7px 0;}
 #ingreso_producto ul li label{width:125px;display:inline-block;}
-#right{width:85%;margin-left:15px;}
+#right{width:85%;}
+.right_content {border: 1px solid #111;background: #fcfcfc;-webkit-border-radius: 0px 4px 4px 4px;border-radius: 0px 4px 4px 4px;}
 .right_content h2{text-align:center;margin:0;}
-.cargar{display: block;}
-.lista{display: none;}
+
+/* obras */
+
+#obras-form {margin: 20px 10px;}
+.tabs {height: 30px;}
+.tabs a {
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 10px;
+	outline: none;
+	border: 1px solid #111;	
+	-webkit-border-radius: 4px 4px 0px 0px;
+	border-radius: 4px 4px 0px 0px;
+	color: #111;
+	border-bottom: 0;
+	background: #fcfcfc;
+	font-weight: bold;
+}
+.block {display: block;}
+.none {display: none;}
+
+#obras-form select {outline:none;}
+#obras-form label {display: inline-block;}
+.primera-linea,.segunda-linea {float:left;width: 400px;}
+.segunda-linea {width: 500px;margin-left: 10px;}
+.segunda-linea div{float: right;}
+.segunda-linea div:first-child{float: left;}
+#obras-form .segunda-linea label {display: block;}
+.tercera-linea {clear: left;}
+.primera-linea input, .primera-linea textarea {display:block;width: 380px;}
+.primera-linea label {display: block;}
+#imagen {margin-bottom: 20px;display: block;}
+#seudonimo {margin: 0;outline: none;}
+.seudonimo {display: inline-block;}
+.tercera-linea .btn {display: block;margin-top: 25px;}
 
 /* Modals */
 .background_modal{background: rgb(00, 00, 00);background: rgba(00, 00, 00, 0.5);width:100%;height:100%;display:block;position:absolute;z-index:0;margin:auto;top:0;left:0;}

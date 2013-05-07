@@ -8,17 +8,26 @@ $(document).ready(function(){
 	/* obras */
 
 	$(".tab-cargar").on("click",function(){
-		if( $("div.cargar").css("display") == "none" ){
-			$("div.lista").css("display","none");
-			$("div.cargar").css("display","block");
+		if( $("div.cargar").hasClass("none") ){
+
+			$("div.lista").removeClass("block");
+			$("div.lista").addClass("none");
+			
+			$("div.cargar").removeClass("none");
+			$("div.cargar").addClass("block");
+			
 		}
 
 	});	
 
 	$(".tab-lista").on("click",function(){
-		if( $("div.lista").css("display") == "none" ){
-			$("div.cargar").css("display","none");
-			$("div.lista").css("display","block");
+
+		if( $("div.lista").hasClass("none")){
+			$("div.cargar").removeClass("block");
+			$("div.cargar").addClass("none");
+			
+			$("div.lista").removeClass("none");
+			$("div.lista").addClass("block");
 		}
 
 	});	

@@ -19,8 +19,8 @@
 		}
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 	<head>
 		<title>****** Admin Panel - Obras</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
@@ -48,10 +48,10 @@
 								<a href='#' class='tab-lista'>Lista de Obras</a>
 							</div>";
 						echo ('<div class="right_content">');							
-							echo "<div class='cargar'>";
+							echo "<div class='cargar block'>";
 								include_once("formulario-obras.php");
 							echo "</div>";
-							echo "<div class='lista'>";
+							echo "<div class='lista none'>";
 								/* include el archivo que llama a la lista de obras */
 							echo "</div>";
 						echo('</div>');
