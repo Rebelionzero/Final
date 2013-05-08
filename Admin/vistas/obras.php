@@ -30,7 +30,7 @@
 		<link type="text/css" rel="stylesheet" media="screen" href="../../CSS/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" media="screen" href="../../CSS/admin.css"/>
 	</head>
-	<body>
+	<body class="obras">
 		<div class="head">
 			<h1><a href="admin.php"><img alt="admin header" src="../../Images/admin_header.jpg"/></a></h1>
 		</div>
@@ -44,10 +44,10 @@
 						echo('</div>');
 					}else{
 						echo "<div class='tabs'>
-								<a href='#' class='tab-cargar'>Cargar Obras</a>
+								<a href='#' class='tab-cargar focused-tab'>Cargar Obras</a>
 								<a href='#' class='tab-lista'>Lista de Obras</a>
 							</div>";
-						echo ('<div class="right_content">');							
+						echo ('<div class="right_content_place">');							
 							echo "<div class='cargar block'>";
 								include_once("formulario-obras.php");
 							echo "</div>";

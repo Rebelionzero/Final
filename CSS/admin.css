@@ -7,8 +7,7 @@ a:visited{color:#000;}
 a:hover{text-decoration:underline;}
 .middle{margin: 10px 0 10px 15px;overflow:hidden;}
 .middle .left,.middle .right{float:left;}
-.middle .left{margin-top: 30px;}
-.middle .left ul{overflow:hidden;margin-left: 0;}
+.middle .left ul{overflow:hidden;margin: 10px;padding: 0;}
 .middle .left ul li{margin:5px 0 0 5px;padding:6px 12px;}
 
 .nuevo{
@@ -49,27 +48,73 @@ table.productos tr:hover td{background:#A1C358;}
 #ingreso_producto ul{margin:0 0 0 15px;}
 #ingreso_producto ul li{margin:7px 0;}
 #ingreso_producto ul li label{width:125px;display:inline-block;}
-#right{width:85%;}
-.right_content {border: 1px solid #111;background: #fcfcfc;-webkit-border-radius: 0px 4px 4px 4px;border-radius: 0px 4px 4px 4px;}
+#right{margin: 10px 0 0 40px;width: 75%;}
+body.obras .right_content_place,
+body.autores .right_content_place,
+body.categorias .right_content_place,
+body.formato .right_content_place,
+body.museos .right_content_place {border: 1px solid #111;background: #fcfcfc;-webkit-border-radius: 0px 4px 4px 4px;border-radius: 0px 4px 4px 4px;}
 .right_content h2{text-align:center;margin:0;}
+
+.middle .left .nav.bs-docs-sidenav li {float: none;margin: 0;padding: 0;}
+.bs-docs-sidenav {background-color: #FFFFFF;border-radius: 6px 6px 6px 6px;box-shadow: 0 0px 4px rgba(0, 0, 0, 0.4);width: 170px;}
+.bs-docs-sidenav li a {border: 1px solid #E5E5E5;display: block;margin: 0 0 -1px;padding: 8px 14px;text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);color: #0088CC;text-decoration: none;}
+.bs-docs-sidenav li:first-child a {border-radius: 6px 6px 0 0;}
+.bs-docs-sidenav li:last-child a {border-radius: 0 0 6px 6px;}
+
+body.obras .bs-docs-sidenav li a.obras,
+body.categorias .bs-docs-sidenav li a.categorias,
+body.autores .bs-docs-sidenav li a.autores,
+body.museos .bs-docs-sidenav li a.museos,
+body.formato .bs-docs-sidenav li a.formato {
+	background-color: #0088CC;
+	border-color: #0088CC;
+    color: #FFFFFF;
+}
+
+.bs-docs-sidenav li a span{
+	background: url("icons/png/glyphicons_223_chevron-right.png") no-repeat scroll center center transparent;
+	background-size: 8px auto;
+    display: inline-block;
+    float: right;
+    height: 14px;
+    margin-top: 3px;
+    width: 14px;
+    opacity: 0.3;
+}
+.bs-docs-sidenav li a:hover span {opacity: 0.5;}
+
+body.obras .bs-docs-sidenav li a.obras span,
+body.categorias .bs-docs-sidenav li a.categorias span,
+body.autores .bs-docs-sidenav li a.autores span,
+body.museos .bs-docs-sidenav li a.museos span,
+body.formato .bs-docs-sidenav li a.formato:hover span,
+body.obras .bs-docs-sidenav li a.obras:hover span,
+body.categorias .bs-docs-sidenav li a.categorias:hover span,
+body.autores .bs-docs-sidenav li a.autores:hover span,
+body.museos .bs-docs-sidenav li a.museos:hover span,
+body.formato .bs-docs-sidenav li a.formato:hover span{
+	opacity: 1;
+}
+
+
 
 /* obras */
 
 #obras-form {margin: 20px 10px;}
 .tabs {height: 30px;}
 .tabs a {
-	display: inline-block;
-	height: 30px;
-	line-height: 30px;
-	padding: 0 10px;
-	outline: none;
-	border: 1px solid #111;	
+	background: #bcbcbc;
+	border: 1px solid #000;
 	-webkit-border-radius: 4px 4px 0px 0px;
 	border-radius: 4px 4px 0px 0px;
-	color: #111;
-	border-bottom: 0;
-	background: #fcfcfc;
+	color: #efefef;
+	display: inline-block;
 	font-weight: bold;
+	height: 29px;
+	line-height: 30px;
+	padding: 0 10px;
+	outline: none;	
 }
 .block {display: block;}
 .none {display: none;}
@@ -88,6 +133,13 @@ table.productos tr:hover td{background:#A1C358;}
 #seudonimo {margin: 0;outline: none;}
 .seudonimo {display: inline-block;}
 .tercera-linea .btn {display: block;margin-top: 25px;}
+.tabs a.focused-tab{
+	border-color: #111;
+	color: #111;
+	background: #fcfcfc;
+	border-bottom: 0;
+	height: 30px;
+}
 
 /* Modals */
 .background_modal{background: rgb(00, 00, 00);background: rgba(00, 00, 00, 0.5);width:100%;height:100%;display:block;position:absolute;z-index:0;margin:auto;top:0;left:0;}

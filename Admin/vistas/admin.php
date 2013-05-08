@@ -46,7 +46,7 @@
 		<link type="text/css" rel="stylesheet" media="screen" href="../../CSS/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" media="screen" href="../../CSS/admin.css"/>
 	</head>
-	<body>
+	<body class="admin">
 		<div class="head">
 			<h1><a href="../../Site/home.php"><img alt="admin header" src="../../Images/admin_header.jpg"/></a></h1>
 		</div>

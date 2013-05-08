@@ -33,3 +33,48 @@ Query insertada: Error de seleccion de base de datos
 Fecha: Tue, 30 Apr 2013 13:13:09
 *********************************************************************
 
+Error devuelto por SQL: Unknown database 'arte'
+Query insertada: Error de seleccion de base de datos
+Fecha: Wed, 08 May 2013 17:44:57
+*********************************************************************
+
+Error devuelto por SQL: Unknown database 'arte'
+Query insertada: Error de seleccion de base de datos
+Fecha: Wed, 08 May 2013 17:44:57
+*********************************************************************
+
+Error devuelto por SQL: Unknown database 'arte'
+Query insertada: Error de seleccion de base de datos
+Fecha: Wed, 08 May 2013 17:46:43
+*********************************************************************
+
+Error devuelto por SQL: Unknown database 'arte'
+Query insertada: Error de seleccion de base de datos
+Fecha: Wed, 08 May 2013 17:46:43
+*********************************************************************
+
+Error devuelto por SQL: Unknown database 'arte'
+Query insertada: Error de seleccion de base de datos
+Fecha: Wed, 08 May 2013 17:47:01
+*********************************************************************
+
+Error devuelto por SQL: Unknown database 'arte'
+Query insertada: Error de seleccion de base de datos
+Fecha: Wed, 08 May 2013 17:47:02
+*********************************************************************
+
+Error devuelto por SQL: Unknown database 'arte'
+Query insertada: Error de seleccion de base de datos
+Fecha: Wed, 08 May 2013 17:47:02
+*********************************************************************
+
+Error devuelto por SQL: Unknown database 'arte'
+Query insertada: Error de seleccion de base de datos
+Fecha: Wed, 08 May 2013 17:47:19
+*********************************************************************
+
+Error devuelto por SQL: Unknown database 'arte'
+Query insertada: Error de seleccion de base de datos
+Fecha: Wed, 08 May 2013 17:49:21
+*********************************************************************
+

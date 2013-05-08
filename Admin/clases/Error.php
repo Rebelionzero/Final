@@ -25,7 +25,7 @@
 			$escritura = fwrite($apertura,$errorSql);
 			$cierre = fclose($apertura);
 
-			if($directorio === false){
+			if(isset($directorio) && $directorio === false){
 				$this->resultado = false;
 				$this->mensaje = "Error al crear el directorio donde se guarda el log";
 			}elseif($apertura === false){

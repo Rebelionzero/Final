@@ -19,8 +19,8 @@ DROP TABLE IF EXISTS `autores`;
 CREATE TABLE IF NOT EXISTS `autores` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT unique primary key,
   `nombre` varchar(30) NOT NULL,
-  `seudonimo` varchar(30),
-  `mail` varchar(30) unique
+  `seudonimo` varchar(30) DEFAULT '-No tiene-',
+  `mail` varchar(30) NOT NULL unique
 ) CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
@@ -67,7 +67,8 @@ INSERT INTO categorias VALUES(null,'esculturas','esculturas de grasa');
 INSERT INTO categorias VALUES(null,'pinturas','al oleo');
 
 INSERT INTO autores VALUES(null,'blanca narfa','frita', 'friasm@mail.com');
-INSERT INTO autores VALUES(null,'edmure tully','frasco', 'tully@mail.com');
+INSERT INTO autores VALUES(null,'edmure tally','frasco', 'tully@mail.com');
+INSERT INTO autores VALUES(null,'autor',DEFAULT, 'autor@mail.com');
 
 INSERT INTO museos VALUES(null,'pequeño museo','direccion 456', 'peque@mail.com','otro.jpg');
 INSERT INTO museos VALUES(null,'gran museo de hyrule','direccion 123', 'triforce@mail.com','imagen.jpg');

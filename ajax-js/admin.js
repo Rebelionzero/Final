@@ -7,7 +7,19 @@ $(document).ready(function(){
 
 	/* obras */
 
+	/******************************/
+	/*********** Tabs *************/
+	/******************************/
 	$(".tab-cargar").on("click",function(){
+
+		if( !($(this).hasClass("focused-tab") ) ){
+			$(this).addClass("focused-tab");
+		}
+
+		if($(".tab-lista").hasClass("focused-tab") ){
+			$(".tab-lista").removeClass("focused-tab");
+		}
+
 		if( $("div.cargar").hasClass("none") ){
 
 			$("div.lista").removeClass("block");
@@ -22,6 +34,14 @@ $(document).ready(function(){
 
 	$(".tab-lista").on("click",function(){
 
+		if( !($(this).hasClass("focused-tab") ) ){
+			$(this).addClass("focused-tab");
+		}
+
+		if($(".tab-cargar").hasClass("focused-tab") ){
+			$(".tab-cargar").removeClass("focused-tab");
+		}
+
 		if( $("div.lista").hasClass("none")){
 			$("div.cargar").removeClass("block");
 			$("div.cargar").addClass("none");
@@ -30,6 +50,26 @@ $(document).ready(function(){
 			$("div.lista").addClass("block");
 		}
 
-	});	
+	});
+
+	/******************************/
+	/******** On change ***********/
+	/******************************/
+
+	$('#autor').change(function(){
+
+		if( this.selectedIndex != 0 ){
+			// ajax de consulta
+
+			$.ajax({
+   				type: "POST",   				
+      			url: "../controladores/seudonimos.php",
+      			dataType: "json",
+      			//beforeSend: function(){alert("enviando");},      			
+      			async:true      			
+			});
+		}
+
+	});
 
 });
