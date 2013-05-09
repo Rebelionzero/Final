@@ -10,10 +10,10 @@
 		$query = "SELECT seudonimo FROM autores WHERE nombre = '".$autor."';";
 		$consulta = new Queries($query);
 		$consulta->select();
-		if($consulta->resultado == "-No tiene-" || $consulta->resultado == false){
+		if($consulta->resultado[0]['seudonimo'] == "-No tiene-" || $consulta->resultado[0]['seudonimo'] == false){
 			$resp = false;
 		}else{
-			$resp = $consulta->resultado[0];
+			$resp = $consulta->resultado[0]['seudonimo'];
 		}
 		
 
