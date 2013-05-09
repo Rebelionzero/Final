@@ -140,6 +140,20 @@ body.formato .bs-docs-sidenav li a.formato:hover span{
 	border-bottom: 0;
 	height: 30px;
 }
+.seudonimo-container {
+	height: 30px;
+	background: #000;
+	width: 200px;
+	color: #fff;
+}
+
+.seudonimo-container p {
+	color: inherit;
+}
+
+
+
+
 
 /* Modals */
 .background_modal{background: rgb(00, 00, 00);background: rgba(00, 00, 00, 0.5);width:100%;height:100%;display:block;position:absolute;z-index:0;margin:auto;top:0;left:0;}

@@ -1,13 +1,14 @@
-Documentacion del desarrollo y funcionalidades de Shop Smart
+Documentacion del desarrollo y funcionalidades de Art Smart
 Programacion III - PHP Orientado a objetos - Nicolas Alejandro Dezzutto
 
 --------------------------------------------
-DSS-001 - Clases
-DSS-002 - Controladores
-DSS-003 - Vistas
-DSS-004 - Pruebas Unitarias y Code Coverage
-DSS-005 - Front End
-DSS-006 - Faltantes
+DAS-001 - Clases
+DAS-002 - Controladores
+DAS-003 - Vistas
+DAS-004 - Jquery y Ajax
+DAS-005 - Pruebas Unitarias y Code Coverage
+DAS-006 - Front End
+DAS-007 - Faltantes
 --------------------------------------------
 
 *****************************************************************************************************************
@@ -15,7 +16,7 @@ El objeto de este archivo es documentar y seguir el desarrollo de la aplicacion 
 (En el momento de documentar no se cuentan los metodos constructores, se hará notacion de aquellos que posean ciertos atributos distintivos)
 
 --------------------------------------------
-DSS-001 - Clases
+DAS-001 - Clases
 --------------------------------------------
 
 
@@ -247,13 +248,20 @@ Faltantes de esta clase:
 
 
 --------------------------------------------
-DSS-002 - Controladores
+DAS-002 - Controladores
 --------------------------------------------
 
+1) Seudonimos:
+--------------
+Funcion: Funciona con la informacion pedida por ajax en obras.php, pide el seudonimo del autor enviado. De no existir seudonimo bloque el checkbox
+
+Faltante: Llamar a la clase Error si lo que se envió por ajax es un error (lo que se envio por ajax esta vacio);
+
+
 
 
 --------------------------------------------
-DSS-003 - Vistas
+DAS-003 - Vistas
 --------------------------------------------
 
 /**********************/
@@ -266,21 +274,49 @@ DSS-003 - Vistas
 Faltantes de la vista: dar estilos a la pantalla
 
 
-
 --------------------------------------------
-DSS-004 - Pruebas Unitarias y Code Coverage 
---------------------------------------------
-
-
-
---------------------------------------------
-DSS-005 - Front End
+DAS-004 - Jquery y Ajax 
 --------------------------------------------
 
+/**********************/
+  admin.js:
+/**********************/
+
+1) 
+Referencia: das-ax-00
+
+Faltante: Configurar los errores de Ajax en el envio del autor, para que envie a la clase Error los errores de ajax en caso de salir mal la peticion del seudonimo del autor en la carga de obras (obras.php)
+Usar el responseText, que es el que devuelve el error de php
+
+2) 
+Referencia: das-ax-00
+
+Faltante: Configurar que al seleccionar una opcion de autor, no se ejecute otra llamada ajax hasta que la primera termine, se debe pedir que si se está ejecutando una peticion sin haber terminado, al hacer otra peticion de ajax, se interrumpa la primera y se ejecute la segunda
+
+3)
+Referencia: -
+
+Faltante: Configurar el boton Limpiar campos en obras.php y si está presente en otras partes del sitio
+
+4)
+Referencias: -
+
+Faltante: Los formularios si devuelve error deberia seguir lleno y no borrarse
+
+--------------------------------------------
+DAS-005 - Pruebas Unitarias y Code Coverage 
+--------------------------------------------
+
 
 
 --------------------------------------------
-DSS-006 - Faltantes
+DAS-006 - Front End
+--------------------------------------------
+
+
+
+--------------------------------------------
+DAS-007 - Faltantes
 --------------------------------------------
 
 /**********************/
@@ -330,12 +366,13 @@ DSS-006 - Faltantes
 - agregar un logout en el admin
 - agregar la opcion de cambiar la contraseña en el admin del usuario administrador
 - agregar la opcion de forgot password en el login
+- Al cargar un autor, el seudonimo no puede estar repetido, la clausula unique ya esta cambiada en la base de datos, pero no actualizada
 
 /**********************/
   Javascript:
 /**********************/
 
-- El formulario si devuelve error deberia seguir lleno y no borrarse
+
 - Reutilizar codigo: Ej: for para crear los divs
 - Rehacer el javascript para no utilizar tanto codigo
 

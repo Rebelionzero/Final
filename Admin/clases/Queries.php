@@ -19,6 +19,7 @@
 					$this->resultado[]=$row;
 				}
 			}else{
+				// no trajo resultados
 				$this->resultado = false;
 			}
 				

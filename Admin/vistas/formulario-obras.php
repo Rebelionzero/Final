@@ -53,8 +53,9 @@
 			<input id="imagen" type="file" name="imagen" />
 			<label for="seudonimo" class="seudonimo">Usar seudonimo en vez de nombre del autor:</label>
 			<input type="checkbox" name="seudonimo" id="seudonimo" disabled />
-			
-			<input type="submit" value="Cargar" class="btn btn-primary">
+			<div class="seudonimo-container"></div>
+			<input type="submit" value="Cargar" class="btn btn-primary" />
+			<a class="btn btn-primary" href="#">Limpiar Campos</a>
 		</div>		
 	</fieldset>
 </form>
