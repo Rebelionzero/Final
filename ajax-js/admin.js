@@ -5,11 +5,14 @@ $(document).ready(function(){
 		$("div.mensaje_error").parent().children("div.mensaje_error").remove();
 	});
 
-	/* obras */
+	/************************************************************************************/
+	/*********************************** Obras ******************************************/
+	/************************************************************************************/
 
-	/******************************/
-	/*********** Tabs *************/
-	/******************************/
+	/*
+	// Tabs
+	*/
+
 	$(".tab-cargar").on("click",function(){
 
 		if( !($(this).hasClass("focused-tab") ) ){
@@ -52,9 +55,9 @@ $(document).ready(function(){
 
 	});
 
-	/******************************/
-	/******** Seudonimos **********/
-	/******************************/
+	/*
+	// Seudonimos
+	*/
 
 	$('#autor').change(function(){
 
@@ -69,14 +72,8 @@ $(document).ready(function(){
       			complete: function(jqXHR, textStatus){            		
           	  		if(textStatus=="success"){
           	  			// se completo con exito
-          	  			var seudonimo = jQuery.parseJSON( jqXHR.responseText );
-          	  			//console.log(typeof(seudonimo));
-          	  			//console.log( jQuery.parseJSON( jqXHR.responseText ) );
-          	  			if(seudonimo == false){
-          	  				noSeudonimo();
-          	  			}else{
-          	  				appendSeudonimo( seudonimo );
-          	  			}
+          	  			var seudonimo = jQuery.parseJSON( jqXHR.responseText );          	  			
+          	  			appendSeudonimo( seudonimo );          	  			
             		}else{
             			// error
             			alert("mal");
@@ -104,27 +101,52 @@ $(document).ready(function(){
       			//beforeSend: function(){alert("enviando");},
       			async:true      			
 			});
+		}else{
+			// desactivando el checkbox si esta activo
+			handleCheckbox(false,true);
 		}
 
 	});
 
-	function noSeudonimo(){
-		if(  $("#seudonimo").attr("disabled") == false ){
-			$("#seudonimo").attr("disabled", true);
+
+	/************************************************************************************/
+	/********************************** Funciones ***************************************/
+	/************************************************************************************/
+
+	// agregar Seudonimo
+	function appendSeudonimo(obj){
+		if(obj == false){			
+			// desactivando el checkbox
+			handleCheckbox(false,true);
+
+			// removiendo el tag del seudonimo
+			noSeudonimoTag();
+		}else{
+			// activando el checkbox
+			handleCheckbox(true,false);
+
+			// agregando el tag con el seudonimo
+			alterTag(obj);
 		}
 	}
 
-	function appendSeudonimo(obj){
-		if( $(".seudonimo-container").has("label") && $(".seudonimo-container").has("input") ){
-			$(".seudonimo-container").children("label").remove();
-			$(".seudonimo-container").children("input").remove();
-
-			$(".seudonimo-container").append('<label class="seudonimo" for="seudonimo">Este autor tiene el seudonimo '+obj+', desea que esta obra se muestre con ese seudonimo?</label>');
-	        $(".seudonimo-container").append('<input type="checkbox" id="seudonimo" name="seudonimo">');
-		}else{
-			$(".seudonimo-container").append('<label class="seudonimo" for="seudonimo">Este autor tiene el seudonimo '+obj+', desea que esta obra se muestre con ese seudonimo?</label>');
-	        $(".seudonimo-container").append('<input type="checkbox" id="seudonimo" name="seudonimo">');
+	// activador/desactivador de checkbox del seudonimo
+	function handleCheckbox(bool1,bool2){
+		if( $("input#seudonimo").prop('disabled') == bool1 ){
+			$("input#seudonimo").prop('disabled', bool2);
 		}
-    }
+	}
 
+	// agrega el seudonimo al tag p
+	function alterTag(obj){
+		if( $(".seudonimo-container p.no-seu").hasClass("block") ){
+			$(".seudonimo-container p").addClass("none");
+			$(".seudonimo-container").append("<p>El autor/a tiene el seudonimo " + obj + "</p>");
+		}else{
+			
+		}
+	}
+
+	
+		
 });

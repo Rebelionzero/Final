@@ -69,6 +69,7 @@ INSERT INTO categorias VALUES(null,'pinturas','al oleo');
 INSERT INTO autores VALUES(null,'blanca narfa','frita', 'friasm@mail.com');
 INSERT INTO autores VALUES(null,'edmure tally','frasco', 'tully@mail.com');
 INSERT INTO autores VALUES(null,'autor',DEFAULT, 'autor@mail.com');
+INSERT INTO autores VALUES(null,'gran autor',DEFAULT, 'gran_autor@mail.com');
 
 INSERT INTO museos VALUES(null,'pequeño museo','direccion 456', 'peque@mail.com','otro.jpg');
 INSERT INTO museos VALUES(null,'gran museo de hyrule','direccion 123', 'triforce@mail.com','imagen.jpg');

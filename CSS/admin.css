@@ -140,8 +140,7 @@ body.formato .bs-docs-sidenav li a.formato:hover span{
 	border-bottom: 0;
 	height: 30px;
 }
-.seudonimo-container {
-	height: 30px;
+.seudonimo-container {	
 	background: #000;
 	color: #fff;
 }

@@ -51,7 +51,11 @@
 		<div class="tercera-linea">
 			<label for="imagen">Imagen:</label>
 			<input id="imagen" type="file" name="imagen" />
-			<div class="seudonimo-container"></div>
+			<div class="seudonimo-container">
+				<input type="checkbox" class="check" id="seudonimo" disabled="true"/>
+				<label for="seudonimo">Utilizar seudonimo del autor si este lo posee:</label>
+				<p class="no-seu block">El autor/a seleccionado no tiene seudonimo disponible</p>
+			</div>
 			<input type="submit" value="Cargar" class="btn btn-primary" />
 			<a class="btn btn-primary" href="#">Limpiar Campos</a>
 		</div>		
