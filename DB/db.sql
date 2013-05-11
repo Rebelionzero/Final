@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS `autores`;
 CREATE TABLE IF NOT EXISTS `autores` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT unique primary key,
   `nombre` varchar(30) NOT NULL,
-  `seudonimo` varchar(30) unique DEFAULT '-No tiene-',
+  `seudonimo` varchar(30) DEFAULT '-No tiene-',
   `mail` varchar(30) NOT NULL unique
 ) CHARSET=utf8 COLLATE=utf8_spanish_ci;
 

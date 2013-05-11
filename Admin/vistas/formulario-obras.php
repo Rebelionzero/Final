@@ -54,7 +54,7 @@
 			<div class="seudonimo-container">
 				<input type="checkbox" class="check" id="seudonimo" disabled="true"/>
 				<label for="seudonimo">Utilizar seudonimo del autor si este lo posee:</label>
-				<p class="no-seu block">El autor/a seleccionado no tiene seudonimo disponible</p>
+				<p class="no-seu none">El autor/a seleccionado no tiene seudonimo disponible</p>
 			</div>
 			<input type="submit" value="Cargar" class="btn btn-primary" />
 			<a class="btn btn-primary" href="#">Limpiar Campos</a>

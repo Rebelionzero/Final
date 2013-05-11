@@ -104,6 +104,13 @@ $(document).ready(function(){
 		}else{
 			// desactivando el checkbox si esta activo
 			handleCheckbox(false,true);
+			if( $("p.no-seu").hasClass("block") ){
+				$("p.no-seu").removeClass("block");
+				$("p.no-seu").addClass("none");
+			}
+			if( $(".seudonimo-container").has("p.seu") ){
+				$(".seudonimo-container").children("p.seu").remove();
+			}
 		}
 
 	});
@@ -120,13 +127,28 @@ $(document).ready(function(){
 			handleCheckbox(false,true);
 
 			// removiendo el tag del seudonimo
-			noSeudonimoTag();
+			if( $("p.no-seu").hasClass("none") ){
+				$("p.no-seu").removeClass("none");
+				$("p.no-seu").addClass("block");
+			}
+			if( $(".seudonimo-container").has("p.seu") ){
+				$(".seudonimo-container").children("p.seu").remove();
+			}
 		}else{
 			// activando el checkbox
 			handleCheckbox(true,false);
 
 			// agregando el tag con el seudonimo
-			alterTag(obj);
+			if( $("p.no-seu").hasClass("block") ){
+				$("p.no-seu").removeClass("block");
+				$("p.no-seu").addClass("none");
+			}
+
+			if( $(".seudonimo-container").children().length > 3 ){
+				$("p.seu").html("El autor/a tiene el seudonimo " + obj);
+			}else{				
+				$(".seudonimo-container").append("<p class='seu'>El autor/a tiene el seudonimo " + obj + "</p>");
+			}
 		}
 	}
 
@@ -136,17 +158,6 @@ $(document).ready(function(){
 			$("input#seudonimo").prop('disabled', bool2);
 		}
 	}
-
-	// agrega el seudonimo al tag p
-	function alterTag(obj){
-		if( $(".seudonimo-container p.no-seu").hasClass("block") ){
-			$(".seudonimo-container p").addClass("none");
-			$(".seudonimo-container").append("<p>El autor/a tiene el seudonimo " + obj + "</p>");
-		}else{
-			
-		}
-	}
-
 	
 		
 });
