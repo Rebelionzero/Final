@@ -1,46 +1,48 @@
 <?php
 	
-	class ComprobarProducto {
-		var $nombre;
-		var $precio;
-		var $categoria;
-		var $marca;
+	class ComprobarObra {
+		var $titulo;
 		var $descripcion;
+		var $autor;
+		var $anio;
+		var $categoria;
+		var $museo;
 		var $imagen;
-		var $validaciones = array();
+		var $seudonimo;		
 		var $vacios = array();
+		var $validaciones = array();
 		var $errores = array();
+		var $temporal;
 
 		function __construct($array){
-			$this->nombre = $array['producto'];
-			$this->precio = $array['precio'];
-			$this->categoria = $array['categoria'];
-			$this->marca = $array['marca'];
+			$this->titulo = $array['titulo'];
 			$this->descripcion = $array['descripcion'];
+			$this->autor = $array['autor'];
+			$this->anio = $array['anio'];
+			$this->categoria = $array['categoria'];
+			$this->museo = $array['museo'];
 			$this->imagen = $array['imagen'];
+			$this->seudonimo = $array['seudonimo'];
 		}
 
-		public function verificar(){
-
+		public function verificar(){			
 			$this->validaciones = array(
-				'producto' => $this->validar_producto(),
-				'precio' => $this->validar_precio(),
-				'categoria' => $this->validar_select($this->categoria,'categoria'),
-				'marca' => $this->validar_select($this->marca,'marca'),
-				'descripcion' => $this->validar_descripcion(),
-				'imagen' => $this->validar_img()
+				'titulo' => $this->validar_titulo(), // ok
+				'descripcion' => $this->validar_descripcion(), // ok
+
+				//'precio' => $this->validar_precio(),
+				//'categoria' => $this->validar_select($this->categoria,'categoria'),
+				//'marca' => $this->validar_select($this->marca,'marca'),				
+				//'imagen' => $this->validar_img()
 			);
 			
-			$this->vacios = array(
-				'producto' => $this->vacio($this->nombre),
-				'precio' => $this->vacio($this->precio),
-				'categoria' => $this->vacio($this->categoria),
-				'marca' => $this->vacio($this->marca),
+			/*$this->vacios = array(
+				'titulo' => $this->vacio($this->titulo),
 				'descripcion' => $this->vacio($this->descripcion),
 				'imagen' => $this->sinImagen($this->imagen)
-			);
+			);*/
 			
-			$this->setear_errores($this->validaciones);
+			//$this->setear_errores($this->validaciones);			
 			
 			
 		}
@@ -63,18 +65,31 @@
 			}
 		}
 
-		private function validar_producto(){
-			if(strlen($this->nombre) > 0 && strlen($this->nombre) < 31){
-				if(preg_match('/^\pL+$/u', $this->nombre)){
-					return false;
+		private function validar_titulo(){
+			if ($this->vacio($this->titulo) == false) {
+				// campo no vacio
+				if(strlen(trim($this->titulo)) <= 30){
+					// menor o igual a 30 caracteres
+					if(preg_match('/^[a-zA-Z0-9 ]*$/', trim($this->titulo) ) ){
+						// busca letras, numeros y espacios en blanco
+						// machea, no hay caracteres extraños, entrada correcta
+						return false;
+					}else{
+						// no machea, hay caracteres extraños
+						return 'Error: Solo se puede ingresar texto, espacios y numeros como titulo';
+					}
 				}else{
-					return 'Error: Solo se puede ingresar texto sin espacios como nombre de producto';
+					// muy largo
+					return 'Error: El titulo no debe tener mas de 30 caracteres';
 				}
-			}elseif(strlen($this->nombre) < 1){
-				return 'Error: Debe llenar el campo producto';
-			}elseif(strlen($this->nombre) > 30){
-				return 'Error: El campo porducto no debe tener mas de 30 caracteres';
+			}else{
+				// campo vacio
+				return 'Error: Debe ingresar un titulo (campo vacio)';
 			}
+		}
+
+		private function validar_descripcion(){
+			if(strlen(trim($this->descripcion)) > 255){return "La descripcion no puede tener mas de 255 caracteres";}else{return false;}
 		}
 
 		private function validar_precio(){
@@ -88,11 +103,7 @@
 					return false;
 				}
 			}
-		}
-
-		private function validar_descripcion(){
-			if(trim(strlen($this->descripcion)) > 200){return "La descripcion no puede tener mas de 200 caracteres";}else{return false;}
-		}
+		}		
 		
 		private function validar_select($campo,$error){
 			if($campo != 'seleccionar'){

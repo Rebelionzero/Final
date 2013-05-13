@@ -1,10 +1,10 @@
-<form id="obras-form" method="post" enctype="multipart/form-data" action="obras.php">
+<form id="obras-form" method="post" enctype="multipart/form-data" action="../controladores/controlador-obras.php">
 	<fieldset>
 		<div class="primera-linea">
 			<label for="titulo">Titulo:</label>
 			<input id="titulo" type="text" name="titulo" />
 			<label for="desc">Descripcion:</label>
-			<textarea id="desc" rows="3" cols="1"></textarea>
+			<textarea id="desc" rows="3" cols="1" name="descripcion"></textarea>
 		</div>
 		<div class="segunda-linea">
 			<div>
@@ -52,7 +52,7 @@
 			<label for="imagen">Imagen:</label>
 			<input id="imagen" type="file" name="imagen" />
 			<div class="seudonimo-container">
-				<input type="checkbox" class="check" id="seudonimo" disabled="true"/>
+				<input type="checkbox" class="check" name="seudonimo" id="seudonimo" disabled="true"/>
 				<label for="seudonimo">Utilizar seudonimo del autor si este lo posee:</label>
 				<p class="no-seu none">El autor/a seleccionado no tiene seudonimo disponible</p>
 			</div>

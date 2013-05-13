@@ -9,6 +9,7 @@ a:hover{text-decoration:underline;}
 .middle .left,.middle .right{float:left;}
 .middle .left ul{overflow:hidden;margin: 10px;padding: 0;}
 .middle .left ul li{margin:5px 0 0 5px;padding:6px 12px;}
+form label {margin-bottom: 1px;}
 
 .nuevo{
 	margin:15px;
