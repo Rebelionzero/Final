@@ -17,6 +17,13 @@
 
 			include_once("../controladores/verificar_obras.php");
 			
+			$errores = false;
+			if(isset($_SESSION['ErroresObras'])){
+				$errores = $_SESSION['ErroresObras'];				
+				unset($_SESSION['ErroresObras']);
+				$errMensaje = new MensajeHTML($errores);
+				$errMensaje->mensajeError();
+			}
 		}
 
 ?>
@@ -31,7 +38,7 @@
 		<link type="text/css" rel="stylesheet" media="screen" href="../../CSS/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" media="screen" href="../../CSS/admin.css"/>
 	</head>
-	<body class="obras">
+	<body class="obras">		
 		<div class="head">
 			<h1><a href="admin.php"><img alt="admin header" src="../../Images/admin_header.jpg"/></a></h1>
 		</div>
@@ -44,12 +51,14 @@
 							echo('<h2>Para poder crear una nueva obra es necesaria la creacion previa de al menos un autor, una categoria y un museo</h2>');
 						echo('</div>');
 					}else{
+						if( $errores != false ){echo $errMensaje->output;}
 						echo "<div class='tabs'>
 								<a href='#' class='tab-cargar focused-tab'>Cargar Obras</a>
 								<a href='#' class='tab-lista'>Lista de Obras</a>
 							</div>";
-						echo ('<div class="right_content_place">');							
-							echo "<div class='cargar block'>";
+						echo ('<div class="right_content_place">');
+
+							echo "<div class='cargar block'>";							
 								include_once("formulario-obras.php");
 							echo "</div>";
 							echo "<div class='lista none'>";

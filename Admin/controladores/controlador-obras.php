@@ -7,6 +7,12 @@
 		unset($_SESSION['errores']);
 	}
 
+	if( isset( $_POST['seudonimo'] ) ){
+		$seudonimo = $_POST['seudonimo'];
+	}else{
+		$seudonimo = false;
+	}
+
 	$obra = array(
 		'titulo' => $_POST['titulo'],
 		'descripcion' => $_POST['descripcion'],
@@ -14,13 +20,16 @@
 		'anio' => $_POST['anio'],
 		'categoria' => $_POST['categoria'],
 		'museo' => $_POST['museo'],
-		'imagen' => $_FILES['imagen'],
-		'seudonimo' => $_POST['seudonimo']
+		'imagen' => $_FILES['imagen']
 	);
 
 	$verificacion = new ComprobarObra($obra);
 	$verificacion->verificar();
-	var_dump($verificacion->vacios);
+	
+	if( count($verificacion->errores) > 0 ){
+		$_SESSION['ErroresObras'] = $verificacion->errores;
+		header('Location: ../vistas/obras.php');
+	}
 
-		
+	
 ?>
