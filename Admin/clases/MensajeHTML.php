@@ -10,11 +10,11 @@
 		}
 
 		public function mensajeError(){			
-			$this->output = "<div class='mensaje_error'><ul>";
+			$this->output = "<div class='mensaje_error alert alert-error container'><ul>";
 			foreach ($this->input as $error => $mensaje) {
 				$this->middle .= "<li>".$mensaje."</li>";
 			}
-			$this->output.=	$this->middle . "</ul><a href='#' class='cerrar_error_msg'>Cerrar</a></div>";
+			$this->output.=	$this->middle . "</ul><a href='#' class='close cerrar_error_msg'>x</a></div>";
 		}
 
 	}

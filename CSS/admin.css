@@ -247,4 +247,6 @@ table.lista_prods td.td_editar_borrar a:first-child{float: left;}
 #edit_form #select_categoria,#edit_form #select_marca{margin-top:5px;}
 #edit_form input.btn.btn-primary{margin:0 37px;}
 
-
+.alert {position: relative;margin-left: 0;margin-right: 0;width: auto;}
+.alert .close {position: absolute;top: 1px;right: 8px;}
+.alert ul {margin: 0;}
