@@ -259,19 +259,29 @@ Faltante: Llamar a la clase Error si lo que se envió por ajax es un error (lo q
 
 
 
-
 --------------------------------------------
 DAS-003 - Vistas
 --------------------------------------------
 
-/**********************/
+/********************************/
   login.php:
-/**********************/
+/********************************/
 
 - la funcion de esta vista es mostar una pantalla de login de usuario para entrar al administrador 
 - en caso de login incorrecto o campos vacios se muestra un mensaje de error en pantalla
 
 Faltantes de la vista: dar estilos a la pantalla
+
+
+/********************************/
+  variables-formulario-obras.php:
+/********************************/
+- genera variables que reemplazan el valor por defecto de los campos del formulario obras para que en el caso de un error de ingreso los campos se mantengan seleccionados en la opcion en la que fueron enviados al apretar cargar
+
+Faltantes de la vista:
+
+* dar estilos a la vista
+* desarrollar un programa para mantener la imagen ingresada en el caso de que así se haya mandado al enviar el formulario (la imagen debe mantenerse en caso de que existan errores como de titulo y etc).
 
 
 --------------------------------------------

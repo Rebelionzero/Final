@@ -2,8 +2,9 @@
 body{background:url("../Images/background.jpg");width:100%;}
 .head h1{background:url("../Images/admin_header.jpg");width:950px;height:120px;text-indent:-9999px;}
 h2 {font-size:15px;}
-a{text-decoration:none;color:#000;}
-a:visited{color:#000;}
+a{text-decoration:none;color:#000;outline: none;}
+a:visited{color:#000;outline: none;}
+a:active,a:focus,input,input:active,input:focus,option,option:active,option:focus{outline: 0;}
 a:hover{text-decoration:underline;}
 .middle{margin: 10px 0 10px 15px;overflow:hidden;}
 .middle .left,.middle .right{float:left;}
@@ -141,17 +142,9 @@ body.formato .bs-docs-sidenav li a.formato:hover span{
 	border-bottom: 0;
 	height: 30px;
 }
-.seudonimo-container {	
-	background: #000;
-	color: #fff;
-}
 
-.seudonimo-container p {
-	color: inherit;
-}
-
-
-
+.seudonimo-container {height: 41px;}
+.seudonimo-container label {line-height: 21px;margin: 0;}
 
 
 /* Modals */
@@ -250,3 +243,6 @@ table.lista_prods td.td_editar_borrar a:first-child{float: left;}
 .alert {position: relative;margin-left: 0;margin-right: 0;width: auto;}
 .alert .close {position: absolute;top: 1px;right: 8px;}
 .alert ul {margin: 0;}
+
+.tercera-linea input.btn {display: block;float: left;}
+.tercera-linea a.btn{display: inline-block;float: left;line-height: 18px;margin-left: 25px;}

@@ -59,8 +59,45 @@ $(document).ready(function(){
 	*/
 
 	$('#autor').change(function(){
+		generarSeudonimo(this);
+	});
 
-		if( this.selectedIndex != 0 ){
+	$('p.no-seu').ready(function(){
+		generarSeudonimo(this);
+		if( $("#autor option:selected").attr('value') == 'seleccione' ){
+			
+			if( $("p.no-seu").hasClass("block") ){
+				$("p.no-seu").removeClass("block");
+				$("p.no-seu").addClass("none");
+			}
+		}
+	});
+
+	/*
+	// Limpiar Campos
+	*/
+
+	$("a.clear-fields").on("click",function(){
+		$("input#titulo").val("");
+		$("#obras-form textarea").val("");
+		$("#obras-form select").prop("selectedIndex",0);
+		$("input#imagen").val("");
+		$("input#seudonimo").attr("checked",false);
+		$("p.no-seu").removeClass("block");
+		$("p.no-seu").addClass("none");
+		if( $(".seudonimo-container").has("p.seu") ){
+			$(".seudonimo-container").children("p.seu").remove();
+		}
+	});
+
+
+	/************************************************************************************/
+	/********************************** Funciones ***************************************/
+	/************************************************************************************/
+
+	// generar Seudonimo
+	function generarSeudonimo(select){
+		if( select.selectedIndex != 0 ){
 			// ajax de consulta
 			var autor = $("#autor option:selected").val();
 
@@ -111,13 +148,8 @@ $(document).ready(function(){
 				$(".seudonimo-container").children("p.seu").remove();
 			}
 		}
+	}	
 
-	});
-
-
-	/************************************************************************************/
-	/********************************** Funciones ***************************************/
-	/************************************************************************************/
 
 	// agregar Seudonimo
 	function appendSeudonimo(obj){
@@ -129,6 +161,13 @@ $(document).ready(function(){
 			if( $("p.no-seu").hasClass("none") ){
 				$("p.no-seu").removeClass("none");
 				$("p.no-seu").addClass("block");
+			}
+			if( $("#autor option:selected").attr('value') == 'seleccione' ){
+			
+				if( $("p.no-seu").hasClass("block") ){
+					$("p.no-seu").removeClass("block");
+					$("p.no-seu").addClass("none");
+				}
 			}
 			if( $(".seudonimo-container").has("p.seu") ){
 				$(".seudonimo-container").children("p.seu").remove();
@@ -144,9 +183,9 @@ $(document).ready(function(){
 			}
 
 			if( $(".seudonimo-container").children().length > 3 ){
-				$("p.seu").html("El autor/a tiene el seudonimo " + obj);
+				$("p.seu").html("El autor/a tiene el seudonimo <strong>" + obj+ "</strong>");
 			}else{				
-				$(".seudonimo-container").append("<p class='seu'>El autor/a tiene el seudonimo " + obj + "</p>");
+				$(".seudonimo-container").append("<p class='seu'>El autor/a tiene el seudonimo <strong>" + obj + "</strong></p>");
 			}
 		}
 	}
