@@ -1,6 +1,6 @@
 <?php
 
-	class Obras {
+	class TraerObras {
 		var $autores;
 		var $categorias;		
 		var $museos;

@@ -83,11 +83,13 @@ $(document).ready(function(){
 		$("#obras-form select").prop("selectedIndex",0);
 		$("input#imagen").val("");
 		$("input#seudonimo").attr("checked",false);
+		$("input#seudonimo").attr("disabled",true);
 		$("p.no-seu").removeClass("block");
 		$("p.no-seu").addClass("none");
 		if( $(".seudonimo-container").has("p.seu") ){
 			$(".seudonimo-container").children("p.seu").remove();
 		}
+
 	});
 
 

@@ -33,6 +33,8 @@
 		$_SESSION['ErroresObras'] = $verificacion->errores;
 		$_SESSION['campos'] = $obra;
 		header('Location: ../vistas/obras.php');
+	}else{
+		
 	}
 
 	
