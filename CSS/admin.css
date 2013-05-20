@@ -1,5 +1,8 @@
 ﻿html{height:100%;}
 body{background:url("../Images/background.jpg");width:100%;}
+body *,
+body *:focus,
+body *:active{outline: 0 !important;}
 .head h1{background:url("../Images/admin_header.jpg");width:950px;height:120px;text-indent:-9999px;}
 h2 {font-size:15px;}
 a{text-decoration:none;color:#000;outline: none;}
@@ -246,3 +249,13 @@ table.lista_prods td.td_editar_borrar a:first-child{float: left;}
 
 .tercera-linea input.btn {display: block;float: left;}
 .tercera-linea a.btn{display: inline-block;float: left;line-height: 18px;margin-left: 25px;}
+
+
+input::-moz-focus-inner { 
+  border: 0; 
+}
+
+#obras-form select:active,
+#obras-form select:focus {
+	outline: 0;
+}
