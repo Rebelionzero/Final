@@ -17,8 +17,12 @@
 			$this->anio = $obra['anio'];
 			$this->categoria = $obra['categoria'];
 			$this->museo = $obra['museo'];
-			$this->titulo = $obra['titulo'];
-			$this->titulo = $obra['titulo'];
+			$this->imagen = $obra['imagen'];
+			$this->seudonimo = $obra['seudonimo'];
+		}
+
+		public function insertarObra(){
+			$query = "INSERT INTO obras VALUES(null,'".$this->titulo."');"
 		}
 	}
 
