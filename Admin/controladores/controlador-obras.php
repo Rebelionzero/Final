@@ -34,7 +34,7 @@
 		$_SESSION['campos'] = $obra;
 		header('Location: ../vistas/obras.php');
 	}else{
-		
+		$insertarObra = new Obra($obra);
 	}
 
 	
