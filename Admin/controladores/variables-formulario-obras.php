@@ -14,7 +14,7 @@
 		
 		// autor
 		foreach ($requerimientos->autores as $autores => $autor) {
-			$option_autores .= "<option value='".$value = utf8_encode(str_replace(' ','_',$autor['autor']))."'>".utf8_encode($autor['autor'])."</option>";
+			$option_autores .= "<option value='".$value = utf8_encode($autor['valor'])."'>".utf8_encode($autor['autor'])."</option>";
 		}
 
 		// año
@@ -24,12 +24,12 @@
 
 		// categoria
 		foreach ($requerimientos->categorias as $categorias => $categoria) {
-			$option_cate .= "<option value='".$value = utf8_encode(str_replace(' ','_',$categoria['categoria']))."'>".utf8_encode($categoria['categoria'])."</option>";
+			$option_cate .= "<option value='".$value = utf8_encode($categoria['valor'])."'>".utf8_encode($categoria['categoria'])."</option>";
 		}
 
 		// museo
 		foreach ($requerimientos->museos as $museos => $museo) {
-			$option_museo .= "<option value='".$value = utf8_encode(str_replace(' ','_',$museo['museo']))."'>".utf8_encode($museo['museo'])."</option>";
+			$option_museo .= "<option value='".$value = utf8_encode($museo['valor'])."'>".utf8_encode($museo['museo'])."</option>";
 		}
 
 		// checkbox
@@ -44,10 +44,10 @@
  		
  		// autor
  		foreach ($requerimientos->autores as $autores => $autor) {
- 			if(utf8_encode(str_replace(' ','_',$autor['autor'])) == $camposSeteados['autor']){
-				$option_autores .= "<option selected='selected' value='".$value = utf8_encode(str_replace(' ','_',$autor['autor']))."'>".utf8_encode($autor['autor'])."</option>";
+ 			if(utf8_encode($autor['valor']) == $camposSeteados['autor']){
+				$option_autores .= "<option selected='selected' value='".$value = utf8_encode($autor['valor'])."'>".utf8_encode($autor['autor'])."</option>";
 			}else{
-				$option_autores .= "<option value='".$value = utf8_encode(str_replace(' ','_',$autor['autor']))."'>".utf8_encode($autor['autor'])."</option>";
+				$option_autores .= "<option value='".$value = utf8_encode($autor['valor'])."'>".utf8_encode($autor['autor'])."</option>";
 			}
 		}
 
@@ -62,19 +62,19 @@
 
 		// categoria
 		foreach ($requerimientos->categorias as $categorias => $categoria) {
-			if(utf8_encode(str_replace(' ','_',$categoria['categoria'])) == $camposSeteados['categoria']){
-				$option_cate .= "<option selected='selected' value='".$value = utf8_encode(str_replace(' ','_',$categoria['categoria']))."'>".utf8_encode($categoria['categoria'])."</option>";
+			if(utf8_encode($categoria['valor']) == $camposSeteados['categoria']){
+				$option_cate .= "<option selected='selected' value='".$value = utf8_encode($categoria['valor'])."'>".utf8_encode($categoria['categoria'])."</option>";
 			}else{
-				$option_cate .= "<option value='".$value = utf8_encode(str_replace(' ','_',$categoria['categoria']))."'>".utf8_encode($categoria['categoria'])."</option>";
+				$option_cate .= "<option value='".$value = utf8_encode($categoria['valor'])."'>".utf8_encode($categoria['categoria'])."</option>";
 			}
 		}
 
 		// museo
 		foreach ($requerimientos->museos as $museos => $museo) {
-			if( utf8_encode( str_replace(' ','_',$museo['museo']) ) == $camposSeteados['museo']){
-				$option_museo .= "<option selected='selected' value='".$value = utf8_encode(str_replace(' ','_',$museo['museo']))."'>".utf8_encode($museo['museo'])."</option>";
+			if( utf8_encode( $museo['valor'] ) == $camposSeteados['museo']){
+				$option_museo .= "<option selected='selected' value='".$value = utf8_encode($museo['valor'])."'>".utf8_encode($museo['museo'])."</option>";
 			}else{
-				$option_museo .= "<option value='".$value = utf8_encode(str_replace(' ','_',$museo['museo']))."'>".utf8_encode($museo['museo'])."</option>";
+				$option_museo .= "<option value='".$value = utf8_encode($museo['valor'])."'>".utf8_encode($museo['museo'])."</option>";
 			}
 		}
 

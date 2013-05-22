@@ -2,6 +2,7 @@
 	session_start();
 
 	include_once("../autoloader.php");
+	include_once("../clases/MensajeHTML.php");
 
 	$conexion = new Conexion();
 	$conexion->conectar_bd();
@@ -44,6 +45,7 @@
 						echo('</div>');
 					}else{
 						if( $errores != false ){echo $errMensaje->output;}
+						if( $exito != false ){echo $exito->output;}
 						echo "<div class='tabs'>
 								<a href='#' class='tab-cargar focused-tab'>Cargar Obras</a>
 								<a href='#' class='tab-lista'>Lista de Obras</a>

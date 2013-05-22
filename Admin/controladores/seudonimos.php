@@ -4,10 +4,9 @@
 	$autor = $_POST['seudonimo'];
 	
 	if($autor != "" && $autor != " "){
-		$autor = trim($autor);
-		$autor = str_replace("_"," ",$autor);
+		$autor = trim($autor);		
 
-		$query = "SELECT seudonimo FROM autores WHERE nombre = '".$autor."';";
+		$query = "SELECT seudonimo FROM autores WHERE value = '".$autor."';";
 		$consulta = new Queries($query);
 		$consulta->select();
 		if($consulta->resultado[0]['seudonimo'] == "-No tiene-" || $consulta->resultado[0]['seudonimo'] == false){

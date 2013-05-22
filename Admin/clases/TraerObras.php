@@ -7,9 +7,9 @@
 		var $respuesta;
 
 		public function traer_requerimientos(){
-			$query_autores = 'SELECT autores.nombre as autor FROM autores';
-			$query_cat = 'SELECT categorias.nombre as categoria FROM categorias';
-			$query_museos = 'SELECT museos.nombre as museo FROM museos';
+			$query_autores = 'SELECT autores.nombre as autor, autores.value as valor FROM autores';
+			$query_cat = 'SELECT categorias.nombre as categoria, categorias.value as valor FROM categorias';
+			$query_museos = 'SELECT museos.nombre as museo, museos.value as valor FROM museos';
 
 			$select_autores = new Queries($query_autores);
 			$select_cat = new Queries($query_cat);

@@ -1,7 +1,8 @@
 <?php
 
-	session_start();	
+	
 	include_once('../autoloader.php');
+	session_start();
 
 	if(isset($_SESSION['errores'])){
 		unset($_SESSION['errores']);
@@ -14,12 +15,12 @@
 	}
 
 	$campos = array(
-		'titulo' => $_POST['titulo'],
-		'descripcion' => $_POST['descripcion'],
-		'autor' => $_POST['autor'],
-		'anio' => $_POST['anio'],
-		'categoria' => $_POST['categoria'],
-		'museo' => $_POST['museo'],
+		'titulo' => utf8_decode($_POST['titulo']),
+		'descripcion' => utf8_decode($_POST['descripcion']),
+		'autor' => utf8_decode($_POST['autor']),
+		'anio' => utf8_decode($_POST['anio']),
+		'categoria' => utf8_decode($_POST['categoria']),
+		'museo' => utf8_decode($_POST['museo']),
 		'imagen' => $_FILES['imagen']
 	);
 
@@ -36,6 +37,15 @@
 	}else{
 		$insertarObra = new Obra($obra);
 		$insertarObra->insertarObra();
+		if($insertarObra->nuevaObra->resultado !== false){
+			// salio todo bien, redireccionar a obras.php
+			$exitoMensaje = new MensajeHTML("La obra ha sido agregada correctamente");
+			$exitoMensaje->mensajeExito();
+			$_SESSION['carga_exitosa'] = $exitoMensaje;
+			header('Location: ../vistas/obras.php');
+		}else{
+			// ocurrio un error de mysql, llamar a clase Error
+		}
 	}
 
 	

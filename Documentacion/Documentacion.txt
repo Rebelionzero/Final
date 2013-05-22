@@ -255,8 +255,15 @@ DAS-002 - Controladores
 --------------
 Funcion: Funciona con la informacion pedida por ajax en obras.php, pide el seudonimo del autor enviado. De no existir seudonimo bloque el checkbox
 
-Faltante: Llamar a la clase Error si lo que se envió por ajax es un error (lo que se envio por ajax esta vacio);
+Faltante:
+- Llamar a la clase Error si lo que se envió por ajax es un error (lo que se envio por ajax esta vacio);
 
+
+2) Verificar obras:
+-------------------
+Funcion:
+
+Faltante: Completar la funcion de este controlador, verificar si el if isset deberia tener un else. Revisar el formulario para ver donde se envia la info ingresada para comenzar el proceso
 
 
 --------------------------------------------
@@ -311,7 +318,7 @@ Faltante: Configurar el boton Limpiar campos en obras.php y si está presente en
 4)
 Referencias: -
 
-Faltante: Los formularios si devuelve error deberia seguir lleno y no borrarse
+Faltante: Si devuelve error el formulario obras, revisar si es posible que la imagen siga cargada.
 
 --------------------------------------------
 DAS-005 - Pruebas Unitarias y Code Coverage 
@@ -380,14 +387,17 @@ DAS-007 - Faltantes
 - agregar una validacion en cada carga de imagenes, para verificar que el nombre de la iamgen no sea muy largo, tomando en consideracion que se le agrega el valor de microtime para guardarlo como src en la base de datos y se toma el valor del nombre entero tambien para guardarlo como imagen.
 - agregar en BD de categorias, obras, museos y autores, un campo llamado value, que contiene el mismo valor del nombre del campo, pero en vez de separarlo con un espacio, se separa con un _ para evitar consultas a la base de datos y usar una funcion que separe y una los textos recibidos usando espacios en blanco y guiones bajos.
 - cuando el nombre de una seccion contiene $$$$$$$$$$$$ es que debe ser verificado y arreglado
+- las consultas a la base de datos arrojan resultados falsos cuando hay letras ñ (y letras con acento probablemente) de por medio, la solucion es similar a la aplicada al usar utf8_encode para caracteres con signo de pregunta que no eran reconocidos por culpa de la insercion a la base de datos, la solucion aqui apenas usar post para traer datos es usar utf8_decode en cada caso, no estoy seguro que sirva para los nombres de las imagenes, pero en cada campo se debe aplicar en todo el sitio, revisar ademas si en los mails se utilizan caracteres acentuados y eñes. Revisar controlador-obras.php para ver ejemplo en accion.
+- falta el script que mueve la imagen de la obra a la carpeta correspondiente si se insertó correctamente la obra
+- error de autoload al ingresar una nueva obra
 
 /**********************/
   Javascript:
 /**********************/
 
-
 - Reutilizar codigo: Ej: for para crear los divs
 - Rehacer el javascript para no utilizar tanto codigo
+- en el admin, agregar una funcion que cuente la cantidad de caracteres ingresados y que los muestre en pantalla, al llegar a 0 la cantidad no se debe permitir mas caracteres que sean ingresados
 
 /**********************/
   Ajax:

@@ -26,16 +26,27 @@
 			$this->imagen['saveName'] = $img[0].microtime(true).'.'.$img[1];
 			$this->imagen['name'] = $img[0];
 			
-			// Revisar documentacion antes de seguir con esta parte!!!!!!!!
-			/*
-			$categoriaId = "SELECT FROM categorias"
-			$categoriaQuery = new Query();
-
+			if($this->seudonimo === false){
+				$this->seudonimo = 0;
+			}else{
+				$this->seudonimo = 1;
+			}
 			
-			$query = "INSERT INTO obras VALUES(null,'".$this->titulo."','".$this->imagen['name']."','".$this->imagen['saveName']."','".$this->descripcion."','".$this->anio."','".$this->categoria."','".$this->autor."','".$this->museo."','".$this->seudonimo."');";
-			var_dump($query);*/
+			$categoriaId = "SELECT id FROM categorias WHERE value ='".$this->categoria."'";
+			$autorId = "SELECT id FROM autores WHERE value ='".$this->autor."'";
+			$museoId = "SELECT id FROM museos WHERE value ='".$this->museo."'";
+			
+			$categoriaQuery = new Queries($categoriaId);
+			$autorQuery = new Queries($autorId);
+			$museoQuery = new Queries($museoId);
 
+			$categoriaQuery->select();
+			$autorQuery->select();
+			$museoQuery->select();
 
+			$query = "INSERT INTO obras VALUES(null,'".$this->titulo."','".str_replace(" ","_",$this->titulo)."','".$this->imagen['name']."','".$this->imagen['saveName']."','".$this->descripcion."',".$this->anio.",".$categoriaQuery->resultado[0]['id'].",".$autorQuery->resultado[0]['id'].",".$museoQuery->resultado[0]['id'].",".$this->seudonimo.");";
+			$nuevaObra = new Queries($query);
+			$nuevaObra->insert();
 		}
 	}
 

@@ -16,5 +16,10 @@
 		$errMensaje->mensajeError();
 	}
 
+	$exito = false;
+	if(isset($_SESSION['carga_exitosa'])){
+		$exito = $_SESSION['carga_exitosa'];
+		unset($_SESSION['carga_exitosa']);
+	}
 
 ?>
