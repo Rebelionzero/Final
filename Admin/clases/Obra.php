@@ -22,7 +22,20 @@
 		}
 
 		public function insertarObra(){
-			$query = "INSERT INTO obras VALUES(null,'".$this->titulo."');"
+			$img = explode(".",$this->imagen['name']);
+			$this->imagen['saveName'] = $img[0].microtime(true).'.'.$img[1];
+			$this->imagen['name'] = $img[0];
+			
+			// Revisar documentacion antes de seguir con esta parte!!!!!!!!
+			/*
+			$categoriaId = "SELECT FROM categorias"
+			$categoriaQuery = new Query();
+
+			
+			$query = "INSERT INTO obras VALUES(null,'".$this->titulo."','".$this->imagen['name']."','".$this->imagen['saveName']."','".$this->descripcion."','".$this->anio."','".$this->categoria."','".$this->autor."','".$this->museo."','".$this->seudonimo."');";
+			var_dump($query);*/
+
+
 		}
 	}
 

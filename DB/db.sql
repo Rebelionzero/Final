@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `obras` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT unique primary key,
   `nombre` varchar(30) NOT NULL,
   `imagen` varchar(50) NOT NULL,
+  `src` varchar(70) NOT NULL,
   `descripcion` varchar(255),
   `año` date,
   `categoria` tinyint(3) unsigned NOT NULL,

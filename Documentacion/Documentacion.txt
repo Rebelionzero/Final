@@ -20,9 +20,9 @@ DAS-001 - Clases
 --------------------------------------------
 
 
-/**********************/
- BorrarBD:
-/**********************/
+/**********************/$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+ BorrarBD:(es de carrito de compras, adaptarla) 
+/**********************/$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 Controladores: borrar_db.php
 
@@ -48,9 +48,9 @@ Faltantes de esta clase:
 - comprobacion de que se selecciono el src correctamente y de que el producto existe.
 -code review
 
-/**********************/
- ComprobarProducto:
-/**********************/
+/**********************/$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+ ComprobarProducto: (Ahora se llama comprobar Obra, adaptar)
+/**********************/$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 Controladores: procesar.php
 
@@ -377,6 +377,9 @@ DAS-007 - Faltantes
 - agregar la opcion de cambiar la contraseña en el admin del usuario administrador
 - agregar la opcion de forgot password en el login
 - Al cargar un autor, el seudonimo no puede estar repetido, la clausula unique ya esta cambiada en la base de datos, pero no actualizada
+- agregar una validacion en cada carga de imagenes, para verificar que el nombre de la iamgen no sea muy largo, tomando en consideracion que se le agrega el valor de microtime para guardarlo como src en la base de datos y se toma el valor del nombre entero tambien para guardarlo como imagen.
+- agregar en BD de categorias, obras, museos y autores, un campo llamado value, que contiene el mismo valor del nombre del campo, pero en vez de separarlo con un espacio, se separa con un _ para evitar consultas a la base de datos y usar una funcion que separe y una los textos recibidos usando espacios en blanco y guiones bajos.
+- cuando el nombre de una seccion contiene $$$$$$$$$$$$ es que debe ser verificado y arreglado
 
 /**********************/
   Javascript:
