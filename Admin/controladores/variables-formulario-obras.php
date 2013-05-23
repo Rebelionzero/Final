@@ -35,6 +35,10 @@
 		// checkbox
 		$checkbox = '<input type="checkbox" class="check" name="seudonimo" id="seudonimo" disabled="true"/>';
 
+		// radios
+		$radio_autor = '<input type="radio" class="radio-mail-autor" name="mail" id="mail-autor" value="autor" disabled="true" checked="true"/>';
+		$radio_museo = '<input type="radio" class="radio-mail-museo" name="mail" id="mail-museo" value="museo" disabled="true" />';
+
  	}else{
  		// titulo
 		$value_titulo = "<input id='titulo' type='text' name='titulo' value='".$camposSeteados['titulo']."'";
@@ -78,12 +82,25 @@
 			}
 		}
 
-		// checkbox
+		// checkbox y radios
 		if($camposSeteados['seudonimo'] != false){
 			$checkbox = '<input type="checkbox" checked="true" class="check" name="seudonimo" id="seudonimo" disabled="true"/>';
+			$radio_museo = '<input type="radio" checked="true" class="radio-mail-museo" name="mail" id="mail-museo" disabled="true"/>';
+			$radio_autor = '<input type="radio" class="radio-mail-autor" name="mail" id="mail-autor" disabled="true"/>';
 		}else{
 			$checkbox = '<input type="checkbox" class="check" name="seudonimo" id="seudonimo" disabled="true"/>';
+			if($camposSeteados['radioAutor'] == false){
+				$radio_autor = '<input type="radio" class="radio-mail-autor" name="mail" id="mail-autor" value="autor"/>';
+				$radio_museo = '<input type="radio" class="radio-mail-museo" name="mail" id="mail-museo" value="museo" checked="true"/>';
+			}else{				
+				$radio_autor = '<input type="radio" class="radio-mail-autor" name="mail" id="mail-autor" value="autor" checked="true"/>';
+				$radio_museo = '<input type="radio" class="radio-mail-museo" name="mail" id="mail-museo" value="museo"/>';
+			}
 		}
+
+		
+		
+		
 
  	}
 

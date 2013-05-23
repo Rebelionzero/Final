@@ -60,6 +60,13 @@ $(document).ready(function(){
 
 	$('#autor').change(function(){
 		generarSeudonimo(this);
+		if( $("#autor option:selected").attr('value') != 'seleccione' ){
+			
+			$(".mail-container input[type=radio]").attr("disabled", false);
+		}else{
+			$(".mail-container input[type=radio]").attr("disabled", true);
+		}
+
 	});
 
 	$('p.no-seu').ready(function(){

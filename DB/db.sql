@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `obras` (
   `autor` tinyint(3) unsigned NOT NULL,  
   `museo` tinyint(3) unsigned NOT NULL,
   `seudonimo` bool,
+  `mail` bool,
 
   FOREIGN KEY (`categoria`)
   REFERENCES `categorias` (`id`)

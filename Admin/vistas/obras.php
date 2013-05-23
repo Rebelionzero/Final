@@ -1,12 +1,12 @@
 <?php
-	session_start();
-
+	
 	include_once("../autoloader.php");
-	include_once("../clases/MensajeHTML.php");
 
 	$conexion = new Conexion();
 	$conexion->conectar_bd();
 	
+	session_start();
+
 	if(!$conexion->conexion){
 		header("Location: no_server.php");
 	}else{

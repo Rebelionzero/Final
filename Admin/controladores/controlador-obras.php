@@ -14,6 +14,8 @@
 		$seudonimo = false;
 	}
 
+	$mail = $_POST['mail'];	
+
 	$campos = array(
 		'titulo' => utf8_decode($_POST['titulo']),
 		'descripcion' => utf8_decode($_POST['descripcion']),
