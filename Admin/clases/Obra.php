@@ -34,7 +34,12 @@
 				$this->seudonimo = 1;
 			}
 
-			// continuar por aca, si el mail es museo tiene que ser 0 y si es autor tiene que se 1
+			// continuar por aca, si el mail es museo tiene que ser 1 y si es autor tiene que se 0
+			if($this->mail == 'autor'){
+				$this->mail = 0;
+			}else{
+				$this->mail = 1;
+			}
 			
 			$categoriaId = "SELECT id FROM categorias WHERE value ='".$this->categoria."'";
 			$autorId = "SELECT id FROM autores WHERE value ='".$this->autor."'";
@@ -48,9 +53,10 @@
 			$autorQuery->select();
 			$museoQuery->select();
 
-			$query = "INSERT INTO obras VALUES(null,'".$this->titulo."','".str_replace(" ","_",$this->titulo)."','".$this->imagen['name']."','".$this->imagen['saveName']."','".$this->descripcion."',".$this->anio.",".$categoriaQuery->resultado[0]['id'].",".$autorQuery->resultado[0]['id'].",".$museoQuery->resultado[0]['id'].",".$this->seudonimo.");";
-			$nuevaObra = new Queries($query);
-			$nuevaObra->insert();
+			$query = "INSERT INTO obras VALUES(null,'".$this->titulo."','".str_replace(" ","_",$this->titulo)."','".$this->imagen['name']."','".$this->imagen['saveName']."','".$this->descripcion."',".$this->anio.",".$categoriaQuery->resultado[0]['id'].",".$autorQuery->resultado[0]['id'].",".$museoQuery->resultado[0]['id'].",".$this->seudonimo.",".$this->mail.");";
+			/*$nuevaObra = new Queries($query);
+			$nuevaObra->insert();*/
+			var_dump($query);
 		}
 	}
 
