@@ -36,7 +36,7 @@
 		$checkbox = '<input type="checkbox" class="check" name="seudonimo" id="seudonimo" disabled="true"/>';
 
 		// radios
-		$radio_autor = '<input type="radio" class="radio-mail-autor" name="mail" id="mail-autor" value="autor" disabled="true" checked="true"/>';
+		$radio_autor = '<input type="radio" class="radio-mail-autor" name="mail" id="mail-autor" value="autor" disabled="true" />';
 		$radio_museo = '<input type="radio" class="radio-mail-museo" name="mail" id="mail-museo" value="museo" disabled="true" />';
 
  	}else{
@@ -89,11 +89,14 @@
 			$radio_autor = '<input type="radio" class="radio-mail-autor" name="mail" id="mail-autor" disabled="true"/>';
 		}else{
 			$checkbox = '<input type="checkbox" class="check" name="seudonimo" id="seudonimo" disabled="true"/>';
-			if($camposSeteados['radioAutor'] == false){
+			if($camposSeteados['mail'] == "museo"){
 				$radio_autor = '<input type="radio" class="radio-mail-autor" name="mail" id="mail-autor" value="autor"/>';
 				$radio_museo = '<input type="radio" class="radio-mail-museo" name="mail" id="mail-museo" value="museo" checked="true"/>';
-			}else{				
+			}elseif($camposSeteados['mail'] == "autor"){
 				$radio_autor = '<input type="radio" class="radio-mail-autor" name="mail" id="mail-autor" value="autor" checked="true"/>';
+				$radio_museo = '<input type="radio" class="radio-mail-museo" name="mail" id="mail-museo" value="museo"/>';
+			}else{
+				$radio_autor = '<input type="radio" class="radio-mail-autor" name="mail" id="mail-autor" value="autor"/>';
 				$radio_museo = '<input type="radio" class="radio-mail-museo" name="mail" id="mail-museo" value="museo"/>';
 			}
 		}

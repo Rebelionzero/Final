@@ -7,7 +7,8 @@
 		var $anio;
 		var $categoria;
 		var $museo;
-		var $imagen;		
+		var $imagen;
+		var $mail;
 		var $validaciones = array();
 		var $errores = array();
 
@@ -18,7 +19,8 @@
 			$this->anio = $array['anio'];
 			$this->categoria = $array['categoria'];
 			$this->museo = $array['museo'];
-			$this->imagen = $array['imagen'];			
+			$this->imagen = $array['imagen'];
+			$this->mail = $array['mail'];
 		}
 
 		public function verificar(){
@@ -29,7 +31,8 @@
 				'año' => $this->validar_select($this->anio,'Debe seleccionar un año'),
 				'categoria' => $this->validar_select($this->categoria,'Debe seleccionar una categoria'),
 				'museo' => $this->validar_select($this->museo,'Debe seleccionar un museo'),
-				'imagen' => $this->validar_img()
+				'mail' => $this->validar_mail(),
+				'imagen' => $this->validar_img()				
 			);
 			$this->setear_errores($this->validaciones);
 		}
@@ -76,7 +79,7 @@
 		}
 
 		private function validar_descripcion(){
-			if( strlen( trim($this->descripcion) ) > 255 ){return "La descripcion no puede tener mas de 255 caracteres";}else{return false;}
+			if( strlen( trim($this->descripcion) ) > 255 ){return "Error: La descripcion no puede tener mas de 255 caracteres";}else{return false;}
 		}
 		
 		private function validar_select($campo,$error){
@@ -96,6 +99,14 @@
 	  			return "Error en la carga de imagenes: La imagen debe pesar menos de 2 Mb";
 	  		}else{
 	  			return false;
+			}
+		}
+
+		private function validar_mail(){
+			if( $this->mail === false){
+				return "Error: Debe seleccionar que mail se usará en la obra";
+			}else{
+				return false;
 			}
 		}
 

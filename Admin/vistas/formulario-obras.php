@@ -40,26 +40,28 @@
 		</div>		
 	</fieldset>	
 	<fieldset class="opciones">
-			<h2>Opciones:</h2>
-			<p><span class="label label-warning">Advertencia:</span> Si el autor utiliza su seudonimo, el mail que figurará en el site será el del museo</p>
+			<h2>Opciones de autor:</h2>			
 			<div class="mail-container">
 				<div>
 					<?php echo $radio_autor; ?>					
-					<label for="mail-autor">Utilizar mail del autor:</label>
+					<label for="mail-autor">Utilizar mail del autor</label>
 				</div>
 				<div>
 					<?php echo $radio_museo; ?>					
-					<label for="mail-museo">Utilizar mail del museo:</label>
+					<label for="mail-museo">Utilizar mail del museo</label>
 				</div>
 			</div>
 			<div class="seudonimo-container">
-				<?php echo $checkbox; ?>
-				<label for="seudonimo">Utilizar seudonimo del autor si este lo posee:</label>
-				<p class="no-seu none"><span class="label label-info">Info:</span> El autor/a seleccionado no tiene seudonimo disponible</p>
-			</div>
+				<div>
+					<?php echo $checkbox; ?>
+					<label for="seudonimo">Utilizar seudonimo del autor si este lo posee:</label>
+					<p class="no-seu none">El autor/a seleccionado/a no tiene seudonimo disponible</p>
+				</div>
+				<p class="warn none"><span class="label label-warning">Advertencia:</span> Si el autor utiliza su seudonimo, el mail que figurará en el site será el del museo</p>
+			</div>			
 	</fieldset>
-	<fieldset>
+	<fieldset class="botones">
 		<input type="submit" value="Cargar" class="btn btn-primary" />
 		<a class="btn clear-fields" href="#">Limpiar Campos</a>
-	</fieldset>
+	</fieldset>	
 </form>

@@ -60,11 +60,11 @@ $(document).ready(function(){
 
 	$('#autor').change(function(){
 		generarSeudonimo(this);
-		if( $("#autor option:selected").attr('value') != 'seleccione' ){
-			
+		if( $("#autor option:selected").attr('value') != 'seleccione' ){			
 			$(".mail-container input[type=radio]").attr("disabled", false);
 		}else{
-			$(".mail-container input[type=radio]").attr("disabled", true);
+			$(".mail-container input[type=radio]").attr("disabled", true).prop("checked",false);
+			$("input#seudonimo").attr("checked",false);
 		}
 
 	});
@@ -73,9 +73,29 @@ $(document).ready(function(){
 		generarSeudonimo(this);
 		if( $("#autor option:selected").attr('value') == 'seleccione' ){
 			
-			if( $("p.no-seu").hasClass("block") ){
-				$("p.no-seu").removeClass("block");
+			if( $("p.no-seu").hasClass("in-bl") ){
+				$("p.no-seu").removeClass("in-bl");
 				$("p.no-seu").addClass("none");
+			}
+		}
+	});
+
+	/*
+	//Mail
+	*/
+
+	$('input#seudonimo').change(function(){		
+		if( $(this).is(":checked") ){			
+			$(".mail-container input[type=radio]").attr("disabled", true).prop("checked",false);
+			if( $("p.warn").hasClass("none") ){
+				$("p.warn").removeClass("none");
+				$("p.warn").addClass("block");
+			}
+		}else{
+			$(".mail-container input[type=radio]").attr("disabled", false);
+			if( $("p.warn").hasClass("block") ){
+				$("p.warn").removeClass("block");
+				$("p.warn").addClass("none");
 			}
 		}
 	});
@@ -91,10 +111,10 @@ $(document).ready(function(){
 		$("input#imagen").val("");
 		$("input#seudonimo").attr("checked",false);
 		$("input#seudonimo").attr("disabled",true);
-		$("p.no-seu").removeClass("block");
+		$("p.no-seu").removeClass("in-bl");
 		$("p.no-seu").addClass("none");
-		if( $(".seudonimo-container").has("p.seu") ){
-			$(".seudonimo-container").children("p.seu").remove();
+		if( $(".seudonimo-container div").has("p.seu") ){
+			$(".seudonimo-container div").children("p.seu").remove();
 		}
 
 	});
@@ -149,12 +169,18 @@ $(document).ready(function(){
 		}else{
 			// desactivando el checkbox si esta activo
 			handleCheckbox(false,true);
-			if( $("p.no-seu").hasClass("block") ){
-				$("p.no-seu").removeClass("block");
+			if( $("p.no-seu").hasClass("in-bl") ){
+				$("p.no-seu").removeClass("in-bl");
 				$("p.no-seu").addClass("none");
 			}
-			if( $(".seudonimo-container").has("p.seu") ){
-				$(".seudonimo-container").children("p.seu").remove();
+			if( $(".seudonimo-container div").has("p.seu") ){
+				$(".seudonimo-container div").children("p.seu").remove();
+			}
+
+			// removiendo la advertencia si se cambia a un autor sin seudonimo
+			if( $("p.warn").hasClass("block") ){
+				$("p.warn").removeClass("block");
+				$("p.warn").addClass("none");
 			}
 		}
 	}	
@@ -169,33 +195,50 @@ $(document).ready(function(){
 			// removiendo el tag del seudonimo
 			if( $("p.no-seu").hasClass("none") ){
 				$("p.no-seu").removeClass("none");
-				$("p.no-seu").addClass("block");
+				$("p.no-seu").addClass("in-bl");
 			}
-			if( $("#autor option:selected").attr('value') == 'seleccione' ){
-			
-				if( $("p.no-seu").hasClass("block") ){
-					$("p.no-seu").removeClass("block");
+
+			// si la opcion seleccionada es la de seleccione un autor
+			if( $("#autor option:selected").attr('value') == 'seleccione' ){			
+				if( $("p.no-seu").hasClass("in-bl") ){
+					$("p.no-seu").removeClass("in-bl");
 					$("p.no-seu").addClass("none");
 				}
 			}
-			if( $(".seudonimo-container").has("p.seu") ){
-				$(".seudonimo-container").children("p.seu").remove();
+
+			if( $(".seudonimo-container div").has("p.seu") ){
+				$(".seudonimo-container div").children("p.seu").remove();
 			}
+			
+			// removiendo la advertencia si se cambia a un autor sin seudonimo
+			if( $("p.warn").hasClass("block") ){
+				$("p.warn").removeClass("block");
+				$("p.warn").addClass("none");
+			}
+
 		}else{
 			// activando el checkbox
 			handleCheckbox(true,false);
 
 			// agregando el tag con el seudonimo
-			if( $("p.no-seu").hasClass("block") ){
-				$("p.no-seu").removeClass("block");
+			if( $("p.no-seu").hasClass("in-bl") ){
+				$("p.no-seu").removeClass("in-bl");
 				$("p.no-seu").addClass("none");
 			}
 
-			if( $(".seudonimo-container").children().length > 3 ){
-				$("p.seu").html("El autor/a tiene el seudonimo <strong>" + obj+ "</strong>");
+			if( $(".seudonimo-container div").children().length > 3 ){
+				$("p.seu").html("El autor/a seleccionado/a tiene el seudonimo <span class='label label-info'><strong>" + obj+ "</strong></span>");
 			}else{				
-				$(".seudonimo-container").append("<p class='seu'>El autor/a tiene el seudonimo <strong>" + obj + "</strong></p>");
+				$(".seudonimo-container div").append("<p class='seu'> El autor/a seleccionado/a tiene el seudonimo <span class='label label-info'><strong>" + obj + "</strong></span></p>");
 			}
+
+			if( $("input#seudonimo").is(':checked') ){
+				if( $("p.warn").hasClass("none") ){
+					$("p.warn").removeClass("none");
+					$("p.warn").addClass("block");
+				}
+			}
+
 		}
 	}
 

@@ -44,6 +44,7 @@ form label {margin-bottom: 1px;}
 
 .none{display:none;}
 .block{display:block;}
+.in-bl{display: inline-block;}
 table.productos{margin:15px;}
 table.productos tr{border:1px solid;}
 table.productos tr th{background: none repeat scroll 0 0 #38431E;color: #FCFCFC;font-size: 15px;font-weight: bold;padding: 10px;text-transform: capitalize;width:120px;}
@@ -106,7 +107,7 @@ body.formato .bs-docs-sidenav li a.formato:hover span{
 
 /* obras */
 
-#obras-form {margin: 20px 10px;}
+#obras-form {margin: 10px;}
 .tabs {height: 30px;}
 .tabs a {
 	background: #bcbcbc;
@@ -141,12 +142,15 @@ body.formato .bs-docs-sidenav li a.formato:hover span{
 
 fieldset.opciones *{margin: 0;font-size: 12px;}
 .mail-container,.seudonimo-container{height: 41px;}
-fieldset.opciones .mail-container{margin-top: 25px;}
+fieldset.opciones .mail-container{margin-top: 5px;}
 .seudonimo-container label {line-height: 21px;}
-fieldset.opciones{background: #d1ffb2;border: 1px solid #317A00;-webkit-border-radius: 5px;border-radius: 5px;-webkit-box-shadow: inset 0px 0px 4px 0px #081400;box-shadow: inset 0px 0px 4px 0px #081400;padding: 10px 20px;}
-fieldset.opciones > p {font-size: 11px;}
+fieldset.opciones{background: #EBF8FF;border: 1px solid #000E14;-webkit-border-radius: 5px;border-radius: 5px;-webkit-box-shadow: inset 0px 0px 4px 0px #000E14;box-shadow: inset 0px 0px 4px 0px #000E14;padding: 10px 20px;}
+fieldset.opciones > p {font-size: 11px;margin-top: 15px;}
 #obras-form fieldset.opciones h2{border-bottom: medium none;font-size: 12px;}
+p.seu {display: inline-block;}
 p.seu, p.seu strong,p.no-seu {font-size: 11px;}
+fieldset.botones {margin-top: 10px;}
+p.seu, p.no-seu {margin-left: 5px;}
 
 /* Modals */
 .background_modal{background: rgb(00, 00, 00);background: rgba(00, 00, 00, 0.5);width:100%;height:100%;display:block;position:absolute;z-index:0;margin:auto;top:0;left:0;}

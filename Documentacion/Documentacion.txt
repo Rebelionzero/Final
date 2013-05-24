@@ -389,7 +389,7 @@ DAS-007 - Faltantes
 - cuando el nombre de una seccion contiene $$$$$$$$$$$$ es que debe ser verificado y arreglado
 - las consultas a la base de datos arrojan resultados falsos cuando hay letras ñ (y letras con acento probablemente) de por medio, la solucion es similar a la aplicada al usar utf8_encode para caracteres con signo de pregunta que no eran reconocidos por culpa de la insercion a la base de datos, la solucion aqui apenas usar post para traer datos es usar utf8_decode en cada caso, no estoy seguro que sirva para los nombres de las imagenes, pero en cada campo se debe aplicar en todo el sitio, revisar ademas si en los mails se utilizan caracteres acentuados y eñes. Revisar controlador-obras.php para ver ejemplo en accion.
 - falta el script que mueve la imagen de la obra a la carpeta correspondiente si se insertó correctamente la obra
-- error de autoload al ingresar una nueva obra
+- aplicar en la clase obra el valor 0 y 1 segun el tipo de mail (autor o museo) que sea correspondiente al ingresado.
 
 /**********************/
   Javascript:

@@ -4,17 +4,25 @@
 	include_once('../autoloader.php');
 	session_start();
 
+	// si esta seteado la sseion errores la des setea
 	if(isset($_SESSION['errores'])){
 		unset($_SESSION['errores']);
 	}
 
-	if( isset( $_POST['seudonimo'] ) ){
-		$seudonimo = $_POST['seudonimo'];
+	// levanta el valor de los radios, si no hay ninguno seleccionado le asigna un valor false
+	if(isset($_POST['mail'])){
+		$mail = $_POST['mail'];
 	}else{
-		$seudonimo = false;
+		$mail = false;
 	}
 
-	$mail = $_POST['mail'];	
+	// levanta el valor de seudonimos y si esta checkeado a mail le asigna el valor museo
+	if( isset( $_POST['seudonimo'] ) ){
+		$seudonimo = $_POST['seudonimo'];
+		$mail = "museo";
+	}else{
+		$seudonimo = false;		
+	}
 
 	$campos = array(
 		'titulo' => utf8_decode($_POST['titulo']),
@@ -23,12 +31,13 @@
 		'anio' => utf8_decode($_POST['anio']),
 		'categoria' => utf8_decode($_POST['categoria']),
 		'museo' => utf8_decode($_POST['museo']),
-		'imagen' => $_FILES['imagen']
+		'imagen' => $_FILES['imagen'],
+		'mail' => $mail
 	);
 
 	$obra = $campos;
 	$obra['seudonimo'] = $seudonimo;
-
+	
 	$verificacion = new ComprobarObra($campos);
 	$verificacion->verificar();
 	
@@ -50,5 +59,4 @@
 		}
 	}
 
-	
 ?>
