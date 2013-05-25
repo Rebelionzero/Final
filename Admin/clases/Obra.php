@@ -70,7 +70,7 @@
 				$this->resultado = $nuevaObra->resultado;
 			}else{
 				// la imagen no se insertó correctamente, llamar a la clase Error
-				echo "la imagen no se insertó correctamente";
+				echo("La imagen no se insertó correctamente.");
 			}
 
 
