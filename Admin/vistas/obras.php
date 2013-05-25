@@ -51,7 +51,6 @@
 								<a href='#' class='tab-lista'>Lista de Obras</a>
 							</div>";
 						echo ('<div class="right_content_place">');
-
 							echo "<div class='cargar block'>";							
 								include_once("formulario-obras.php");
 							echo "</div>";

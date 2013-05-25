@@ -10,6 +10,7 @@
 		var $imagen;
 		var $mail;
 		var $seudonimo;
+		var $resultado = false;
 
 		function __construct($obra){
 			$this->titulo = $obra['titulo'];
@@ -54,9 +55,26 @@
 			$museoQuery->select();
 
 			$query = "INSERT INTO obras VALUES(null,'".$this->titulo."','".str_replace(" ","_",$this->titulo)."','".$this->imagen['name']."','".$this->imagen['saveName']."','".$this->descripcion."',".$this->anio.",".$categoriaQuery->resultado[0]['id'].",".$autorQuery->resultado[0]['id'].",".$museoQuery->resultado[0]['id'].",".$this->seudonimo.",".$this->mail.");";
-			/*$nuevaObra = new Queries($query);
-			$nuevaObra->insert();*/
-			var_dump($query);
+
+			// moviendo la imagen, si es exitoso se crea el registro en la base de datos
+			if (!file_exists('../Obras_images')){
+				mkdir("../Obras_images");
+			}
+
+  			$carpetaYarchivo = "../Obras_images/".$this->imagen['saveName'];
+			
+			if( move_uploaded_file($this->imagen['tmp_name'], $carpetaYarchivo) ){
+				// si el archivo se movió correctamente se inserta en la base el registro
+				$nuevaObra = new Queries($query);
+				$nuevaObra->insert();
+				$this->resultado = $nuevaObra->resultado;
+			}else{
+				// la imagen no se insertó correctamente, llamar a la clase Error
+				echo "la imagen no se insertó correctamente";
+			}
+
+
+			
 		}
 	}
 

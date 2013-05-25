@@ -48,15 +48,18 @@
 	}else{
 		$insertarObra = new Obra($obra);
 		$insertarObra->insertarObra();
-		if($insertarObra->nuevaObra->resultado !== false){
+		//var_dump("controlador trae ". $insertarObra->resultado);
+
+		if($insertarObra->resultado === false){
+			// ocurrio un error de mysql, llamar a clase Error
+			echo("error en la insercion de la obra en la base de datos");
+		}else{
 			// salio todo bien, redireccionar a obras.php
 			$exitoMensaje = new MensajeHTML("La obra ha sido agregada correctamente");
 			$exitoMensaje->mensajeExito();
 			$_SESSION['carga_exitosa'] = $exitoMensaje;
-			header('Location: ../vistas/obras.php');
-		}else{
-			// ocurrio un error de mysql, llamar a clase Error
-		}
+			header('Location: ../vistas/obras.php');			
+		}	
 	}
 
 ?>
