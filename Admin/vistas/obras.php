@@ -55,7 +55,7 @@
 								include_once("formulario-obras.php");
 							echo "</div>";
 							echo "<div class='lista none'>";
-								/* include el archivo que llama a la lista de obras */
+								include_once("lista-de-obras.php");
 							echo "</div>";
 						echo('</div>');
 					}

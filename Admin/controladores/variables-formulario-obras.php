@@ -75,7 +75,7 @@
 
 		// museo
 		foreach ($requerimientos->museos as $museos => $museo) {
-			if( utf8_encode( $museo['valor'] ) == $camposSeteados['museo']){
+			if( utf8_encode( $museo['valor'] ) == utf8_encode($camposSeteados['museo'] )){
 				$option_museo .= "<option selected='selected' value='".$value = utf8_encode($museo['valor'])."'>".utf8_encode($museo['museo'])."</option>";
 			}else{
 				$option_museo .= "<option value='".$value = utf8_encode($museo['valor'])."'>".utf8_encode($museo['museo'])."</option>";
