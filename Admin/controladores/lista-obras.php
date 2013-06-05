@@ -7,6 +7,10 @@
 	$claseQuery->select();
 
 	if($claseQuery->resultado != false){
+		$tabla = new TablaObras($claseQuery->resultado);
+		$tabla->crearTabla();
+		echo($tabla->table);
+		/*
 		echo '<table><tr><th>Obra</th><th>Autor</th><th>Descripcion</th><th>Usa Seudonimo?</th><th>Categoria</th><th>Museo</th><th>Contacto a utilizar</th><th>Imagen de la obra</th><th>Editar</th><th>Borrar</th></tr>';
 		foreach ($claseQuery->resultado as $obras => $obra) {
 			echo '<tr>';
@@ -22,9 +26,9 @@
 				echo '<td><a href="#" class="Borrar">Borrar</a></td>';
 			echo '</tr>';
 		}
-		echo '</table>';
+		echo '</table>';*/
 	}else{
-		// nunca deberia llegar aca, pues se llama a la clase Error desde Query
+		// nunca deberia llegar aca, pues se llama a la clase Error desde la clase Query
 	}
 	
 	
