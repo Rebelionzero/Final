@@ -47,7 +47,7 @@ form label {margin-bottom: 1px;}
 .in-bl{display: inline-block;}
 table{margin:15px;}
 table tr{border:1px solid;}
-table tr th{background: none repeat scroll 0 0 #38431E;color: #FCFCFC;font-size: 15px;font-weight: bold;padding: 10px;text-transform: capitalize;width:120px;}
+table tr th{background-color: #FAFAFA;background-image: linear-gradient(to bottom, #FFFFFF, #F2F2F2);background-repeat: repeat-x;color: #333;font-weight: bold;padding: 0 13px;text-align: center;text-transform: capitalize;vertical-align: middle;}
 table tr td{text-align:center;background: none repeat scroll 0 0 #BDCD9A;padding: 15px 0;}
 table tr:hover td{background:#A1C358;}
 #ingreso_producto h2{margin:5px 0 10px 15px;}
@@ -211,7 +211,8 @@ button.Editar_CM{margin-left: 5px;}
 .error_php .close,.exito_php .close{position: static; float: right;}
 .error_php h3,.exito_php h3{line-height: 23px;float: left;}
 
-table.lista_obras tr td img {width: 60px;}
+table.lista_obras tr td div.img-container {width: 60px;}
+table.lista_obras tr td img {width: 100%;}
 table.lista_obras tr td{padding:4px;text-align: center;vertical-align: middle;}
 table.lista_obras td.td_prod_producto {width: 115px;}
 table.lista_obras td.td_prod_precio {width: 60px;}

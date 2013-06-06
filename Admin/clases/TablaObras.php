@@ -25,7 +25,7 @@
 				$this->table .= $this->Td($obra['categoria']);
 				$this->table .= $this->Td($obra['museo']);
 				$this->table .= $this->Td(  $this->mailUsar($obra['mail']) );
-				$this->table .= $this->Td('<img src="../Obras_images/'.$obra['src'].'" alt="'.$obra['alt'].'"/>');
+				$this->table .= $this->Td('<div class="img-container"><img src="../Obras_images/'.$obra['src'].'" alt="'.$obra['alt'].'"/></div>');
 				$this->table .= $this->Td('<a href="#" class="Editar">Editar</a>');
 				$this->table .= $this->Td('<a href="#" class="Borrar">Borrar</a>');
 
