@@ -45,11 +45,11 @@ form label {margin-bottom: 1px;}
 .none{display:none;}
 .block{display:block;}
 .in-bl{display: inline-block;}
-table.productos{margin:15px;}
-table.productos tr{border:1px solid;}
-table.productos tr th{background: none repeat scroll 0 0 #38431E;color: #FCFCFC;font-size: 15px;font-weight: bold;padding: 10px;text-transform: capitalize;width:120px;}
-table.productos tr td{text-align:center;background: none repeat scroll 0 0 #BDCD9A;padding: 15px 0;}
-table.productos tr:hover td{background:#A1C358;}
+table{margin:15px;}
+table tr{border:1px solid;}
+table tr th{background: none repeat scroll 0 0 #38431E;color: #FCFCFC;font-size: 15px;font-weight: bold;padding: 10px;text-transform: capitalize;width:120px;}
+table tr td{text-align:center;background: none repeat scroll 0 0 #BDCD9A;padding: 15px 0;}
+table tr:hover td{background:#A1C358;}
 #ingreso_producto h2{margin:5px 0 10px 15px;}
 #ingreso_producto ul{margin:0 0 0 15px;}
 #ingreso_producto ul li{margin:7px 0;}
@@ -175,8 +175,8 @@ p.seu, p.no-seu {margin-left: 5px;}
 .titulo_marcas_categorias li + li{padding-left:68px;}
 .titulo_marcas_categorias li + li + li{padding-left:47px;}
 a.crear_elemento.btn.btn-primary{color:#fff;}
-table.lista_cats_mars tr td{text-align:center;width: 30%;}
-table.lista_cats_mars tr td a{display:inline-block;margin:0 20px;}
+table tr td{text-align:center;width: 30%;}
+table tr td a{display:inline-block;margin:0 20px;}
 .table-striped tbody > tr:nth-child(2n+1) > td,
 .table-striped tbody > tr:nth-child(2n+1) > th{background:#F0F0F0;}
 #front_modal h2 {margin:0;font-size: 1.3em;text-align: center;}
@@ -211,17 +211,17 @@ button.Editar_CM{margin-left: 5px;}
 .error_php .close,.exito_php .close{position: static; float: right;}
 .error_php h3,.exito_php h3{line-height: 23px;float: left;}
 
-table.lista_prods tr td img {width: 60px;}
-table.lista_prods tr td{padding:4px;text-align: center;vertical-align: middle;}
-table.lista_prods td.td_prod_producto {width: 115px;}
-table.lista_prods td.td_prod_precio {width: 60px;}
-table.lista_prods td.td_prod_descripcion {width: 160px;}
-table.lista_prods td.td_prod_imagen {width: 175px;}
-table.lista_prods td.td_prod_src {width: 70px;}
-table.lista_prods td.td_prod_categoria,table.lista_prods td.td_prod_marca{width: 90px}
-table.lista_prods td.td_editar_borrar{padding: 4px 20px;}
-table.lista_prods td.td_editar_borrar a{float: right;}
-table.lista_prods td.td_editar_borrar a:first-child{float: left;}
+table.lista_obras tr td img {width: 60px;}
+table.lista_obras tr td{padding:4px;text-align: center;vertical-align: middle;}
+table.lista_obras td.td_prod_producto {width: 115px;}
+table.lista_obras td.td_prod_precio {width: 60px;}
+table.lista_obras td.td_prod_descripcion {width: 160px;}
+table.lista_obras td.td_prod_imagen {width: 175px;}
+table.lista_obras td.td_prod_src {width: 70px;}
+table.lista_obras td.td_prod_categoria,table.lista_obras td.td_prod_marca{width: 90px}
+table.lista_obras td.td_editar_borrar{padding: 4px 20px;}
+table.lista_obras td.td_editar_borrar a{float: right;}
+table.lista_obras td.td_editar_borrar a:first-child{float: left;}
 
 .mensaje_error.container,
 .mensaje_error.container:before,
