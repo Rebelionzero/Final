@@ -48,8 +48,9 @@ form label {margin-bottom: 1px;}
 table{margin:15px;}
 table tr{border:1px solid;}
 table tr th{background-color: #FAFAFA;background-image: linear-gradient(to bottom, #FFFFFF, #F2F2F2);background-repeat: repeat-x;color: #333;font-weight: bold;padding: 0 13px;text-align: center;text-transform: capitalize;vertical-align: middle;}
-table tr td{text-align:center;background: none repeat scroll 0 0 #BDCD9A;padding: 15px 0;}
-table tr:hover td{background:#A1C358;}
+table tr td{text-align:center;background: none repeat scroll 0 0 #EEEEEE;padding: 15px 0;}
+table tr:hover td{background:#ccc;}
+table tr td form {margin: 0;}
 #ingreso_producto h2{margin:5px 0 10px 15px;}
 #ingreso_producto ul{margin:0 0 0 15px;}
 #ingreso_producto ul li{margin:7px 0;}

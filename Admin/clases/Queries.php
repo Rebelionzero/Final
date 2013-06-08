@@ -42,7 +42,6 @@
 		public function delete (){
 			$this->conexion();
 			$this->queryFunction();
-
 		}
 
 		private function conexion (){

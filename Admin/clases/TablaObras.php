@@ -27,12 +27,10 @@
 				$this->table .= $this->Td(  $this->mailUsar($obra['mail']) );
 				$this->table .= $this->Td('<div class="img-container"><img src="../Obras_images/'.$obra['src'].'" alt="'.$obra['alt'].'"/></div>');
 				$this->table .= $this->Td('<a href="#" class="Editar">Editar</a>');
-				$this->table .= $this->Td('<a href="#" class="Borrar">Borrar</a>');
+				$this->table .= $this->Td('<form action="../controladores/borrar-de-base.php" method="POST" enctype="multipart/form-data"><fieldset><a href="#" class="Borrar">Borrar</a><input type="hidden" name="obra" value="'.$obra['valor'].'"/><input type="hidden" name="table" value="obras"/></fieldset></form>');
 
 				$this->table .= $this->EndTr();
 			}
-			
-
 			$this->table .= $this->EndTable();
 		}
 

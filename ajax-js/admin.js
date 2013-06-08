@@ -119,6 +119,14 @@ $(document).ready(function(){
 
 	});
 
+	/* 
+	// Borrar Obras
+	*/
+
+	$("a.Borrar").on("click",function( e ){
+		e.preventDefault();
+		$(this).parent().parent().submit();
+	});
 
 	/************************************************************************************/
 	/********************************** Funciones ***************************************/
@@ -132,7 +140,7 @@ $(document).ready(function(){
 
 			/* das-ax-00  <-------- No borrar */
 			$.ajax({
-   				type: "POST",   				
+   				type: "POST",
       			url: "../controladores/seudonimos.php",
       			complete: function(jqXHR, textStatus){            		
           	  		if(textStatus=="success"){
