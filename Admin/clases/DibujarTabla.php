@@ -22,6 +22,10 @@
 			return "<td>".utf8_encode($tdData)."</td>";
 		}
 
+		protected function TdAttr($tdData){
+			return "<td ".$tdData[1].">".utf8_encode($tdData[0])."</td>";
+		}
+
 		protected function EndTr(){
 			return "</tr>";
 		}

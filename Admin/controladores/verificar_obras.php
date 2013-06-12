@@ -22,4 +22,10 @@
 		unset($_SESSION['carga_exitosa']);
 	}
 
+	$borrado = false;
+	if(isset($_SESSION['borrado_exitoso'])){
+		$borrado = $_SESSION['borrado_exitoso'];
+		unset($_SESSION['borrado_exitoso']);
+	}
+
 ?>

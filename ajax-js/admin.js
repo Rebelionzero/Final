@@ -66,7 +66,6 @@ $(document).ready(function(){
 			$(".mail-container input[type=radio]").attr("disabled", true).prop("checked",false);
 			$("input#seudonimo").attr("checked",false);
 		}
-
 	});
 
 	$('p.no-seu').ready(function(){
@@ -125,8 +124,19 @@ $(document).ready(function(){
 
 	$("a.Borrar").on("click",function( e ){
 		e.preventDefault();
-		$(this).parent().parent().submit();
+		var ruta = $(this).parent().parent().parent().parent();
+		var obra = $(ruta).children("td:first-child").html();
+		var autor = $(ruta).children("td:first-child + td").html();
+		$('#BorrarObrasModal').modal('show');
+		$('#BorrarObrasModal .obra').html("<span>Obra</span>: " + obra);
+		$('#BorrarObrasModal .autor').html("<span>Autor</span>: " + autor);
+		//$(this).parent().parent().submit();
 	});
+
+	/*
+	// hover Seudonimo y mail
+	*/
+
 
 	/************************************************************************************/
 	/********************************** Funciones ***************************************/

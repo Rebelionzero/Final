@@ -21,21 +21,29 @@
 				$this->table .= $this->Td($obra['obra']);
 				$this->table .= $this->Td($obra['autor']);
 				$this->table .= $this->Td($obra['descripcion']);
-				$this->table .= $this->Td( $this->usaSeudonimo($obra['seudonimo']) );
+				$this->table .= $this->TdAttr( $this->usaSeudonimo($obra['seudonimo'],$obra['autor']) );
 				$this->table .= $this->Td($obra['categoria']);
 				$this->table .= $this->Td($obra['museo']);
 				$this->table .= $this->Td(  $this->mailUsar($obra['mail']) );
 				$this->table .= $this->Td('<div class="img-container"><img src="../Obras_images/'.$obra['src'].'" alt="'.$obra['alt'].'"/></div>');
 				$this->table .= $this->Td('<a href="#" class="Editar">Editar</a>');
-				$this->table .= $this->Td('<form action="../controladores/borrar-de-base.php" method="POST" enctype="multipart/form-data"><fieldset><a href="#" class="Borrar">Borrar</a><input type="hidden" name="obra" value="'.$obra['valor'].'"/><input type="hidden" name="table" value="obras"/></fieldset></form>');
+				$this->table .= $this->Td('<form action="../controladores/borrar-obra-de-base.php" method="POST" enctype="multipart/form-data"><fieldset><a href="#" class="Borrar">Borrar</a><input type="hidden" name="obra" value="'.$obra['valor'].'"/></fieldset></form>');
 
 				$this->table .= $this->EndTr();
 			}
 			$this->table .= $this->EndTable();
 		}
 
-		private function usaSeudonimo($data){
-			return $respuesta = ($data == 0) ? "No" : "Si";
+		private function usaSeudonimo($data,$autor){
+			if($data == 0){
+				return $data = array(0 => 'No',1 => '');
+			}else{
+				$query = "SELECT seudonimo FROM autores WHERE nombre='".$autor."'";
+				$seud = new Queries($query);
+				$seud->select();
+				$data = array(0 => 'Si',1 => 'title="'.$seud->resultado[0]['seudonimo'].'"');
+				return $data;
+			}
 		}
 
 		private function mailUsar($data){

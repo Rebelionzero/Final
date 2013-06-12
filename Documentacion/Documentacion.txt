@@ -1,23 +1,24 @@
 Documentacion del desarrollo y funcionalidades de Art Smart
 Programacion III - PHP Orientado a objetos - Nicolas Alejandro Dezzutto
 
---------------------------------------------
+-----------------------------------------------------------
 DAS-001 - Clases
 DAS-002 - Controladores
 DAS-003 - Vistas
-DAS-004 - Jquery y Ajax
-DAS-005 - Pruebas Unitarias y Code Coverage
-DAS-006 - Front End
-DAS-007 - Faltantes
---------------------------------------------
+DAS-004 - Variables de session, constantes, etc
+DAS-005 - Jquery y Ajax
+DAS-006 - Pruebas Unitarias y Code Coverage
+DAS-007 - Front End
+DAS-008 - Faltantes
+-----------------------------------------------------------
 
 *****************************************************************************************************************
 El objeto de este archivo es documentar y seguir el desarrollo de la aplicacion en base al comportamiento, atributos, metodos y funcionamiento de sus clases.
 (En el momento de documentar no se cuentan los metodos constructores, se hará notacion de aquellos que posean ciertos atributos distintivos)
 
---------------------------------------------
+-----------------------------------------------------------
 DAS-001 - Clases
---------------------------------------------
+-----------------------------------------------------------
 
 
 /**********************/$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -247,9 +248,9 @@ Faltantes de esta clase:
 
 
 
---------------------------------------------
+-----------------------------------------------------------
 DAS-002 - Controladores
---------------------------------------------
+-----------------------------------------------------------
 
 1) Seudonimos:
 --------------
@@ -263,16 +264,20 @@ Faltante:
 -------------------
 Funcion:
 
+Variables: 
+
+- $_SESSION['carga_exitosa']: sirve para la carga de una obra, se envia entre archivos para revisar si se subio una obra exitosamente a la base de datos, ademas sirve para mostrar errores o mensaje de exito.
+
 Faltante: Completar la funcion de este controlador, verificar si el if isset deberia tener un else. Revisar el formulario para ver donde se envia la info ingresada para comenzar el proceso
 
 
---------------------------------------------
+-----------------------------------------------------------
 DAS-003 - Vistas
---------------------------------------------
+-----------------------------------------------------------
 
-/********************************/
+/******************************************/
   login.php:
-/********************************/
+/******************************************/
 
 - la funcion de esta vista es mostar una pantalla de login de usuario para entrar al administrador 
 - en caso de login incorrecto o campos vacios se muestra un mensaje de error en pantalla
@@ -280,9 +285,9 @@ DAS-003 - Vistas
 Faltantes de la vista: dar estilos a la pantalla
 
 
-/********************************/
+/******************************************/
   variables-formulario-obras.php:
-/********************************/
+/******************************************/
 - genera variables que reemplazan el valor por defecto de los campos del formulario obras para que en el caso de un error de ingreso los campos se mantengan seleccionados en la opcion en la que fueron enviados al apretar cargar
 
 Faltantes de la vista:
@@ -291,9 +296,31 @@ Faltantes de la vista:
 * desarrollar un programa para mantener la imagen ingresada en el caso de que así se haya mandado al enviar el formulario (la imagen debe mantenerse en caso de que existan errores como de titulo y etc).
 
 
---------------------------------------------
-DAS-004 - Jquery y Ajax 
---------------------------------------------
+-----------------------------------------------------------
+DAS-004 - Variables de session, constantes, etc
+-----------------------------------------------------------
+
+/******************************************/
+$_SESSION['Login']['autenticacion']:
+/******************************************/
+
+Funcion: 
+
+Usada en los siguientes archivos:
+
+/******************************************/
+$_SESSION['carga_exitosa']:
+/******************************************/
+
+Funcion: 
+
+Usada en los siguientes archivos: 
+- verificar_obras.php
+- controlador-obras.php
+
+-----------------------------------------------------------
+DAS-005 - Jquery y Ajax 
+-----------------------------------------------------------
 
 /**********************/
   admin.js:
@@ -320,21 +347,21 @@ Referencias: -
 
 Faltante: Si devuelve error el formulario obras, revisar si es posible que la imagen siga cargada.
 
---------------------------------------------
-DAS-005 - Pruebas Unitarias y Code Coverage 
---------------------------------------------
+-----------------------------------------------------------
+DAS-006 - Pruebas Unitarias y Code Coverage 
+-----------------------------------------------------------
 
 
 
---------------------------------------------
-DAS-006 - Front End
---------------------------------------------
+-----------------------------------------------------------
+DAS-007 - Front End
+-----------------------------------------------------------
 
 
 
---------------------------------------------
-DAS-007 - Faltantes
---------------------------------------------
+-----------------------------------------------------------
+DAS-008 - Faltantes
+-----------------------------------------------------------
 
 /**********************/
   General:

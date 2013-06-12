@@ -58,7 +58,7 @@
 			$exitoMensaje = new MensajeHTML("La obra ha sido agregada correctamente");
 			$exitoMensaje->mensajeExito();
 			$_SESSION['carga_exitosa'] = $exitoMensaje;
-			header('Location: ../vistas/obras.php');			
+			header('Location: ../vistas/obras.php');
 		}	
 	}
 
