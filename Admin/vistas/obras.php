@@ -65,21 +65,7 @@
 			</div>
 		</div>
 		<div class="footer"></div>
-		<div id="BorrarObrasModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h3 id="myModalLabel">Borrar Obra</h3>
-			</div>
-			<div class="modal-body">
-				<p>¿Esta seguro de que desea borrar la siguiente obra?</p>
-				<p class="obra"></p>
-				<p class="autor"></p>
-			</div>
-			<div class="modal-footer">				
-				<button class="btn btn-danger">Borrar</button>
-				<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
-			</div>
-		</div>
+		<?php include_once("modales.php");?>
 	</body>
 </html>
 <?php

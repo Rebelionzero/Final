@@ -124,19 +124,44 @@ $(document).ready(function(){
 
 	$("a.Borrar").on("click",function( e ){
 		e.preventDefault();
+		
+		var thiz = this;
 		var ruta = $(this).parent().parent().parent().parent();
 		var obra = $(ruta).children("td:first-child").html();
 		var autor = $(ruta).children("td:first-child + td").html();
 		$('#BorrarObrasModal').modal('show');
 		$('#BorrarObrasModal .obra').html("<span>Obra</span>: " + obra);
 		$('#BorrarObrasModal .autor').html("<span>Autor</span>: " + autor);
-		//$(this).parent().parent().submit();
+		
+		$('div.modal-footer button.delete').on("click",function(){
+			$(thiz).parent().parent().submit();
+			$('#BorrarObrasModal').modal('hide');
+		});
+	});
+
+	/* 
+	// Editar Obras
+	*/
+	
+	$("a.Editar").on("click",function( e ){
+		e.preventDefault();
+
+		$('#EditarObrasModal').modal('show');
 	});
 
 	/*
 	// hover Seudonimo y mail
 	*/
 
+	$(".tooltipData").on("mouseover",function(){
+		var position = $(this).offset();
+		var width = $ (this).width();
+		$(this).append("<div class='tooltip fade top in' style='top:"+ (position.top - 10) +"px; left:"+ ( (position.left + (width / 2)) - 20 ) +"px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'>"+ $(this).attr("data-title") +"</div></div>");
+	});
+
+	$(".tooltipData").on("mouseout",function(){
+		$("div.tooltip").remove();
+	});
 
 	/************************************************************************************/
 	/********************************** Funciones ***************************************/

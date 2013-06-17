@@ -41,7 +41,7 @@
 				$query = "SELECT seudonimo FROM autores WHERE nombre='".$autor."'";
 				$seud = new Queries($query);
 				$seud->select();
-				$data = array(0 => 'Si',1 => 'title="'.$seud->resultado[0]['seudonimo'].'"');
+				$data = array(0 => 'Si',1 => 'class="tooltipData" data-title="'.$seud->resultado[0]['seudonimo'].'"');
 				return $data;
 			}
 		}
