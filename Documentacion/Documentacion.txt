@@ -417,7 +417,7 @@ DAS-008 - Faltantes
 - las consultas a la base de datos arrojan resultados falsos cuando hay letras ñ (y letras con acento probablemente) de por medio, la solucion es similar a la aplicada al usar utf8_encode para caracteres con signo de pregunta que no eran reconocidos por culpa de la insercion a la base de datos, la solucion aqui apenas usar post para traer datos es usar utf8_decode en cada caso, no estoy seguro que sirva para los nombres de las imagenes, pero en cada campo se debe aplicar en todo el sitio, revisar ademas si en los mails se utilizan caracteres acentuados y eñes. Revisar controlador-obras.php para ver ejemplo en accion.
 - Fundamental: El nombre de las obras, autores, categorias y museos no puede esar repetido, pues al momento de borrarlas de la base de datos, los valores a borrar pueden estar duplicados, ej: DELETE FROM obras WHERE value = 'clasico'. Esto quiere decir que puede haber 2 o mas obras con ese value, y todas resultarian borradas por dicha consulta a la base de datos. NO USAR UNIQUE EN LA CREACION DE LA BASE PARA LOS NOMBRES Y VALUES, PUES ESTO HARIA QUE LOS NOMBRES USADOS Y BORRADOS NO SE PUDIESEN REPETIR. (Falta confirmacion de esto).
 - Fundamental: Revisar la clase Query en el manejo de errores, pues puedo estar manejandolos mal.
-
+- Revisar que se use una sola conexion a la abse de datos y no mas de 1, ver la clase que usó el profesor para mostrarnos como utilizar el concepto de una sola conexion a la base, descubrí lo de las multiples conexiones al hacer var_dump(get_defined_vars);
 
 /**********************/
   Javascript:

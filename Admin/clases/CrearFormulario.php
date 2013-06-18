@@ -13,8 +13,12 @@
 		}
 
 		protected function Input($data){
-			return '<input type="'.$data[0].'" id="'.$data[1].'" class="'.$data[2].'" name="'.$data[3].'" value="'.$data[4].'" '.$data[5].' />'
-			//$data[5] = disabled / checked / etc
+			return '<input type="'.$data[0].'" id="'.$data[1].'" name="'.$data[2].'" value="'.$data[3].'" '.$data[4].' />';
+			//$data[4] = disabled / checked / class
+		}
+
+		protected function TextArea($id,$name,$rows,$cols,$value){
+			return '<textarea id="'.$id.'" name="'.$name.'" rows="'.$rows.'" cols="'.$cols.'">'.$value.'</textarea>';
 		}
 
 		protected function Select($id,$name,$options){

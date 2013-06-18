@@ -257,3 +257,5 @@ input::-moz-focus-inner {border: 0;}
 #obras-form select:focus {outline: 0;}
 .mensaje_exito p {margin: 0;}
 
+/* Modal bootstrap overwrite */
+#EditarObrasModal {margin-left:-500px;width:1000px;}
