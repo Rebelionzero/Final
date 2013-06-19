@@ -25,7 +25,7 @@
 			// segunda linea div (label, autores, label, año, label, categoria, label, museo, label, imagen)
 				// seteando label, opciones y select de autor
 				$this->options = $this->Option('seleccione','Seleccione un autor');
-				$this->forEachOptions($this->requerimientos->autores);
+				$this->forEachOptions($this->requerimientos->autores,'autor');
 				$this->select = $this->Select('autor','autor',$this->options);
 				
 				// creandolos en el form
@@ -52,18 +52,18 @@
 				$this->options = '';
 				$this->select = '';
 				$this->options = $this->Option('seleccione','Seleccione una categoria');
-				$this->forEachOptions($this->requerimientos->categorias);
+				$this->forEachOptions($this->requerimientos->categorias,'categoria');
 				$this->select = $this->Select('categoria','categoria',$this->options);
 
-				$this->field_1 .= '<div>'.$this->Label('categoria','Categoria:')
+				$this->field_1 .= '<div>'.$this->Label('categoria','Categoria:').$this->select.'</div>';
 
 			$this->formulario = $this->Fieldset('',$this->field_1);
 			$this->formulario = $this->OpenCloseForm($this->formulario);
 		}
 
-		private function forEachOptions($array){
+		private function forEachOptions($array,$valor){
 			foreach ($array as $key => $value) {
-				$this->options .= $this->Option( utf8_encode($value['valor']),utf8_encode($value['autor']) );
+				$this->options .= $this->Option( utf8_encode($value['valor']),utf8_encode($value[$valor]) );
 			}
 		}
 
