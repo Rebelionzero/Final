@@ -103,7 +103,7 @@ $(document).ready(function(){
 	// Limpiar Campos
 	*/
 
-	$("a.clear-fields").on("click",function(){
+	$("a.clear-fields, a.tab-lista").on("click",function(){
 		$("input#titulo").val("");
 		$("#obras-form textarea").val("");
 		$("#obras-form select").prop("selectedIndex",0);

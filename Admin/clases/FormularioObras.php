@@ -3,6 +3,8 @@
 	Class FormularioObras extends CrearFormulario{
 		var $formulario;
 		var $field_1;
+		var $field_2;
+		var $field_3;
 		var $options;
 		var $select;
 		var $requerimientos;
@@ -14,6 +16,8 @@
 		}
 
 		public function crearForm(){
+			// PRIMER FIELDSET
+			
 			$this->field_1 = '<h2>Campos Obligatorios</h2>';
 			// primera linea div (label, titulo, label textarea)
 			$this->field_1 .= '<div class="primera-linea">'
@@ -55,9 +59,41 @@
 				$this->forEachOptions($this->requerimientos->categorias,'categoria');
 				$this->select = $this->Select('categoria','categoria',$this->options);
 
+				// creandolos en el form
 				$this->field_1 .= '<div>'.$this->Label('categoria','Categoria:').$this->select.'</div>';
 
+
+				// seteando label, opciones y select de museos
+				$this->options = '';
+				$this->select = '';
+				$this->options = $this->Option('seleccione','Seleccione un museo');
+				$this->forEachOptions($this->requerimientos->museos,'museo');
+				$this->select = $this->Select('museo','museo',$this->options);
+
+				// creandolos en el form
+				$this->field_1 .= '<div>'.$this->Label('museo','Museo:').$this->select.'</div>';
+
+
+				// seteando label e input de imagen y creandolos en el form
+				$this->field_1 .= '<div>'.$this->Label('imagen','Imagen:').$this->Input(array('file','imagen','imagen','','')).'</div></div>';
+				
+
+				// SEGUNDO FIELDSET
+				$this->field_2 = '<h2>Opciones de Autor:</h2>';
+				$this->field_2 .= '<div class="mail-container"><div>'
+					.$this->Input(array('radio','mail-autor','mail','autor','class="radio-mail-autor" disabled="true"'))
+					.$this->Label('mail-autor','Utilizar mail del autor').'</div><div>'
+					.$this->Input(array('radio','mail-museo','mail','museo','class="radio-mail-museo" disabled="true"'))
+					.$this->Label('mail-museo','Utilizar mail del museo').'</div></div>';
+
+				$this->field_2 .= '<div class="seudonimo-container"><div>'
+				.$this->Input(array('checkbox','seudonimo','seudonimo','','class="check" disabled="true"'))
+				.$this->Label('seudonimo','Utilizar seudonimo del autor si este lo posee:')
+				.'<p class="no-seu none">El autor/a seleccionado/a no tiene seudonimo disponible</p></div>'
+				.'<p class="warn none"><span class="label label-warning">Advertencia:</span> Si el autor utiliza su seudonimo, el mail que figurará en el site será el del museo</p></div>';
+
 			$this->formulario = $this->Fieldset('',$this->field_1);
+			$this->formulario .= $this->Fieldset('opciones',$this->field_2);
 			$this->formulario = $this->OpenCloseForm($this->formulario);
 		}
 
