@@ -108,7 +108,7 @@ body.formato .bs-docs-sidenav li a.formato:hover span{
 
 /* obras */
 
-#obras-form {margin: 10px;}
+form.obras {margin: 10px;}
 .tabs {height: 30px;}
 .tabs a {
 	background: #bcbcbc;
@@ -126,19 +126,19 @@ body.formato .bs-docs-sidenav li a.formato:hover span{
 .block {display: block;}
 .none {display: none;}
 
-#obras-form select {outline:none;}
-#obras-form label {display: inline-block;}
+form.obras select {outline:none;}
+form.obras label {display: inline-block;}
 .primera-linea,.segunda-linea {float:left;width: 400px;}
 .segunda-linea {width: 500px;margin-left: 10px;}
 .segunda-linea div{float: left;margin-right: 15px;}
-#obras-form .segunda-linea label {display: block;}
+form.obras .segunda-linea label {display: block;}
 .primera-linea input, .primera-linea textarea {display:block;width: 380px;}
 .primera-linea label {display: block;}
 #imagen {margin-bottom: 20px;display: block;}
 #seudonimo {margin: 0;outline: none;}
 .seudonimo {display: inline-block;}
 .tabs a.focused-tab{border-color: #111;color: #111;background: #fcfcfc;border-bottom: 0;height: 30px;}
-#obras-form h2 {line-height: normal;font-size: 14px;border-bottom: 1px solid;padding-bottom: 2px;width: 100%;}
+form.obras h2 {line-height: normal;font-size: 14px;border-bottom: 1px solid;padding-bottom: 2px;width: 100%;}
 
 
 fieldset.opciones *{margin: 0;font-size: 12px;}
@@ -147,7 +147,7 @@ fieldset.opciones .mail-container{margin-top: 5px;}
 .seudonimo-container label {line-height: 21px;}
 fieldset.opciones{background: #EBF8FF;border: 1px solid #000E14;-webkit-border-radius: 5px;border-radius: 5px;-webkit-box-shadow: inset 0px 0px 4px 0px #000E14;box-shadow: inset 0px 0px 4px 0px #000E14;padding: 10px 20px;}
 fieldset.opciones > p {font-size: 11px;margin-top: 15px;}
-#obras-form fieldset.opciones h2{border-bottom: medium none;font-size: 12px;}
+form.obras fieldset.opciones h2{border-bottom: medium none;font-size: 12px;}
 p.seu {display: inline-block;}
 p.seu, p.seu strong,p.no-seu {font-size: 11px;}
 fieldset.botones {margin-top: 10px;}
@@ -253,8 +253,8 @@ table.lista_obras td.td_editar_borrar a:first-child{float: left;}
 
 input::-moz-focus-inner {border: 0;}
 
-#obras-form select:active,
-#obras-form select:focus {outline: 0;}
+form.obras select:active,
+form.obras select:focus {outline: 0;}
 .mensaje_exito p {margin: 0;}
 
 /* Modal bootstrap overwrite */

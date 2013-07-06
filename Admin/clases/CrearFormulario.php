@@ -3,9 +3,10 @@
 	abstract Class CrearFormulario{
 		protected $action;
 		protected $id;
+		protected $class;
 
 		protected function OpenCloseForm($data){
-			return '<form method="post" enctype="multipart/form-data" action="'.$this->action.'" id="'.$this->id.'">'.$data.'</form>';
+			return '<form method="post" enctype="multipart/form-data" action="'.$this->action.'" id="'.$this->id.'" class="'.$this->class.'">'.$data.'</form>';
 		}
 
 		protected function Fieldset($class,$data){

@@ -1,8 +1,39 @@
 $(document).ready(function(){
 	
+	var obj = {
+    	valor : 0,
+
+	    incrementar: function(incremento){ // es invocado como método
+	       var that = this;
+	 
+	       function otraFuncion(unValor){ //es invocado como función
+	           //en esta función this referencia al Objeto Global
+	           that.valor += unValor;
+	           var abj = {
+    				valar : that.valor + unValor,
+    				increment: function(incremento){
+	    				console.log("esto es " +this.valar);	
+    				}
+    			};
+
+	           
+	           console.log(that.valor);
+	           abj.increment("");
+	       }
+	 
+	       otraFuncion(incremento);
+    	}
+
+	};
+
+	obj.incrementar(2);
+	//console.log(obj.valor); // 2
+
+
 	$(".close").on("click",function(){		
 		$(this).parent().parent().children("div.alert").remove();
 	});
+
 
 	/************************************************************************************/
 	/*********************************** Obras ******************************************/
@@ -58,19 +89,23 @@ $(document).ready(function(){
 	// Seudonimos
 	*/
 
-	$('#autor').change(function(){
-		generarSeudonimo(this);
-		if( $("#autor option:selected").attr('value') != 'seleccione' ){			
+	$('select[name="autor"]').change(function(){
+		var formid = $(this).parents("form").attr("id");
+		formid = "form#" + formid;
+		generarSeudonimo(this,formid);
+		if( $(formid+" select[name='autor'] option:selected").attr('value') != 'seleccione' ){			
 			$(".mail-container input[type=radio]").attr("disabled", false);
 		}else{
 			$(".mail-container input[type=radio]").attr("disabled", true).prop("checked",false);
-			$("input#seudonimo").attr("checked",false);
+			$("select[name='autor']").attr("checked",false);
 		}
 	});
 
 	$('p.no-seu').ready(function(){
-		generarSeudonimo(this);
-		if( $("#autor option:selected").attr('value') == 'seleccione' ){
+		var formid = $(this).parents("form").attr("id");
+		formid = "form#" + formid;
+		generarSeudonimo(this,formid);
+		if( $(formid+" select[name='autor'] option:selected").attr('value') == 'seleccione' ){
 			
 			if( $("p.no-seu").hasClass("in-bl") ){
 				$("p.no-seu").removeClass("in-bl");
@@ -83,18 +118,20 @@ $(document).ready(function(){
 	//Mail
 	*/
 
-	$('input#seudonimo').change(function(){		
-		if( $(this).is(":checked") ){			
-			$(".mail-container input[type=radio]").attr("disabled", true).prop("checked",false);
-			if( $("p.warn").hasClass("none") ){
-				$("p.warn").removeClass("none");
-				$("p.warn").addClass("block");
+	$('div.seudonimo-container input.check').change(function(){
+		var formid = $(this).parents("form").attr("id");
+		formid = "form#" + formid;
+		if( $(formid +' div.seudonimo-container input.check').is(":checked") ){			
+			$(formid +" .mail-container input[type=radio]").attr("disabled", true).prop("checked",false);
+			if( $(formid +" p.warn").hasClass("none") ){
+				$(formid +" p.warn").removeClass("none");
+				$(formid +" p.warn").addClass("block");
 			}
 		}else{
-			$(".mail-container input[type=radio]").attr("disabled", false);
-			if( $("p.warn").hasClass("block") ){
-				$("p.warn").removeClass("block");
-				$("p.warn").addClass("none");
+			$(formid +" .mail-container input[type=radio]").attr("disabled", false);
+			if( $(formid +" p.warn").hasClass("block") ){
+				$(formid +" p.warn").removeClass("block");
+				$(formid +" p.warn").addClass("none");
 			}
 		}
 	});
@@ -105,8 +142,8 @@ $(document).ready(function(){
 
 	$("a.clear-fields, a.tab-lista").on("click",function(){
 		$("input#titulo").val("");
-		$("#obras-form textarea").val("");
-		$("#obras-form select").prop("selectedIndex",0);
+		$("form.obras textarea").val("");
+		$("form.obras select").prop("selectedIndex",0);
 		$("input#imagen").val("");
 		$("input#seudonimo").attr("checked",false);
 		$("input#seudonimo").attr("disabled",true);
@@ -168,10 +205,10 @@ $(document).ready(function(){
 	/************************************************************************************/
 
 	// generar Seudonimo
-	function generarSeudonimo(select){
+	function generarSeudonimo(select,formid){
 		if( select.selectedIndex != 0 ){
 			// ajax de consulta
-			var autor = $("#autor option:selected").val();
+			var autor = $(formid+" select[name='autor'] option:selected").val();
 
 			/* das-ax-00  <-------- No borrar */
 			$.ajax({
@@ -181,7 +218,7 @@ $(document).ready(function(){
           	  		if(textStatus=="success"){
           	  			// se completo con exito
           	  			var seudonimo = jQuery.parseJSON( jqXHR.responseText );          	  			
-          	  			appendSeudonimo( seudonimo );          	  			
+          	  			appendSeudonimo( seudonimo, formid );          	  			
             		}else{
             			// error
             			alert("mal");
@@ -230,55 +267,55 @@ $(document).ready(function(){
 
 
 	// agregar Seudonimo
-	function appendSeudonimo(obj){
+	function appendSeudonimo(obj,form){		
 		if(obj == false){			
 			// desactivando el checkbox
 			handleCheckbox(false,true);
 
 			// removiendo el tag del seudonimo
-			if( $("p.no-seu").hasClass("none") ){
-				$("p.no-seu").removeClass("none");
-				$("p.no-seu").addClass("in-bl");
+			if( $(form+" p.no-seu").hasClass("none") ){
+				$(form+" p.no-seu").removeClass("none");
+				$(form+" p.no-seu").addClass("in-bl");
 			}
 
 			// si la opcion seleccionada es la de seleccione un autor
-			if( $("#autor option:selected").attr('value') == 'seleccione' ){			
-				if( $("p.no-seu").hasClass("in-bl") ){
-					$("p.no-seu").removeClass("in-bl");
-					$("p.no-seu").addClass("none");
+			if( $(form+" select[name='autor'] option:selected").attr('value') == 'seleccione' ){			
+				if( $(form+" p.no-seu").hasClass("in-bl") ){
+					$(form+" p.no-seu").removeClass("in-bl");
+					$(form+" p.no-seu").addClass("none");
 				}
 			}
 
-			if( $(".seudonimo-container div").has("p.seu") ){
-				$(".seudonimo-container div").children("p.seu").remove();
+			if( $(form+" .seudonimo-container div").has("p.seu") ){
+				$(form+" .seudonimo-container div").children("p.seu").remove();
 			}
 			
 			// removiendo la advertencia si se cambia a un autor sin seudonimo
-			if( $("p.warn").hasClass("block") ){
-				$("p.warn").removeClass("block");
-				$("p.warn").addClass("none");
+			if( $(form+" p.warn").hasClass("block") ){
+				$(form+" p.warn").removeClass("block");
+				$(form+" p.warn").addClass("none");
 			}
 
 		}else{
 			// activando el checkbox
-			handleCheckbox(true,false);
+			handleCheckbox(true,false,form);
 
 			// agregando el tag con el seudonimo
-			if( $("p.no-seu").hasClass("in-bl") ){
-				$("p.no-seu").removeClass("in-bl");
-				$("p.no-seu").addClass("none");
+			if( $(form+" p.no-seu").hasClass("in-bl") ){
+				$(form+" p.no-seu").removeClass("in-bl");
+				$(form+" p.no-seu").addClass("none");
 			}
 
-			if( $(".seudonimo-container div").children().length > 3 ){
-				$("p.seu").html("El autor/a seleccionado/a tiene el seudonimo <span class='label label-info'><strong>" + obj+ "</strong></span>");
-			}else{				
-				$(".seudonimo-container div").append("<p class='seu'> El autor/a seleccionado/a tiene el seudonimo <span class='label label-info'><strong>" + obj + "</strong></span></p>");
+			if( $(form+" div.seudonimo-container > div").children().length > 3 ){
+				$(form+" p.seu").html("El autor/a seleccionado/a tiene el seudonimo <span class='label label-info'><strong>" + obj+ "</strong></span>");
+			}else{
+				$(form+" div.seudonimo-container > div").append("<p class='seu'> El autor/a seleccionado/a tiene el seudonimo <span class='label label-info'><strong>" + obj + "</strong></span></p>");
 			}
 
-			if( $("input#seudonimo").is(':checked') ){
-				if( $("p.warn").hasClass("none") ){
-					$("p.warn").removeClass("none");
-					$("p.warn").addClass("block");
+			if( $(form+" input.check").is(':checked') ){
+				if( $(form+" p.warn").hasClass("none") ){
+					$(form+" p.warn").removeClass("none");
+					$(form+" p.warn").addClass("block");
 				}
 			}
 
@@ -286,11 +323,9 @@ $(document).ready(function(){
 	}
 
 	// activador/desactivador de checkbox del seudonimo
-	function handleCheckbox(bool1,bool2){
-		if( $("input#seudonimo").prop('disabled') == bool1 ){
-			$("input#seudonimo").prop('disabled', bool2);
+	function handleCheckbox(bool1,bool2,form){
+		if( $(form+" input.check").prop('disabled') == bool1 ){
+			$(form+" input.check").prop('disabled', bool2);
 		}
 	}
-	
-		
 });

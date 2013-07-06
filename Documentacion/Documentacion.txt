@@ -169,6 +169,7 @@ Metodos:
 
 Faltantes de esta clase:
 - verificar en cada parte del sistema del backend (en cada archivo) que se este logueado
+- quitar el llamado ajax al pedido de seudonimo de la pantalla login
 
 
 /**********************/

@@ -5,7 +5,7 @@
 	//include_once("formulario-obras.php");
 	//var_dump($tabla);
 	
-	$form = new FormularioObras('../controladores/controlador-obras.php','obras-form',$requerimientos);	
+	$form = new FormularioObras('../controladores/controlador-obras.php','editar-obras-form','obras',$requerimientos);	
 	$form->crearForm();
 	echo($form->formulario);
 

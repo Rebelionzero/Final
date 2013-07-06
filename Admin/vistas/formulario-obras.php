@@ -1,5 +1,5 @@
 <?php include_once('../controladores/variables-formulario-obras.php'); ?>
-<form id="obras-form" method="post" enctype="multipart/form-data" action="../controladores/controlador-obras.php">
+<form id="obras-form" class="obras" method="post" enctype="multipart/form-data" action="../controladores/controlador-obras.php">
 	<fieldset>
 		<h2>Campos Obligatorios</h2>
 		<div class="primera-linea">

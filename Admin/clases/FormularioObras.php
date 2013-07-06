@@ -9,9 +9,10 @@
 		var $select;
 		var $requerimientos;
 
-		function __construct($act,$formid,$req){
+		function __construct($act,$formid,$clas,$req){
 			$this->action = $act;
 			$this->id = $formid;
+			$this->class = $clas;
 			$this->requerimientos = $req;
 		}
 
