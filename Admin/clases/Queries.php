@@ -52,9 +52,10 @@
 
 		private function queryFunction (){			
 			$this->consulta = mysql_query($this->query, $this->conectar->conexion);
+			
 			if($this->consulta === false){
 				// header para otra parte del sitio, agregar mensaje de error
-				var_dump("asd asd ".$this->consulta);
+				var_dump("estas viendo esto porque la conslta salió mal: ".mysql_error());
 				exit();
 			}
 		}

@@ -1,6 +1,6 @@
 <?php
 
-	$queryObras = "SELECT obras.nombre obra, obras.value valor, autores.nombre autor, obras.descripcion descripcion, obras.seudonimo seudonimo, categorias.nombre categoria, museos.nombre museo, obras.mail mail, obras.imagen alt, obras.src src FROM obras, autores, categorias, museos WHERE obras.autor = autores.id AND obras.categoria = categorias.id AND obras.museo = museos.id ORDER BY obras.id";
+	$queryObras = "SELECT obras.nombre obra, obras.value valor, autores.nombre autor, obras.descripcion descripcion, ".utf8_decode('obras.año')." anio, obras.seudonimo seudonimo, categorias.nombre categoria, museos.nombre museo, obras.mail mail, obras.imagen alt, obras.src src FROM obras, autores, categorias, museos WHERE obras.autor = autores.id AND obras.categoria = categorias.id AND obras.museo = museos.id ORDER BY obras.id";
 	$claseQuery = new Queries($queryObras);
 	$claseQuery->select();
 

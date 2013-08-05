@@ -35,7 +35,7 @@
 				$this->seudonimo = 1;
 			}
 
-			// continuar por aca, si el mail es museo tiene que ser 1 y si es autor tiene que se 0
+			// continuar por aca, si el mail es museo tiene que ser 1 y si es autor tiene que ser 0
 			if($this->mail == 'autor'){
 				$this->mail = 0;
 			}else{

@@ -1,34 +1,4 @@
 $(document).ready(function(){
-	
-	var obj = {
-    	valor : 0,
-
-	    incrementar: function(incremento){ // es invocado como método
-	       var that = this;
-	 
-	       function otraFuncion(unValor){ //es invocado como función
-	           //en esta función this referencia al Objeto Global
-	           that.valor += unValor;
-	           var abj = {
-    				valar : that.valor + unValor,
-    				increment: function(incremento){
-	    				console.log("esto es " +this.valar);	
-    				}
-    			};
-
-	           
-	           console.log(that.valor);
-	           abj.increment("");
-	       }
-	 
-	       otraFuncion(incremento);
-    	}
-
-	};
-
-	obj.incrementar(2);
-	//console.log(obj.valor); // 2
-
 
 	$(".close").on("click",function(){		
 		$(this).parent().parent().children("div.alert").remove();
@@ -183,6 +153,8 @@ $(document).ready(function(){
 	$("a.Editar").on("click",function( e ){
 		e.preventDefault();
 
+		var parent = $(this).parent().parent();
+		var arrayDeDatos = [];
 		$('#EditarObrasModal').modal('show');
 	});
 

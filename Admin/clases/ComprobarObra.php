@@ -41,10 +41,6 @@
     		return (!isset($string) || trim($string) ==='');
 		}
 
-		private function sinImagen($img){
-			if($img['error'] == 4){return true;}else{return false;}	
-		}
-
 		private function setear_errores($array){
 			foreach ($array as $error => $valor) {
 				if ($valor == false) {

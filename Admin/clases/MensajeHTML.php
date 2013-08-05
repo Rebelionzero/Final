@@ -9,7 +9,7 @@
 			$this->input = $mensajes;
 		}
 
-		public function mensajeError(){			
+		public function mensajeError(){
 			$this->output = "<div class='mensaje_error alert alert-error container'><ul>";
 			foreach ($this->input as $error => $mensaje) {
 				$this->middle .= "<li>".$mensaje."</li>";

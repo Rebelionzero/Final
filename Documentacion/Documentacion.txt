@@ -12,7 +12,6 @@ DAS-007 - Front End
 DAS-008 - Faltantes
 -----------------------------------------------------------
 
-*****************************************************************************************************************
 El objeto de este archivo es documentar y seguir el desarrollo de la aplicacion en base al comportamiento, atributos, metodos y funcionamiento de sus clases.
 (En el momento de documentar no se cuentan los metodos constructores, se hará notacion de aquellos que posean ciertos atributos distintivos)
 
@@ -49,15 +48,15 @@ Faltantes de esta clase:
 - comprobacion de que se selecciono el src correctamente y de que el producto existe.
 -code review
 
-/**********************/$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
- ComprobarProducto: (Ahora se llama comprobar Obra, adaptar)
-/**********************/$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+/**********************/
+ ComprobarObra:
+/**********************/
 
-Controladores: procesar.php
+Controladores: controlador-obras.php
 
-Atributos: nombre, precio,categoria, marca, descripcion, imagen, validaciones, vacios, errores
+Atributos: titulo, descripcion, autor, anio, categoria, museo, imagen, mail, validaciones, errores
 
-Clases con las que interactua: Editar.php
+Clases con las que interactua: - Ninguna -
 
 Vistas con las que interactua: - Ninguna -
 
@@ -65,23 +64,19 @@ Metodos:
 
  Publicos:
  *verificar:
-		- contiene 2 de los atributos/arrays: validaciones y vacios
-		- llama al metodo privado saetear_errores
-		- la funcion de este metodo es almacenar en los arrays los llamados a las funciones privadas, los cuales devuelven la verificacion correspondiente
+		- utiliza uno de los atributos/arrays de la clase: validaciones
+		- llama al metodo privado setear_errores
+		- la funcion de este metodo es almacenar en el array validaciones los resultados que arrojan los llamados a las funciones privadas, a las cuales se les pasa los parametros que el constructor almacena en los atributos.
 
 		1) validaciones almacena los resultados de las comprobaciones segun el tipo de informacion que se busca verificar, ej: si la informacion que se le pasa contiene el limite de caracteres necesarios para su aprobacion.
 
-		2) vacios almacena los booleanos devueltos en cada una de las comprobaciones de los strings vacios o no vacios enviados.
-
-		3) el llamado a setear_errores envia el contenido del array validaciones.
+		2) el llamado a setear_errores envia el contenido del array validaciones.
 
  Privados: 
+	
+  Todos los metodos privados a excepcion de setear_errores devuelven false si no existe ningun error de comprobación, si existe un error en la comprobacion se envia un mensaje de error.
 
- // todos los metodos privados a excepcion de setear_errores devuelven false si no existe ningun error de comprobación, si existe un error en la comprobacion se envia un mensaje de error.
-
- *vacio: se le envia un valor y este comprueba si dicho valor está vacio o no.
-
- *sinImagen: se le envia el array de la imagen cargada, y verifica si el campo de imagen está vacio al comrobar el valor numerico del indice 'error' es igual a 4, lo cual verificaria que no se cargó una imagen. 
+ *vacio: se le envia un valor y este comprueba si dicho valor es un string vacio o no.
 
  *setear_errores:
 		- se le envia el array validaciones con las comprobaciones hechas por los metodos privados dedicados a cada campo
@@ -91,35 +86,29 @@ Metodos:
 
 		2) si no es falso, significa que hubo un error y dicho error se insaerta en el array errores, el cual se devuelve al front end y se muestra como mensaje de error al usuario.
 
- *validar_producto:
-		- comprueba el largo del string que corresponde al nombre del producto, y lo pasa por una expresion regular la cual solo permite texto sin numeros ni espacios como nombre:
+ *validar_titulo:
+		- comprueba el largo del string que corresponde al nombre de la obra, y lo pasa por una expresion regular la cual solo permite texto sin numeros ni espacios como nombre:
 
 		1) Si es mayor o menor al largo requerido o si se ingresan caracteres extraños se devuelve un mensaje de error
 
 		2) si el string ingresado cumple con los requisitos se devuelve false
 
- *validar_precio:
-		- comprueba si el valor ingresado es un numero, sustrae el valor entero de ese numero y comprueba si es mayor o menor a lo especificado, de no cumplir los requisitos envia un error, sino devuelve false
-
  *validar_descripcion:
-		- se utiliza la funcion trim para quitar espacios en blanco al inicio y al final del string, y se verifica que el largo del string no supere los 200 caracteres. De ser asi se envia un error, sino false.
+		- se utiliza la funcion trim para quitar espacios en blanco al inicio y al final del string, y se verifica que el largo del string no supere los 255 caracteres. De ser asi se envia un error, sino false.
 
  *validar_select:
-		- comprueba que el valor del select enviado sea distinto a 'seleccionar', si es igual a 'seleccionar' significa que el cliente no eligió ninguna categoria o marca.
+		- comprueba que el valor del select enviado sea distinto a 'seleccione', si es igual a 'seleccione' significa que el cliente no eligió ningun autor, año, categoria y/o museo.
 
  *validar_img:
 		- se valida que se haya subido un archivo a traves del valor del indice 'error' del array del archivo.
-		- se verifica que la extension del archivo sea correcta (jpg, gif, png, jpeg), asi limitando el tipo de archivo a solo imagenes.
+		- se verifica que la extension del archivo sea correcta (jpg, gif, png, jpeg, pjpeg), asi limitando el tipo de archivo a solo imagenes.
 		- se comprueba que el tamaño de la imagen sea inferior a 2 Mb.
-
+ 
+ *validar_mail:
+ 		- se valida que el valor que se le pasa sea distinto a false, se utiliza para verificar que mail (autor o museo) se guardará en la base de datos para ser mostrado en el front end.
 
 
 Faltantes de esta clase: 
-- cambiar el nombre de la clase a Verificaciones
-- agregar todas las comprobaciones importantes
-- cambiar las comprobaciones de cada campo, se debe buscar algo especifico y no un campo especifico, investigar como pasar los requisitos como parametros a los metodos privados, ej miFuncion(3,17) /* minimo de caracteres 3 y maximo 17 */
-- cambiar las expresiones regulares para aceptar espacios y numeros
-- a esta clase se debe llamar desde el controlador antes que a las otras, ej: BorrarBD, Productos, Editar, etc. Asi se evita la creacion de objetos innecesariamente. Y si la verificacion es correcta recien ahí llamar al objeto para borrar, editar, crear, etc.
 
 
 /**********************/
@@ -130,7 +119,7 @@ Controladores: - Ninguno -
 
 Atributos: server, usr, pass, db, conexion
 
-Clases con las que interactua: Queries.php
+Clases con las que interactua: Queries.php, Error.php
 
 Vistas con las que interactua: admin.php
 
@@ -143,8 +132,156 @@ Metodos: (en esta clase el metodo contruct recibe como argumentos los parametros
 
 Faltantes de esta clase:
 - manejo de errores: no se como manejar los errores de conexion a la base de datos, revisar la posibilidad del manejo de error con $this->conexion cuando conecta al servidor
-- mejorar el manejo de errores de la conexion al servidor.
 - crear la redireccion desde un llamado a la clase header en el caso de los errores de conexion al servidor y de seleccion de base de datos.
+- modificar la clase para evitar que se creen varias conexiones cuando solo es necesaria una. En la aplicacion se utilizan varias conexiones a la base de datos.
+
+/**********************/
+ CrearFormulario.php:
+/**********************/
+
+Controladores: - Ninguno -
+
+Atributos: action, id, class
+
+Tipo de clase: abstracta
+
+Clases con las que interactua: clase abstracta, otras clases interactuan con ella.
+
+Vistas con las que interactua: ninguna directamente, la clase extiende otras que crean formularios.
+
+Metodos: 
+  Protegidos:
+  	*OpenCloseForm:
+ 		- crea el tag de apertura y cierre del formulario.
+ 		- dentro del tag se incluye la variable data, la cual contiene los campos del formulario.
+ 		- se le asigna un action, id y clase por los atributos.
+ 		
+	*Fieldset:
+ 		- crea el tag de apertura y cierre del fieldset.
+ 		- dentro del tag se incluye la variable data, la cual contiene los campos del fieldset.
+ 		- se le asigna una clase por el atributo.
+
+ 	*Input:
+ 		- crea el tag de un input.
+ 		- dentro del tag se incluye la variable data, la cual ingresa los datos para el type, id, name, value y otros opcionales o relativos al type del input (checked, class, etc).
+ 		- la clase se le asigna por la variable/array data.
+
+ 	*TextArea:
+ 		- crea el tag de un textarea.
+ 		- dentro del tag se incluye los datos para el id, name, rows, cols y value del textarea.
+ 		
+ 	*Select:
+ 		- crea el tag de un select.
+ 		- dentro del tag se incluye los datos para el id y name. Ademas se inluye la variable options, que contiene las opciones del select.
+
+ 	*Options:
+ 		- crea el tag de un option.
+ 		- dentro del tag se incluye los datos para el value y la texto de la option. 	
+
+ 	*Label:
+ 		- crea el tag de un label.
+ 		- dentro del tag se incluye los datos para el for y el texto del label. 
+
+
+Faltantes de esta clase:
+
+
+/**********************/
+ DibujarTabla.php:
+/**********************/
+
+Controladores: - Verificar -
+
+Atributos: th
+
+Tipo de clase: abstracta
+
+Clases con las que interactua: clase abstracta, otras clases interactuan con ella.
+
+Vistas con las que interactua: ninguna directamente, crea los tags de las tablas
+
+Metodos: 
+  Protegidos:
+  	*StartTable:
+ 		- crea el tag de apertura de una tabla.
+ 		- dentro del tag se incluye la variable class, la cual contiene las clases.
+
+  	*StartTr:
+ 		- crea el tag de apertura de un tr.
+
+ 	*Th:
+ 		- crea el tag de apertura y de cierre de uno o varios th, segun la cantidad que se le pase en el array.
+ 		- dentro del tag lleva el texto del th.
+ 		- lo retorna como una variable.	
+
+  	*Td:
+ 		- crea el tag de apertura y de cierre de un td.
+ 		- dentro del tag lleva el texto del td.
+
+  	*TdAttr:
+ 		- crea el tag de apertura y de cierre de un td.
+ 		- dentro del tag lleva el texto del td, ademas de un atributo.
+ 		- se diferencia del anterior por tener la capacidad de llevar atributos.
+
+ 	*EndTr:
+ 		- crea el tag de cierre de un tr.
+
+ 	*EndTable:
+ 		- crea el tag de cierre de una tabla.	
+
+
+Faltantes de esta clase:
+- adapatarla para que funcione de forma similar a CrearFormulario.
+- unir los metodos Td y TdAttr para que sean uno solo.
+
+/**********************/
+ Error.php:
+/**********************/
+
+Controladores: - Verificar -
+
+Atributos: queri, resultado, mensaje
+
+Clases con las que interactua: - Ninguna -
+
+Vistas con las que interactua: errorHtml.html
+
+Metodos: 
+	Publicos:
+		*creacionError:
+			Esta clase se encarga de crear un log de errores para almacenar los errores que ocurren cuando se generan consultas incompletas, o en el caso de un archivo faltante. La clase crea el error en un archivo txt con el resultado de la consulta a la base de datos, el query enviado, el cual pudo generar problemas, ademas de asignarle la fecha y hora del error, ademas se verifica que el directorio donde se va a guardar el log de errores se haya creado correctamente, y verifica que el archivo del log se haya creado y escrito con exito, ademas de que este se haya cerrado despues de su escritura. La ultima funcion de la clase es crear un archivo html, llenarlo con los datos anteriormente mencionados en el caso de que haya existido un error en la creacion del log o el directorio. La ultima parte es la redireccion al archivo html creado.
+
+Faltantes de esta clase:
+- Adaptar esta clase para manejar cualquier tipo de error
+- verificar la creacion del archivo html, y si esta no es exitosa, hacer una devolucion del error a la pantalla.
+
+/**********************/
+ FormularioObras.php:
+/**********************/
+Esta clase extiende de la clase CrearFormulario, y se encarga de utilizar los metodos y propiedades que hereda para crear los formularios que funcionan para cargar y editar las obras.
+
+Controladores: - Verificar -
+
+Atributos: formulario, field_1, field_2, field_3, options, select, requerimientos.
+
+Clases con las que interactua: - Verificar -
+
+Vistas con las que interactua: - Verificar -
+
+Metodos: 
+	Publicos:
+		*crearForm:
+			- Se crea el primer fieldset que lleva el titulo, labels, inputs, textarea, select y options. Para crear y llenar los options en el select se utiliza la funcion privada forEachOptions que esta en la clase. 
+			- Se crea el segundo fieldset que lleva inputs, labels, titulo, texto y corresponde a la segunda parte del formulario.
+			- Con ambos fieldset creados en 2 variables separadas, cada uno teniendo en su interior los campos del formulario, se los inserta en la variable formulario, mediante el metodo heredado OpenCloseForm.
+
+	Privados:
+		*forEachOptions:
+			- se le envia un array con la informacion pedida a la base de datos para llenar las options, ademas de una clave que se utiliza en el array. Este metodo utiliza el metodo heredado Option para crear una unica variable (options) la cual almacena todas las opciones con su correspondiente value.
+
+Faltantes de esta clase:
+- investigar una forma mas eficiente de crear el formulario.
+
 
 /**********************/
  Login.php:
@@ -170,6 +307,57 @@ Metodos:
 Faltantes de esta clase:
 - verificar en cada parte del sistema del backend (en cada archivo) que se este logueado
 - quitar el llamado ajax al pedido de seudonimo de la pantalla login
+
+
+/**********************/
+ MensajeHTML.php:
+/**********************/
+Esta clase crea un mensaje de error, alerta o exito en formato html como resultado de ingresar, borrar, o editar una obra, categoria, autor o museo. Utiliza clases de bootstrap
+
+
+Controladores: - Verificar -
+
+Atributos: input, middle, output.
+
+Clases con las que interactua: - Verificar -
+
+Vistas con las que interactua: - Varias - Verificar -
+
+Metodos: 
+	Publicos:
+		*mensajeError:
+			- utilizando la variable output, se crea el div de apertura y se le asignan clases, ademas de crear el ul de apertura.
+			- utilizando un foreach se recorre la propiedad input y se le asigna al mensaje correspondiente un tag li usando para ello la propiedad middle.
+			- se une la propiedad middle con output, luego se cierra el ul, se crea un boton para destruir el mensaje desde js y el div de cierre del mensaje.
+			- Este mensaje es de color rojo (fondo, botones y texto).
+
+		*mensajeExito:
+			- Se crea como output el div de apertura y cierre, se le asignan clases y un boton de cierre y se le inserta el mensaje.
+			- Este mensaje es de color verde (fondo, botones y texto).
+
+		*mensajeAlert:
+			- Se crea como output el div de apertura y cierre, se le asignan clases y un boton de cierre y se le inserta el mensaje.
+			- Este mensaje es de color azul (fondo, botones y texto).
+
+Faltantes de esta clase:
+- integrar esta clase con la de error, aunque puede ser debatible por que los mensajes de alerta y exito no son de tipo Error.
+
+/**********************/
+ Obra.php:
+/**********************/
+
+Controladores: 
+
+Atributos: 
+
+Clases con las que interactua: 
+
+Vistas con las que interactua: 
+
+Metodos: 
+
+Faltantes de esta clase:
+
 
 
 /**********************/
@@ -215,7 +403,7 @@ Faltantes de esta clase:
 
 
 /**********************/
- :
+ TablaObras.php:
 /**********************/
 
 Controladores: 
@@ -224,15 +412,16 @@ Atributos:
 
 Clases con las que interactua: 
 
-Vistas con las que interactua:
+Vistas con las que interactua: 
 
 Metodos: 
 
 Faltantes de esta clase:
 
 
+
 /**********************/
- :
+ TraerObras.php:
 /**********************/
 
 Controladores: 
@@ -241,7 +430,7 @@ Atributos:
 
 Clases con las que interactua: 
 
-Vistas con las que interactua:
+Vistas con las que interactua: 
 
 Metodos: 
 
@@ -438,6 +627,9 @@ DAS-008 - Faltantes
   Documentacion:
 /**********************/
 - Transformar este documento en un documento html/css/js
-- Terminar la documentacion
-- Crear la documentacion de las clases Error
+- Terminar la documentacion.
+- Documentar sobre el funcionamiento de cada parte del programa, ej: como se cargan las obras, como se editan, los pasos que se ejecutan desde que se ingresa hasta que se realizan los cambios, etc.
+- La documentacion de los metodos de la clase Error necesita ser ordenada (por items), como el resto de las clases, por ahora es solo una explicacion general del funcionamiento de la clase.
 - Al terminar el sitio enteramente revisar que la documentacion esté completa
+- Las clases necesitan una explicación de su funcionamiento, agregarlo luego del titulo de la clase en la documentacion.
+- Verificar que controlador y que vista trabaja con que clase

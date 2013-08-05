@@ -12,7 +12,7 @@
 		public function crearTabla(){
 			$this->table = $this->StartTable("lista_obras");
 			$this->table .= $this->StartTr();
-			$this->table .= $this->Th($titulos = array("Obra","Autor","Descripción","¿Usa Seudonimo?","Categoria","Museo","Mail para contacto","Imagen","Editar","Borrar"));
+			$this->table .= $this->Th($titulos = array("Obra","Autor","Descripción","Año","¿Usa Seudonimo?","Categoria","Museo","Mail para contacto","Imagen","Editar","Borrar"));
 			$this->table .= $this->EndTr();
 
 			foreach($this->content as $obras => $obra) {
@@ -21,6 +21,7 @@
 				$this->table .= $this->Td($obra['obra']);
 				$this->table .= $this->Td($obra['autor']);
 				$this->table .= $this->Td($obra['descripcion']);
+				$this->table .= $this->Td($obra['anio']);
 				$this->table .= $this->TdAttr( $this->usaSeudonimo($obra['seudonimo'],$obra['autor']) );
 				$this->table .= $this->Td($obra['categoria']);
 				$this->table .= $this->Td($obra['museo']);

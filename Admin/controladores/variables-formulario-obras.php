@@ -41,10 +41,10 @@
 
  	}else{
  		// titulo
-		$value_titulo = "<input id='titulo' type='text' name='titulo' value='".$camposSeteados['titulo']."'";
+		$value_titulo = "<input id='titulo' type='text' name='titulo' value='".$camposSeteados['titulo']."' />";
  		
 		// descripcion
- 		$value_desc = $camposSeteados['descripcion'];
+		$value_desc = utf8_encode($camposSeteados['descripcion']);
  		
  		// autor
  		foreach ($requerimientos->autores as $autores => $autor) {
