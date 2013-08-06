@@ -73,7 +73,7 @@ $(document).ready(function(){
 
 	$('p.no-seu').ready(function(){
 		var formid = $(this).parents("form").attr("id");
-		formid = "form#" + formid;
+		formid = "form#" + formid;		
 		generarSeudonimo(this,formid);
 		if( $(formid+" select[name='autor'] option:selected").attr('value') == 'seleccione' ){
 			
@@ -188,7 +188,8 @@ $(document).ready(function(){
 
 		}
 		
-		
+		form = $(form +"#" + $(form).attr("id")).selector;		
+		generarSeudonimo(selects[0],form);
 
 	});
 
