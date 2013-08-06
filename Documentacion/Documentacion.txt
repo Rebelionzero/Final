@@ -616,6 +616,7 @@ DAS-008 - Faltantes
 - Reutilizar codigo: Ej: for para crear los divs
 - Rehacer el javascript para no utilizar tanto codigo
 - en el admin, agregar una funcion que cuente la cantidad de caracteres ingresados y que los muestre en pantalla, al llegar a 0 la cantidad no se debe permitir mas caracteres que sean ingresados
+- revisar si combiene cambiar los ids de los tags de los formularios de edicion (tomar los que ya existen y agregarles "-ed") para evitar confusion con los ids de los tags del formulario de carga. Quizas lo mas conveniente sea hacerlo desde la clase: si se invoca el formulario de edición hacer que se pase una variable que tenga el texto "-ed" para que se le sume al id ya proporcionado, ademas si lo invoca el formulario de creacion, la variable tendria '';
 
 /**********************/
   Ajax:

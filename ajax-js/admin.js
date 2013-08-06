@@ -153,9 +153,43 @@ $(document).ready(function(){
 	$("a.Editar").on("click",function( e ){
 		e.preventDefault();
 
-		var parent = $(this).parent().parent();
-		var arrayDeDatos = [];
+		var id = parseInt( $(this).attr('class')[($(this).attr('class').length)-1] );		
+		var parent = $(this).parent().parent().children();
+		var arrayDeDatos = [id];
+
+		for(var i= 0; i < parent.length; i++){
+			if(parent[i].firstChild.nodeType == 3){
+				arrayDeDatos.push(parent[i].firstChild.nodeValue);
+			}else{
+				continue;
+			}
+		}
+
 		$('#EditarObrasModal').modal('show');
+
+		// populando los inputs
+		var form = '#EditarObrasModal form';
+
+		// agrego el valor para titulo y descripcion
+		$(form+" #titulo").val(arrayDeDatos[1]);
+		$(form+" #desc").val(arrayDeDatos[3]);
+
+		// junto todas las referencias de jquery a los selects y a los textos para usarlos en los loops de abajo
+		var selects = [form+" #autor",form+" #anio",form+" #categoria",form+" #museo"];
+		var txts = [arrayDeDatos[2],arrayDeDatos[4],arrayDeDatos[6],arrayDeDatos[7]];		
+
+		for(var s = 0; s< selects.length; s++){
+			
+			$(selects[s]+" option").each(function(){				
+				if( $(this).text() == txts[s] ) {
+					$(this).prop("selected",true);
+				}
+			});
+
+		}
+		
+		
+
 	});
 
 	/*

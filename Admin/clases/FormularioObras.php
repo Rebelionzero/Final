@@ -23,7 +23,7 @@
 			// primera linea div (label, titulo, label textarea)
 			$this->field_1 .= '<div class="primera-linea">'
 				.$this->Label('titulo','Titulo:')
-				.$this->Input(array('text','titulo','titulo','value','asd'))
+				.$this->Input(array('text','titulo','titulo','',''))
 				.$this->Label('desc','Descripción:')
 				.$this->TextArea('desc','descripcion','3','1','value').'</div>';			
 			
