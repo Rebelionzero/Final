@@ -1,0 +1,9 @@
+Desafio:
+--------
+Optimizar el metodo de carga de obras, de creacion del formulario de carga, edición y de borrado.
+
+El objetivo es lograr utilizar una sola clase, o la menor cantidad de clases posibles para manejar las obras, categorias, etc.
+
+Ahora se utilizan muchos archivos solo para crear el formulario, la obra, editarla, etc.
+
+Realizar un diagrama de flujo para el sistema de craga, modificacion y borrado de obras.
