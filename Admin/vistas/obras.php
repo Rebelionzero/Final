@@ -39,7 +39,12 @@
 		<div class="middle">
 			<?php include_once("left.php");?>
 			<div class="right" id="right">
-			<?php include_once("right-obras.php");?>
+			<?php
+				if( $errores != false ){echo $errMensaje->output;}
+				if( $exito != false ){echo $exito->output;}
+				if( $borrado != false ){echo $borrado->output;}
+			?>
+			<?php echo $rightEchoObras?>
 			</div>
 		</div>
 		<div class="footer"></div>

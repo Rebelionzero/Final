@@ -34,4 +34,8 @@
 			return '<label for="'.$for.'">'.$data.'</label>';
 		}
 
+		protected function Button($class,$html,$data){
+			return '<button class="'.$class.'" '.$data.'>'.$html.'</button>';
+		}
+
 	}

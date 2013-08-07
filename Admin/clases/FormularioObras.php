@@ -93,9 +93,19 @@
 				.'<p class="no-seu none">El autor/a seleccionado/a no tiene seudonimo disponible</p></div>'
 				.'<p class="warn none"><span class="label label-warning">Advertencia:</span> Si el autor utiliza su seudonimo, el mail que figurará en el site será el del museo</p></div>';
 
-			$this->formulario = $this->Fieldset('',$this->field_1);
-			$this->formulario .= $this->Fieldset('opciones',$this->field_2);
-			$this->formulario = $this->OpenCloseForm($this->formulario);
+			
+
+				// TERCER FIELDSET
+				// este fieldset corresponde a los botones
+				$this->field_3 = $this->Input(array('submit','submit-obra','','Cargar','class="btn btn-primary"')).'<a class="btn clear-fields" href="#">Limpiar Campos</a>';
+
+				//if($variable_cancelar == true ){$this->field_3.= $this->Button('btn','Cancelar','data-dismiss="modal" aria-hidden="true"');}
+
+				// CERRANDO EL FORMULARIO
+				$this->formulario = $this->Fieldset('',$this->field_1);
+				$this->formulario .= $this->Fieldset('opciones',$this->field_2);
+				$this->formulario .= $this->Fieldset('botones',$this->field_3);
+				$this->formulario = $this->OpenCloseForm($this->formulario);
 		}
 
 		private function forEachOptions($array,$valor){
