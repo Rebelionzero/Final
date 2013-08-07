@@ -4,7 +4,7 @@
 	include_once('../autoloader.php');
 	session_start();
 
-	// si esta seteado la sseion errores la des setea
+	// si esta seteado la session errores la des setea
 	if(isset($_SESSION['errores'])){
 		unset($_SESSION['errores']);
 	}

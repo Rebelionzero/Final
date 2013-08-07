@@ -30,3 +30,9 @@ if( !isset( $_SESSION['Login']['autenticacion'] ) || $_SESSION['Login']['autenti
 }
 
 se ejecuta el || include_once("../controladores/verificar_obras.php"); || que trae los requerimientos necesarios para que se cree el formulario
+
+
+Faltante:
+---------
+Falta explicar los pasos detras de verificar-obras.php, es necesario para poder explicar los pasos siguientes del proceso del formulario. 
+Para realizar este ultimo paso es necesario analizar controlador-obras.php ay que es ese el archivo a donde se envia el formulario y verifica que los datos sean correctos, ademas es el qeu setea las variables de session que usa verficar-obras.php

@@ -23,6 +23,7 @@
 			$this->categorias = $select_cat->resultado;
 			$this->museos = $select_museos->resultado;
 
+			// chequea si hay autores, categorias y museos cargados. Si hay al menos 1 de c/u cargado devuelve true, sino devuelve false.
 			if($this->autores !== false && $this->categorias !== false && $this->museos !== false){
 				$this->respuesta = true;
 			}else{

@@ -25,7 +25,7 @@
 				.$this->Label('titulo','Titulo:')
 				.$this->Input(array('text','titulo','titulo','',''))
 				.$this->Label('desc','Descripción:')
-				.$this->TextArea('desc','descripcion','3','1','value').'</div>';			
+				.$this->TextArea('desc','descripcion','3','1','').'</div>';			
 			
 			// segunda linea div (label, autores, label, año, label, categoria, label, museo, label, imagen)
 				// seteando label, opciones y select de autor
