@@ -26,8 +26,8 @@
 			return '<select id="'.$id.'" name="'.$name.'">'.$options.'</select>';
 		}
 
-		protected function Option($value,$data){
-			return '<option value="'.$value.'">'.$data.'</option>';
+		protected function Option($value,$html,$data){			
+			return '<option value="'.$value.'" '.$data.'>'.$html.'</option>';
 		}
 
 		protected function Label($for,$data){

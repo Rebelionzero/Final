@@ -7,7 +7,7 @@
 		var $respuesta;
 
 		public function traer_requerimientos(){
-			$query_autores = 'SELECT autores.nombre as autor, autores.value as valor FROM autores';
+			$query_autores = 'SELECT autores.nombre as autor, autores.value as valor, autores.seudonimo seudonimo FROM autores';
 			$query_cat = 'SELECT categorias.nombre as categoria, categorias.value as valor FROM categorias';
 			$query_museos = 'SELECT museos.nombre as museo, museos.value as valor FROM museos';
 

@@ -6,7 +6,7 @@ El objetivo es lograr utilizar una sola clase, o la menor cantidad de clases pos
 
 Ahora se utilizan muchos archivos solo para crear el formulario, la obra, editarla, etc.
 
-Realizar un diagrama de flujo para el sistema de craga, modificacion y borrado de obras.
+Realizar un diagrama de flujo para el sistema de carga, modificacion y borrado de obras.
 
 
 
@@ -35,4 +35,5 @@ se ejecuta el || include_once("../controladores/verificar_obras.php"); || que tr
 Faltante:
 ---------
 Falta explicar los pasos detras de verificar-obras.php, es necesario para poder explicar los pasos siguientes del proceso del formulario. 
-Para realizar este ultimo paso es necesario analizar controlador-obras.php ay que es ese el archivo a donde se envia el formulario y verifica que los datos sean correctos, ademas es el qeu setea las variables de session que usa verficar-obras.php
+Para realizar este ultimo paso es necesario analizar controlador-obras.php ay que es ese el archivo a donde se envia el formulario y verifica que los datos sean correctos, ademas es el qeu setea las variables de session que usa verficar-obras.php.
+

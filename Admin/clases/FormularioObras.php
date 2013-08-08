@@ -29,7 +29,7 @@
 			
 			// segunda linea div (label, autores, label, año, label, categoria, label, museo, label, imagen)
 				// seteando label, opciones y select de autor
-				$this->options = $this->Option('seleccione','Seleccione un autor');
+				$this->options = $this->Option('seleccione','Seleccione un autor','');
 				$this->forEachOptions($this->requerimientos->autores,'autor');
 				$this->select = $this->Select('autor','autor',$this->options);
 				
@@ -43,9 +43,9 @@
 				$this->select = '';
 
 				// seteando label, opciones y select de año
-				$this->options = $this->Option('seleccione','Seleccione un año');
+				$this->options = $this->Option('seleccione','Seleccione un año','');
 				for($i = 1950; $i < ( intval(date('Y')) + 1); $i++ ) {
-					$this->options .= $this->Option($i,$i);
+					$this->options .= $this->Option($i,$i,'');
 				}
 				$this->select = $this->Select('anio','anio',$this->options);
 				
@@ -56,7 +56,7 @@
 				// seteando label, opciones y select de categorias
 				$this->options = '';
 				$this->select = '';
-				$this->options = $this->Option('seleccione','Seleccione una categoria');
+				$this->options = $this->Option('seleccione','Seleccione una categoria','');
 				$this->forEachOptions($this->requerimientos->categorias,'categoria');
 				$this->select = $this->Select('categoria','categoria',$this->options);
 
@@ -67,7 +67,7 @@
 				// seteando label, opciones y select de museos
 				$this->options = '';
 				$this->select = '';
-				$this->options = $this->Option('seleccione','Seleccione un museo');
+				$this->options = $this->Option('seleccione','Seleccione un museo','');
 				$this->forEachOptions($this->requerimientos->museos,'museo');
 				$this->select = $this->Select('museo','museo',$this->options);
 
@@ -110,8 +110,15 @@
 
 		private function forEachOptions($array,$valor){
 			foreach ($array as $key => $value) {
-				$this->options .= $this->Option( utf8_encode($value['valor']),utf8_encode($value[$valor]) );
+				if( isset($value['seudonimo']) && $value['seudonimo'] != '-No tiene-'){
+					$seudonimo = 'data-seudonimo="'.$value['seudonimo'].'"';
+				}else{
+					$seudonimo = '';
+				}
+				$this->options .= $this->Option( utf8_encode($value['valor']),utf8_encode($value[$valor]),utf8_encode($seudonimo));
+				
 			}
+
 		}
 
 	}
