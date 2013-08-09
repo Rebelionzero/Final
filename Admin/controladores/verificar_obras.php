@@ -34,6 +34,17 @@
 		$rightEchoObras = '<div class="right_content"><h2>Para poder crear una nueva obra es necesaria la creacion previa de al menos un autor, una categoria y un museo</h2></div>';
 	}else{
 		// crear nuevo objeto de formulario
+		// primero verifico que los campos del formulario esten vacios o no, si no estan vacios significa que hubo algun error en el ingreso de datos
+		// esta parte de verificacion suplanta lo que hacia el archivo variables-formulario-obra.php
+			
+		if($camposSeteados == false){
+			$campos_value = '';
+		}else{
+			// llenar de datos el mismo array, obtenerlos del controlador de obras
+			// pero para poder hacer esto, primero es necesario arreglar el javascript y los seudonimos y desactivar ajax
+			$campos_value = array();
+		}
+
 		$formularioObras = new formularioObras('../controladores/controlador-obras.php','obras-form','obras',$requerimientos);
 		$formularioObras->crearForm();
 
