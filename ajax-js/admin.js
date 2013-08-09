@@ -58,7 +58,7 @@ $(document).ready(function(){
 	/*
 	// Seudonimos
 	*/
-
+	/*
 	$('select[name="autor"]').change(function(){
 		var formid = $(this).parents("form").attr("id");
 		formid = "form#" + formid;
@@ -87,7 +87,8 @@ $(document).ready(function(){
 	/*
 	//Mail
 	*/
-
+	
+	/*
 	$('div.seudonimo-container input.check').change(function(){
 		var formid = $(this).parents("form").attr("id");
 		formid = "form#" + formid;
@@ -152,107 +153,28 @@ $(document).ready(function(){
 	
 	$("a.Editar").on("click",function( e ){
 		e.preventDefault();
-
-		var id = parseInt( $(this).attr('class')[($(this).attr('class').length)-1] );		
-		var parent = $(this).parent().parent().children();
-		var arrayDeDatos = [id];
-
-		for(var i= 0; i < parent.length; i++){
-			if(parent[i].firstChild.nodeType == 3){
-				arrayDeDatos.push(parent[i].firstChild.nodeValue);
-			}else{
-				continue;
-			}
-		}
-
 		$('#EditarObrasModal').modal('show');
-
-		// populando los inputs
-		var form = '#EditarObrasModal form';
-
-		// agrego el valor para titulo y descripcion
-		$(form+" #titulo").val(arrayDeDatos[1]);
-		$(form+" #desc").val(arrayDeDatos[3]);
-
-		// junto todas las referencias de jquery a los selects y a los textos para usarlos en los loops de abajo
-		var selects = [form+" #autor",form+" #anio",form+" #categoria",form+" #museo"];
-		var txts = [arrayDeDatos[2],arrayDeDatos[4],arrayDeDatos[6],arrayDeDatos[7]];		
-
-		for(var s = 0; s< selects.length; s++){
-			
-			$(selects[s]+" option").each(function(){				
-				if( $(this).text() == txts[s] ) {
-					$(this).prop("selected",true);
-				}
-			});
-
-		}
-		
-		form = $(form +"#" + $(form).attr("id")).selector;		
-		generarSeudonimo(selects[0],form);
-
 	});
 
-	/*
-	// hover Seudonimo y mail
-	*/
-
-	$(".tooltipData").on("mouseover",function(){
-		var position = $(this).offset();
-		var width = $ (this).width();
-		$(this).append("<div class='tooltip fade top in' style='top:"+ (position.top - 10) +"px; left:"+ ( (position.left + (width / 2)) - 20 ) +"px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'>"+ $(this).attr("data-title") +"</div></div>");
-	});
-
-	$(".tooltipData").on("mouseout",function(){
-		$("div.tooltip").remove();
-	});
+	
 
 	/************************************************************************************/
 	/********************************** Funciones ***************************************/
 	/************************************************************************************/
 
 	// generar Seudonimo
-	function generarSeudonimo(select,formid){
+
+
+
+
+	
+});
+
+/*
+
+function generarSeudonimo(select,formid){
 		if( select.selectedIndex != 0 ){
-			// ajax de consulta
 			var autor = $(formid+" select[name='autor'] option:selected").val();
-
-			/* das-ax-00  <-------- No borrar */
-			$.ajax({
-   				type: "POST",
-      			url: "../controladores/seudonimos.php",
-      			complete: function(jqXHR, textStatus){            		
-          	  		if(textStatus=="success"){
-          	  			// se completo con exito
-          	  			var seudonimo = jQuery.parseJSON( jqXHR.responseText );          	  			
-          	  			appendSeudonimo( seudonimo, formid );          	  			
-            		}else{
-            			// error
-            			alert("mal");
-            			/*console.log("text status: " + textStatus);
-            			console.log("*****");
-            			console.log(jqXHR);
-            			console.log(jqXHR.readyState);*/
-
-            			// Lanzar un error en la clase Error
-            		}
-        		},
-        		error: function(objeto, quepaso, otroobj){
-					alert("Estas viendo esto por que fallé");
-            		console.log("Pasó lo siguiente: "+quepaso);
-            		console.log(quepaso);
-            		console.log("este es el objeto: "+objeto);
-            		console.log(objeto);
-            		console.log("este es el OTRO objeto: "+otroobj);
-            		console.log(otroobj);
-
-            		// Lanzar un error en la clase Error
-        		},
-      			data:"seudonimo="+autor,
-      			dataType: "json",
-      			//beforeSend: function(){alert("enviando");},
-      			async:true      			
-			});
 		}else{
 			// desactivando el checkbox si esta activo
 			handleCheckbox(false,true);
@@ -335,4 +257,19 @@ $(document).ready(function(){
 			$(form+" input.check").prop('disabled', bool2);
 		}
 	}
-});
+
+	/*
+	// hover Seudonimo y mail
+	*/
+	/*
+	$(".tooltipData").on("mouseover",function(){
+		var position = $(this).offset();
+		var width = $ (this).width();
+		$(this).append("<div class='tooltip fade top in' style='top:"+ (position.top - 10) +"px; left:"+ ( (position.left + (width / 2)) - 20 ) +"px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'>"+ $(this).attr("data-title") +"</div></div>");
+	});
+
+	$(".tooltipData").on("mouseout",function(){
+		$("div.tooltip").remove();
+	});
+
+*/
