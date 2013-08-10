@@ -58,54 +58,31 @@ $(document).ready(function(){
 	/*
 	// Seudonimos
 	*/
-	/*
-	$('select[name="autor"]').change(function(){
-		var formid = $(this).parents("form").attr("id");
-		formid = "form#" + formid;
-		generarSeudonimo(this,formid);
-		if( $(formid+" select[name='autor'] option:selected").attr('value') != 'seleccione' ){			
-			$(".mail-container input[type=radio]").attr("disabled", false);
+	
+	// levantar el seudonimo del option cuando se haya cargado el formulario,
+	// y si el formulario tiene informacion ya cargada habilitar los campos del input segun la info de la obra.
+	$("form select#autor").on("change",function(){
+		// llamar a funcion que altera las opciones de autor
+		generarSeudonimo(this);
+	});
+	$("form input#seudonimo").on("change",function(){
+		if( $(this).is(":checked") ){
+			alert("check");
 		}else{
-			$(".mail-container input[type=radio]").attr("disabled", true).prop("checked",false);
-			$("select[name='autor']").attr("checked",false);
+			alert("uncheck");
 		}
 	});
 
-	$('p.no-seu').ready(function(){
-		var formid = $(this).parents("form").attr("id");
-		formid = "form#" + formid;		
-		generarSeudonimo(this,formid);
-		if( $(formid+" select[name='autor'] option:selected").attr('value') == 'seleccione' ){
-			
-			if( $("p.no-seu").hasClass("in-bl") ){
-				$("p.no-seu").removeClass("in-bl");
-				$("p.no-seu").addClass("none");
-			}
-		}
-	});
+	
 
+
+
+ 
 	/*
 	//Mail
 	*/
 	
-	/*
-	$('div.seudonimo-container input.check').change(function(){
-		var formid = $(this).parents("form").attr("id");
-		formid = "form#" + formid;
-		if( $(formid +' div.seudonimo-container input.check').is(":checked") ){			
-			$(formid +" .mail-container input[type=radio]").attr("disabled", true).prop("checked",false);
-			if( $(formid +" p.warn").hasClass("none") ){
-				$(formid +" p.warn").removeClass("none");
-				$(formid +" p.warn").addClass("block");
-			}
-		}else{
-			$(formid +" .mail-container input[type=radio]").attr("disabled", false);
-			if( $(formid +" p.warn").hasClass("block") ){
-				$(formid +" p.warn").removeClass("block");
-				$(formid +" p.warn").addClass("none");
-			}
-		}
-	});
+	
 
 	/*
 	// Limpiar Campos
@@ -164,9 +141,63 @@ $(document).ready(function(){
 
 	// generar Seudonimo
 
+	function generarSeudonimo(select){
+		var form = "form#" + $(select).parents("form.obras").attr("id");
+		var seudonimo = $(select[select.selectedIndex]).data("seudonimo");
+		if( select.selectedIndex != 0 ){
+			
+			if( seudonimo != undefined ){
+				enableInputs(form,true);
+				handleSeudonimo(form,true,seudonimo);
 
 
+			}else{
+				enableInputs(form,false);
+				handleSeudonimo(form,false);
 
+			}
+			
+			
+		}else{
+			resetInputs(form);
+		}
+
+	}
+
+	function resetInputs(form){
+		$(form+ " .opciones input").attr("disabled", true).prop("checked",false);
+		if( $("p.no-seu").hasClass("in-bl") ){ $("p.no-seu").removeClass("in-bl").addClass("none"); }
+		if( $(form+" div.seudonimo-container > div").has("p.seu") ){$(form+" div.seudonimo-container > div p.seu").remove();}
+	}
+
+	function enableInputs(form,checkbox){
+		if(checkbox == false){
+			$(form+ " .opciones input[type='radio']").attr("disabled", false);
+			$(form+ " .opciones input[type='checkbox']").attr("disabled", true);
+		}else{
+			$(form+ " .opciones input").attr("disabled", false);
+		}
+	}
+
+	function handleSeudonimo(form,booleano,seud){
+
+		if(booleano == true){
+			//ocultando la advertencia de falta de seudonimo
+			if( $("p.no-seu").hasClass("in-bl") ){$("p.no-seu").removeClass("in-bl").addClass("none");}
+
+			if( $(form+" div.seudonimo-container > div").children().length > 3 ){
+				$(form+" p.seu").html("El autor/a seleccionado/a tiene el seudonimo <span class='label label-info'><strong>" + seud+ "</strong></span>");
+			}else{
+				$(form+" div.seudonimo-container > div").append("<p class='seu'> El autor/a seleccionado/a tiene el seudonimo <span class='label label-info'><strong>" + seud + "</strong></span></p>");
+			}
+
+		}else{
+			if( $("p.no-seu").hasClass("none") ){$("p.no-seu").removeClass("none").addClass("in-bl");}
+			if( $(form+" div.seudonimo-container > div").has("p.seu") ){$(form+" div.seudonimo-container > div p.seu").remove();}
+
+		}
+
+	}
 	
 });
 
@@ -174,7 +205,7 @@ $(document).ready(function(){
 
 function generarSeudonimo(select,formid){
 		if( select.selectedIndex != 0 ){
-			var autor = $(formid+" select[name='autor'] option:selected").val();
+
 		}else{
 			// desactivando el checkbox si esta activo
 			handleCheckbox(false,true);
@@ -196,7 +227,7 @@ function generarSeudonimo(select,formid){
 
 
 	// agregar Seudonimo
-	function appendSeudonimo(obj,form){		
+	function appendSeudonimo(obj,form){
 		if(obj == false){			
 			// desactivando el checkbox
 			handleCheckbox(false,true);
@@ -273,3 +304,48 @@ function generarSeudonimo(select,formid){
 	});
 
 */
+
+/*
+	$('select[name="autor"]').change(function(){
+		var formid = $(this).parents("form").attr("id");
+		formid = "form#" + formid;
+		generarSeudonimo(this,formid);
+		if( $(formid+" select[name='autor'] option:selected").attr('value') != 'seleccione' ){			
+			$(".mail-container input[type=radio]").attr("disabled", false);
+		}else{
+			$(".mail-container input[type=radio]").attr("disabled", true).prop("checked",false);
+			$("select[name='autor']").attr("checked",false);
+		}
+	});
+
+	$('p.no-seu').ready(function(){
+		var formid = $(this).parents("form").attr("id");
+		formid = "form#" + formid;		
+		generarSeudonimo(this,formid);
+		if( $(formid+" select[name='autor'] option:selected").attr('value') == 'seleccione' ){
+			
+			if( $("p.no-seu").hasClass("in-bl") ){
+				$("p.no-seu").removeClass("in-bl");
+				$("p.no-seu").addClass("none");
+			}
+		}
+	});*/
+
+/*
+	$('div.seudonimo-container input.check').change(function(){
+		var formid = $(this).parents("form").attr("id");
+		formid = "form#" + formid;
+		if( $(formid +' div.seudonimo-container input.check').is(":checked") ){			
+			$(formid +" .mail-container input[type=radio]").attr("disabled", true).prop("checked",false);
+			if( $(formid +" p.warn").hasClass("none") ){
+				$(formid +" p.warn").removeClass("none");
+				$(formid +" p.warn").addClass("block");
+			}
+		}else{
+			$(formid +" .mail-container input[type=radio]").attr("disabled", false);
+			if( $(formid +" p.warn").hasClass("block") ){
+				$(formid +" p.warn").removeClass("block");
+				$(formid +" p.warn").addClass("none");
+			}
+		}
+	});*/

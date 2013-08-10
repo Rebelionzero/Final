@@ -90,7 +90,7 @@
 				$this->field_2 .= '<div class="seudonimo-container"><div>'
 				.$this->Input(array('checkbox','seudonimo','seudonimo','','class="check" disabled="true"'))
 				.$this->Label('seudonimo','Utilizar seudonimo del autor si este lo posee:')
-				.'<p class="no-seu none">El autor/a seleccionado/a no tiene seudonimo disponible</p></div>'
+				.'<p class="no-seu none">El autor/a seleccionado/a no tiene seudonimo</p></div>'
 				.'<p class="warn none"><span class="label label-warning">Advertencia:</span> Si el autor utiliza su seudonimo, el mail que figurará en el site será el del museo</p></div>';
 
 			
