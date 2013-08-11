@@ -8,12 +8,14 @@
 		var $options;
 		var $select;
 		var $requerimientos;
+		var $values;
 
-		function __construct($act,$formid,$clas,$req){
+		function __construct($act,$formid,$clas,$req,$val){
 			$this->action = $act;
 			$this->id = $formid;
 			$this->class = $clas;
 			$this->requerimientos = $req;
+			$this->values = $val;
 		}
 
 		public function crearForm(){
@@ -23,14 +25,14 @@
 			// primera linea div (label, titulo, label textarea)
 			$this->field_1 .= '<div class="primera-linea">'
 				.$this->Label('titulo','Titulo:')
-				.$this->Input(array('text','titulo','titulo','',''))
+				.$this->Input(array('text','titulo','titulo',utf8_encode($this->values['titulo']),''))
 				.$this->Label('desc','Descripción:')
-				.$this->TextArea('desc','descripcion','3','1','').'</div>';			
+				.$this->TextArea('desc','descripcion','3','1',utf8_encode($this->values['descripcion'])).'</div>';			
 			
 			// segunda linea div (label, autores, label, año, label, categoria, label, museo, label, imagen)
 				// seteando label, opciones y select de autor
 				$this->options = $this->Option('seleccione','Seleccione un autor','');
-				$this->forEachOptions($this->requerimientos->autores,'autor');
+				$this->forEachOptions($this->requerimientos->autores,'autor',utf8_encode($this->values['autor']));
 				$this->select = $this->Select('autor','autor',$this->options);
 				
 				// creandolos en el form
@@ -45,7 +47,11 @@
 				// seteando label, opciones y select de año
 				$this->options = $this->Option('seleccione','Seleccione un año','');
 				for($i = 1950; $i < ( intval(date('Y')) + 1); $i++ ) {
-					$this->options .= $this->Option($i,$i,'');
+					if($i == intval($this->values['anio'])){
+						$this->options .= $this->Option($i,$i," selected='selected'");
+					}else{
+						$this->options .= $this->Option($i,$i,'');
+					}
 				}
 				$this->select = $this->Select('anio','anio',$this->options);
 				
@@ -57,7 +63,7 @@
 				$this->options = '';
 				$this->select = '';
 				$this->options = $this->Option('seleccione','Seleccione una categoria','');
-				$this->forEachOptions($this->requerimientos->categorias,'categoria');
+				$this->forEachOptions($this->requerimientos->categorias,'categoria',utf8_encode($this->values['categoria']));
 				$this->select = $this->Select('categoria','categoria',$this->options);
 
 				// creandolos en el form
@@ -68,7 +74,7 @@
 				$this->options = '';
 				$this->select = '';
 				$this->options = $this->Option('seleccione','Seleccione un museo','');
-				$this->forEachOptions($this->requerimientos->museos,'museo');
+				$this->forEachOptions($this->requerimientos->museos,'museo',utf8_encode($this->values['museo']));
 				$this->select = $this->Select('museo','museo',$this->options);
 
 				// creandolos en el form
@@ -108,14 +114,15 @@
 				$this->formulario = $this->OpenCloseForm($this->formulario);
 		}
 
-		private function forEachOptions($array,$valor){
+		private function forEachOptions($array,$valor,$default){
 			foreach ($array as $key => $value) {
 				if( isset($value['seudonimo']) && $value['seudonimo'] != '-No tiene-'){
 					$seudonimo = 'data-seudonimo="'.$value['seudonimo'].'"';
 				}else{
 					$seudonimo = '';
 				}
-				$this->options .= $this->Option( utf8_encode($value['valor']),utf8_encode($value[$valor]),utf8_encode($seudonimo));
+				if(utf8_encode($value['valor']) == $default){$seudonimo.= " selected='selected'";}else{$seudonimo.= '';}
+				$this->options .= $this->Option(utf8_encode($value['valor']),utf8_encode($value[$valor]),utf8_encode($seudonimo));
 				
 			}
 

@@ -138,16 +138,12 @@ $(document).ready(function(){
 			if( seudonimo != undefined ){
 				enableInputs(form,true);
 				handleSeudonimo(form,true,seudonimo);
-
-
 			}else{
 				enableInputs(form,false);
 				handleSeudonimo(form,false);
 				if( $("p.warn").hasClass("block") ){ $("p.warn").removeClass("block").addClass("none"); }
 				if( $(form+" input[type='checkbox']").prop("checked") == true ){ $(form+" input[type='checkbox']").prop("checked",false); }
 			}
-			
-			
 		}else{
 			resetInputs(form);
 		}
