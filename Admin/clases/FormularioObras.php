@@ -96,7 +96,11 @@
 					$autor_selected = ' checked="true"';
 				}
 
-
+				$checkbox = '';
+				//var_dump($this->values['seudonimo']);
+				// si el false significa que no esta checkeado
+				if($this->values['seudonimo'] == false){$checkbox = '';}else{$checkbox = " checked='checked'";}
+				//echo(gettype($this->values['seudonimo']));
 
 				$this->field_2 = '<h2>Opciones de Autor:</h2>';
 				$this->field_2 .= '<div class="mail-container"><div>'
@@ -106,7 +110,7 @@
 					.$this->Label('mail-museo','Utilizar mail del museo').'</div></div>';
 
 				$this->field_2 .= '<div class="seudonimo-container"><div>'
-				.$this->Input(array('checkbox','seudonimo','seudonimo','','class="check" disabled="true"'))
+				.$this->Input(array('checkbox','seudonimo','seudonimo','','class="check" '.$checkbox))
 				.$this->Label('seudonimo','Utilizar seudonimo del autor si este lo posee:')
 				.'<p class="no-seu none">El autor/a seleccionado/a no tiene seudonimo</p></div>'
 				.'<p class="warn none"><span class="label label-warning">Advertencia:</span> Si el autor utiliza su seudonimo, el mail que figurará en el site será el del museo</p></div>';

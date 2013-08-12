@@ -58,7 +58,7 @@ $(document).ready(function(){
 	/*
 	// Seudonimos
 	*/
-	$("form.obras").ready(function(){
+	$("form.obras").on("load",function(){
 		generarSeudonimo( $("select#autor") );
 	});
 	$("form select#autor").on("change",function(){generarSeudonimo(this);});
@@ -135,6 +135,7 @@ $(document).ready(function(){
 	function generarSeudonimo(select){
 		var form = "form#" + $(select).parents("form.obras").attr("id");
 		var seudonimo = $(select[select.selectedIndex]).data("seudonimo");
+		
 		if( select.selectedIndex != 0 ){
 			
 			if( seudonimo != undefined ){

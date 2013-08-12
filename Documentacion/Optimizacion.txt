@@ -40,3 +40,4 @@ Para realizar este ultimo paso es necesario analizar controlador-obras.php ay qu
 Remover el comentario de quitar javascript del archivo verificar_obras.php en la linea 44
 
 Falta la traida del seudonimo cuando el formulario devuelve error, se debe hacer desde JS.
+Resolver problema de checkbox que no se muestra checkeado a pesar de haberle pasado ese valor
