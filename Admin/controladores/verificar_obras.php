@@ -46,7 +46,7 @@
 			
 		}
 
-		var_dump($campos_value);
+		//var_dump($campos_value);
 		$formularioObras = new formularioObras('../controladores/controlador-obras.php','obras-form','obras',$requerimientos,$campos_value);
 		$formularioObras->crearForm();
 

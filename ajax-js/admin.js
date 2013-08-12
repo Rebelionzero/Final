@@ -58,7 +58,9 @@ $(document).ready(function(){
 	/*
 	// Seudonimos
 	*/
-	
+	$("form.obras").ready(function(){
+		generarSeudonimo( $("select#autor") );
+	});
 	$("form select#autor").on("change",function(){generarSeudonimo(this);});
 	$("form input#seudonimo").on("change",function(){
 		if( $(this).is(":checked") ){
