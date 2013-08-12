@@ -86,11 +86,13 @@
 				
 
 				// SEGUNDO FIELDSET
+				var_dump($this->values['mail']);
+				if($this->values['mail'] == 'museo'){$museo_selected = ' selected="selected"';$autor_selected ='';}elseif($this->values['mail'] == 'autor'){$museo_selected ='';$autor_selected = ' selected="selected"';}
 				$this->field_2 = '<h2>Opciones de Autor:</h2>';
 				$this->field_2 .= '<div class="mail-container"><div>'
-					.$this->Input(array('radio','mail-autor','mail','autor','class="radio-mail-autor" disabled="true"'))
+					.$this->Input(array('radio','mail-autor','mail','autor','class="radio-mail-autor" disabled="true"'.$autor_selected))
 					.$this->Label('mail-autor','Utilizar mail del autor').'</div><div>'
-					.$this->Input(array('radio','mail-museo','mail','museo','class="radio-mail-museo" disabled="true"'))
+					.$this->Input(array('radio','mail-museo','mail','museo','class="radio-mail-museo" disabled="true"'.$museo_selected))
 					.$this->Label('mail-museo','Utilizar mail del museo').'</div></div>';
 
 				$this->field_2 .= '<div class="seudonimo-container"><div>'
