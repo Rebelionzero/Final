@@ -95,6 +95,9 @@
 				}elseif($this->values['mail'] == 'autor'){					
 					$autor_selected = ' checked="true"';
 				}
+
+
+
 				$this->field_2 = '<h2>Opciones de Autor:</h2>';
 				$this->field_2 .= '<div class="mail-container"><div>'
 					.$this->Input(array('radio','mail-autor','mail','autor','class="radio-mail-autor" '.$disabled.''.$autor_selected))

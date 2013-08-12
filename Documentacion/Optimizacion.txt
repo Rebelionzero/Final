@@ -38,3 +38,5 @@ Falta explicar los pasos detras de verificar-obras.php, es necesario para poder 
 Para realizar este ultimo paso es necesario analizar controlador-obras.php ay que es ese el archivo a donde se envia el formulario y verifica que los datos sean correctos, ademas es el qeu setea las variables de session que usa verficar-obras.php.
 
 Remover el comentario de quitar javascript del archivo verificar_obras.php en la linea 44
+
+Falta la traida del seudonimo cuando el formulario devuelve error, se debe hacer desde JS.
