@@ -96,11 +96,14 @@
 					$autor_selected = ' checked="true"';
 				}
 
-				$checkbox = '';
-				//var_dump($this->values['seudonimo']);
+				$checkbox = '';				
 				// si el false significa que no esta checkeado
-				if($this->values['seudonimo'] == false){$checkbox = '';}else{$checkbox = " checked='checked'";}
-				//echo(gettype($this->values['seudonimo']));
+				if(gettype($this->values['seudonimo']) == 'boolean'){$checkbox = '';}else{$checkbox =' checked="checked"';}
+
+				for($i = 0; $i < count($this->requerimientos->autores); $i++){
+					if($this->requerimientos->autores[$i]['valor'] == )
+				}
+
 
 				$this->field_2 = '<h2>Opciones de Autor:</h2>';
 				$this->field_2 .= '<div class="mail-container"><div>'

@@ -38,7 +38,7 @@
 		// esta parte de verificacion suplanta lo que hacia el archivo variables-formulario-obra.php
 			
 		if($camposSeteados == false){
-			$campos_value = array('titulo'=>'','descripcion'=>'','autor'=>'seleccione','anio'=>'seleccione','categoria'=>'seleccione','museo'=>'seleccione','imagen'=>'','mail'=>'','seudonimo'=>'');
+			$campos_value = array('titulo'=>'','descripcion'=>'','autor'=>'seleccione','anio'=>'seleccione','categoria'=>'seleccione','museo'=>'seleccione','imagen'=>'','mail'=>'','seudonimo'=>false);
 		}else{
 			// llenar de datos el mismo array, obtenerlos del controlador de obras
 			// pero para poder hacer esto, primero es necesario arreglar el javascript y los seudonimos y desactivar ajax
