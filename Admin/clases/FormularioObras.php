@@ -88,35 +88,56 @@
 				// SEGUNDO FIELDSET
 				$autor_selected ='';
 				$museo_selected ='';
-				$disabled = '';
-				if(utf8_encode($this->values['autor']) == 'seleccione' ){ $disabled = "disabled='true'";}
+				$disabled_rad = '';
+				if(utf8_encode($this->values['autor']) == 'seleccione' ){ $disabled_rad = "disabled='true'";}
 				if($this->values['mail'] == 'museo'){					
 					$museo_selected = ' checked="true"';
 				}elseif($this->values['mail'] == 'autor'){					
 					$autor_selected = ' checked="true"';
 				}
 
-				$checkbox = '';				
+				$checkbox = '';
+				$disabled_ch = 'disabled="true"';
+				$showWarning = 'none';
+				$showNote = 'none';
+				$seu = '';
 				// si el false significa que no esta checkeado
-				if(gettype($this->values['seudonimo']) == 'boolean'){$checkbox = '';}else{$checkbox =' checked="checked"';}
-
-				for($i = 0; $i < count($this->requerimientos->autores); $i++){
-					if($this->requerimientos->autores[$i]['valor'] == )
+				if(gettype($this->values['seudonimo']) == 'boolean'){$checkbox = '';}else{$showWarning = 'block';$checkbox =' checked="checked"';$museo_selected = ' checked="true"';$autor_selected = '';$disabled_rad = "disabled='true'";}
+				
+				// este verifica si la opcion seleccionada tiene saeudonimo, si lo hay, el atributo disabled es false
+				if($this->values['autor'] == 'seleccione'){
+					$disabled_ch = 'disabled="true"';
+				}else{
+					for($i = 0; $i < count($this->requerimientos->autores); $i++){
+						if($this->requerimientos->autores[$i]['valor'] == $this->values['autor'] ){
+							if($this->requerimientos->autores[$i]['seudonimo'] == '-No tiene-'){
+								$disabled_ch = ' disabled="true"';
+								$showNote = 'in-bl';
+							}else{
+								// tiene seudonimo
+								$seu = '<p class="seu">El autor/a seleccionado/a tiene el seudonimo <span class="label label-info">'.$this->requerimientos->autores[$i]['seudonimo'].'</span></p>';
+								$disabled_ch = '';
+							}
+							break;
+						}else{
+							$disabled_ch = '';
+							continue;	
+						}
+					}
 				}
-
 
 				$this->field_2 = '<h2>Opciones de Autor:</h2>';
 				$this->field_2 .= '<div class="mail-container"><div>'
-					.$this->Input(array('radio','mail-autor','mail','autor','class="radio-mail-autor" '.$disabled.''.$autor_selected))
+					.$this->Input(array('radio','mail-autor','mail','autor','class="radio-mail-autor" '.$disabled_rad.''.$autor_selected))
 					.$this->Label('mail-autor','Utilizar mail del autor').'</div><div>'
-					.$this->Input(array('radio','mail-museo','mail','museo','class="radio-mail-museo" '.$disabled.''.$museo_selected))
+					.$this->Input(array('radio','mail-museo','mail','museo','class="radio-mail-museo" '.$disabled_rad.''.$museo_selected))
 					.$this->Label('mail-museo','Utilizar mail del museo').'</div></div>';
 
 				$this->field_2 .= '<div class="seudonimo-container"><div>'
-				.$this->Input(array('checkbox','seudonimo','seudonimo','','class="check" '.$checkbox))
+				.$this->Input(array('checkbox','seudonimo','seudonimo','','class="check" '.$disabled_ch.$checkbox))
 				.$this->Label('seudonimo','Utilizar seudonimo del autor si este lo posee:')
-				.'<p class="no-seu none">El autor/a seleccionado/a no tiene seudonimo</p></div>'
-				.'<p class="warn none"><span class="label label-warning">Advertencia:</span> Si el autor utiliza su seudonimo, el mail que figurará en el site será el del museo</p></div>';
+				.'<p class="no-seu '.$showNote.'">El autor/a seleccionado/a no tiene seudonimo</p>'.$seu.'</div>'
+				.'<p class="warn '.$showWarning.'"><span class="label label-warning">Advertencia:</span> Si el autor utiliza su seudonimo, el mail que figurará en el site será el del museo</p></div>';
 
 			
 

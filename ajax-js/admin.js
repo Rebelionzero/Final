@@ -137,8 +137,10 @@ $(document).ready(function(){
 		var seudonimo = $(select[select.selectedIndex]).data("seudonimo");
 		
 		if( select.selectedIndex != 0 ){
-			
+			// fixea el bug que hace que al cambiar entre autores que tienen seudonimos, el checkbox se mantenga checkeado y los radios de habiliten
+			$(form+ " .opciones input[type='checkbox']").prop("checked", false);
 			if( seudonimo != undefined ){
+				// tiene seudonimo
 				enableInputs(form,true);
 				handleSeudonimo(form,true,seudonimo);
 			}else{
