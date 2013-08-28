@@ -50,9 +50,23 @@
 		$formularioObras = new formularioObras('../controladores/controlador-obras.php','obras-form','obras',$requerimientos,$campos_value);
 		$formularioObras->crearForm();
 
+		$queryObras = "SELECT obras.id id, obras.nombre obra, obras.value valor, autores.nombre autor, obras.descripcion descripcion, ".utf8_decode('obras.año')." anio, obras.seudonimo seudonimo, categorias.nombre categoria, museos.nombre museo, obras.mail mail, obras.imagen alt, obras.src src FROM obras, autores, categorias, museos WHERE obras.autor = autores.id AND obras.categoria = categorias.id AND obras.museo = museos.id ORDER BY obras.id";
+		$claseQuery = new Queries($queryObras);
+		$claseQuery->select();
+		$listaObras = '';
+
+		if($claseQuery->resultado != false){
+			$tabla = new TablaObras($claseQuery->resultado);
+			$tabla->crearTabla();
+			$listaObras = $tabla->table;
+		}else{		
+		// No hay ninguna obra cargada
+			$listaObras = "<h2 class='ninguna-obra'>No hay ninguna obra cargada en este momento</h2>";
+		}
+
 		$rightEchoObras ="<div class='tabs'><a href='#' class='tab-cargar focused-tab'>Cargar Obras</a><a href='#' class='tab-lista'>Lista de Obras</a></div>";
 		$rightEchoObras .= "<div class='right_content_place'><div class='cargar block'>".$formularioObras->formulario."</div>";
-		$rightEchoObras .= "<div class='lista none'><div class='lista-de-obras'>include_once('../controladores/lista-obras.php')</div></div></div>";
+		$rightEchoObras .= "<div class='lista none'><div class='lista-de-obras'>".$listaObras."</div></div></div>";
 	}
 
 ?>
