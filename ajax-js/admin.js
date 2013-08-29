@@ -94,10 +94,30 @@ $(document).ready(function(){
 
 	});
 
+	
+
+	/************************************************************************************/
+	/********************************* Genericos ****************************************/
+	/************************************************************************************/
+
+	/* 
+	// Editar
+	*/
+	
+	$("a.Editar").on("click",function( e ){
+		e.preventDefault();
+
+		// dependiendo de que parte de la pagina se pida, se abre una modal con contenido distinto
+		// cambiar los Id's de las modales (EditarObrasModal y BorrarObrasModal) para ahcerlo generico
+		// tambien
+		//$('#EditarObrasModal').modal('show');
+	});
+
 	/* 
 	// Borrar Obras
 	*/
 
+	// adapatar esta funcion para que funcione segun el tipo de elemento que se quiere borrar (obras, museos, etc).
 	$("a.Borrar").on("click",function( e ){
 		e.preventDefault();
 		
@@ -115,16 +135,6 @@ $(document).ready(function(){
 		});
 	});
 
-	/* 
-	// Editar Obras
-	*/
-	
-	$("a.Editar").on("click",function( e ){
-		e.preventDefault();
-		$('#EditarObrasModal').modal('show');
-	});
-
-	
 
 	/************************************************************************************/
 	/********************************** Funciones ***************************************/

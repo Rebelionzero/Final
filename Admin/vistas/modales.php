@@ -19,7 +19,7 @@
 		<h3 id="myModalLabel">Editar Obra</h3>
 	</div>
 	<div class="modal-body">
-		<?php include_once("editar-obras.php"); ?>
+		
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-danger delete">Editar</button>
