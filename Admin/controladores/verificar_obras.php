@@ -2,7 +2,7 @@
 
 	include_once("../autoloader.php");
 
-	$requerimientos = new TraerObras();
+	$requerimientos = new RequerimientosObras();
 	$requerimientos->traer_requerimientos();
 
 	$errores = false;

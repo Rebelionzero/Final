@@ -106,10 +106,33 @@ $(document).ready(function(){
 	
 	$("a.Editar").on("click",function( e ){
 		e.preventDefault();
+		var tipoModal;
+		var tipoClase = this.className.split(' ')[1].split('-');
+		var print;
+		$.ajax({
+			url: '../controladores/editarModalFormGenerator.php',
+			type: 'GET',
+			data: 'dato1='+tipoClase[0]+'&dato2='+tipoClase[1],
+			success: function(res){
+				console.log(res);
+			},
+			error: function(){
+				print = '<p>Error al intentar editar este/a '+tipoClase[0]+'</p>';
+			}
+		});
+
+		/*switch(tipoClase[0]){
+			case 'Obra': tipoModal='#EditarObrasModal';break;
+			default : alert("todavia no programaste esto nico!!!");break;
+		}*/
 
 		// dependiendo de que parte de la pagina se pida, se abre una modal con contenido distinto
-		// cambiar los Id's de las modales (EditarObrasModal y BorrarObrasModal) para ahcerlo generico
-		// tambien
+		// el plan es lanzar un ajax que envie a un archivo controlador php la info de que tipo de modal (obras, museos, etc)
+		// y que obra o museo se quiere editar, el controlador recibe la info, consulta a la base de datos y procesa toda
+		// la data para enviarla a una clase que cree el formulario, luego desde el controlador se escupe el formulario armado
+		// y ajax lo recibe, edita los titulos de la modal y luego inserta por jquery la respuesta de ajax.
+		// Deberia usar un solo archivo controlador para editar
+
 		//$('#EditarObrasModal').modal('show');
 	});
 
@@ -120,7 +143,13 @@ $(document).ready(function(){
 	// adapatar esta funcion para que funcione segun el tipo de elemento que se quiere borrar (obras, museos, etc).
 	$("a.Borrar").on("click",function( e ){
 		e.preventDefault();
-		
+		/*
+		<p>¿Esta seguro de que desea borrar la siguiente obra?</p>
+		<p class="obra"></p>
+		<p class="autor"></p>
+		<h3 id="myModalLabel">Borrar Obra</h3>
+		*/
+		/*
 		var thiz = this;
 		var ruta = $(this).parent().parent().parent().parent();
 		var obra = $(ruta).children("td:first-child").html();
@@ -132,7 +161,7 @@ $(document).ready(function(){
 		$('div.modal-footer button.delete').on("click",function(){
 			$(thiz).parent().parent().submit();
 			$('#BorrarObrasModal').modal('hide');
-		});
+		});*/
 	});
 
 

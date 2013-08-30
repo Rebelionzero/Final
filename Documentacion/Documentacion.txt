@@ -608,6 +608,23 @@ DAS-008 - Faltantes
 - Fundamental: El nombre de las obras, autores, categorias y museos no puede esar repetido, pues al momento de borrarlas de la base de datos, los valores a borrar pueden estar duplicados, ej: DELETE FROM obras WHERE value = 'clasico'. Esto quiere decir que puede haber 2 o mas obras con ese value, y todas resultarian borradas por dicha consulta a la base de datos. NO USAR UNIQUE EN LA CREACION DE LA BASE PARA LOS NOMBRES Y VALUES, PUES ESTO HARIA QUE LOS NOMBRES USADOS Y BORRADOS NO SE PUDIESEN REPETIR. (Falta confirmacion de esto).
 - Fundamental: Revisar la clase Query en el manejo de errores, pues puedo estar manejandolos mal.
 - Revisar que se use una sola conexion a la abse de datos y no mas de 1, ver la clase que usó el profesor para mostrarnos como utilizar el concepto de una sola conexion a la base, descubrí lo de las multiples conexiones al hacer var_dump(get_defined_vars);
+- Verificar que al borrar obras, museos, etc no se borre mas de 1 elemento, pues al borrar no se lo hace por id.
+- cambiado el nombre de la clase TraerObras a RequerimientosObras. Cambiar el comportamiento de la clase para que se pueda usar para museos, obras, autores, etc. En el momento de generar el objeto se debe pasar como array de esta forma: primero como clave el nombre de la tabla, y como valores lo que se pide de ella, ej:
+array(
+	'categorias' => array(
+		0 => 'id',
+		1 => 'value',
+		'valor_esperado' => true
+	),
+	'museos' => array(
+		0 => 'id',
+		1 => 'nombre',
+		2 => 'direccion'
+		'valor_esperado' => true
+	);
+);
+
+valor_esperado se debe usar para enviar el parametro que se debe evaluar en el caso de que existan autores, categorias, etc, para almacenar en la propiedad respuesta. Esta verificacion final tengo que evaluar si conviene o no hacerla fuera de la clase.
 
 /**********************/
   Javascript:
