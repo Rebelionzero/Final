@@ -13,15 +13,47 @@
 		switch($tabla){
 			// a medida que voy agregando los editores de las distintas partes tengo que ir ampliando esta funcion
 			case "Obra": $tabla = 'obra';
-			$query = 'SELECT obras.nombre obra, obras.descripcion descripcion, '.utf8_decode("obras.año").' anio, obras.categoria categoria, obras.autor autor, obras.museo museo, obras.seudonimo seudonimo, obras.mail mail FROM obras WHERE obras.id = '.$id;
+			$query = 'SELECT obras.nombre obra, obras.descripcion descripcion, '.utf8_decode("obras.año").' anio, obras.autor autor, obras.categoria categoria, obras.museo museo, obras.seudonimo seudonimo, obras.mail mail FROM obras WHERE obras.id = '.$id;
 			$datosDeLaObra = consultar($query);
-			
-			/*
-			$req = new RequerimientosObras();
-			$categorias = consultar('SELECT id, value as categoria FROM categorias');
-			$autores = consultar('SELECT id, value as autor, seudonimo FROM autores');
-			$museos = consultar('SELECT id, value as museo FROM museos');
-			*/
+		
+			$partesObra = array(
+				'autores' => array(
+					0 => array('id' => 'id'),
+					1 => array('value' => 'valor'),
+					2 => array('seudonimo' => 'seud')
+				),
+				'categorias' => array(
+					0 => array('id' => 'id'),
+					1 => array('value' => 'valor')
+				),
+				'museos' => array(
+					0 => array('id' => 'id'),
+					1 => array('value' => 'valor')
+				),
+			);
+
+			$req = new RequerimientosObras($partesObra);
+			$req->traer_requerimientos();
+			//var_dump($req->arrayObjetos);
+			var_dump($datosDeLaObra[0]);
+
+			/* creando los campos para enviar al formulario de edicion */
+			$autor = comparar(,$datosDeLaObra[0]['autor']);
+			$categoria = comparar(,$datosDeLaObra[0]['categoria']);
+			$museo = comparar(,$datosDeLaObra[0]['museo']);
+
+			$camposValue = array(
+				'titulo'=>$datosDeLaObra[0]['obra'],
+				'descripcion'=>$datosDeLaObra[0]['descripcion'],
+				'autor'=>$autor,
+				'anio'=>$datosDeLaObra[0]['anio'],
+				'categoria'=>$categoria,
+				'museo'=>$museo,
+				'imagen'=>'',
+				'mail'=>$mail,
+				'seudonimo'=>false
+				);
+
 			break;
 		}
 
@@ -31,6 +63,10 @@
 		$objeto = new Queries($q);
 		$objeto->select();
 		return $objeto->resultado;
+	}
+
+	function comparar($array,$datoABuscar){
+
 	}
 
 ?>

@@ -2,7 +2,22 @@
 
 	include_once("../autoloader.php");
 
-	$requerimientos = new RequerimientosObras();
+	$parametrosObra = array(
+		'autores' => array(
+			0 => array('nombre' => 'autor'),
+			1 => array('value' => 'valor'),
+			2 => array('seudonimo' => 'seud')
+		),
+		'categorias' => array(
+			0 => array('nombre' => 'categoria'),
+			1 => array('value' => 'valor')
+		),
+		'museos' => array(
+			0 => array('nombre' => 'museo'),
+			1 => array('value' => 'valor')
+		),
+	);
+	$requerimientos = new RequerimientosObras($parametrosObra);
 	$requerimientos->traer_requerimientos();
 
 	$errores = false;
@@ -30,7 +45,7 @@
 
 
 	/* right-obras.php define que se muestra en el lado derecho de obras: un mensaje de error, o el formulario */
-	if($requerimientos->respuesta == false){
+	if($requerimientos->resultadoVacio == true){
 		$rightEchoObras = '<div class="right_content"><h2>Para poder crear una nueva obra es necesaria la creacion previa de al menos un autor, una categoria y un museo</h2></div>';
 	}else{
 		// crear nuevo objeto de formulario
@@ -47,7 +62,7 @@
 		}
 
 		//var_dump($campos_value);
-		$formularioObras = new formularioObras('../controladores/controlador-obras.php','obras-form','obras',$requerimientos,$campos_value);
+		$formularioObras = new formularioObras('../controladores/controlador-obras.php','obras-form','obras',$requerimientos->arrayObjetos,$campos_value);
 		$formularioObras->crearForm();
 
 		$queryObras = "SELECT obras.id id, obras.nombre obra, obras.value valor, autores.nombre autor, obras.descripcion descripcion, ".utf8_decode('obras.año')." anio, obras.seudonimo seudonimo, categorias.nombre categoria, museos.nombre museo, obras.mail mail, obras.imagen alt, obras.src src FROM obras, autores, categorias, museos WHERE obras.autor = autores.id AND obras.categoria = categorias.id AND obras.museo = museos.id ORDER BY obras.id";
