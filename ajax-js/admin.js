@@ -58,27 +58,39 @@ $(document).ready(function(){
 	/*
 	// Seudonimos
 	*/
-	$("form.obras").on("load",function(){
-		generarSeudonimo( $("select#autor") );
+	$(document).on("load","form.obras",function(){
+		//generarSeudonimo( $("select#autor") );
+		//alert("ajsdkj");
 	});
-	$("form select#autor").on("change",function(){generarSeudonimo(this);});
-	$("form input#seudonimo").on("change",function(){
-		if( $(this).is(":checked") ){
-			if( $("p.warn").hasClass("none") ){ $("p.warn").removeClass("none").addClass("block"); }
-			$("form .mail-container input").attr("disabled", true);
-			$("form .mail-container #mail-museo").prop("checked", true);
-		}else{
-			if( $("p.warn").hasClass("block") ){ $("p.warn").removeClass("block").addClass("none"); }
-			$("form .mail-container input").attr("disabled", false);
-		}
-	});
+	$(document).on("change","form select#autor, form.edit-obras select#autor",function(){generarSeudonimo(this);});
+	$(document).on("change","form input#seudonimo, form.edit-obras input#seudonimo",function(){balanceInputs(this);});
 
+
+	function balanceInputs(elem){
+		var clase = $(elem).parents("form")[0].className;
+		if(clase.split(' ')[1] != undefined){
+			// formulario de edicion
+			clase = clase.split(' ')[1];
+		}
+		//console.log();
+		//console.log(elem.id);
+		
+		if( $("form."+ clase + " #" + elem.id ).is(":checked") ){
+			if( $("form."+ clase + " p.warn").hasClass("none") ){ $("form."+ clase + " p.warn").removeClass("none").addClass("block"); }
+			$("form."+ clase + " .mail-container input").attr("disabled", true);
+			$("form."+ clase + " .mail-container #mail-museo").prop("checked", true);
+		}else{
+			if( $("form."+ clase + " p.warn").hasClass("block") ){ $("form."+ clase + " p.warn").removeClass("block").addClass("none"); }
+			$("form."+ clase + " .mail-container input").attr("disabled", false);
+		}
+		
+	}
 
 	/*
 	// Limpiar Campos
 	*/
 
-	$("a.clear-fields, a.tab-lista").on("click",function( e ){
+	$(document).on("click","a.clear-fields, a.tab-lista",function( e ){
 		e.preventDefault();
 		$("input#titulo").val("");
 		$("form.obras textarea").val("");
@@ -106,34 +118,38 @@ $(document).ready(function(){
 	
 	$("a.Editar").on("click",function( e ){
 		e.preventDefault();
-		var tipoModal;
+		var valuesModal = [];
 		var tipoClase = this.className.split(' ')[1].split('-');
 		var print;
+		
+		switch(tipoClase[0]){
+			case 'Obra': valuesModal = ['Obra','editar-obra-modal'];break;
+			//case 'Autor': valuesModal = ['Autor','editar-autor-modal'];break;
+			default : alert("todavia no programaste esto nico!!!");break;
+		}
+
 		$.ajax({
 			url: '../controladores/editarModalFormGenerator.php',
 			type: 'GET',
 			data: 'dato1='+tipoClase[0]+'&dato2='+tipoClase[1],
 			success: function(res){
-				console.log(res);
+				$('#EditarModal .modal-body').empty();
+				$('#EditarModal').removeClass();
+				$('#EditarModal').addClass("modal hide fade " + valuesModal[1]);
+				$('#EditarModal h3').html("Editar "+valuesModal[0]);
+				$('#EditarModal .modal-body').append(res);
+				$('#EditarModal').modal('show');
+				res = null; // borrando el objeto????
 			},
 			error: function(){
 				print = '<p>Error al intentar editar este/a '+tipoClase[0]+'</p>';
 			}
 		});
 
-		/*switch(tipoClase[0]){
-			case 'Obra': tipoModal='#EditarObrasModal';break;
-			default : alert("todavia no programaste esto nico!!!");break;
-		}*/
+
 
 		// dependiendo de que parte de la pagina se pida, se abre una modal con contenido distinto
-		// el plan es lanzar un ajax que envie a un archivo controlador php la info de que tipo de modal (obras, museos, etc)
-		// y que obra o museo se quiere editar, el controlador recibe la info, consulta a la base de datos y procesa toda
-		// la data para enviarla a una clase que cree el formulario, luego desde el controlador se escupe el formulario armado
-		// y ajax lo recibe, edita los titulos de la modal y luego inserta por jquery la respuesta de ajax.
 		// Deberia usar un solo archivo controlador para editar
-
-		//$('#EditarObrasModal').modal('show');
 	});
 
 	/* 
@@ -172,6 +188,7 @@ $(document).ready(function(){
 	// generar Seudonimo
 
 	function generarSeudonimo(select){
+
 		var form = "form#" + $(select).parents("form.obras").attr("id");
 		var seudonimo = $(select[select.selectedIndex]).data("seudonimo");
 		

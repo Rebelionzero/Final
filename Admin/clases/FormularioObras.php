@@ -12,6 +12,7 @@
 		var $autores;
 		var $categorias;
 		var $museos;
+		var $cancelarButtons = false;
 
 		function __construct($act,$formid,$clas,$req,$val){
 			$this->action = $act;
@@ -19,6 +20,10 @@
 			$this->class = $clas;
 			$this->requerimientos = $req;
 			$this->values = $val;
+		}
+
+		public function cancelBtns(){
+			$this->cancelarButtons = true;
 		}
 
 		public function crearForm(){
@@ -114,18 +119,18 @@
 				// si el false significa que no esta checkeado
 				if(gettype($this->values['seudonimo']) == 'boolean'){$checkbox = '';}else{$showWarning = 'block';$checkbox =' checked="checked"';$museo_selected = ' checked="true"';$autor_selected = '';$disabled_rad = "disabled='true'";}
 				
-				// este verifica si la opcion seleccionada tiene saeudonimo, si lo hay, el atributo disabled es false
+				// este verifica si la opcion seleccionada tiene seudonimo, si lo hay, el atributo disabled es false
 				if($this->values['autor'] == 'seleccione'){
 					$disabled_ch = 'disabled="true"';
 				}else{
 					for($i = 0; $i < count($this->autores); $i++){
 						if($this->autores[$i]['valor'] == $this->values['autor'] ){
-							if($this->autores[$i]['seudonimo'] == '-No tiene-'){
+							if($this->autores[$i]['seud'] == '-No tiene-'){
 								$disabled_ch = ' disabled="true"';
 								$showNote = 'in-bl';
 							}else{
 								// tiene seudonimo
-								$seu = '<p class="seu">El autor/a seleccionado/a tiene el seudonimo <span class="label label-info">'.$this->autores[$i]['seudonimo'].'</span></p>';
+								$seu = '<p class="seu">El autor/a seleccionado/a tiene el seudonimo <span class="label label-info">'.$this->autores[$i]['seud'].'</span></p>';
 								$disabled_ch = '';
 							}
 							break;
@@ -153,8 +158,11 @@
 
 				// TERCER FIELDSET
 				// este fieldset corresponde a los botones
-				$this->field_3 = $this->Input(array('submit','submit-obra','','Cargar','class="btn btn-primary"')).'<a class="btn clear-fields" href="#">Limpiar Campos</a>';
-
+				if($this->cancelarButtons == false){
+					$this->field_3 = $this->Input(array('submit','submit-obra','','Cargar','class="btn btn-primary"')).'<a class="btn clear-fields" href="#">Limpiar Campos</a>';
+				}elseif($this->cancelarButtons == true){
+					$this->field_3 = '';
+				}
 				//if($variable_cancelar == true ){$this->field_3.= $this->Button('btn','Cancelar','data-dismiss="modal" aria-hidden="true"');}
 
 				// CERRANDO EL FORMULARIO

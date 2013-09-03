@@ -19,41 +19,51 @@
 			$partesObra = array(
 				'autores' => array(
 					0 => array('id' => 'id'),
-					1 => array('value' => 'valor'),
-					2 => array('seudonimo' => 'seud')
+					1 => array('nombre' => 'autor'),
+					2 => array('value' => 'valor'),
+					3 => array('seudonimo' => 'seud')
 				),
 				'categorias' => array(
 					0 => array('id' => 'id'),
-					1 => array('value' => 'valor')
+					1 => array('nombre' => 'categoria'),
+					2 => array('value' => 'valor')
 				),
 				'museos' => array(
 					0 => array('id' => 'id'),
-					1 => array('value' => 'valor')
-				),
+					1 => array('nombre' => 'museo'),
+					2 => array('value' => 'valor')
+				)
 			);
 
 			$req = new RequerimientosObras($partesObra);
 			$req->traer_requerimientos();
-			//var_dump($req->arrayObjetos);
-			var_dump($datosDeLaObra[0]);
+			
+			//var_dump($datosDeLaObra[0]);
 
 			/* creando los campos para enviar al formulario de edicion */
-			$autor = comparar(,$datosDeLaObra[0]['autor']);
-			$categoria = comparar(,$datosDeLaObra[0]['categoria']);
-			$museo = comparar(,$datosDeLaObra[0]['museo']);
-
+			$autor = comparar($req->arrayObjetos['autores'],$datosDeLaObra[0]['autor']);
+			$categoria = comparar($req->arrayObjetos['categorias'],$datosDeLaObra[0]['categoria']);
+			$museo = comparar($req->arrayObjetos['museos'],$datosDeLaObra[0]['museo']);
+			$mail = '';
+			$seudonimo = '';
+			if($datosDeLaObra[0]['mail'] == "1"){$mail = 'museo';}elseif($datosDeLaObra[0]['mail'] == "0"){$mail = 'autor';}
+			if($datosDeLaObra[0]['seudonimo'] == "0"){$seudonimo = false;}
 			$camposValue = array(
 				'titulo'=>$datosDeLaObra[0]['obra'],
 				'descripcion'=>$datosDeLaObra[0]['descripcion'],
-				'autor'=>$autor,
+				'autor'=>$autor['valor'],
 				'anio'=>$datosDeLaObra[0]['anio'],
-				'categoria'=>$categoria,
-				'museo'=>$museo,
+				'categoria'=>$categoria['valor'],
+				'museo'=>$museo['valor'],
 				'imagen'=>'',
 				'mail'=>$mail,
-				'seudonimo'=>false
-				);
-
+				'seudonimo'=>$seudonimo
+			);
+			
+			$formularioEdit = new FormularioObras('../controladores/editor-obras.php','obras-form','obras edit-obras',$req->arrayObjetos,$camposValue);
+			$formularioEdit->cancelBtns();
+			$formularioEdit->crearForm();
+			echo($formularioEdit->formulario);
 			break;
 		}
 
@@ -66,6 +76,19 @@
 	}
 
 	function comparar($array,$datoABuscar){
+		foreach ($array as $clave => $valor) {
+			foreach ($valor as $nuevoArray => $nuevoValor) {
+				if( $nuevoArray == 'id'){
+					if($datoABuscar == $nuevoValor){
+						return $valor;
+					}else{
+						continue;
+					}
+				}else{
+					continue;
+				}
+			}			
+		}
 
 	}
 
