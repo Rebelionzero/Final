@@ -72,11 +72,10 @@ $(document).ready(function(){
 			// formulario de edicion
 			clase = clase.split(' ')[1];
 		}
-		//console.log();
-		//console.log(elem.id);
 		
+		// habilita o deshabilita los radios segun el estado del checkbox		
 		if( $("form."+ clase + " #" + elem.id ).is(":checked") ){
-			if( $("form."+ clase + " p.warn").hasClass("none") ){ $("form."+ clase + " p.warn").removeClass("none").addClass("block"); }
+			if( $("form."+ clase + " p.warn").hasClass("none") ){$("form."+ clase + " p.warn").removeClass("none").addClass("block"); }
 			$("form."+ clase + " .mail-container input").attr("disabled", true);
 			$("form."+ clase + " .mail-container #mail-museo").prop("checked", true);
 		}else{
@@ -189,6 +188,7 @@ $(document).ready(function(){
 
 	function generarSeudonimo(select){
 
+		// obtengo el id del formulario y el atributo data de la opcion seleccionada
 		var form = "form#" + $(select).parents("form.obras").attr("id");
 		var seudonimo = $(select[select.selectedIndex]).data("seudonimo");
 		
@@ -200,6 +200,7 @@ $(document).ready(function(){
 				enableInputs(form,true);
 				handleSeudonimo(form,true,seudonimo);
 			}else{
+				// no tiene seudonimo
 				enableInputs(form,false);
 				handleSeudonimo(form,false);
 				if( $("p.warn").hasClass("block") ){ $("p.warn").removeClass("block").addClass("none"); }
@@ -228,7 +229,6 @@ $(document).ready(function(){
 	}
 
 	function handleSeudonimo(form,booleano,seud){
-
 		if(booleano == true){
 			//ocultando la advertencia de falta de seudonimo
 			if( $("p.no-seu").hasClass("in-bl") ){$("p.no-seu").removeClass("in-bl").addClass("none");}

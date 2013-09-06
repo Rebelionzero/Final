@@ -60,7 +60,7 @@
 				'seudonimo'=>$seudonimo
 			);
 			
-			$formularioEdit = new FormularioObras('../controladores/editor-obras.php','obras-form','obras edit-obras',$req->arrayObjetos,$camposValue);
+			$formularioEdit = new FormularioObras('../controladores/editor-obras.php','editar-obras-form','obras edit-obras',$req->arrayObjetos,$camposValue);
 			$formularioEdit->cancelBtns();
 			$formularioEdit->crearForm();
 			echo($formularioEdit->formulario);
