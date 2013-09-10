@@ -4,7 +4,7 @@
 	include_once('../autoloader.php');
 	session_start();
 
-	// si esta seteado la session errores la des setea
+	// si esta seteado la session errores la dessetea
 	if(isset($_SESSION['errores'])){
 		unset($_SESSION['errores']);
 	}
@@ -31,6 +31,7 @@
 		'anio' => utf8_decode($_POST['anio']),
 		'categoria' => utf8_decode($_POST['categoria']),
 		'museo' => utf8_decode($_POST['museo']),
+		'tipoForm' => $_POST['tipo'],
 		'imagen' => $_FILES['imagen'],
 		'mail' => $mail
 	);
@@ -46,20 +47,28 @@
 		$_SESSION['campos'] = $obra;
 		header('Location: ../vistas/obras.php');
 	}else{
-		$insertarObra = new Obra($obra);
-		$insertarObra->insertarObra();
-		//var_dump("controlador trae ". $insertarObra->resultado);
+		if($campos['tipoForm'] == true){
+			// si es true, quiere decir que la obra es para editarse, por lo cual se crea un objeto de edicion
+			echo 'todo ok, a editar!!!';
+		}elseif($campos['tipoForm'] == false){
+			// si es false, quiere decir que la obra es nueva, por lo cual se crea un objeto de creacion
+			$insertarObra = new Obra($obra);
+			$insertarObra->insertarObra();
+			
 
-		if($insertarObra->resultado === false){
-			// ocurrio un error de mysql, llamar a clase Error
-			echo("error en la insercion de la obra en la base de datos");
-		}else{
-			// salio todo bien, redireccionar a obras.php
-			$exitoMensaje = new MensajeHTML("La obra ha sido agregada correctamente");
-			$exitoMensaje->mensajeExito();
-			$_SESSION['carga_exitosa'] = $exitoMensaje;
-			header('Location: ../vistas/obras.php');
-		}	
+			if($insertarObra->resultado === false){
+				// ocurrio un error de mysql, llamar a clase Error
+				echo("error en la insercion de la obra en la base de datos");
+			}else{
+				// salio todo bien, redireccionar a obras.php
+				$exitoMensaje = new MensajeHTML("La obra ha sido agregada correctamente");
+				$exitoMensaje->mensajeExito();
+				$_SESSION['carga_exitosa'] = $exitoMensaje;
+				header('Location: ../vistas/obras.php');
+			}
+		}
+
+		
 	}
 
 ?>

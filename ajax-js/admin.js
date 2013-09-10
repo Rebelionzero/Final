@@ -58,10 +58,6 @@ $(document).ready(function(){
 	/*
 	// Seudonimos
 	*/
-	$(document).on("load","form.obras",function(){
-		//generarSeudonimo( $("select#autor") );
-		//alert("ajsdkj");
-	});
 	$(document).on("change","form select#autor, form.edit-obras select#autor",function(){generarSeudonimo(this);});
 	$(document).on("change","form input#seudonimo, form.edit-obras input#seudonimo",function(){balanceInputs(this);});
 
@@ -177,6 +173,10 @@ $(document).ready(function(){
 			$(thiz).parent().parent().submit();
 			$('#BorrarObrasModal').modal('hide');
 		});*/
+	});
+
+	$(".launch-edit").on("click",function( e ){
+		$("#EditarModal form").submit();
 	});
 
 

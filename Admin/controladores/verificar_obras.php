@@ -61,7 +61,7 @@
 		}
 
 		//var_dump($campos_value);
-		$formularioObras = new FormularioObras('../controladores/controlador-obras.php','obras-form','obras',$requerimientos->arrayObjetos,$campos_value);
+		$formularioObras = new FormularioObras('../controladores/controlador-obras.php','obras-form','obras',false,$requerimientos->arrayObjetos,$campos_value);
 		$formularioObras->crearForm();
 
 		$queryObras = "SELECT obras.id id, obras.nombre obra, obras.value valor, autores.nombre autor, obras.descripcion descripcion, ".utf8_decode('obras.año')." anio, obras.seudonimo seudonimo, categorias.nombre categoria, museos.nombre museo, obras.mail mail, obras.imagen alt, obras.src src FROM obras, autores, categorias, museos WHERE obras.autor = autores.id AND obras.categoria = categorias.id AND obras.museo = museos.id ORDER BY obras.id";

@@ -18,7 +18,7 @@
 	</div>
 	<div class="modal-body">Aqui va a editarse</div>
 	<div class="modal-footer">
-		<button class="btn btn-danger delete">Editar</button>
+		<button class="btn btn-primary launch-edit">Editar</button>
 		<a class="btn clear-fields" href="#">Limpiar Campos</a>
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
 	</div>

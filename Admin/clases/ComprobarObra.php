@@ -7,6 +7,7 @@
 		var $anio;
 		var $categoria;
 		var $museo;
+		var $esEditable;
 		var $imagen;
 		var $mail;
 		var $validaciones = array();
@@ -19,6 +20,7 @@
 			$this->anio = $array['anio'];
 			$this->categoria = $array['categoria'];
 			$this->museo = $array['museo'];
+			$this->esEditable = $array['tipoForm'];
 			$this->imagen = $array['imagen'];
 			$this->mail = $array['mail'];
 		}
@@ -87,15 +89,22 @@
 		}
 
 		private function validar_img(){
-			if ($this->imagen["error"] > 0){
-	  			return "Error en la carga de imagenes: No se ha subido ninguna imagen";
+			if ($this->imagen["error"] > 0){				
+				if($this->esEditable == false){
+					// se espera una imagen, porque la obra es nueva
+					return "Error en la carga de imagenes: No se ha subido ninguna imagen";
+				}elseif($this->esEditable == true){
+					// no es necesaria una imagen, ya que si existe, se editará
+					return false;
+				}		  			
 			}elseif($this->imagen["type"] != 'image/gif' && $this->imagen["type"] != 'image/jpg' && $this->imagen["type"] != 'image/jpeg' && $this->imagen["type"] != 'image/png' && $this->imagen["type"] != 'image/pjpeg'){
-	  			return "Error en la carga de imagenes: Solo se permiten formatos jpg, jpeg, gif y png";
-	  		}elseif( ($this->imagen["size"] / (1024 * 1024) ) > 2.0){
-	  			return "Error en la carga de imagenes: La imagen debe pesar menos de 2 Mb";
-	  		}else{
-	  			return false;
+		  		return "Error en la carga de imagenes: Solo se permiten formatos jpg, jpeg, gif y png";
+		  	}elseif( ($this->imagen["size"] / (1024 * 1024) ) > 2.0){
+		  		return "Error en la carga de imagenes: La imagen debe pesar menos de 2 Mb";
+		  	}else{
+		  		return false;
 			}
+			
 		}
 
 		private function validar_mail(){
@@ -105,5 +114,5 @@
 				return false;
 			}
 		}
-
+		
 	}

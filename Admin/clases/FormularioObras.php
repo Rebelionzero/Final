@@ -8,16 +8,18 @@
 		var $options;
 		var $select;
 		var $requerimientos;
+		var $tipo;
 		var $values;
 		var $autores;
 		var $categorias;
 		var $museos;
 		var $cancelarButtons = false;
 
-		function __construct($act,$formid,$clas,$req,$val){
+		function __construct($act,$formid,$clas,$type,$req,$val){
 			$this->action = $act;
 			$this->id = $formid;
 			$this->class = $clas;
+			$this->tipo = $type;
 			$this->requerimientos = $req;
 			$this->values = $val;
 		}
@@ -39,6 +41,7 @@
 			$this->field_1 = '<h2>Campos Obligatorios</h2>';
 			// primera linea div (label, titulo, label textarea)
 			$this->field_1 .= '<div class="primera-linea">'
+				.$this->Input(array('hidden','tipo','tipo',$this->tipo,''))
 				.$this->Label('titulo','Titulo:')
 				.$this->Input(array('text','titulo','titulo',utf8_encode($this->values['titulo']),''))
 				.$this->Label('desc','Descripción:')
