@@ -1,0 +1,496 @@
+/*
+Nicolás Alejandro Dezzutto - Escuela DaVinci - Programacion III
+PHP Orientado a Objetos - Shop Smart Admin Panel
+
+Indice:
+-------------------------------------------------------
+SSAP01: Variables
+SSAP02: Mixins
+SSAP03: General, basicos y reseteos 
+SSAP04: Menu
+SSAP05: Obras
+SSAP06: Categorias
+SSAP07: Autores
+SSAP08: Museos
+SSAP09: Varios
+-------------------------------------------------------
+*/
+
+/*
+------------------------------------
+SSAP01: Variables 
+------------------------------------
+*/
+
+/* colores */
+$tr:transparent;
+$bla:#000000;
+$wh:#ffffff;
+$grey1:#111111;
+$fc:#fcfcfc;
+$bc:#bcbcbc;
+$ef:#efefef;
+$e5:#E5E5E5;
+$c08:#0088cc;
+$ebf8:#EBF8FF;
+$e014:#000E14;
+
+/* alineacion, visibilidad, display y modelo de caja */
+$tp:top;
+$bt:bottom;
+$lt:left;
+$rt:right;
+$ce:center;
+$vis:visible;
+$hid:hidden;
+$in:inline;
+$bl:block;
+$in-bl:inline-block;
+$no:none;
+
+/* texto */
+$und:underline;
+$bld:bold;
+$nor:normal;
+
+/* bordes */
+$sol:solid;
+$dot:dotted;
+$med:medium;
+
+/*
+------------------------------------
+SSAP02: Mixins
+------------------------------------
+*/
+
+/*
+------------------------------------
+SSAP03: General, basicos y reseteos 
+------------------------------------
+*/ 
+html{
+	height:100%;
+	body{
+		background:url("../Images/background.jpg");
+		width:100%;
+	}
+}
+
+a{
+	text-decoration:$no;
+	color:$bla;
+	&:visited{
+		color:$bla;
+	}
+	&:hover{
+		text-decoration:$und;
+	}
+	&:visited,
+	&:active,
+	&:focus{
+		outline:0;
+	}
+}
+
+input,
+option {
+	&:active,
+	&:focus{
+		outline: 0;
+	}
+}
+
+.none{
+	display:$no;
+}
+
+.block{
+	display:$bl;
+}
+
+.in-bl{
+	display: $in-bl;
+}
+
+/* header */
+h1{
+	margin: 25px 0 25px 21px;
+}
+
+h2 {
+	font-size:15px;
+}
+
+/* page body */
+.middle{
+	margin: 10px 0 10px 15px;
+	overflow:$hid;
+	.left,
+	.right{
+		float:$lt;
+	}
+
+	.left ul{
+		margin: 10px;
+		overflow:$hid;
+		padding: 0;
+		li{
+			margin: 5px 0 0 5px;
+			padding: 6px 12px;
+		}
+	}
+	.right{
+		margin: 10px 0 0 40px;
+		width: 75%;
+		.content_right{
+			background: $fc;
+			border: 1px $sol $grey1;
+			border-radius: 0px 4px 4px 4px;
+			-moz-border-radius: 0px 4px 4px 4px;
+			-webkit-border-radius: 0px 4px 4px 4px;
+			form {
+				label{
+					margin-bottom: 1px;
+				}	
+			}
+		}
+	}
+}
+
+.tabs {
+	height: 30px;
+	a {
+		background: $bc;
+		border: 1px $sol $bla;
+		border-radius: 4px 4px 0px 0px;
+		-moz-border-radius: 4px 4px 0px 0px;
+		-webkit-border-radius: 4px 4px 0px 0px;	
+		color: $ef;
+		display: $in-bl;
+		font-weight: $bld;
+		height: 29px;
+		line-height: 30px;
+		padding: 0 10px;
+		outline: $no;
+		
+	}
+	.focused-tab{
+		background: $fc;
+		border-color: $grey1;
+		border-bottom: 0;
+		color: $grey1;
+		height: 30px;
+	}
+	.tab-cargar {
+		margin-right: 4px;
+	}
+}
+
+/*
+------------------------------------
+SSAP04: Menu 
+------------------------------------
+*/ 
+
+.middle .left .nav.bs-docs-sidenav{
+	background-color: $wh;
+	border-radius: 6px 6px 6px 6px;
+	-moz-border-radius: 6px 6px 6px 6px;
+	-webkit-border-radius: 6px 6px 6px 6px;
+	box-shadow: 0 0px 4px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.4);
+	width: 170px;
+	li{
+		float: $no;
+		margin: 0;
+		padding: 0;
+		a{
+			border: 1px $sol $e5;
+			color: $c08;
+			display: $bl;
+			margin: 0 0 -1px;
+			padding: 8px 14px;
+			text-decoration: $no;
+			text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+			span{
+				background: url("icons/png/glyphicons_223_chevron-right.png") no-repeat scroll $ce $ce $tr;
+				background-size: 8px auto;
+			    display: $in-bl;
+			    float: $rt;
+			    font-size: 0;
+			    height: 14px;
+			    margin-top: 3px;
+			    opacity: 0.3;
+			    width: 14px;
+			}
+			&:hover span {
+				opacity: 0.5;
+			}
+		}
+		&:first-child a{
+			border-radius: 6px 6px 0 0;
+			-moz-border-radius: 6px 6px 0 0;
+			-webkit-border-radius: 6px 6px 0 0;
+		}
+		&:last-child a {
+			border-radius: 0 0 6px 6px;
+			-moz-border-radius: 0 0 6px 6px;
+			-webkit-border-radius: 0 0 6px 6px;
+		}
+	}
+}
+
+body.obras .nav.bs-docs-sidenav li a.obras,
+body.categorias .nav.bs-docs-sidenav li a.categorias,
+body.autores .nav.bs-docs-sidenav li a.autores,
+body.museos .nav.bs-docs-sidenav li a.museos{
+	background-color: $c08;
+	border-color: $c08;
+	color: $wh;
+}
+
+body.obras .bs-docs-sidenav li a.obras span,
+body.categorias .bs-docs-sidenav li a.categorias span,
+body.autores .bs-docs-sidenav li a.autores span,
+body.museos .bs-docs-sidenav li a.museos span,
+body.obras .bs-docs-sidenav li a.obras:hover span,
+body.categorias .bs-docs-sidenav li a.categorias:hover span,
+body.autores .bs-docs-sidenav li a.autores:hover span,
+body.museos .bs-docs-sidenav li a.museos:hover span{
+	opacity: 1;
+}
+
+/*
+------------------------------------
+SSAP03: Obras 
+------------------------------------
+*/
+
+form.obras {
+	margin: 10px;
+	h2 {
+		border-bottom: 1px $sol;
+		font-size: 14px;
+		line-height: $nor;
+		padding-bottom: 2px;
+		width: 100%;
+	}
+	label,
+	.seudonimo {
+	display: $in-bl;
+	}
+	.primera-linea,
+	.segunda-linea {
+		float:$lt;
+		width: 400px;
+	}
+	.segunda-linea{
+		margin-left: 10px;
+		width: 500px;
+		div{
+			margin-right: 15px;
+			float: $lt;
+		}
+		label,
+		#imagen{
+			display:$bl;
+		}
+		#imagen{
+			margin-bottom: 20px;
+		}
+	}
+}
+
+.primera-linea{
+	input,
+	textarea,
+	label{
+		display:$bl;
+	}
+	input,
+	textarea{
+		width: 380px;
+	}
+}
+
+#seudonimo {
+	margin: 0 4px 0 0;
+}
+
+form.obras fieldset{
+	&.opciones{
+		background: $ebf8;
+		border: 1px $sol $e014;
+		border-radius: 5px;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		box-shadow: inset 0px 0px 4px 0px $e014;
+		-moz-box-shadow: inset 0px 0px 4px 0px $e014;
+		-webkit-box-shadow: inset 0px 0px 4px 0px $e014;
+		padding: 10px 20px;
+		*{
+			font-size: 12px;
+			margin: 0;
+		}
+		p.seu,
+		p.seu strong,
+		p.no-seu {
+			font-size: 11px;
+		}
+		p.seu,
+		p.no-seu{
+			margin-left: 5px;
+		}
+		p.seu {
+			display: $in-bl;
+		}
+		& > p {
+			font-size: 11px;
+			margin-top: 15px;
+		}
+		.mail-container{
+			margin-top: 5px;
+		}
+		.mail-container,
+		.seudonimo-container{
+			height: 41px;
+		}
+		.seudonimo-container label {
+			line-height: 21px;
+		}
+		h2{
+			border-bottom: $med $no;
+			font-size: 12px;
+		}
+		input {
+			margin-right:4px;
+		}
+	}
+	&.botones {
+		margin-top: 10px;
+		input[type="submit"]{
+			margin-right: 4px;
+		}
+	}
+}
+
+
+/*******************************************************************/
+/* reordenar */
+/*******************************************************************/
+
+table{margin:15px;}
+table tr{border:1px solid;}
+table tr th{background-color: #FAFAFA;background-image: linear-gradient(to bottom, #FFFFFF, #F2F2F2);background-repeat: repeat-x;color: #333;font-weight: bold;padding: 0 13px;text-align: center;text-transform: capitalize;vertical-align: middle;}
+table tr td{text-align:center;background: none repeat scroll 0 0 #EEEEEE;padding: 15px 0;}
+table tr:hover td{background:#ccc;}
+table tr td form {margin: 0;}
+/* Modals */
+.background_modal{background: rgb(00, 00, 00);background: rgba(00, 00, 00, 0.5);width:100%;height:100%;display:block;position:absolute;z-index:0;margin:auto;top:0;left:0;}
+#front_modal{
+	background: none repeat scroll 0 0 #FFFFFF;	
+	opacity:1;
+	filter: alpha(opacity = 100);
+	display:block;
+	width: 900px;
+	height: 200px;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	margin:-100px 0 0 -450px;
+}
+.editar-obra-modal{}
+
+/* bootstrap overwrite */
+
+.nav{margin: 10px 0 0 0;overflow: auto;}
+.nav li {float:left;}
+.titulo_marcas_categorias li{padding: 0 13px;text-align: center;width: 27%;font-weight:bold;}
+.titulo_marcas_categorias li + li{padding-left:68px;}
+.titulo_marcas_categorias li + li + li{padding-left:47px;}
+a.crear_elemento.btn.btn-primary{color:#fff;}
+table tr td{text-align:center;width: 30%;}
+table tr td a{display:inline-block;margin:0 20px;}
+.table-striped tbody > tr:nth-child(2n+1) > td,
+.table-striped tbody > tr:nth-child(2n+1) > th{background:#F0F0F0;}
+#front_modal h2 {margin:0;font-size: 1.3em;text-align: center;}
+#edit_form{padding:5px 25px;}
+#edit_form label{margin-right:15px;display: inline-block;}
+.Cargar {display:block;}
+.cerrar {display:inline-block;}
+.contenedor{width:1010px;}
+
+form.Editar_CM fieldset{margin:20px 60px 0;}
+form.Editar_CM input[type="text"] {margin:0;}
+input.Editar_CM{margin-left: 15px;}
+button.Editar_CM{margin-left: 5px;}
+#nuevo_producto,#nuevo_categoria,#nuevo_marca {margin-bottom: 15px;}
+.aceptar,.cancelar{margin-top:25px;padding: 4px 12px;}
+.aceptar{margin-left:250px;}
+.cancelar{margin-left:250px;}
+.mensaje_error h3,.mensaje_exito h3 {font-size: 14px;line-height: 20px;margin:0;}
+.mensaje_error a,.mensaje_exito a{font-size:14px;}
+.mensaje_error a:focus,.mensaje_exito a:focus{outline: none;}
+.alert{padding:10px 35px 10px 14px;}
+.formulario{overflow: auto;width: 370px;}
+.formulario label{float:left;line-height: 25px;}
+.formulario input[type="text"]{float:right;margin: 0;}
+.formulario label,.formulario input[type="text"]{margin-bottom: 25px;}
+.cargar_cerrar{ clear: left;overflow: hidden;width: 100%;}
+.cargar_cerrar input {padding:6px 12px;float: left;}
+.cargar_cerrar a{float: right;}
+.titulo_productos li{font-weight: bold;text-align: center;width: 10%;}
+.titulo_productos li.ndli,.titulo_productos li.descripcion,.titulo_productos li.li_opciones{width: 16%;}
+.error_php,.exito_php{display: block;}
+.error_php .close,.exito_php .close{position: static; float: right;}
+.error_php h3,.exito_php h3{line-height: 23px;float: left;}
+
+table.lista_obras tr td div.img-container {width: 60px;}
+table.lista_obras tr td img {width: 100%;}
+table.lista_obras tr td{padding:4px;text-align: center;vertical-align: middle;}
+table.lista_obras td.td_prod_producto {width: 115px;}
+table.lista_obras td.td_prod_precio {width: 60px;}
+table.lista_obras td.td_prod_descripcion {width: 160px;}
+table.lista_obras td.td_prod_imagen {width: 175px;}
+table.lista_obras td.td_prod_src {width: 70px;}
+table.lista_obras td.td_prod_categoria,table.lista_obras td.td_prod_marca{width: 90px}
+table.lista_obras td.td_editar_borrar{padding: 4px 20px;}
+table.lista_obras td.td_editar_borrar a{float: right;}
+table.lista_obras td.td_editar_borrar a:first-child{float: left;}
+
+.mensaje_error.container,
+.mensaje_error.container:before,
+.mensaje_error.container:after,
+.mensaje_exito.container,
+.mensaje_exito.container:before,
+.mensaje_exito.container:after{display:block;clear:left;}
+
+.formulario_nuevo_producto form {width:500px;}
+.group_1,.group_2{overflow:auto;}
+.group_2,.group_3{margin-top:15px;}
+.nombre_prd_div,.precio_prd_div,.descripcion_div,.img_div{float:left;}
+.nombre_prd_div,.descripcion_div,#select_categoria{margin-right:25px;}
+.formulario_nuevo_producto form input[type="submit"]{float: left;margin-top: 1px;padding: 5px 12px;}
+.formulario_nuevo_producto form a{float:left;margin-left:30px;}
+.submit_div{overflow:hidden;margin-top:25px;}
+
+#edit_form label.label_nombre_prod{margin-right: 40px;}
+#edit_form label.label_precio_prod{margin:0 15px 0 20px;}
+#edit_form label.label_img{margin:0 6px 0 20px;}
+#edit_form #select_categoria,#edit_form #select_marca{margin-top:5px;}
+#edit_form input.btn.btn-primary{margin:0 37px;}
+
+.alert {position: relative;margin-left: 0;margin-right: 0;width: auto;}
+.alert .close {position: absolute;top: 1px;right: 8px;}
+.alert ul {margin: 0;}
+
+input::-moz-focus-inner {border: 0;}
+
+form.obras select:active,
+form.obras select:focus {outline: 0;}
+.mensaje_exito p {margin: 0;}
+
+/* Modal bootstrap overwrite */
+#EditarModal {margin-left:-500px;width:1000px;}

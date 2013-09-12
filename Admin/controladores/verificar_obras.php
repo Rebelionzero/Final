@@ -43,7 +43,6 @@
 		unset($_SESSION['borrado_exitoso']);
 	}
 
-
 	/* right-obras.php define que se muestra en el lado derecho de obras: un mensaje de error, o el formulario */
 	if($requerimientos->resultadoVacio == true){
 		$rightEchoObras = '<div class="right_content"><h2>Para poder crear una nueva obra es necesaria la creacion previa de al menos un autor, una categoria y un museo</h2></div>';
@@ -52,7 +51,7 @@
 		// primero verifico que los campos del formulario esten vacios o no, si no estan vacios significa que hubo algun error en el ingreso de datos
 		// esta parte de verificacion suplanta lo que hacia el archivo variables-formulario-obra.php
 			
-		if($camposSeteados == false){
+		if($camposSeteados == false || $camposSeteados['tipoForm'] == 1){
 			$campos_value = array('titulo'=>'','descripcion'=>'','autor'=>'seleccione','anio'=>'seleccione','categoria'=>'seleccione','museo'=>'seleccione','imagen'=>'','mail'=>'','seudonimo'=>false);
 		}else{
 			// llenar de datos el mismo array, obtenerlos del controlador de obras
@@ -61,7 +60,7 @@
 		}
 
 		//var_dump($campos_value);
-		$formularioObras = new FormularioObras('../controladores/controlador-obras.php','obras-form','obras',false,$requerimientos->arrayObjetos,$campos_value);
+		$formularioObras = new FormularioObras('../controladores/controlador-obras.php','obras-form','obras',0,$requerimientos->arrayObjetos,$campos_value);
 		$formularioObras->crearForm();
 
 		$queryObras = "SELECT obras.id id, obras.nombre obra, obras.value valor, autores.nombre autor, obras.descripcion descripcion, ".utf8_decode('obras.año')." anio, obras.seudonimo seudonimo, categorias.nombre categoria, museos.nombre museo, obras.mail mail, obras.imagen alt, obras.src src FROM obras, autores, categorias, museos WHERE obras.autor = autores.id AND obras.categoria = categorias.id AND obras.museo = museos.id ORDER BY obras.id";
@@ -79,7 +78,7 @@
 		}
 
 		$rightEchoObras ="<div class='tabs'><a href='#' class='tab-cargar focused-tab'>Cargar Obras</a><a href='#' class='tab-lista'>Lista de Obras</a></div>";
-		$rightEchoObras .= "<div class='right_content_place'><div class='cargar block'>".$formularioObras->formulario."</div>";
+		$rightEchoObras .= "<div class='content_right'><div class='cargar block'>".$formularioObras->formulario."</div>";
 		$rightEchoObras .= "<div class='lista none'><div class='lista-de-obras'>".$listaObras."</div></div></div>";
 	}
 

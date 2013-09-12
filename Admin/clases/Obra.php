@@ -7,6 +7,7 @@
 		var $anio;
 		var $categoria;
 		var $museo;
+		var $tipo;
 		var $imagen;
 		var $mail;
 		var $seudonimo;
@@ -24,7 +25,7 @@
 			$this->seudonimo = $obra['seudonimo'];
 		}
 
-		public function insertarObra(){
+		public function settingObra(){
 			$img = explode(".",$this->imagen['name']);
 			$this->imagen['saveName'] = $img[0].microtime(true).'.'.$img[1];
 			$this->imagen['name'] = $img[0];
@@ -42,7 +43,15 @@
 				$this->mail = 1;
 			}
 			
-			$categoriaId = "SELECT id FROM categorias WHERE value ='".$this->categoria."'";
+			$parametrosObra = array(
+				0 => array('autores' => $this->autor),
+				1 => array('categorias' => $this->categoria),
+				2 => array('museos' => $this->museo)
+			);
+			
+			$parametrosObra = $this->crearQueries($parametrosObra);
+			var_dump($parametrosObra);
+			/*$categoriaId = "SELECT id FROM categorias WHERE value ='".$this->categoria."'";
 			$autorId = "SELECT id FROM autores WHERE value ='".$this->autor."'";
 			$museoId = "SELECT id FROM museos WHERE value ='".$this->museo."'";
 			
@@ -52,12 +61,10 @@
 
 			$categoriaQuery->select();
 			$autorQuery->select();
-			$museoQuery->select();
-
-			$query = "INSERT INTO obras VALUES(null,'".$this->titulo."','".str_replace(" ","_",$this->titulo)."','".$this->imagen['name']."','".$this->imagen['saveName']."','".$this->descripcion."',".$this->anio.",".$categoriaQuery->resultado[0]['id'].",".$autorQuery->resultado[0]['id'].",".$museoQuery->resultado[0]['id'].",".$this->seudonimo.",".$this->mail.");";
+			$museoQuery->select();*/
 
 			// moviendo la imagen, si es exitoso se crea el registro en la base de datos
-			if (!file_exists('../Obras_images')){
+			/*if (!file_exists('../Obras_images')){
 				mkdir("../Obras_images");
 			}
 
@@ -71,10 +78,32 @@
 			}else{
 				// la imagen no se insertó correctamente, llamar a la clase Error
 				echo("La imagen no se insertó correctamente.");
+			}*/
+
+		}
+
+		public function insertarObra(){
+			$query = "INSERT INTO obras VALUES(null,'".$this->titulo."','".str_replace(" ","_",$this->titulo)."','".$this->imagen['name']."','".$this->imagen['saveName']."','".$this->descripcion."',".$this->anio.",".$categoriaQuery->resultado[0]['id'].",".$autorQuery->resultado[0]['id'].",".$museoQuery->resultado[0]['id'].",".$this->seudonimo.",".$this->mail.");";
+		}
+
+		public function editarObra(){
+			$query = "UPDATE obras SET";
+		}
+
+		private function crearQueries($array){
+			$arrayRetornable = array();
+			$objetos;
+			$querySelect;
+			for ($i=0; $i < count($array); $i++) { 
+				foreach ($array[$i] as $clave => $valor) {
+					$querySelect = "SELECT id FROM ".$clave." WHERE value='".$valor."'";
+					$objetos = new Queries($querySelect);
+					$objetos->select();
+					array_push($arrayRetornable, $objetos->resultado);
+				}
+				$querySelect = '';
 			}
-
-
-			
+			return $arrayRetornable;
 		}
 	}
 

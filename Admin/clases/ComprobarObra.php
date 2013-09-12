@@ -90,10 +90,10 @@
 
 		private function validar_img(){
 			if ($this->imagen["error"] > 0){				
-				if($this->esEditable == false){
+				if($this->esEditable == 0){
 					// se espera una imagen, porque la obra es nueva
 					return "Error en la carga de imagenes: No se ha subido ninguna imagen";
-				}elseif($this->esEditable == true){
+				}elseif($this->esEditable == 1){
 					// no es necesaria una imagen, ya que si existe, se editará
 					return false;
 				}		  			

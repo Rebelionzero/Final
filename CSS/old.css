@@ -1,0 +1,207 @@
+/*
+Nicolás Alejandro Dezzutto - Escuela DaVinci - Programacion III
+PHP Orientado a Objetos - Shop Smart Admin Panel
+
+Indice:
+-------------------------------------------------------
+SSAP01: SSAP01: General, basicos y reseteos 
+SSAP02: Menu
+SSAP03: Obras
+SSAP04: Categorias
+SSAP05: Autores
+SSAP06: Museos
+SSAP07: Varios
+-------------------------------------------------------
+*/
+
+/*
+------------------------------------
+SSAP01: General, basicos y reseteos 
+------------------------------------
+*/ 
+html{
+	height:100%;
+}
+
+body{
+	background:url("../Images/background.jpg");
+	width:100%;
+}
+
+a{
+	text-decoration:none;
+}
+
+
+a,
+a:visited{
+	color:#000;	
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+a,
+a:visited,
+a:active,
+a:focus,
+input,
+input:active,
+input:focus,
+option,
+option:active,
+option:focus{
+	outline: 0;
+}
+
+.none{display:none;}
+.block{display:block;}
+.in-bl{display: inline-block;}
+
+/* header */
+h1{
+	margin: 0;
+}
+
+h1 a{
+	display: block;
+	height: 120px;
+	width:950px;
+}
+
+h2 {
+	font-size:15px;
+}
+
+/* page body */
+.middle{
+	margin: 10px 0 10px 15px;
+	overflow:hidden;
+}
+
+.middle .left,
+.middle .right{
+	float:left;
+}
+
+.middle .left ul{
+	margin: 10px;
+	overflow:hidden;
+	padding: 0;
+}
+
+.middle .left ul li{
+	margin:5px 0 0 5px;
+	padding:6px 12px;
+}
+
+.middle .right{
+	margin: 10px 0 0 40px;
+	width: 75%;
+}
+
+.content_right {border: 1px solid #111;background: #fcfcfc;-webkit-border-radius: 0px 4px 4px 4px;border-radius: 0px 4px 4px 4px;}
+
+form label {
+	margin-bottom: 1px;
+}
+
+
+
+
+
+
+.middle .left .nav.bs-docs-sidenav li {float: none;margin: 0;padding: 0;}
+.bs-docs-sidenav {background-color: #FFFFFF;border-radius: 6px 6px 6px 6px;box-shadow: 0 0px 4px rgba(0, 0, 0, 0.4);width: 170px;}
+.bs-docs-sidenav li a {border: 1px solid #E5E5E5;display: block;margin: 0 0 -1px;padding: 8px 14px;text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);color: #0088CC;text-decoration: none;}
+.bs-docs-sidenav li:first-child a {border-radius: 6px 6px 0 0;}
+.bs-docs-sidenav li:last-child a {border-radius: 0 0 6px 6px;}
+
+body.obras .bs-docs-sidenav li a.obras,
+body.categorias .bs-docs-sidenav li a.categorias,
+body.autores .bs-docs-sidenav li a.autores,
+body.museos .bs-docs-sidenav li a.museos,
+body.formato .bs-docs-sidenav li a.formato {
+	background-color: #0088CC;
+	border-color: #0088CC;
+    color: #FFFFFF;
+}
+
+.bs-docs-sidenav li a span{
+	background: url("icons/png/glyphicons_223_chevron-right.png") no-repeat scroll center center transparent;
+	background-size: 8px auto;
+    display: inline-block;
+    float: right;
+    height: 14px;
+    margin-top: 3px;
+    width: 14px;
+    opacity: 0.3;
+}
+.bs-docs-sidenav li a:hover span {opacity: 0.5;}
+
+body.obras .bs-docs-sidenav li a.obras span,
+body.categorias .bs-docs-sidenav li a.categorias span,
+body.autores .bs-docs-sidenav li a.autores span,
+body.museos .bs-docs-sidenav li a.museos span,
+body.formato .bs-docs-sidenav li a.formato:hover span,
+body.obras .bs-docs-sidenav li a.obras:hover span,
+body.categorias .bs-docs-sidenav li a.categorias:hover span,
+body.autores .bs-docs-sidenav li a.autores:hover span,
+body.museos .bs-docs-sidenav li a.museos:hover span,
+body.formato .bs-docs-sidenav li a.formato:hover span{
+	opacity: 1;
+}
+
+
+
+/* obras */
+
+form.obras {margin: 10px;}
+.tabs {height: 30px;}
+.tabs a {
+	background: #bcbcbc;
+	border: 1px solid #000;
+	-webkit-border-radius: 4px 4px 0px 0px;
+	border-radius: 4px 4px 0px 0px;
+	color: #efefef;
+	display: inline-block;
+	font-weight: bold;
+	height: 29px;
+	line-height: 30px;
+	padding: 0 10px;
+	outline: none;	
+}
+.tab-cargar {margin-right: 4px;}
+.block {display: block;}
+.none {display: none;}
+
+form.obras select {outline:none;}
+form.obras label {display: inline-block;}
+.primera-linea,.segunda-linea {float:left;width: 400px;}
+.segunda-linea {width: 500px;margin-left: 10px;}
+.segunda-linea div{float: left;margin-right: 15px;}
+form.obras .segunda-linea label {display: block;}
+.primera-linea input, .primera-linea textarea {display:block;width: 380px;}
+.primera-linea label {display: block;}
+#imagen {margin-bottom: 20px;display: block;}
+#seudonimo {margin: 0 4px 0 0;outline: none;}
+.seudonimo {display: inline-block;}
+.tabs a.focused-tab{border-color: #111;color: #111;background: #fcfcfc;border-bottom: 0;height: 30px;}
+form.obras h2 {line-height: normal;font-size: 14px;border-bottom: 1px solid;padding-bottom: 2px;width: 100%;}
+
+
+fieldset.opciones *{margin: 0;font-size: 12px;}
+.mail-container,.seudonimo-container{height: 41px;}
+fieldset.opciones .mail-container{margin-top: 5px;}
+.seudonimo-container label {line-height: 21px;}
+fieldset.opciones{background: #EBF8FF;border: 1px solid #000E14;-webkit-border-radius: 5px;border-radius: 5px;-webkit-box-shadow: inset 0px 0px 4px 0px #000E14;box-shadow: inset 0px 0px 4px 0px #000E14;padding: 10px 20px;}
+fieldset.opciones > p {font-size: 11px;margin-top: 15px;}
+form.obras fieldset.opciones h2{border-bottom: medium none;font-size: 12px;}
+p.seu {display: inline-block;}
+p.seu, p.seu strong,p.no-seu {font-size: 11px;}
+fieldset.botones {margin-top: 10px;}
+fieldset.botones input[type="submit"]{margin-right: 4px;}
+p.seu, p.no-seu {margin-left: 5px;}
+fieldset.opciones input {margin-right:4px;}
+

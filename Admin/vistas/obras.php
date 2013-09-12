@@ -18,7 +18,7 @@
 
 			include_once("../controladores/verificar_obras.php");
 		}
-
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,7 @@
 	</head>
 	<body class="obras">		
 		<div class="head">
-			<h1><a href="admin.php"><img alt="admin header" src="../../Images/admin_header.jpg"/></a></h1>
+			<h1><a href="admin.php"><img alt="admin header" src="../../Images/admin_header.png"/></a></h1>
 		</div>
 		<div class="middle">
 			<?php include_once("left.php");?>
@@ -51,6 +51,3 @@
 		<?php include_once("modales.php");?>
 	</body>
 </html>
-<?php
-	}
-?>

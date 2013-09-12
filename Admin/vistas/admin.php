@@ -48,7 +48,7 @@
 	</head>
 	<body class="admin">
 		<div class="head">
-			<h1><a href="../../Site/home.php"><img alt="admin header" src="../../Images/admin_header.jpg"/></a></h1>
+			<h1><a href="../../Site/home.php"><img alt="admin header" src="../../Images/admin_header.png"/></a></h1>
 		</div>
 		<div class="middle">
 			<?php include_once("left.php");?>

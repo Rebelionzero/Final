@@ -21,7 +21,7 @@
 		$seudonimo = $_POST['seudonimo'];
 		$mail = "museo";
 	}else{
-		$seudonimo = false;		
+		$seudonimo = false;
 	}
 
 	$campos = array(
@@ -35,7 +35,7 @@
 		'imagen' => $_FILES['imagen'],
 		'mail' => $mail
 	);
-
+	
 	$obra = $campos;
 	$obra['seudonimo'] = $seudonimo;
 	
@@ -47,15 +47,17 @@
 		$_SESSION['campos'] = $obra;
 		header('Location: ../vistas/obras.php');
 	}else{
-		if($campos['tipoForm'] == true){
-			// si es true, quiere decir que la obra es para editarse, por lo cual se crea un objeto de edicion
-			echo 'todo ok, a editar!!!';
-		}elseif($campos['tipoForm'] == false){
-			// si es false, quiere decir que la obra es nueva, por lo cual se crea un objeto de creacion
-			$insertarObra = new Obra($obra);
-			$insertarObra->insertarObra();
-			
+		$obra = new Obra($obra);
+		if($campos['tipoForm'] == 1){
+			// si es 1, quiere decir que la obra es para editarse, por lo cual se crea un objeto de edicion
+			$obra->settingObra();
+			//$obra->editarObra();
 
+		}elseif($campos['tipoForm'] == 0){
+			// si es 0, quiere decir que la obra es nueva, por lo cual se crea un objeto de creacion
+			$obra->settingObra();
+			//$obra->insertarObra();
+			
 			if($insertarObra->resultado === false){
 				// ocurrio un error de mysql, llamar a clase Error
 				echo("error en la insercion de la obra en la base de datos");

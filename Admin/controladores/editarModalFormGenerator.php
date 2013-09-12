@@ -38,8 +38,6 @@
 			$req = new RequerimientosObras($partesObra);
 			$req->traer_requerimientos();
 			
-			//var_dump($datosDeLaObra[0]);
-
 			/* creando los campos para enviar al formulario de edicion */
 			$autor = comparar($req->arrayObjetos['autores'],$datosDeLaObra[0]['autor']);
 			$categoria = comparar($req->arrayObjetos['categorias'],$datosDeLaObra[0]['categoria']);
@@ -60,7 +58,7 @@
 				'seudonimo'=>$seudonimo
 			);
 			
-			$formularioEdit = new FormularioObras('../controladores/controlador-obras.php','editar-obras-form','obras edit-obras',true,$req->arrayObjetos,$camposValue);
+			$formularioEdit = new FormularioObras('../controladores/controlador-obras.php','editar-obras-form','obras edit-obras',1,$req->arrayObjetos,$camposValue);
 			$formularioEdit->cancelBtns();
 			$formularioEdit->crearForm();
 			echo($formularioEdit->formulario);
