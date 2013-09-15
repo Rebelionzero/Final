@@ -28,7 +28,7 @@
 				$this->table .= $this->Td(  $this->mailUsar($obra['mail']) );
 				$this->table .= $this->Td('<div class="img-container"><img src="../Obras_images/'.$obra['src'].'" alt="'.$obra['alt'].'"/></div>');
 				$this->table .= $this->Td('<a href="#" class="Editar Obra-'.$obra['id'].'">Editar</a>');
-				$this->table .= $this->Td('<form action="../controladores/borrar-obra-de-base.php" method="POST" enctype="multipart/form-data"><fieldset><a href="#" class="Borrar">Borrar</a><input type="hidden" name="obra" value="'.$obra['valor'].'"/></fieldset></form>');
+				$this->table .= $this->Td('<form action="../controladores/borrar-de-base.php" method="POST" enctype="multipart/form-data"><fieldset><a href="#" class="Borrar">Borrar</a><input type="hidden" name="obra" value="'.$obra['id'].'"/></fieldset></form>');
 
 				$this->table .= $this->EndTr();
 			}

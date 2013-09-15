@@ -154,28 +154,28 @@ $(document).ready(function(){
 	// adapatar esta funcion para que funcione segun el tipo de elemento que se quiere borrar (obras, museos, etc).
 	$("a.Borrar").on("click",function( e ){
 		e.preventDefault();
-		/*
-		<p>¿Esta seguro de que desea borrar la siguiente obra?</p>
-		<p class="obra"></p>
-		<p class="autor"></p>
-		<h3 id="myModalLabel">Borrar Obra</h3>
-		*/
-		/*
+		
 		var thiz = this;
-		var ruta = $(this).parent().parent().parent().parent();
-		var obra = $(ruta).children("td:first-child").html();
-		var autor = $(ruta).children("td:first-child + td").html();
-		$('#BorrarObrasModal').modal('show');
-		$('#BorrarObrasModal .obra').html("<span>Obra</span>: " + obra);
-		$('#BorrarObrasModal .autor').html("<span>Autor</span>: " + autor);
+		var name = thiz.nextSibling.name;
+		var valuesModal = [];
+		switch(name){
+			case 'obra': valuesModal = ['Obra','Esta seguro de que desea borrar esta obra?'];break;
+
+			default: alert("todavia no programaste esto nico!!!");break;
+		}
+
+		$('#BorrarModal').modal('show');
+		$('#BorrarModal #myModalLabel').html("Borrar " + valuesModal[0]);
+		$('#BorrarModal .modal-body').html("<p>" + valuesModal[1] + "</p>");
 		
 		$('div.modal-footer button.delete').on("click",function(){
 			$(thiz).parent().parent().submit();
-			$('#BorrarObrasModal').modal('hide');
-		});*/
+			$('#BorrarsModal').modal('hide');
+		});
 	});
 
 	$(".launch-edit").on("click",function( e ){
+		e.preventDefault();
 		$("#EditarModal form").submit();
 	});
 
