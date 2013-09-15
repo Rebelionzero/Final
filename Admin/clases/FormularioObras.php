@@ -13,15 +13,17 @@
 		var $autores;
 		var $categorias;
 		var $museos;
+		var $obraId = false;
 		var $cancelarButtons = false;
 
-		function __construct($act,$formid,$clas,$type,$req,$val){
+		function __construct($act,$formid,$clas,$type,$req,$val,$obid){
 			$this->action = $act;
 			$this->id = $formid;
 			$this->class = $clas;
 			$this->tipo = $type;
 			$this->requerimientos = $req;
 			$this->values = $val;
+			$this->obraId = $obid;
 		}
 
 		public function cancelBtns(){
@@ -37,10 +39,16 @@
 				if($key == 'categorias'){$this->categorias = $value;}
 				if($key == 'museos'){$this->museos = $value;}
 			}
+			if($this->obraId == false){
+				$this->obraId ='';
+			}else{
+				$this->obraId = $this->Input(array('hidden','obra'.$this->obraId,'nrobra',$this->obraId,''));
+			}
 
 			$this->field_1 = '<h2>Campos Obligatorios</h2>';
 			// primera linea div (label, titulo, label textarea)
 			$this->field_1 .= '<div class="primera-linea">'
+				.$this->obraId
 				.$this->Input(array('hidden','tipo','tipo',$this->tipo,''))
 				.$this->Label('titulo','Titulo:')
 				.$this->Input(array('text','titulo','titulo',utf8_encode($this->values['titulo']),''))

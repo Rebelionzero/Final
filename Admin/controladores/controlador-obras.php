@@ -32,6 +32,7 @@
 		'categoria' => utf8_decode($_POST['categoria']),
 		'museo' => utf8_decode($_POST['museo']),
 		'tipoForm' => $_POST['tipo'],
+		'id' => $_POST['nrobra'],
 		'imagen' => $_FILES['imagen'],
 		'mail' => $mail
 	);
@@ -51,25 +52,24 @@
 		if($campos['tipoForm'] == 1){
 			// si es 1, quiere decir que la obra es para editarse, por lo cual se crea un objeto de edicion
 			$obra->settingObra();
-			//$obra->editarObra();
+			$obra->editarObra();
 
 		}elseif($campos['tipoForm'] == 0){
 			// si es 0, quiere decir que la obra es nueva, por lo cual se crea un objeto de creacion
 			$obra->settingObra();
-			//$obra->insertarObra();
-			
-			if($insertarObra->resultado === false){
-				// ocurrio un error de mysql, llamar a clase Error
-				echo("error en la insercion de la obra en la base de datos");
-			}else{
-				// salio todo bien, redireccionar a obras.php
-				$exitoMensaje = new MensajeHTML("La obra ha sido agregada correctamente");
-				$exitoMensaje->mensajeExito();
-				$_SESSION['carga_exitosa'] = $exitoMensaje;
-				header('Location: ../vistas/obras.php');
-			}
+			$obra->insertarObra();
 		}
-
+		
+		if($obra->resultado === false){
+			// ocurrio un error de mysql, llamar a clase Error
+			
+		}elseif($obra->resultado === true){
+			// salio todo bien, redireccionar a obras.php
+			$exitoMensaje = new MensajeHTML($obra->mensajeResultado);
+			$exitoMensaje->mensajeExito();
+			$_SESSION['carga_exitosa'] = $exitoMensaje;
+			header('Location: ../vistas/obras.php');
+		}
 		
 	}
 
