@@ -1,3 +1,3 @@
-﻿<div class="header">
-	<h1>Shop Smart Admin Panel</h1>
+<div class="head">
+	<h1><a href="admin.php"><img alt="admin header" src="../../Images/admin_header.png"/></a></h1>
 </div>

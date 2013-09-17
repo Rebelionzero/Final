@@ -23,7 +23,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>****** Admin Panel - Obras</title>
+		<title>Art Smart Admin Panel - Obras</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
 		<script type="text/javascript" src="../../ajax-js/jquery.js"></script>
 		<script type="text/javascript" src="../../ajax-js/bootstrap.min.js"></script>
@@ -33,9 +33,7 @@
 		<link type="text/css" rel="stylesheet" media="screen" href="../../CSS/admin.css"/>
 	</head>
 	<body class="obras">		
-		<div class="head">
-			<h1><a href="admin.php"><img alt="admin header" src="../../Images/admin_header.png"/></a></h1>
-		</div>
+		<?php include_once("header.php");?>
 		<div class="middle">
 			<?php include_once("left.php");?>
 			<div class="right" id="right">
