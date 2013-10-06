@@ -142,7 +142,7 @@
 		}
 
 		private function moverImagen($mensaje,$oldSrc){
-			
+			$this->mensajeResultado = $mensaje;
 			if($this->imagen["error"] == 0){
 				// moviendo la imagen, si es exitoso se crea el registro en la base de datos
 				if (!file_exists('../Obras_images')){
