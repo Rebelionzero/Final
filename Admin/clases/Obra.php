@@ -92,6 +92,8 @@
 			if($this->imagen["error"] == 0){
 				// al no hber error, hay una nueva imagen, por lo cual se crea el fragmento de la query para adherirlo
 				// a la query final a ejecutar. Ademas se busca el src de la imagen vieja para borrarla de la carpeta.
+				// this->id se pide siempre cuando se envia un formulario, pero solo se usa para la edicion
+				// si se hace un var dump de $this->id en insercion de obra tira null.
 				$imagenYSrc = "imagen='".$this->imagen['name']."',src='".$this->imagen['saveName']."', ";
 				
 				$imagenABorrarQuery = "SELECT src from obras WHERE id=".$this->id;

@@ -40,7 +40,7 @@
 			.$this->TextArea('desc','descripcion','3','1',utf8_encode($this->values['descripcion'])).'</div>';
 
 			if($this->cancelarButtons == false){
-				$this->div .= $this->Input(array('submit','submit-categoria','','Cargar','class="btn btn-primary"')).'<a class="btn clear-fields" href="#">Limpiar Campos</a>';
+				$this->div .= '<div class="botones">'.$this->Input(array('submit','submit-categoria','','Cargar','class="btn btn-primary"')).'<a class="btn clear-fields" href="#">Limpiar Campos</a></div>';
 			}elseif($this->cancelarButtons == true){
 				$this->div .= '';
 			}

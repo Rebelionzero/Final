@@ -1,6 +1,5 @@
 <?php
 
-	
 	include_once('../autoloader.php');
 	session_start();
 
@@ -23,6 +22,12 @@
 	}else{
 		$seudonimo = false;
 	}
+	
+	if(isset($_POST['nrcate'])){
+		$idObra = $_POST['nrcate'];
+	}else{
+		$idObra = '';
+	}
 
 	$campos = array(
 		'titulo' => utf8_decode($_POST['titulo']),
@@ -32,7 +37,7 @@
 		'categoria' => utf8_decode($_POST['categoria']),
 		'museo' => utf8_decode($_POST['museo']),
 		'tipoForm' => $_POST['tipo'],
-		'id' => $_POST['nrobra'],
+		'id' => $idObra,
 		'imagen' => $_FILES['imagen'],
 		'mail' => $mail
 	);
