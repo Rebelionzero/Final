@@ -24,7 +24,7 @@
 <html>
 	<head>
 		<title>Art Smart Admin Panel - Categorias</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<script type="text/javascript" src="../../ajax-js/jquery.js"></script>
 		<script type="text/javascript" src="../../ajax-js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../../ajax-js/admin.js"></script>
