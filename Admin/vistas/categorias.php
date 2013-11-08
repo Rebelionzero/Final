@@ -37,12 +37,12 @@
 		<div class="middle">
 			<?php include_once("left.php");?>
 			<div class="right" id="right">
-			<?php /*
+			<?php
 				if( $errores != false ){echo $errMensaje->output;}
 				if( $exito != false ){echo $exito->output;}
-				if( $borrado != false ){echo $borrado->output;}*/
+				if( $borrado != false ){echo $borrado->output;}
 			?>
-			<?php //echo $rightEchoObras?>
+			<?php echo $rightEchoCategorias?>
 			</div>
 		</div>
 		<div class="footer"></div>

@@ -122,6 +122,21 @@ h2 {
   .tabs .tab-cargar {
     margin-right: 4px; }
 
+form {
+  margin: 10px; }
+  form h2 {
+    border-bottom: 1px solid;
+    font-size: 14px;
+    line-height: normal;
+    padding-bottom: 2px;
+    width: 100%; }
+  form label {
+    display: inline-block; }
+  form .botones {
+    margin-top: 10px; }
+    form .botones input[type="submit"] {
+      margin-right: 4px; }
+
 /*
 ------------------------------------
 SSAP04: Menu 
@@ -189,35 +204,26 @@ body.museos .bs-docs-sidenav li a.museos:hover span {
 
 /*
 ------------------------------------
-SSAP03: Obras 
+SSAP05: Obras 
 ------------------------------------
 */
-form.obras {
-  margin: 10px; }
-  form.obras h2 {
-    border-bottom: 1px solid;
-    font-size: 14px;
-    line-height: normal;
-    padding-bottom: 2px;
-    width: 100%; }
-  form.obras label,
-  form.obras .seudonimo {
-    display: inline-block; }
-  form.obras .primera-linea,
-  form.obras .segunda-linea {
-    float: left;
-    width: 400px; }
-  form.obras .segunda-linea {
-    margin-left: 10px;
-    width: 500px; }
-    form.obras .segunda-linea div {
-      margin-right: 15px;
-      float: left; }
-    form.obras .segunda-linea label,
-    form.obras .segunda-linea #imagen {
-      display: block; }
-    form.obras .segunda-linea #imagen {
-      margin-bottom: 20px; }
+form.obras .seudonimo {
+  display: inline-block; }
+form.obras .primera-linea,
+form.obras .segunda-linea {
+  float: left;
+  width: 400px; }
+form.obras .segunda-linea {
+  margin-left: 10px;
+  width: 500px; }
+  form.obras .segunda-linea div {
+    margin-right: 15px;
+    float: left; }
+  form.obras .segunda-linea label,
+  form.obras .segunda-linea #imagen {
+    display: block; }
+  form.obras .segunda-linea #imagen {
+    margin-bottom: 20px; }
 
 .primera-linea input,
 .primera-linea textarea,
@@ -267,10 +273,15 @@ form.obras fieldset.opciones {
     font-size: 12px; }
   form.obras fieldset.opciones input {
     margin-right: 4px; }
-form.obras fieldset.botones {
-  margin-top: 10px; }
-  form.obras fieldset.botones input[type="submit"] {
-    margin-right: 4px; }
+
+/*
+------------------------------------
+SSAP06: Categorias 
+------------------------------------
+*/
+form.categorias input[type="text"],
+form.categorias textarea {
+  display: block; }
 
 /*******************************************************************/
 /* reordenar */

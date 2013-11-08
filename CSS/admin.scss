@@ -187,6 +187,26 @@ h2 {
 	}
 }
 
+form{
+	margin:10px;
+	h2 {
+		border-bottom: 1px $sol;
+		font-size: 14px;
+		line-height: $nor;
+		padding-bottom: 2px;
+		width: 100%;
+	}
+	label{
+		display: $in-bl;
+	}
+	.botones {
+		margin-top: 10px;
+		input[type="submit"]{
+			margin-right: 4px;
+		}
+	}
+}
+
 /*
 ------------------------------------
 SSAP04: Menu 
@@ -264,20 +284,11 @@ body.museos .bs-docs-sidenav li a.museos:hover span{
 
 /*
 ------------------------------------
-SSAP03: Obras 
+SSAP05: Obras 
 ------------------------------------
 */
 
 form.obras {
-	margin: 10px;
-	h2 {
-		border-bottom: 1px $sol;
-		font-size: 14px;
-		line-height: $nor;
-		padding-bottom: 2px;
-		width: 100%;
-	}
-	label,
 	.seudonimo {
 	display: $in-bl;
 	}
@@ -368,14 +379,20 @@ form.obras fieldset{
 			margin-right:4px;
 		}
 	}
-	&.botones {
-		margin-top: 10px;
-		input[type="submit"]{
-			margin-right: 4px;
-		}
-	}
 }
 
+/*
+------------------------------------
+SSAP06: Categorias 
+------------------------------------
+*/
+
+form.categorias{
+	input[type="text"],
+	textarea{
+		display: $bl;
+	}
+}
 
 /*******************************************************************/
 /* reordenar */
