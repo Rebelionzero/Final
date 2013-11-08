@@ -20,5 +20,9 @@
 		'id' => $idCate
 	);
 
-	
+	$verificacion = new ComprobarCategoria($campos);
+	$verificacion->verificar();
+
+	//var_dump($verificacion->errores);
+
 ?>
