@@ -35,30 +35,39 @@
 		}
 
 		private function validarTitulo(){
+			// campo no vacio
 			if ($this->vacio($this->titulo) == false){
-				// campo no vacio
+				// menor o igual a 30 caracteres
 				if(strlen(trim($this->titulo)) <= 30){
-					// menor o igual a 30 caracteres
+					// busca letras, numeros y espacios en blanco
 					if(preg_match('/^[a-zA-Z0-9 ]*$/', trim($this->titulo) ) ){
-						// busca letras, numeros y espacios en blanco
-						// machea, no hay caracteres extraños, entrada correcta
-						return false;
+						
+						// verifica que el nombre de categoria ingresada no exista
+						$categoriaExiste = new Queries("SELECT id FROM categorias WHERE nombre = '".$this->titulo."'");
+						$categoriaExiste->select();
+						if ( $categoriaExiste->resultado != false )  {
+							// ya exite esa categoria
+							return 'Error: El nombre de categoria "'.$this->titulo.'" ya existe en la base de datos.';
+						}else{
+							// machea, no hay caracteres extraños, entrada correcta
+							return false;
+						}
 					}else{
 						// no machea, hay caracteres extraños
-						return 'Error: Solo se puede ingresar texto, espacios y numeros como nombre de categoria';
+						return 'Error: Solo se puede ingresar texto, espacios y numeros como nombre de categoria.';
 					}
 				}else{
 					// muy largo
-					return 'Error: La categoria no debe tener mas de 30 caracteres';
+					return 'Error: La categoria no debe tener mas de 30 caracteres.';
 				}
 			}else{
 				// campo vacio
-				return 'Error: Debe ingresar una categoria (campo vacio)';
+				return 'Error: Debe ingresar una categoria (campo vacio).';
 			}
 		}
 
 		private function validarDescripcion(){
-			if( strlen( trim($this->descripcion) ) > 255 ){return "Error: La descripcion no puede tener mas de 255 caracteres";}else{return false;}
+			if( strlen( trim($this->descripcion) ) > 255 ){return "Error: La descripcion no puede tener mas de 255 caracteres.";}else{return false;}
 		}
 
 
