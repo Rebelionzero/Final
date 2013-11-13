@@ -42,8 +42,9 @@
 	// No hay ninguna obra cargada
 		$listaCategorias = "<h2 class='ninguna-categoria'>No hay ninguna categoria cargada en este momento</h2>";
 	}
+
 	$rightEchoCategorias ="<div class='tabs'><a href='#' class='tab-cargar focused-tab'>Cargar Categoria</a><a href='#' class='tab-lista'>Lista de Categorias</a></div>";
 	$rightEchoCategorias .= "<div class='content_right'><div class='cargar block'>".$formularioCategorias->formulario."</div>";
-	$rightEchoCategorias .= "<div class='lista none'><div class='lista-de-categorias'>".$listaCategorias."</div></div></div>";
+	$rightEchoCategorias .= "<div class='lista none'><div class='lista-de-categorias'>".$listaCategorias."</div></div>";
 
 ?>

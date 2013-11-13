@@ -4,9 +4,8 @@ $(document).ready(function(){
 		$(this).parent().parent().children("div.alert").remove();
 	});
 
-
 	/************************************************************************************/
-	/*********************************** Obras ******************************************/
+	/*********************************** General ****************************************/
 	/************************************************************************************/
 
 	/*
@@ -33,7 +32,7 @@ $(document).ready(function(){
 			
 		}
 
-	});	
+	});
 
 	$(".tab-lista").on("click",function(){
 
@@ -54,6 +53,83 @@ $(document).ready(function(){
 		}
 
 	});
+
+	/* 
+	// Editar
+	*/
+	
+	$("a.Editar").on("click",function( e ){
+		e.preventDefault();
+		var valuesModal = [];
+		var tipoClase = this.className.split(' ')[1].split('-');
+		var print;
+		
+		switch(tipoClase[0]){
+			case 'Obra': valuesModal = ['Obra','editar-obra-modal'];break;
+			//case 'Autor': valuesModal = ['Autor','editar-autor-modal'];break;
+			default : alert("todavia no programaste esto nico!!!");break;
+		}
+
+		$.ajax({
+			url: '../controladores/editarModalFormGenerator.php',
+			type: 'GET',
+			data: 'dato1='+tipoClase[0]+'&dato2='+tipoClase[1],
+			success: function(res){
+				$('#EditarModal .modal-body').empty();
+				$('#EditarModal').removeClass();
+				$('#EditarModal').addClass("modal hide fade " + valuesModal[1]);
+				$('#EditarModal h3').html("Editar "+valuesModal[0]);
+				$('#EditarModal .modal-body').append(res);
+				$('#EditarModal').modal('show');
+				res = null; // borrando el objeto????
+			},
+			error: function(){
+				print = '<p>Error al intentar editar este/a '+tipoClase[0]+'</p>';
+			}
+		});
+
+
+
+		// dependiendo de que parte de la pagina se pida, se abre una modal con contenido distinto
+		// Deberia usar un solo archivo controlador para editar
+	});
+
+	/* 
+	// Borrar Obras / Categorias
+	*/
+
+	// adapatar esta funcion para que funcione segun el tipo de elemento que se quiere borrar (obras, museos, etc).
+	$("a.Borrar").on("click",function( e ){
+		e.preventDefault();
+		
+		var thiz = this;
+		var name = thiz.nextSibling.name;
+		var valuesModal = [];
+		switch(name){
+			case 'obra': valuesModal = ['Obra','Esta seguro de que desea borrar esta obra?'];break;
+			case 'categoria': valuesModal = ['Categoria','Esta seguro de que desea borrar esta categoria?'];break;
+
+			default: alert("todavia no programaste esto nico!!!");break;
+		}
+
+		$('#BorrarModal').modal('show');
+		$('#BorrarModal #myModalLabel').html("Borrar " + valuesModal[0]);
+		$('#BorrarModal .modal-body').html("<p>" + valuesModal[1] + "</p>");
+		
+		$('div.modal-footer button.delete').on("click",function(){
+			$(thiz).parent().parent().submit();
+			$('#BorrarsModal').modal('hide');
+		});
+	});
+
+	$(".launch-edit").on("click",function( e ){
+		e.preventDefault();
+		$("#EditarModal form").submit();
+	});
+
+	/************************************************************************************/
+	/*********************************** Obras ******************************************/
+	/************************************************************************************/
 
 	/*
 	// Seudonimos
@@ -99,84 +175,6 @@ $(document).ready(function(){
 		}
 		$("p.warn").removeClass("block").addClass("none");
 
-	});
-
-	
-
-	/************************************************************************************/
-	/********************************* Genericos ****************************************/
-	/************************************************************************************/
-
-	/* 
-	// Editar
-	*/
-	
-	$("a.Editar").on("click",function( e ){
-		e.preventDefault();
-		var valuesModal = [];
-		var tipoClase = this.className.split(' ')[1].split('-');
-		var print;
-		
-		switch(tipoClase[0]){
-			case 'Obra': valuesModal = ['Obra','editar-obra-modal'];break;
-			//case 'Autor': valuesModal = ['Autor','editar-autor-modal'];break;
-			default : alert("todavia no programaste esto nico!!!");break;
-		}
-
-		$.ajax({
-			url: '../controladores/editarModalFormGenerator.php',
-			type: 'GET',
-			data: 'dato1='+tipoClase[0]+'&dato2='+tipoClase[1],
-			success: function(res){
-				$('#EditarModal .modal-body').empty();
-				$('#EditarModal').removeClass();
-				$('#EditarModal').addClass("modal hide fade " + valuesModal[1]);
-				$('#EditarModal h3').html("Editar "+valuesModal[0]);
-				$('#EditarModal .modal-body').append(res);
-				$('#EditarModal').modal('show');
-				res = null; // borrando el objeto????
-			},
-			error: function(){
-				print = '<p>Error al intentar editar este/a '+tipoClase[0]+'</p>';
-			}
-		});
-
-
-
-		// dependiendo de que parte de la pagina se pida, se abre una modal con contenido distinto
-		// Deberia usar un solo archivo controlador para editar
-	});
-
-	/* 
-	// Borrar Obras
-	*/
-
-	// adapatar esta funcion para que funcione segun el tipo de elemento que se quiere borrar (obras, museos, etc).
-	$("a.Borrar").on("click",function( e ){
-		e.preventDefault();
-		
-		var thiz = this;
-		var name = thiz.nextSibling.name;
-		var valuesModal = [];
-		switch(name){
-			case 'obra': valuesModal = ['Obra','Esta seguro de que desea borrar esta obra?'];break;
-
-			default: alert("todavia no programaste esto nico!!!");break;
-		}
-
-		$('#BorrarModal').modal('show');
-		$('#BorrarModal #myModalLabel').html("Borrar " + valuesModal[0]);
-		$('#BorrarModal .modal-body').html("<p>" + valuesModal[1] + "</p>");
-		
-		$('div.modal-footer button.delete').on("click",function(){
-			$(thiz).parent().parent().submit();
-			$('#BorrarsModal').modal('hide');
-		});
-	});
-
-	$(".launch-edit").on("click",function( e ){
-		e.preventDefault();
-		$("#EditarModal form").submit();
 	});
 
 

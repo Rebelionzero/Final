@@ -627,6 +627,7 @@ array(
 valor_esperado se debe usar para enviar el parametro que se debe evaluar en el caso de que existan autores, categorias, etc, para almacenar en la propiedad respuesta. Esta verificacion final tengo que evaluar si conviene o no hacerla fuera de la clase.
 - Establecer como clausula que un autor no puede tener 2 obras con el mismo nombre pero si puede haber 2 obras con el mismo nombre PERO diferentes autores.
 - bug de for: los ids de los inputs estan repetidos en la modal de edicion, por lo cual si se hace click en el label, no se activan los radios o los checkboxes.
+- bug: al editar en obras y borrar de base de datos una categoria tira error (borrar de base categoria devuelve pantalla blanca)
 
 /**********************/
   Javascript:

@@ -24,8 +24,8 @@
 				$this->table .= $this->Td('<form action="../controladores/borrar-de-base.php" method="POST" enctype="multipart/form-data"><fieldset><a href="#" class="Borrar">Borrar</a><input type="hidden" name="categoria" value="'.$categoria['id'].'"/></fieldset></form>');
 
 				$this->table .= $this->EndTr();
-
 			}
+			$this->table .= $this->EndTable();
 
 		}
 
