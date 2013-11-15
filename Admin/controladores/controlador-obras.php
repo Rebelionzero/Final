@@ -23,8 +23,8 @@
 		$seudonimo = false;
 	}
 	
-	if(isset($_POST['nrcate'])){
-		$idObra = $_POST['nrcate'];
+	if(isset($_POST['nrobra'])){
+		$idObra = $_POST['nrobra'];
 	}else{
 		$idObra = '';
 	}
@@ -47,7 +47,8 @@
 	
 	$verificacion = new ComprobarObra($campos);
 	$verificacion->verificar();
-	
+
+
 	if( count($verificacion->errores) > 0 ){
 		$_SESSION['ErroresObras'] = $verificacion->errores;
 		$_SESSION['campos'] = $obra;

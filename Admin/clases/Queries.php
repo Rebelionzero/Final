@@ -42,6 +42,8 @@
 		public function delete (){
 			$this->conexion();
 			$this->queryFunction();
+
+			$this->resultado = ($this->consulta === false) ? false : true;
 		}
 
 		private function conexion (){
