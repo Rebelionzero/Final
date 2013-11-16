@@ -20,6 +20,15 @@
 		'id' => $idCate
 	);
 
+	// la comprobacion de la categoria en la siguiente linea de codigo me impide avanzar.
+	// si una categoria se edita y se mantiene el mismo titulo,me tira error, porque estoy tratando
+	// de ingresar un nombre de categoria que ya existe, por lo cual tengo que tratar de que se ignore eso
+	// tengo que ver que es mas conveniente, si al entrar en la comprobacion se verifique primero que tipo
+	// de formulario es: de edicion o de creacion y despues lanzar clases distintas para c/u, o preguntar  
+	// dentro de el metodo que tipo de formulario es y asi verificar desde ahi. La verificacion de la descripcion
+	// no parece verse afectada, pues solo se chequea que tenga menos de 255 caracteres.
+
+	/*
 	$verificacion = new ComprobarCategoria($campos);
 	$verificacion->verificar();
 
@@ -55,6 +64,6 @@
 			$_SESSION['carga_exitosa'] = $exitoMensaje;
 			header('Location: ../vistas/categorias.php');
 		}
-	}
+	}*/
 
 ?>

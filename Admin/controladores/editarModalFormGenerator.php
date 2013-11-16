@@ -12,6 +12,7 @@
 		$query = '';
 		switch($tabla){
 			// a medida que voy agregando los editores de las distintas partes tengo que ir ampliando esta funcion
+			// Obras
 			case "Obra": $tabla = 'obra';
 			$query = 'SELECT obras.nombre obra, obras.descripcion descripcion, '.utf8_decode("obras.año").' anio, obras.autor autor, obras.categoria categoria, obras.museo museo, obras.seudonimo seudonimo, obras.mail mail FROM obras WHERE obras.id = '.$id;
 			$datosDeLaObra = consultar($query);
@@ -63,6 +64,18 @@
 			$formularioEdit->crearForm();
 			echo($formularioEdit->formulario);
 			break;
+
+			// Categorias
+			case "Categoria": $tabla = 'categoria';
+			$query = 'SELECT nombre categoria, descripcion descripcion FROM categorias WHERE id = '.$id;
+			$datosDeLaCategoria = consultar($query);
+			$camposValue =  array('categoria'=>$datosDeLaCategoria[0]['categoria'],'descripcion'=>$datosDeLaCategoria[0]['descripcion']);
+			$formularioEdit = new FormularioCategorias('../controladores/controlador-categorias.php','editar-categorias-form','categorias edit-categorias',1,$camposValue,$id);			
+			$formularioEdit->cancelBtns();
+			$formularioEdit->crearForm();
+			echo($formularioEdit->formulario);
+			break;
+						
 		}
 
 	}

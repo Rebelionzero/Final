@@ -66,6 +66,7 @@ $(document).ready(function(){
 		
 		switch(tipoClase[0]){
 			case 'Obra': valuesModal = ['Obra','editar-obra-modal'];break;
+			case 'Categoria': valuesModal = ['Categoria','editar-categoria-modal'];break;
 			//case 'Autor': valuesModal = ['Autor','editar-autor-modal'];break;
 			default : alert("todavia no programaste esto nico!!!");break;
 		}

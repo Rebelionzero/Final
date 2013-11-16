@@ -22,7 +22,12 @@
 			$this->value = str_replace(" ", "_", $this->titulo);			
 		}
 
-		public function editarCategoria(){}
+		public function editarCategoria(){
+			var_dump($this->titulo);
+			var_dump($this->descripcion);
+			var_dump($this->accionBooleano);
+			var_dump($this->id);
+		}
 
 		public function insertarCategoria(){
 			$query = "INSERT INTO categorias VALUES(null,'".$this->titulo."','".$this->value."','".$this->descripcion."')";
