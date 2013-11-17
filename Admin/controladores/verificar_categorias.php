@@ -39,7 +39,7 @@
 		$tabla->crearTabla();
 		$listaCategorias = $tabla->table;
 	}else{		
-	// No hay ninguna obra cargada
+	// No hay categorias
 		$listaCategorias = "<h2 class='ninguna-categoria'>No hay ninguna categoria cargada en este momento</h2>";
 	}
 

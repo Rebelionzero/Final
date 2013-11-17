@@ -394,6 +394,21 @@ form.categorias{
 	}
 }
 
+/*
+------------------------------------
+SSAP07: Autores 
+------------------------------------
+*/
+
+form.autores {
+	input[type="text"],
+	input#seudonimo,
+	input#mail{
+		display: $bl;
+		margin: 0 0 10px 0;
+	}
+}
+
 /*******************************************************************/
 /* reordenar */
 /*******************************************************************/
@@ -484,20 +499,8 @@ table.lista_obras td.td_editar_borrar a:first-child{float: left;}
 .mensaje_exito.container:before,
 .mensaje_exito.container:after{display:block;clear:left;}
 
-.formulario_nuevo_producto form {width:500px;}
 .group_1,.group_2{overflow:auto;}
 .group_2,.group_3{margin-top:15px;}
-.nombre_prd_div,.precio_prd_div,.descripcion_div,.img_div{float:left;}
-.nombre_prd_div,.descripcion_div,#select_categoria{margin-right:25px;}
-.formulario_nuevo_producto form input[type="submit"]{float: left;margin-top: 1px;padding: 5px 12px;}
-.formulario_nuevo_producto form a{float:left;margin-left:30px;}
-.submit_div{overflow:hidden;margin-top:25px;}
-
-#edit_form label.label_nombre_prod{margin-right: 40px;}
-#edit_form label.label_precio_prod{margin:0 15px 0 20px;}
-#edit_form label.label_img{margin:0 6px 0 20px;}
-#edit_form #select_categoria,#edit_form #select_marca{margin-top:5px;}
-#edit_form input.btn.btn-primary{margin:0 37px;}
 
 .alert {position: relative;margin-left: 0;margin-right: 0;width: auto;}
 .alert .close {position: absolute;top: 1px;right: 8px;}

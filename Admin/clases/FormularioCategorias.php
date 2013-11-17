@@ -3,7 +3,6 @@
 	Class FormularioCategorias extends CrearFormulario{
 		var $formulario;
 		var $div;
-		var $campo;
 		var $descripcion;
 		var $tipo;
 		var $values;
