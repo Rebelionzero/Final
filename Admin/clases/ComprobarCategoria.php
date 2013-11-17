@@ -45,9 +45,16 @@
 						// verifica que el nombre de categoria ingresada no exista
 						$categoriaExiste = new Queries("SELECT id FROM categorias WHERE nombre = '".$this->titulo."'");
 						$categoriaExiste->select();
-						if ( $categoriaExiste->resultado != false )  {
+						if ( $categoriaExiste->resultado != false ) {
 							// ya exite esa categoria
-							return 'Error: El nombre de categoria "'.$this->titulo.'" ya existe en la base de datos.';
+
+							// chequea que el tipo de formulario. Si es de edicion, no importa que exista el nombre de categoria, pues significa que solo se desea cambiar la descripcion
+							if( $this->form != 1 ){								
+								return 'Error: El nombre de categoria "'.$this->titulo.'" ya existe en la base de datos.';
+							}else{
+								// es un formulario de edicion y no importa si la categoria ya existe en la base de datos
+								return false;
+							}
 						}else{
 							// machea, no hay caracteres extraños, entrada correcta
 							return false;
