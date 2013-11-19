@@ -3,10 +3,10 @@
 
 	$errores = false;
 	$camposSeteados = false;
-	if(isset($_SESSION['ErroresCategorias'])){
-		$errores = $_SESSION['ErroresCategorias'];
+	if(isset($_SESSION['ErroresAutores'])){
+		$errores = $_SESSION['ErroresAutores'];
 		$camposSeteados = $_SESSION['campos'];
-		unset($_SESSION['ErroresCategorias']);
+		unset($_SESSION['ErroresAutores']);
 		unset($_SESSION['campos']);
 		$errMensaje = new MensajeHTML($errores);
 		$errMensaje->mensajeError();

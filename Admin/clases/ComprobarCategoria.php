@@ -4,8 +4,7 @@
 		var $titulo;
 		var $descripcion;
 		var $form;
-		var $id;
-		var $validaciones_error;
+		var $id;		
 		var $errores = array();
 
 		function __construct($campos){
