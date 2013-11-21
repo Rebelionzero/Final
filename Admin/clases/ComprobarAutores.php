@@ -37,15 +37,74 @@
 		}
 
 		private function validarNombre(){
-			// copiar de validar titulo de categoria y modificar
+			
+			if ($this->vacio($this->autor) == false){
+				// menor o igual a 30 caracteres
+				if(strlen(trim($this->autor)) <= 30){
+					// busca letras, numeros y espacios en blanco
+					if(preg_match('/^[a-zA-Z ]*$/', trim($this->autor) ) ){
+						// todo ok
+						return false;
+					}else{
+						// no machea, hay caracteres extraños
+						return 'Error: Solo se puede ingresar texto nombre de autor.';
+					}
+				}else{
+					// nombre muy largo
+					return 'Error: El nombre ingresado es muy largo, no puede tener mas de 30 caracteres.';	
+				}
+			}else{
+				// campo vacio
+				return 'Error: Debe ingresar un nombre de autor (campo vacio).';
+			}
+
 		}
 
 		private function validarSeudonimo(){
-			// verificar que si no se ingresa un seudonimo, en la base de datos se debe ingresar el default de -No Tiene-
-			// y esto se logra al ignorar el valor del campo de la tabla de la abse de datos
+			if ($this->vacio($this->seudonimo) == false){
+				// menor o igual a 30 caracteres
+				if(strlen(trim($this->seudonimo)) <= 30){
+					// el seudonimo puede estar repetido, pero se debe verificar qeu no existan 2 autores con el mismo nombre y el mismo seudonimo
+
+					$query = 'SELECT id FROM autores WHERE seudonimo="'.$this->seudonimo.'" AND nombre="'.$this->autor.'"';
+					$selectRepetido = new Queries($query);
+					$selectRepetido->select();
+
+					// si devuelve false es que no hay coincidencia
+					if($selectRepetido->resultado == false){
+						// todo ok
+						return false;
+					}else{
+						// nombre Y seudonimos repetidos
+						return 'Error: El nombre de autor y el seudonimo elegidos ya estan en uso.';
+					}
+				}else{
+					// muy largo
+					return 'Error: El seudonimo no debe tener mas de 30 caracteres.';
+				}
+			}else{
+				// dejo el campo seudonimo vacio
+				return false;
+			}
 		}
 
-		private function validarMail(){}
+		private function validarMail(){
+			if ($this->vacio($this->autor) == false){
+				// si es un mail
+				if(){
+					// si el mail existe en la base de datos
+					if(){
+						return false;
+					}else{
+						return 'Error: Esa direccion de correo electronico ya esta en uso.';
+					}
+				}else{
+					return 'Error: Se ingresaron caracteres extraños qeu no corresponden a un mail.';
+				}
+			}else{
+				return 'Error: El campo de mail no puede estar vacio.';
+			}
+		}
 
 
 

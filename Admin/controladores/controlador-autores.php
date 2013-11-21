@@ -28,7 +28,7 @@
 		$_SESSION['ErroresAutores'] = $verificacion->errores;
 		$_SESSION['campos'] = $categoria;
 		header('Location: ../vistas/autores.php');
-	}else{
+	}else{/*
 		$autor = new Autor($campos);
 		if($campos['tipoForm'] == 1){
 			// si es 1, quiere decir que el autor es para editarse, por lo cual se crea un objeto de edicion			
@@ -50,7 +50,7 @@
 
 			$_SESSION['carga_exitosa'] = $exitoMensaje;
 			header('Location: ../vistas/autor.php');
-		}
+		}*/
 	}
 
 ?>
