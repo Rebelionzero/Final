@@ -76,7 +76,7 @@
 						return false;
 					}else{
 						// nombre Y seudonimos repetidos
-						return 'Error: El nombre de autor y el seudonimo elegidos ya estan en uso.';
+						return 'Error: Ya existe un autor con ese nombre y ese seudonimo.';
 					}
 				}else{
 					// muy largo
@@ -91,15 +91,20 @@
 		private function validarMail(){
 			if ($this->vacio($this->autor) == false){
 				// si es un mail
-				if(){
+				if(preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/', $this->mail)){
 					// si el mail existe en la base de datos
-					if(){
+
+					$query = 'SELECT id FROM autores WHERE mail="'.$this->mail.'"';
+					$verificarMail = new Queries($query);
+					$verificarMail->select();
+					if($verificarMail->resultado == false){
+						// todo ok
 						return false;
 					}else{
 						return 'Error: Esa direccion de correo electronico ya esta en uso.';
 					}
 				}else{
-					return 'Error: Se ingresaron caracteres extraños qeu no corresponden a un mail.';
+					return 'Error: Se ingresaron caracteres extraños que no corresponden a un mail.';
 				}
 			}else{
 				return 'Error: El campo de mail no puede estar vacio.';
