@@ -75,6 +75,17 @@
 			$formularioEdit->crearForm();
 			echo($formularioEdit->formulario);
 			break;
+
+			// Autores
+			case "Autor": $tabla = 'autor';
+			$query = 'SELECT nombre autor, seudonimo seudonimo, mail mail FROM autores WHERE id = '.$id;
+			$datosDelAutor = consultar($query);
+			$camposValue =  array('nombre'=>$datosDelAutor[0]['autor'],'seudonimo'=>$datosDelAutor[0]['seudonimo'],'mail'=>$datosDelAutor[0]['mail']);
+			$formularioEdit = new FormularioAutores('../controladores/controlador-autores.php','editar-autores-form','autores edit-autores',1,$camposValue,$id);			
+			$formularioEdit->cancelBtns();
+			$formularioEdit->crearForm();
+			echo($formularioEdit->formulario);
+			break;
 						
 		}
 

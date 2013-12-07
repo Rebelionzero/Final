@@ -67,7 +67,7 @@ $(document).ready(function(){
 		switch(tipoClase[0]){
 			case 'Obra': valuesModal = ['Obra','editar-obra-modal'];break;
 			case 'Categoria': valuesModal = ['Categoria','editar-categoria-modal'];break;
-			//case 'Autor': valuesModal = ['Autor','editar-autor-modal'];break;
+			case 'Autor': valuesModal = ['Autor','editar-autor-modal'];break;
 			default : alert("todavia no programaste esto nico!!!");break;
 		}
 
@@ -82,13 +82,12 @@ $(document).ready(function(){
 				$('#EditarModal h3').html("Editar "+valuesModal[0]);
 				$('#EditarModal .modal-body').append(res);
 				$('#EditarModal').modal('show');
-				res = null; // borrando el objeto????
+				res = null; // borrando el objeto
 			},
 			error: function(){
 				print = '<p>Error al intentar editar este/a '+tipoClase[0]+'</p>';
 			}
 		});
-
 
 
 		// dependiendo de que parte de la pagina se pida, se abre una modal con contenido distinto
@@ -109,6 +108,7 @@ $(document).ready(function(){
 		switch(name){
 			case 'obra': valuesModal = ['Obra','Esta seguro de que desea borrar esta obra?'];break;
 			case 'categoria': valuesModal = ['Categoria','Esta seguro de que desea borrar esta categoria?'];break;
+			case 'autor' : valuesModal = ['Autor','Esta seguro de que desea borrar este autor?'];break;
 
 			default: alert("todavia no programaste esto nico!!!");break;
 		}

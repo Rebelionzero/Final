@@ -13,6 +13,11 @@
 		borrarCategoriaDeBase($value);
 	}
 
+	if(isset($_POST['autor'])){
+		$value = $_POST['autor'];
+		borrarAutorDeBase($value);
+	}
+
 
 
 	function borrarObraDeBase($id){
@@ -56,36 +61,64 @@
 	function borrarCategoriaDeBase($id){
 		// verificar que la categoria no este en uso por una obra
 		$usoQuery = "SELECT id FROM obras WHERE categoria=".$id;
-		$selectObra = new Queries($usoQuery);
-		$selectObra->select();
+		$mensajeCategoriaUsada = 'La categoria que intentó borrar esta siendo usada por una o mas obras.';
+		$location = " ../vistas/categorias.php";
+		$borrarQuery = "DELETE FROM categorias WHERE id=".$id;
+		$borradoCategoriaExitoso = 'La categoria se ha borrado exitosamente.';
+		$borradoCategoriaError ='Se produjo un error al borrar la categoria elegida.';
+
+		verificarUso($usoQuery,$mensajeCategoriaUsada,$location,$borrarQuery,$borradoCategoriaExitoso,$borradoCategoriaError);
+	}
+
+	function borrarAutorDeBase($id){
+		// verificar que el autor no sea titular de una obra
+		$usoQuery = "SELECT id FROM obras WHERE autor=".$id;
+		$mensajeAutorEnUso = 'El autor que intentó borrar esta siendo usado por una o mas obras.';
+		$location = " ../vistas/autores.php";
+		$borrarQuery = "DELETE FROM autores WHERE id=".$id;
+		$borradoAutorExitoso = 'El autor se ha borrado exitosamente.';
+		$borradoAutorError ='Se produjo un error al borrar el autor seleccionado.';
+
+		verificarUso($usoQuery,$mensajeAutorEnUso,$location,$borrarQuery,$borradoAutorExitoso,$borradoAutorError);
+
 		
+	}
+
+	function verificarUso($query,$mensaje,$loc,$borrar,$exito,$error){
+		// VERIFICAR PORQUE NO FUNCIONA EL HEADER()
+
+		$selectObra = new Queries($query);
+		$selectObra->select();
 		if( $selectObra->resultado != false ){
-			// signigica que la categoria esta en uso y no se puede borrar
-			$mensaje = 'La categoria que intentó borrar esta siendo usada por una o mas obras.';
+			// signigica que la categoria, autor, o museo esta en uso y no se puede borrar			
 			$mensajeRespuesta = new MensajeHTML($mensaje);
 			$mensajeRespuesta->mensajeAlert();
+			$_SESSION['borrado_exitoso'] = $mensajeRespuesta;
+			
+			header("Location: ".$loc);
 		}else{
-			$borrarQuery = "DELETE FROM categorias WHERE id=".$id;
-			$borrarCategoria = new Queries($borrarQuery);
-			$borrarCategoria->delete();
-
-			if($borrarCategoria->resultado === true){
-				//se borro bien de la base de datos
-				$mensaje = 'La categoria se ha borrado exitosamente.';
-				$mensajeRespuesta = new MensajeHTML($mensaje);
-				$mensajeRespuesta->mensajeExito();
-			}else{
-				// hubo un error al borrar la categoria de la base
-				$mensaje = 'Se produjo un error al borrar la categoria elegida.';
-				$mensajeRespuesta = new MensajeHTML($mensaje);
-				$mensajeRespuesta->mensajeError();
-			}
+			borrarDeBase($borrar,$exito,$error,$loc);
 		}
-		$_SESSION['borrado_exitoso'] = $mensajeRespuesta;
-		header("Location: ../vistas/categorias.php");
 
 	}
 
+	function borrarDeBase($queryABorrar,$msgExito,$msgError,$loc){
+		// VERIFICAR PORQUE NO FUNCIONA EL HEADER()
+		$borrarElemento = new Queries($queryABorrar);
+		$borrarElemento->delete();
+
+		if($borrarElemento->resultado === true){
+			//se borro bien de la base de datos
+			$mensajeRespuesta = new MensajeHTML($msgExito);
+			$mensajeRespuesta->mensajeExito();
+		}else{
+			// hubo un error al borrar la categoria de la base			
+			$mensajeRespuesta = new MensajeHTML($msgError);
+			$mensajeRespuesta->mensajeError();
+		}
+		$_SESSION['borrado_exitoso'] = $mensajeRespuesta;
+		header("Location: ".$loc);
+	}
 
 	
 ?>

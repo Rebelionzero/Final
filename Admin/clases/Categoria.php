@@ -5,7 +5,6 @@
 		var $descripcion;
 		var $value;
 		var $accionBooleano;
-		private $parametrosObra;
 		var $resultado = false;
 		var $mensajeResultado = '';
 		var $id;

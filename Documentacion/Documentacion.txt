@@ -560,8 +560,6 @@ DAS-008 - Faltantes
 - TRANSFORMAR SHOP SMART EN UN SISTEMA DE CARGA DE IMAGENES PARA SER VISTAS DESDE UN CARRUSEL TIPO OBRAS DE ARTE. BASARME EN EL CONCEPTO DEL EXAMEN EN QUE LABURE CON TICHO Y JUANMA PARA LA CLASE DE RICARDO RODRIGUEZ!!!
 - Agregar una parte al backend (Igual que marcas y categorias) llamada Formato. Esta serviria para alterar el especto de la pagina desde el backend (Nice to have)
 - Categorias deberian estar limitados a ciertos parametros (Impresionismo, surrealismo, etc).
-- Marcas deberia ser llamado Autor
-- En autor se debe seleccionar al autor e ingresar la informacion de dicho autor.
 - Productos deberia ser Obras y deberia permitir mostrar variaciones (ej: mostrar o no el autor, o hacerlo bajo un seudonimo), mostrar el año, una descripcion, titulo y contacto al autor o al museo para adquirir dicha pintura.
 - Cambiar la base de datos
 
@@ -626,6 +624,7 @@ valor_esperado se debe usar para enviar el parametro que se debe evaluar en el c
 - Establecer como clausula que un autor no puede tener 2 obras con el mismo nombre pero si puede haber 2 obras con el mismo nombre PERO diferentes autores.
 - bug de for: los ids de los inputs estan repetidos en la modal de edicion, por lo cual si se hace click en el label, no se activan los radios o los checkboxes.
 - Asumo que al borrar una obra de la base de datos (borrar-de-base.php) todo sale bien, hacer una instancia en la cual la obra a borrar no existe en la base de datos para asi mostrar el error por pantalla. Aunque al usar el delete en la base de datos siempre devuelve true a pesar de no haber borrado ninguna fila.
+- Error: Cuando edito una categoria y le pongo el nombre de una categoria que ya existe, el programa pasa a crear dos categorias con el mismo nombre.
 
 /**********************/
   Javascript:
