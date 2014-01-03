@@ -28,7 +28,18 @@
 
 		public function editarAutor(){
 			$this->settingAutor();
-					
+			$query = "UPDATE autores SET nombre='".$this->nombre."', value='".$this->value."', seudonimo='".$this->seudonimo."', mail='".$this->mail."' WHERE id=".$this->id;
+			
+			$editarAutor = new Queries($query);
+			$editarAutor->update();
+			$this->resultado = $editarAutor->resultado;
+
+			if($this->resultado == true){
+				$this->mensajeResultado = "El autor se ha editado con exito.";
+			}else{
+				$this->mensajeResultado = "Ha ocurrido un error al editar el autor.";
+			}
+
 		}
 
 		public function insertarAutor(){
@@ -40,7 +51,7 @@
 			$this->resultado = $insertarAutor->resultado;
 
 			if($this->resultado == true){
-				$this->mensajeResultado = "El anuevo autor ha sido creado con exito.";
+				$this->mensajeResultado = "El nuevo autor ha sido creado con exito.";
 			}else{
 				$this->mensajeResultado = "Ha ocurrido un error al crear el nuevo autor.";
 			}

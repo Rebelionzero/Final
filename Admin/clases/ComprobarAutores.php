@@ -101,7 +101,12 @@
 						// todo ok
 						return false;
 					}else{
-						return 'Error: Esa direccion de correo electronico ya esta en uso.';
+						if($this->form == 1){
+							// es un formulario de edicion, no importa si el mail se repite
+							return false;
+						}else{
+							return 'Error: Esa direccion de correo electronico ya esta en uso.';
+						}
 					}
 				}else{
 					return 'Error: Se ingresaron caracteres extraños que no corresponden a un mail.';
