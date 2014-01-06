@@ -294,6 +294,18 @@ form.autores input#mail {
   display: block;
   margin: 0 0 10px 0; }
 
+/*
+------------------------------------
+SSAP08: Museos 
+------------------------------------
+*/
+form.museos input[type="text"],
+form.museos input[type="file"],
+form.museos input#direccion,
+form.museos input#mail {
+  display: block;
+  margin: 0 0 10px 0; }
+
 /*******************************************************************/
 /* reordenar */
 /*******************************************************************/

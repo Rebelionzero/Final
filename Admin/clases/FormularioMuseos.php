@@ -39,7 +39,7 @@
 			.$this->Label('mail','Mail:')
 			.$this->Input(array('text','mail','mailMuseo',utf8_encode($this->values['mail']),''))
 			.$this->Label('imagen','Imagen:')
-			.$this->Input(array('file','imagen','imagen','',''));
+			.$this->Input(array('file','imagen','imagenMuseo','',''));
 
 			if($this->cancelarButtons == false){
 				$this->div .= '<div class="botones">'.$this->Input(array('submit','submit-museo','','Cargar','class="btn btn-primary"')).'<a class="btn clear-fields" href="#">Limpiar Campos</a></div>';

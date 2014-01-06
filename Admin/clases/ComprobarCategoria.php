@@ -48,7 +48,7 @@
 							// ya exite esa categoria
 
 							// chequea que el tipo de formulario. Si es de edicion, no importa que exista el nombre de categoria, pues significa que solo se desea cambiar la descripcion
-							if( $this->form != 1 ){								
+							if( $this->form != 1 ){
 								return 'Error: El nombre de categoria "'.$this->titulo.'" ya existe en la base de datos.';
 							}else{
 								// es un formulario de edicion y no importa si la categoria ya existe en la base de datos

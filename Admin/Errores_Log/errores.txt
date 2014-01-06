@@ -1,0 +1,5 @@
+Error devuelto por SQL: Unknown database 'arte'
+Query insertada: Error de seleccion de base de datos
+Fecha: Sun, 05 Jan 2014 22:33:31
+*********************************************************************
+

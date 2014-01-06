@@ -17,11 +17,10 @@
 		'nombre' => utf8_decode($_POST['museo']),
 		'direccion' => utf8_decode($_POST['direccion']),
 		'mail' => utf8_decode($_POST['mailMuseo']),
-		'imagen' => utf8_decode($_POST['imagenMuseo']),
+		'imagen' => utf8_decode($_FILES['imagenMuseo']),
 		'tipoForm' => $_POST['tipo'],
-		'id' => $idAutor
+		'id' => $idMuseo
 	);
-	
 	$verificacion = new ComprobarMuseos($campos);
 	$verificacion->verificar();
 
@@ -30,7 +29,7 @@
 		$_SESSION['campos'] = $categoria;
 		header('Location: ../vistas/museos.php');
 	}else{
-		$museo = new Museo($campos);
+		/*$museo = new Museo($campos);
 		if($campos['tipoForm'] == 1){
 			// si es 1, quiere decir que el museo es para editarse, por lo cual se crea un objeto de edicion			
 			$museo->editarAutor();
@@ -50,7 +49,7 @@
 
 			$_SESSION['carga_exitosa'] = $exitoMensaje;
 			header('Location: ../vistas/museos.php');
-		}
+		}*/
 	}
 
 ?>
