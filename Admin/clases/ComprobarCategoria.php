@@ -39,7 +39,7 @@
 				// menor o igual a 30 caracteres
 				if(strlen(trim($this->titulo)) <= 30){
 					// busca letras, numeros y espacios en blanco
-					if(preg_match('/^[a-zA-Z0-9 ]*$/', trim($this->titulo) ) ){
+					if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]*$/', utf8_encode(trim($this->titulo)) ) ){
 						
 						// verifica que el nombre de categoria ingresada no exista
 						$categoriaExiste = new Queries("SELECT id FROM categorias WHERE nombre = '".$this->titulo."'");
@@ -49,7 +49,7 @@
 
 							// chequea que el tipo de formulario. Si es de edicion, no importa que exista el nombre de categoria, pues significa que solo se desea cambiar la descripcion
 							if( $this->form != 1 ){
-								return 'Error: El nombre de categoria "'.$this->titulo.'" ya existe en la base de datos.';
+								return 'Error: El nombre de categoria "'.utf8_encode($this->titulo).'" ya existe en la base de datos.';
 							}else{
 								// es un formulario de edicion y no importa si la categoria ya existe en la base de datos
 								return false;

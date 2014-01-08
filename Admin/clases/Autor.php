@@ -20,8 +20,8 @@
 
 		private function settingAutor(){
 			// define el value para insertar en la base de datos
-			$this->nombre = trim($this->nombre);
-			$this->seudonimo = trim($this->seudonimo);
+			$this->nombre = utf8_encode(trim($this->nombre));
+			$this->seudonimo = utf8_encode(trim($this->seudonimo));
 			$this->seudonimo = $this->seudonimo == '' ? "-No tiene-" : $this->seudonimo;
 			$this->value = str_replace(" ", "_", $this->nombre);
 		}

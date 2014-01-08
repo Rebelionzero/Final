@@ -58,7 +58,7 @@
 				// campo no vacio
 				if(strlen(trim($this->titulo)) <= 30){
 					// menor o igual a 30 caracteres
-					if(preg_match('/^[a-zA-Z0-9 ]*$/', trim($this->titulo) ) ){
+					if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]*$/', utf8_encode(trim($this->titulo)) ) ){
 						// busca letras, numeros y espacios en blanco
 						// machea, no hay caracteres extraños, entrada correcta
 						return false;

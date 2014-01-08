@@ -29,10 +29,10 @@
 		$_SESSION['campos'] = $categoria;
 		header('Location: ../vistas/museos.php');
 	}else{
-		/*$museo = new Museo($campos);
+		$museo = new Museo($campos);
 		if($campos['tipoForm'] == 1){
 			// si es 1, quiere decir que el museo es para editarse, por lo cual se crea un objeto de edicion			
-			$museo->editarAutor();
+			$museo->editarMuseo();
 
 		}elseif($campos['tipoForm'] == 0){
 			// si es 0, quiere decir que el museo es nuevo, por lo cual se crea un objeto de creacion
@@ -49,7 +49,7 @@
 
 			$_SESSION['carga_exitosa'] = $exitoMensaje;
 			header('Location: ../vistas/museos.php');
-		}*/
+		}
 	}
 
 ?>

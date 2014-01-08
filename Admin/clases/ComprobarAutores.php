@@ -42,7 +42,7 @@
 				// menor o igual a 30 caracteres
 				if(strlen(trim($this->autor)) <= 30){
 					// busca letras, numeros y espacios en blanco
-					if(preg_match('/^[a-zA-Z ]*$/', trim($this->autor) ) ){
+					if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/', utf8_encode(trim($this->autor)) ) ){
 						// todo ok
 						return false;
 					}else{
@@ -66,7 +66,7 @@
 				if(strlen(trim($this->seudonimo)) <= 30){
 					// el seudonimo puede estar repetido, pero se debe verificar qeu no existan 2 autores con el mismo nombre y el mismo seudonimo
 
-					$query = 'SELECT id FROM autores WHERE seudonimo="'.$this->seudonimo.'" AND nombre="'.$this->autor.'"';
+					$query = 'SELECT id FROM autores WHERE seudonimo="'.utf8_encode($this->seudonimo).'" AND nombre="'.utf8_encode($this->autor).'"';
 					$selectRepetido = new Queries($query);
 					$selectRepetido->select();
 
@@ -94,7 +94,7 @@
 				if(preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/', $this->mail)){
 					// si el mail existe en la base de datos
 
-					$query = 'SELECT id FROM autores WHERE mail="'.$this->mail.'"';
+					$query = 'SELECT museos.id mail,autores.id autor FROM museos,autores WHERE museos.mail OR autores.mail="'.$this->mail.'"';
 					$verificarMail = new Queries($query);
 					$verificarMail->select();
 					if($verificarMail->resultado == false){
