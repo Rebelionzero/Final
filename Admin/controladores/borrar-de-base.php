@@ -18,7 +18,10 @@
 		borrarAutorDeBase($value);
 	}
 
-
+	if(isset($_POST['museo'])){
+		$value = $_POST['museo'];
+		borrarMuseoDeBase($value);
+	}
 
 	function borrarObraDeBase($id){
 			
@@ -30,7 +33,6 @@
 
 		$borrar = new Queries($query);
 		$borrar->delete();
-		// ESTOY ASUMIENDO QUE TODO SALIÓ BIEN, CREAR UNA INSTANCIA EN EL CASO DE QUE NO EXISTA LA OBRA APRA SER BORRADA
 
 		if( file_exists("../Obras_images/".$select_img->resultado[0]['src']) ){
 			if( unlink("../Obras_images/".$select_img->resultado[0]['src']) ){
@@ -80,8 +82,37 @@
 		$borradoAutorError ='Se produjo un error al borrar el autor seleccionado.';
 
 		verificarUso($usoQuery,$mensajeAutorEnUso,$location,$borrarQuery,$borradoAutorExitoso,$borradoAutorError);
+	}
 
+	function borrarMuseoDeBase($id){
+
+		$imagen_query = "SELECT src FROM museos WHERE id ='".$id."'";
+		$select_img = new Queries($imagen_query);
+		$select_img->select();
 		
+		if( file_exists("../Museos_images/".$select_img->resultado[0]['src']) ){
+			if( unlink("../Museos_images/".$select_img->resultado[0]['src']) ){
+				// borrado de imagen exitoso
+				$unlink_img = true;
+				$borradoMuseoExitoso = 'El museo se ha borrado exitosamente.';
+			}else{
+				// borrado de imagen no exitoso
+				$unlink_img = false;
+				$borradoMuseoExitoso = "El museo ha sido borrado exitosamente de la base de datos, pero la imagen correspondiente a el, no pudo ser borrado.";
+			}
+		}else{
+			$unlink_img = false;
+			$borradoMuseoExitoso = "El museo ha sido borrado exitosamente de la base de datos, pero la imagen correspondiente a el, no existe.";
+		}
+
+		// verificar que el museo no este siendo usado por una obra
+		$usoQuery = "SELECT id FROM obras WHERE museo=".$id;
+		$mensajeMuseoEnUso = 'El museo que intentó borrar esta siendo usado por una o mas obras.';
+		$location = " ../vistas/museos.php";
+		$borrarQuery = "DELETE FROM museos WHERE id=".$id;
+		$borradoMuseoError ='Se produjo un error al borrar el museo seleccionado.';		
+
+		verificarUso($usoQuery,$mensajeMuseoEnUso,$location,$borrarQuery,$borradoMuseoExitoso,$borradoMuseoError);
 	}
 
 	function verificarUso($query,$mensaje,$loc,$borrar,$exito,$error){
@@ -90,7 +121,7 @@
 		$selectObra = new Queries($query);
 		$selectObra->select();
 		if( $selectObra->resultado != false ){
-			// signigica que la categoria, autor, o museo esta en uso y no se puede borrar			
+			// signigica que la categoria, autor, o museo esta en uso y no se puede borrar
 			$mensajeRespuesta = new MensajeHTML($mensaje);
 			$mensajeRespuesta->mensajeAlert();
 			$_SESSION['borrado_exitoso'] = $mensajeRespuesta;
@@ -112,7 +143,7 @@
 			$mensajeRespuesta = new MensajeHTML($msgExito);
 			$mensajeRespuesta->mensajeExito();
 		}else{
-			// hubo un error al borrar la categoria de la base			
+			// hubo un error al borrar de la base			
 			$mensajeRespuesta = new MensajeHTML($msgError);
 			$mensajeRespuesta->mensajeError();
 		}

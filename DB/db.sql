@@ -33,7 +33,8 @@ CREATE TABLE IF NOT EXISTS `museos` (
   `value` varchar(30) NOT NULL,
   `direccion` varchar(50) NOT NULL,
   `mail` varchar(30) NOT NULL unique,
-  `imagen` varchar(50) DEFAULT NULL
+  `imagen` varchar(50) DEFAULT NULL,
+  `src` varchar(70) NOT NULL
 ) CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 DROP TABLE IF EXISTS `obras`;
@@ -77,5 +78,5 @@ INSERT INTO autores VALUES(null,'edmure tally','edmure_tally','frasco', 'tully@m
 INSERT INTO autores VALUES(null,'autor','autor',DEFAULT, 'autor@mail.com');
 INSERT INTO autores VALUES(null,'gran autor','gran_autor',DEFAULT, 'gran_autor@mail.com');
 
-INSERT INTO museos VALUES(null,'pequeño museo','pequeño_museo','direccion 456', 'peque@mail.com','otro.jpg');
-INSERT INTO museos VALUES(null,'gran museo de hyrule','gran_museo_de_hyrule','direccion 123', 'triforce@mail.com','imagen.jpg');
+INSERT INTO museos VALUES(null,'pequeño museo','pequeño_museo','direccion 456', 'peque@mail.com','otro.jpg','src.jpg');
+INSERT INTO museos VALUES(null,'gran museo de hyrule','gran_museo_de_hyrule','direccion 123', 'triforce@mail.com','imagen.jpg','src.jpg');

@@ -95,7 +95,7 @@ $(document).ready(function(){
 	});
 
 	/* 
-	// Borrar Obras / Categorias
+	// Borrar Obras / Categorias / Autores / Museos
 	*/
 
 	// adapatar esta funcion para que funcione segun el tipo de elemento que se quiere borrar (obras, museos, etc).
@@ -109,8 +109,8 @@ $(document).ready(function(){
 			case 'obra': valuesModal = ['Obra','Esta seguro de que desea borrar esta obra?'];break;
 			case 'categoria': valuesModal = ['Categoria','Esta seguro de que desea borrar esta categoria?'];break;
 			case 'autor' : valuesModal = ['Autor','Esta seguro de que desea borrar este autor?'];break;
+			case 'museo' : valuesModal = ['Museo','Esta seguro de que desea borrar este museo?'];break;
 
-			default: alert("todavia no programaste esto nico!!!");break;
 		}
 
 		$('#BorrarModal').modal('show');

@@ -29,7 +29,7 @@
 	$formularioMuseos = new formularioMuseos('../controladores/controlador-museos.php','museos-form','museos',0,$campos_value,false);
 	$formularioMuseos->crearForm();
 
-	$queryMuseos = "SELECT museos.id id, museos.nombre museo, museos.direccion, museos.mail mail, museos.imagen imagen FROM museos ORDER BY museos.id";
+	$queryMuseos = "SELECT museos.id id, museos.nombre museo, museos.direccion, museos.mail mail, museos.imagen imagen, museos.src src FROM museos ORDER BY museos.id";
 	$claseQuery = new Queries($queryMuseos);
 	$claseQuery->select();
 	$listaMuseos = '';

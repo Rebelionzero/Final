@@ -17,7 +17,7 @@
 		'nombre' => utf8_decode($_POST['museo']),
 		'direccion' => utf8_decode($_POST['direccion']),
 		'mail' => utf8_decode($_POST['mailMuseo']),
-		'imagen' => utf8_decode($_FILES['imagenMuseo']),
+		'imagen' => $_FILES['imagenMuseo'],
 		'tipoForm' => $_POST['tipo'],
 		'id' => $idMuseo
 	);
