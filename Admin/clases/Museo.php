@@ -36,7 +36,28 @@
 
 		public function editarMuseo(){
 			$this->settingMuseo();
-			var_dump("esto todavia no esta programado");
+			if($this->imagen["error"] == 0){
+				$imagenYSrc = "imagen='".$this->imagen['name']."',src='".$this->imagen['saveName']."'";				
+				$imagenABorrarQuery = "SELECT src from museos WHERE id=".$this->id;
+				$imagenABorrarSrc = new Queries($imagenABorrarQuery);
+				$imagenABorrarSrc->select();
+				$imagenABorrarSrc = $imagenABorrarSrc->resultado[0]['src'];
+			}else{
+				$imagenYSrc = '';
+				$imagenABorrarSrc = false;
+			}
+			
+			$query = "UPDATE museos SET nombre='".$this->nombre."', value='".$this->value."', direccion='".$this->direccion."' , mail='".$this->mail."', $imagenYSrc WHERE id=".$this->id.";";
+			
+
+			$editarMuseo = new Queries($query);
+			$editarMuseo->update();
+			$this->resultado = $editarMuseo->resultado;
+			if($this->resultado == true){
+				$this->moverImagen('El museo ha sido editado con exito',$imagenABorrarSrc);
+			}else{
+				$this->mensajeResultado = 'Error en la edicion del museo.';
+			}
 
 		}
 

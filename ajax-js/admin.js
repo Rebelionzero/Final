@@ -68,7 +68,7 @@ $(document).ready(function(){
 			case 'Obra': valuesModal = ['Obra','editar-obra-modal'];break;
 			case 'Categoria': valuesModal = ['Categoria','editar-categoria-modal'];break;
 			case 'Autor': valuesModal = ['Autor','editar-autor-modal'];break;
-			default : alert("todavia no programaste esto nico!!!");break;
+			case 'Museo': valuesModal = ['Museo','editar-museo-modal'];break;
 		}
 
 		$.ajax({
@@ -89,16 +89,12 @@ $(document).ready(function(){
 			}
 		});
 
-
-		// dependiendo de que parte de la pagina se pida, se abre una modal con contenido distinto
-		// Deberia usar un solo archivo controlador para editar
 	});
 
 	/* 
 	// Borrar Obras / Categorias / Autores / Museos
 	*/
 
-	// adapatar esta funcion para que funcione segun el tipo de elemento que se quiere borrar (obras, museos, etc).
 	$("a.Borrar").on("click",function( e ){
 		e.preventDefault();
 		

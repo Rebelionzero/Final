@@ -86,7 +86,17 @@
 			$formularioEdit->crearForm();
 			echo($formularioEdit->formulario);
 			break;
-						
+
+			// Museos
+			case "Museo": $tabla = 'museo';
+			$query = 'SELECT nombre museo, direccion direccion, mail mail, imagen imagen FROM museos WHERE id = '.$id;
+			$datosDelMuseo = consultar($query);
+			$camposValue =  array('museo'=>$datosDelMuseo[0]['museo'],'direccion'=>$datosDelMuseo[0]['direccion'],'mail'=>$datosDelMuseo[0]['mail'],'iamgen'=>$datosDelMuseo[0]['imagen']);
+			$formularioEdit = new FormularioMuseos('../controladores/controlador-museos.php','editar-museos-form','museos edit-museos',1,$camposValue,$id);
+			$formularioEdit->cancelBtns();
+			$formularioEdit->crearForm();
+			echo($formularioEdit->formulario);
+			break;
 		}
 
 	}

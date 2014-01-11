@@ -5,7 +5,7 @@
 		var $direccion;
 		var $mail;
 		var $imagen;
-		var $id;		
+		var $id;
 		var $errores = array();
 
 		function __construct($campos){
@@ -141,12 +141,11 @@
 
 		private function validarImagen(){
 			
-
 			if ($this->imagen["error"] > 0){				
-				if($this->esEditable == 0){
+				if($this->form == 0){
 					// se espera una imagen
 					return "Error en la carga de imagenes: No se ha subido ninguna imagen";
-				}elseif($this->esEditable == 1){
+				}elseif($this->form == 1){
 					// no es necesaria una imagen, ya que si existe, se editará
 					return false;
 				}

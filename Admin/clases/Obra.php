@@ -123,7 +123,7 @@
 			if($this->resultado == true){
 				$this->moverImagen('La obra ha sido editada con exito',$imagenABorrarSrc);
 			}else{
-				$this->mensajeResultado = 'Error en la insercion de la obra en la base de datos';
+				$this->mensajeResultado = 'Error al realizar la edicion de la obra.';
 			}
 		}
 
@@ -158,7 +158,7 @@
 				}else{
 					// la imagen no se insertó correctamente, llamar a la clase Error
 					$this->resultado = false;
-					$this->mensajeResultado = 'Error al subir la imagen, consulte el log de errores.';
+					$this->mensajeResultado = 'Error al subir la imagen.';
 				}
 			}
 			if($oldSrc != false){
