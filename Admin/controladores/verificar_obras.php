@@ -28,13 +28,13 @@
 		unset($_SESSION['ErroresObras']);
 		unset($_SESSION['campos']);
 		$errMensaje = new MensajeHTML($errores);
-		$errMensaje->mensajeError();
+		$errMensaje->listaDeMensajesDeError();
 	}
 
 	$exito = false;
-	if(isset($_SESSION['carga_exitosa'])){
-		$exito = $_SESSION['carga_exitosa'];
-		unset($_SESSION['carga_exitosa']);
+	if(isset($_SESSION['resultado_carga'])){
+		$exito = $_SESSION['resultado_carga'];
+		unset($_SESSION['resultado_carga']);
 	}
 
 	$borrado = false;
@@ -49,13 +49,11 @@
 	}else{
 		// crear nuevo objeto de formulario
 		// primero verifico que los campos del formulario esten vacios o no, si no estan vacios significa que hubo algun error en el ingreso de datos
-		// esta parte de verificacion suplanta lo que hacia el archivo variables-formulario-obra.php
 			
 		if($camposSeteados == false || $camposSeteados['tipoForm'] == 1){
 			$campos_value = array('titulo'=>'','descripcion'=>'','autor'=>'seleccione','anio'=>'seleccione','categoria'=>'seleccione','museo'=>'seleccione','imagen'=>'','mail'=>'','seudonimo'=>false);
 		}else{
 			// llenar de datos el mismo array, obtenerlos del controlador de obras
-			// pero para poder hacer esto, primero es necesario arreglar el javascript y los seudonimos y desactivar ajax
 			$campos_value = $camposSeteados;
 		}
 

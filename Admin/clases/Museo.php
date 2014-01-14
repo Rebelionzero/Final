@@ -12,7 +12,7 @@
 		var $id;
 
 		function __construct($museo){
-			$this->nombre = $museo['nombre'];
+			$this->nombre = $museo['museo'];
 			$this->direccion = $museo['direccion'];
 			$this->mail = $museo['mail'];
 			$this->imagen = $museo['imagen'];
@@ -37,17 +37,23 @@
 		public function editarMuseo(){
 			$this->settingMuseo();
 			if($this->imagen["error"] == 0){
-				$imagenYSrc = "imagen='".$this->imagen['name']."',src='".$this->imagen['saveName']."'";				
+				$imagenYSrc = ",imagen='".$this->imagen['name']."',src='".$this->imagen['saveName']."'";				
 				$imagenABorrarQuery = "SELECT src from museos WHERE id=".$this->id;
 				$imagenABorrarSrc = new Queries($imagenABorrarQuery);
 				$imagenABorrarSrc->select();
-				$imagenABorrarSrc = $imagenABorrarSrc->resultado[0]['src'];
+				if($imagenABorrarSrc->resultado == false ) {
+					$this->mensajeResultado = 'Error al cargar la imagen para la edicion del museo.';
+					$this->resultado = false;
+					return false;	
+				}else{
+					$imagenABorrarSrc = $imagenABorrarSrc->resultado[0]['src'];	
+				}
 			}else{
 				$imagenYSrc = '';
 				$imagenABorrarSrc = false;
 			}
 			
-			$query = "UPDATE museos SET nombre='".$this->nombre."', value='".$this->value."', direccion='".$this->direccion."' , mail='".$this->mail."', $imagenYSrc WHERE id=".$this->id.";";
+			$query = "UPDATE museos SET nombre='".$this->nombre."', value='".$this->value."', direccion='".$this->direccion."' , mail='".$this->mail."' $imagenYSrc WHERE id=".$this->id.";";
 			
 
 			$editarMuseo = new Queries($query);

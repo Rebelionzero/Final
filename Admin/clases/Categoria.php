@@ -10,7 +10,7 @@
 		var $id;
 
 		function __construct($categoria){
-			$this->titulo = $categoria['nombre'];
+			$this->titulo = $categoria['categoria'];
 			$this->descripcion = $categoria['descripcion'];
 			$this->accionBooleano = $categoria['tipoForm'];
 			$this->id = $categoria['id'];

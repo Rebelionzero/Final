@@ -9,13 +9,13 @@
 		unset($_SESSION['ErroresMuseos']);
 		unset($_SESSION['campos']);
 		$errMensaje = new MensajeHTML($errores);
-		$errMensaje->mensajeError();
+		$errMensaje->listaDeMensajesDeError();
 	}
 
 	$exito = false;
-	if(isset($_SESSION['carga_exitosa'])){
-		$exito = $_SESSION['carga_exitosa'];
-		unset($_SESSION['carga_exitosa']);
+	if(isset($_SESSION['resultado_carga'])){
+		$exito = $_SESSION['resultado_carga'];
+		unset($_SESSION['resultado_carga']);
 	}
 
 	$borrado = false;
@@ -24,7 +24,13 @@
 		unset($_SESSION['borrado_exitoso']);
 	}
 
-	$campos_value = array('museo'=>'','direccion'=>'','mail'=>'','imagen'=>'');
+	if($camposSeteados == false || $camposSeteados['tipoForm'] == 1){
+		$campos_value = array('museo'=>'','direccion'=>'','mail'=>'','imagen'=>'');
+	}else{
+		// llenar de datos el mismo array, obtenerlos del controlador de museos
+		$campos_value = $camposSeteados;
+	}
+
 
 	$formularioMuseos = new formularioMuseos('../controladores/controlador-museos.php','museos-form','museos',0,$campos_value,false);
 	$formularioMuseos->crearForm();
@@ -46,5 +52,5 @@
 	$rightEchoMuseos ="<div class='tabs'><a href='#' class='tab-cargar focused-tab'>Cargar Museo</a><a href='#' class='tab-lista'>Lista de Museos</a></div>";
 	$rightEchoMuseos .= "<div class='content_right'><div class='cargar block'>".$formularioMuseos->formulario."</div>";
 	$rightEchoMuseos .= "<div class='lista none'><div class='lista-de-museos'>".$listaMuseos."</div></div>";
-
+	
 ?>

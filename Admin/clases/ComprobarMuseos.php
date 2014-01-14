@@ -9,7 +9,7 @@
 		var $errores = array();
 
 		function __construct($campos){
-			$this->nombre = $campos['nombre'];
+			$this->nombre = $campos['museo'];
 			$this->direccion = $campos['direccion'];
 			$this->mail = $campos['mail'];
 			$this->imagen = $campos['imagen'];			
@@ -117,7 +117,7 @@
 				if(preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/', $this->mail)){
 					// si el mail existe en la base de datos
 
-					$queryMuseos = 'SELECT museos.id mail,autores.id autor FROM museos,autores WHERE museos.mail OR autores.mail="'.$this->mail.'"';
+					$queryMuseos = 'SELECT museos.id mail FROM museos WHERE museos.mail ="'.$this->mail.'"';
 					$verificarMail = new Queries($queryMuseos);
 					$verificarMail->select();
 					if($verificarMail->resultado == false){

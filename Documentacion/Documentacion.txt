@@ -325,7 +325,7 @@ Vistas con las que interactua: - Varias - Verificar -
 
 Metodos: 
 	Publicos:
-		*mensajeError:
+		*listaDeMensajesDeError:
 			- utilizando la variable output, se crea el div de apertura y se le asignan clases, ademas de crear el ul de apertura.
 			- utilizando un foreach se recorre la propiedad input y se le asigna al mensaje correspondiente un tag li usando para ello la propiedad middle.
 			- se une la propiedad middle con output, luego se cierra el ul, se crea un boton para destruir el mensaje desde js y el div de cierre del mensaje.
@@ -456,7 +456,7 @@ Funcion:
 
 Variables: 
 
-- $_SESSION['carga_exitosa']: sirve para la carga de una obra, se envia entre archivos para revisar si se subio una obra exitosamente a la base de datos, ademas sirve para mostrar errores o mensaje de exito.
+- $_SESSION['resultado_carga']: sirve para la carga de una obra, se envia entre archivos para revisar si se subio una obra exitosamente a la base de datos, ademas sirve para mostrar errores o mensaje de exito.
 
 Faltante: Completar la funcion de este controlador, verificar si el if isset deberia tener un else. Revisar el formulario para ver donde se envia la info ingresada para comenzar el proceso
 
@@ -499,7 +499,7 @@ Funcion:
 Usada en los siguientes archivos:
 
 /******************************************/
-$_SESSION['carga_exitosa']:
+$_SESSION['resultado_carga']:
 /******************************************/
 
 Funcion: 

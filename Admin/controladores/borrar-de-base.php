@@ -145,7 +145,7 @@
 		}else{
 			// hubo un error al borrar de la base			
 			$mensajeRespuesta = new MensajeHTML($msgError);
-			$mensajeRespuesta->mensajeError();
+			$mensajeRespuesta->listaDeMensajesDeError();
 		}
 		$_SESSION['borrado_exitoso'] = $mensajeRespuesta;
 		header("Location: ".$loc);

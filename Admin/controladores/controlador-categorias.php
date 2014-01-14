@@ -14,12 +14,13 @@
 	}
 
 	$campos = array(
-		'nombre' => utf8_decode($_POST['categoria']),
+		'categoria' => utf8_decode($_POST['categoria']),
 		'descripcion' => utf8_decode($_POST['descripcion']),
 		'tipoForm' => $_POST['tipo'],
 		'id' => $idCate
 	);
-	
+
+	$categoria = $campos;
 	$verificacion = new ComprobarCategoria($campos);
 	$verificacion->verificar();
 
@@ -49,7 +50,7 @@
 			}else{
 				$exitoMensaje->mensajeAlert();
 			}
-			$_SESSION['carga_exitosa'] = $exitoMensaje;
+			$_SESSION['resultado_carga'] = $exitoMensaje;
 			header('Location: ../vistas/categorias.php');
 		}
 	}

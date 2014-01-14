@@ -8,7 +8,7 @@
 		var $errores = array();
 
 		function __construct($campos){
-			$this->titulo = $campos['nombre'];
+			$this->titulo = $campos['categoria'];
 			$this->descripcion = $campos['descripcion'];
 			$this->form = $campos['tipoForm'];
 			$this->id = $campos['id'];
@@ -46,7 +46,6 @@
 						$categoriaExiste->select();
 						if ( $categoriaExiste->resultado != false ) {
 							// ya exite esa categoria
-
 							// chequea que el tipo de formulario. Si es de edicion, no importa que exista el nombre de categoria, pues significa que solo se desea cambiar la descripcion
 							if( $this->form != 1 ){
 								return 'Error: El nombre de categoria "'.utf8_encode($this->titulo).'" ya existe en la base de datos.';

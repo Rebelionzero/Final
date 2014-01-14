@@ -23,9 +23,9 @@
 		}
 		
 		$exito = false;
-		if(isset($_SESSION['carga_exitosa'])){
-			$exito = $_SESSION['carga_exitosa'];
-			unset($_SESSION['carga_exitosa']);
+		if(isset($_SESSION['resultado_carga'])){
+			$exito = $_SESSION['resultado_carga'];
+			unset($_SESSION['resultado_carga']);
 		}
 		
 		$edicion = false;
@@ -54,7 +54,7 @@
 			<?php include_once("left.php");?>
 			<div class="right" id="right">
 				<div class="right_content">
-					<h2>Bienvenido al panel de administracion de ***********************, para comenzar seleccione una opcion del menu izquierdo.</h2>
+					<h2>Bienvenido al panel de administracion de Art Smart, para comenzar seleccione una opcion del menu izquierdo.</h2>
 
 				</div>	
 			</div>

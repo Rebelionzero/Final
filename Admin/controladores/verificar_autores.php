@@ -9,13 +9,13 @@
 		unset($_SESSION['ErroresAutores']);
 		unset($_SESSION['campos']);
 		$errMensaje = new MensajeHTML($errores);
-		$errMensaje->mensajeError();
+		$errMensaje->listaDeMensajesDeError();
 	}
 
 	$exito = false;
-	if(isset($_SESSION['carga_exitosa'])){
-		$exito = $_SESSION['carga_exitosa'];
-		unset($_SESSION['carga_exitosa']);
+	if(isset($_SESSION['resultado_carga'])){
+		$exito = $_SESSION['resultado_carga'];
+		unset($_SESSION['resultado_carga']);
 	}
 
 	$borrado = false;
@@ -24,7 +24,11 @@
 		unset($_SESSION['borrado_exitoso']);
 	}
 
-	$campos_value = array('nombre'=>'','seudonimo'=>'','mail'=>'');
+	if($camposSeteados == false || $camposSeteados['tipoForm'] == 1){
+		$campos_value = array('nombre'=>'','seudonimo'=>'','mail'=>'');
+	}else{
+		$campos_value = $camposSeteados;
+	}
 
 	$formularioAutores = new formularioAutores('../controladores/controlador-autores.php','autores-form','autores',0,$campos_value,false);
 	$formularioAutores->crearForm();

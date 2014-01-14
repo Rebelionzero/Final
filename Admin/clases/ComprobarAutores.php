@@ -89,7 +89,7 @@
 		}
 
 		private function validarMail(){
-			if ($this->vacio($this->autor) == false){
+			if ($this->vacio($this->mail) == false){
 				// si es un mail
 				if(preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/', $this->mail)){
 					// si el mail existe en la base de datos
@@ -109,7 +109,7 @@
 						}
 					}
 				}else{
-					return 'Error: Se ingresaron caracteres extraños que no corresponden a un mail.';
+					return 'Error: Se ingresaron caracteres extraños que no corresponden a un mail, o este esta incompleto.';
 				}
 			}else{
 				return 'Error: El campo de mail no puede estar vacio.';

@@ -3,3 +3,8 @@ Query insertada: Error de seleccion de base de datos
 Fecha: Sun, 05 Jan 2014 22:33:31
 *********************************************************************
 
+Error devuelto por SQL: Unknown database 'aarte'
+Query insertada: Error de seleccion de base de datos
+Fecha: Mon, 13 Jan 2014 22:31:41
+*********************************************************************
+

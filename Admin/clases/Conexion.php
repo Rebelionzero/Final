@@ -20,8 +20,9 @@
 			$resultado = @mysql_select_db($this->db, $this->conexion);
 
 			if($resultado === false) {
-				$error = new Error("Error de seleccion de base de datos");
-				$error->creacionError();				
+				$_SESSION['Login']['autenticacion'] = false;
+				$_SESSION['Login']['respuesta'] = 'Se produjo un error al conectarse al servidor, contacte al servicio tecnico o intentelo de nuevo mas tarde.';
+				header("Location: ../vistas/login.php");
 			}
 		}
 

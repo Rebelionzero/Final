@@ -73,7 +73,7 @@
 			// salio todo bien, redireccionar a obras.php
 			$exitoMensaje = new MensajeHTML($obra->mensajeResultado);
 			$exitoMensaje->mensajeExito();
-			$_SESSION['carga_exitosa'] = $exitoMensaje;
+			$_SESSION['resultado_carga'] = $exitoMensaje;
 			header('Location: ../vistas/obras.php');
 		}
 		

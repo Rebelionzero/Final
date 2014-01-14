@@ -9,13 +9,13 @@
 		unset($_SESSION['ErroresCategorias']);
 		unset($_SESSION['campos']);
 		$errMensaje = new MensajeHTML($errores);
-		$errMensaje->mensajeError();
+		$errMensaje->listaDeMensajesDeError();
 	}
 
 	$exito = false;
-	if(isset($_SESSION['carga_exitosa'])){
-		$exito = $_SESSION['carga_exitosa'];
-		unset($_SESSION['carga_exitosa']);
+	if(isset($_SESSION['resultado_carga'])){
+		$exito = $_SESSION['resultado_carga'];
+		unset($_SESSION['resultado_carga']);
 	}
 
 	$borrado = false;
@@ -25,6 +25,12 @@
 	}
 
 	$campos_value = array('categoria'=>'','descripcion'=>'');
+
+	if($camposSeteados == false || $camposSeteados['tipoForm'] == 1){
+		$campos_value = array('categoria'=>'','descripcion'=>'');
+	}else{
+		$campos_value = $camposSeteados;
+	}
 
 	$formularioCategorias = new formularioCategorias('../controladores/controlador-categorias.php','categorias-form','categorias',0,$campos_value,false);
 	$formularioCategorias->crearForm();

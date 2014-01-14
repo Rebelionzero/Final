@@ -23,9 +23,9 @@
 		}
 		
 		$exito = false;
-		if(isset($_SESSION['carga_exitosa'])){
-			$exito = $_SESSION['carga_exitosa'];
-			unset($_SESSION['carga_exitosa']);
+		if(isset($_SESSION['resultado_carga'])){
+			$exito = $_SESSION['resultado_carga'];
+			unset($_SESSION['resultado_carga']);
 		}
 		
 		$edicion = false;
