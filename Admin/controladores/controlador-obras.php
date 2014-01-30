@@ -66,16 +66,11 @@
 			$obra->insertarObra();
 		}
 		
-		if($obra->resultado === false){
-			// ocurrio un error de mysql, llamar a clase Error
-			
-		}elseif($obra->resultado === true){
-			// salio todo bien, redireccionar a obras.php
-			$exitoMensaje = new MensajeHTML($obra->mensajeResultado);
-			$exitoMensaje->mensajeExito();
-			$_SESSION['resultado_carga'] = $exitoMensaje;
-			header('Location: ../vistas/obras.php');
-		}
+		$mensajeParaElUsuario = new MensajeHTML($obra->mensajeResultado);
+		$tipoDeMensaje = ( $obra->resultado === false ? $mensajeParaElUsuario->mensajeDeError() : $mensajeParaElUsuario->mensajeExito() );
+
+		$_SESSION['resultado_carga'] = $mensajeParaElUsuario;
+		header('Location: ../vistas/obras.php');
 		
 	}
 

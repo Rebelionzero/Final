@@ -39,20 +39,11 @@
 			$categoria->insertarCategoria();
 		}
 		
-		if($categoria->resultado === false){
-			// ocurrio un error de mysql, llamar a clase Error
-			
-		}elseif($categoria->resultado === true){
-			// salio todo bien, redireccionar a categorias.php
-			$exitoMensaje = new MensajeHTML($categoria->mensajeResultado);
-			if(strlen($categoria->descripcion) > 0){
-				$exitoMensaje->mensajeExito();
-			}else{
-				$exitoMensaje->mensajeAlert();
-			}
-			$_SESSION['resultado_carga'] = $exitoMensaje;
-			header('Location: ../vistas/categorias.php');
-		}
+		$mensajeParaElUsuario = new MensajeHTML($categoria->mensajeResultado);
+		$tipoDeMensaje = ( $categoria->resultado === false ? $mensajeParaElUsuario->mensajeDeError() : $largo = ( strlen($categoria->descripcion) > 0 ? $mensajeParaElUsuario->mensajeExito() : $mensajeParaElUsuario->mensajeAlert() ) );
+
+		$_SESSION['resultado_carga'] = $mensajeParaElUsuario;
+		header('Location: ../vistas/categorias.php');
 	}
 
 ?>
