@@ -41,7 +41,7 @@
 					if( $errores != false ){echo $errMensaje->output;}
 					if( $exito != false ){echo $exito->output;}
 				?>
-				<?php echo $rightEchoPass?>
+				<?php echo $rightEchoPass;?>
 			</div>
 		</div>
 		<div class="footer"></div>

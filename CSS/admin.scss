@@ -12,7 +12,7 @@ SSAP05: Obras
 SSAP06: Categorias
 SSAP07: Autores
 SSAP08: Museos
-SSAP09: Varios
+SSAP09: Cambio Contraseña
 -------------------------------------------------------
 */
 
@@ -221,7 +221,7 @@ SSAP04: Menu
 	box-shadow: 0 0px 4px rgba(0, 0, 0, 0.4);
 	-moz-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.4);
 	-webkit-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.4);
-	width: 170px;
+	width: 180px;
 	li{
 		float: $no;
 		margin: 0;
@@ -422,6 +422,18 @@ form.museos {
 	input#mail{
 		display: $bl;
 		margin: 0 0 10px 0;
+	}
+}
+
+/*
+------------------------------------
+SSAP09: Cambio Contraseña 
+------------------------------------
+*/
+
+.cambio-pass {
+	label {
+		width: 200px;
 	}
 }
 
