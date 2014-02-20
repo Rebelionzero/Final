@@ -1,6 +1,7 @@
 <?php
-
-	class Conexion	{
+	include_once("../interfaces/IConexion.php");
+	
+	class Conexion implements IConexion{
 		var $server;
 		var $usr;
 		var $pass;

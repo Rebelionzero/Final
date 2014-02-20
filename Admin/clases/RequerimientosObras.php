@@ -1,6 +1,7 @@
 <?php
+	include_once("../interfaces/ITraerRequerimientos.php");
 
-	class RequerimientosObras {
+	class RequerimientosObras implements ITraerRequerimientos{
 		var $arrayQuery = array();
 		var $arrayObjetos = array();
 		var $resultadoVacio = false;

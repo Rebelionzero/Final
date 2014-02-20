@@ -1,6 +1,7 @@
 <?php
+	include_once("../interfaces/IComprobaciones.php");
 
-	class ComprobarMuseos {
+	class ComprobarMuseos implements IComprobaciones{
 		var $nombre;
 		var $direccion;
 		var $mail;

@@ -1,6 +1,7 @@
 <?php
+	include_once("../interfaces/IFormularios.php");
 
-	Class FormularioAutores extends CrearFormulario{
+	Class FormularioAutores extends CrearFormulario implements IFormularios{
 		var $formulario;
 		var $div;
 		var $descripcion;
@@ -23,11 +24,10 @@
 		}
 
 		function crearForm(){
-			if($this->autorId == false){
-				$this->autorId ='';
-			}else{
-				$this->autorId = $this->Input(array('hidden','autor'.$this->autorId,'nraut',$this->autorId,''));
-			}
+
+			$this->autorId = ($this->autorId == false) ? '' : $this->Input(array('hidden','autor'.$this->autorId,'nraut',$this->autorId,''));
+			
+			$this->values['seudonimo'] = ( $this->values['seudonimo'] == '-No tiene-' ) ? '' : $this->values['seudonimo'];
 
 			$this->div = '<h2>Campos Obligatorios</h2>';
 			$this->div .= '<div>'

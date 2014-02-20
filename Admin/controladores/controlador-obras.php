@@ -56,13 +56,11 @@
 	}else{
 		$obra = new Obra($obra);
 		if($campos['tipoForm'] == 1){
-			// si es 1, quiere decir que la obra es para editarse, por lo cual se crea un objeto de edicion
-			$obra->settingObra();
+			// si es 1, quiere decir que la obra es para editarse, por lo cual se crea un objeto de edicion			
 			$obra->editarObra();
 
 		}elseif($campos['tipoForm'] == 0){
-			// si es 0, quiere decir que la obra es nueva, por lo cual se crea un objeto de creacion
-			$obra->settingObra();
+			// si es 0, quiere decir que la obra es nueva, por lo cual se crea un objeto de creacion			
 			$obra->insertarObra();
 		}
 		

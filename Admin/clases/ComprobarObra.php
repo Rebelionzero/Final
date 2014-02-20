@@ -1,6 +1,7 @@
 <?php
+	include_once("../interfaces/IComprobaciones.php");
 	
-	class ComprobarObra {
+	class ComprobarObra implements IComprobaciones{
 		var $titulo;
 		var $descripcion;
 		var $autor;

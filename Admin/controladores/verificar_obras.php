@@ -56,8 +56,7 @@
 			// llenar de datos el mismo array, obtenerlos del controlador de obras
 			$campos_value = $camposSeteados;
 		}
-
-		//var_dump($campos_value);
+		
 		$formularioObras = new FormularioObras('../controladores/controlador-obras.php','obras-form','obras',0,$requerimientos->arrayObjetos,$campos_value,false);
 		$formularioObras->crearForm();
 

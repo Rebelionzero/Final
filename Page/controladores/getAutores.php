@@ -1,5 +1,0 @@
-<?php
-
-	$query = "SELECT ";
-
-?>

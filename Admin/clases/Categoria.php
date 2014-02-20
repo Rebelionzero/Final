@@ -1,6 +1,7 @@
 <?php
+	include_once("../interfaces/ICategoria.php");
 
-	class Categoria {
+	class Categoria implements ICategoria{
 		var $titulo;
 		var $descripcion;
 		var $value;

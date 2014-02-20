@@ -1,6 +1,7 @@
 <?php
-
-	class MensajeHTML {
+	include_once("../interfaces/IMensajeHTML.php");
+	
+	class MensajeHTML implements IMensajeHTML{
 		var $input;
 		var $middle;
 		var $output;

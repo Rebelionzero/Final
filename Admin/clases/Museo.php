@@ -1,6 +1,7 @@
 <?php
+	include_once("../interfaces/IMuseo.php");
 
-	class Museo {
+	class Museo implements IMuseo {
 		var $nombre;
 		var $direccion;
 		var $mail;

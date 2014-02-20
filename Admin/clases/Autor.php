@@ -1,6 +1,7 @@
 <?php
+	include_once("../interfaces/IAutor.php");
 
-	class Autor {
+	class Autor implements IAutor {
 		var $nombre;
 		var $seudonimo;
 		var $mail;

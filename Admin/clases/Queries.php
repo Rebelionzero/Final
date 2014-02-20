@@ -1,6 +1,7 @@
 <?php
+	include_once("../interfaces/IQueries.php");
 
-	class Queries {
+	class Queries implements IQueries{
 		var $query;
 		var $consulta;
 		var $conectar;

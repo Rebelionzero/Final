@@ -1,6 +1,7 @@
 <?php
+	include_once("../interfaces/IFormularios.php");
 
-	Class FormularioCategorias extends CrearFormulario{
+	Class FormularioCategorias extends CrearFormulario implements IFormularios{
 		var $formulario;
 		var $div;
 		var $descripcion;

@@ -1,6 +1,7 @@
 <?php
-
-	class Obra {
+	include_once("../interfaces/IObra.php");
+	
+	class Obra implements IObra{
 		var $titulo;
 		var $descripcion;
 		var $autor;
@@ -30,7 +31,7 @@
 			$this->id = $obra['id'];
 		}
 
-		public function settingObra(){			
+		private function settingObra(){
 			// levanta los id's del autor, categoria y museo
 			$this->parametrosObra = array(
 				0 => array('autores' => $this->autor),
@@ -63,6 +64,7 @@
 		}
 
 		public function insertarObra(){
+			$this->settingObra();
 			$query = "INSERT INTO obras VALUES(
 				null,
 				'".$this->titulo."',
@@ -89,6 +91,7 @@
 		}
 
 		public function editarObra(){
+			$this->settingObra();
 			if($this->imagen["error"] == 0){
 				// al no hber error, hay una nueva imagen, por lo cual se crea el fragmento de la query para adherirlo
 				// a la query final a ejecutar. Ademas se busca el src de la imagen vieja para borrarla de la carpeta.

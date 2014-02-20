@@ -1,6 +1,7 @@
 <?php
+	include_once("../interfaces/IFormularios.php");
 
-	Class FormularioObras extends CrearFormulario{
+	Class FormularioObras extends CrearFormulario implements IFormularios{
 		var $formulario;
 		var $field_1;
 		var $field_2;
@@ -174,7 +175,7 @@
 				}elseif($this->cancelarButtons == true){
 					$this->field_3 = '';
 				}
-				//if($variable_cancelar == true ){$this->field_3.= $this->Button('btn','Cancelar','data-dismiss="modal" aria-hidden="true"');}
+				
 
 				// CERRANDO EL FORMULARIO
 				$this->formulario = $this->Fieldset('',$this->field_1);

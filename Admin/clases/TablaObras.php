@@ -1,6 +1,7 @@
 <?php
+	include_once("../interfaces/ITablas.php");
 
-	Class TablaObras extends DibujarTabla{
+	Class TablaObras extends DibujarTabla implements ITablas{
 		var $th;
 		var $content;
 		var $table;

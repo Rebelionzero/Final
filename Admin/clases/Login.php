@@ -1,6 +1,7 @@
 <?php
+	include_once("../interfaces/ILogin.php");
 
-	class Login {
+	class Login implements ILogin{
 		var $usuario;
 		var $clave;
 		var $respuesta;
