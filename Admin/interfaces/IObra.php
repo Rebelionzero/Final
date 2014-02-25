@@ -1,7 +1,6 @@
 <?php
 
-	interface IObra {
-		public function settingObra();
+	interface IObra {		
 		public function insertarObra();
 		public function editarObra();
 	}

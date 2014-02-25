@@ -171,7 +171,7 @@ $(document).ready(function(){
 			$(".seudonimo-container div").children("p.seu").remove();
 		}
 		$("p.warn").removeClass("block").addClass("none");
-
+		$(".content_right input[type='text'], .content_right textarea, .modal input[type='text'],.modal textarea").val("");
 	});
 
 
